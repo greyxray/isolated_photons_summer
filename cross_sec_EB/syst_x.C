@@ -1,0 +1,201 @@
+{
+//=========Macro generated from canvas: canv_cross_x/
+//=========  (Wed Aug 12 00:25:09 2015) by ROOT version5.34/00
+   TCanvas *canv_cross_x = new TCanvas("canv_cross_x", "",1,1,1200,976);
+   canv_cross_x->SetHighLightColor(2);
+   canv_cross_x->Range(0,0,1,1);
+   canv_cross_x->SetFillColor(0);
+   canv_cross_x->SetBorderMode(0);
+   canv_cross_x->SetBorderSize(2);
+   canv_cross_x->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: canv_cross_x_1
+   TPad *canv_cross_x_1 = new TPad("canv_cross_x_1", "canv_cross_x_1",0.01,0.01,0.99,0.99);
+   canv_cross_x_1->Draw();
+   canv_cross_x_1->cd();
+   canv_cross_x_1->Range(-4.07397,0.2376465,-1.57397,4.702903);
+   canv_cross_x_1->SetFillColor(0);
+   canv_cross_x_1->SetBorderMode(0);
+   canv_cross_x_1->SetBorderSize(2);
+   canv_cross_x_1->SetLogx();
+   canv_cross_x_1->SetLogy();
+   canv_cross_x_1->SetTickx(1);
+   canv_cross_x_1->SetTicky(1);
+   canv_cross_x_1->SetLeftMargin(0.15);
+   canv_cross_x_1->SetRightMargin(0.05);
+   canv_cross_x_1->SetBottomMargin(0.18);
+   canv_cross_x_1->SetFrameBorderMode(0);
+   canv_cross_x_1->SetFrameBorderMode(0);
+   Double_t xAxis43[5] = {0.0002, 0.001, 0.003, 0.01, 0.02}; 
+   
+   TH2D *h_window_cross_x = new TH2D("h_window_cross_x","",4, xAxis43,10,11,20000);
+   h_window_cross_x->SetStats(0);
+   h_window_cross_x->GetXaxis()->SetTitle("x");
+   h_window_cross_x->GetXaxis()->SetNdivisions(507);
+   h_window_cross_x->GetXaxis()->SetLabelFont(22);
+   h_window_cross_x->GetXaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x->GetXaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x->GetXaxis()->SetTitleOffset(1.1);
+   h_window_cross_x->GetXaxis()->SetTitleFont(22);
+   h_window_cross_x->GetYaxis()->SetTitle("d#sigma/dx (pb)");
+   h_window_cross_x->GetYaxis()->SetNdivisions(507);
+   h_window_cross_x->GetYaxis()->SetLabelFont(22);
+   h_window_cross_x->GetYaxis()->SetLabelOffset(0.016);
+   h_window_cross_x->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x->GetYaxis()->SetTitleOffset(1.2);
+   h_window_cross_x->GetYaxis()->SetTitleFont(22);
+   h_window_cross_x->Draw("");
+   
+   TGraphAsymmErrors *grae = new TGraphAsymmErrors(4);
+   grae->SetName("Graph");
+   grae->SetTitle("Graph");
+   grae->SetFillColor(42);
+   grae->SetPoint(0,0.0006,5089.498);
+   grae->SetPointError(0,0,0,412.7593,444.3222);
+   grae->SetPoint(1,0.002,1881.85);
+   grae->SetPointError(1,0,0,157.9771,172.0049);
+   grae->SetPoint(2,0.0065,286.6107);
+   grae->SetPointError(2,0,0,63.27724,36.17475);
+   grae->SetPoint(3,0.015,29.08361);
+   grae->SetPointError(3,0,0,6.396972,7.543509);
+   
+   TH1F *Graph_Graph4 = new TH1F("Graph_Graph4","Graph",100,0.00054,0.01644);
+   Graph_Graph4->SetMinimum(20.41797);
+   Graph_Graph4->SetMaximum(6084.934);
+   Graph_Graph4->SetDirectory(0);
+   Graph_Graph4->SetStats(0);
+   Graph_Graph4->GetXaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph_Graph4);
+   
+   grae->Draw("e3 ");
+   Double_t xAxis44[5] = {0.0002, 0.001, 0.003, 0.01, 0.02}; 
+   
+   TH1D *h_cross_section_x = new TH1D("h_cross_section_x","det_cross_x",4, xAxis44);
+   h_cross_section_x->SetBinContent(0,5.426807);
+   h_cross_section_x->SetBinContent(1,4869.363);
+   h_cross_section_x->SetBinContent(2,1811.322);
+   h_cross_section_x->SetBinContent(3,278.144);
+   h_cross_section_x->SetBinContent(4,25.08412);
+   h_cross_section_x->SetBinContent(5,14.57512);
+   h_cross_section_x->SetBinError(0,0.8127005);
+   h_cross_section_x->SetBinError(1,333.8703);
+   h_cross_section_x->SetBinError(2,139.3552);
+   h_cross_section_x->SetBinError(3,31.40374);
+   h_cross_section_x->SetBinError(4,6.870834);
+   h_cross_section_x->SetBinError(5,1.020531);
+   h_cross_section_x->SetEntries(13887);
+   h_cross_section_x->SetFillColor(41);
+
+   Int_t ci;   // for color index setting
+   ci = TColor::GetColor("#000099");
+   h_cross_section_x->SetLineColor(ci);
+   h_cross_section_x->SetLineWidth(2);
+   h_cross_section_x->SetMarkerStyle(20);
+   h_cross_section_x->GetXaxis()->SetLabelFont(42);
+   h_cross_section_x->GetXaxis()->SetLabelSize(0.035);
+   h_cross_section_x->GetXaxis()->SetTitleSize(0.035);
+   h_cross_section_x->GetXaxis()->SetTitleFont(42);
+   h_cross_section_x->GetYaxis()->SetLabelFont(42);
+   h_cross_section_x->GetYaxis()->SetLabelSize(0.035);
+   h_cross_section_x->GetYaxis()->SetTitleSize(0.035);
+   h_cross_section_x->GetYaxis()->SetTitleFont(42);
+   h_cross_section_x->GetZaxis()->SetLabelFont(42);
+   h_cross_section_x->GetZaxis()->SetLabelSize(0.035);
+   h_cross_section_x->GetZaxis()->SetTitleSize(0.035);
+   h_cross_section_x->GetZaxis()->SetTitleFont(42);
+   h_cross_section_x->Draw("E1 X0 SAME");
+   
+   grae = new TGraphAsymmErrors(4);
+   grae->SetName("Graph");
+   grae->SetTitle("Graph");
+   grae->SetFillColor(1);
+   grae->SetMarkerStyle(20);
+   grae->SetPoint(0,0.0006,5089.498);
+   grae->SetPointError(0,0,0,555.9821,526.7749);
+   grae->SetPoint(1,0.002,1881.85);
+   grae->SetPointError(1,0,0,219.2282,214.9615);
+   grae->SetPoint(2,0.0065,286.6107);
+   grae->SetPointError(2,0,0,70.97168,45.4526);
+   grae->SetPoint(3,0.015,29.08361);
+   grae->SetPointError(3,0,0,9.171918,9.295463);
+   grae->Draw("e ");
+   
+   TLegend *leg = new TLegend(0.23,0.289,0.63,0.6,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextFont(62);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(1);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("NULL","Bottom:","h");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry->SetTextFont(62);
+   entry=leg->AddEntry("Graph","jet energy uncertainty","f");
+
+   ci = TColor::GetColor("#0000ff");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(3454);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry=leg->AddEntry("Graph","photon energy uncertainty","f");
+
+   ci = TColor::GetColor("#ff0000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(3445);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry=leg->AddEntry("Graph","electron energy uncertainty","f");
+
+   ci = TColor::GetColor("#00ff00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(3425);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry=leg->AddEntry("Graph","#delta Z range unc.","f");
+
+   ci = TColor::GetColor("#ffff00");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(3452);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry=leg->AddEntry("Graph","total syst. unc.","le");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   leg->Draw();
+   canv_cross_x_1->Modified();
+   canv_cross_x->cd();
+   TText *text = new TText(0.45,0.95,"ZEUS");
+   text->SetTextFont(22);
+   text->SetTextSize(0.07);
+   text->Draw();
+   canv_cross_x->Modified();
+   canv_cross_x->cd();
+   canv_cross_x->SetSelected(canv_cross_x);
+}

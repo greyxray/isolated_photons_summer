@@ -1,0 +1,2769 @@
+opening file data 0405e
+opening file mc_bg_norad 0405e
+opening file mc_bg_rad 0405e
+opening file mc_prph 0405e
+0405e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_prph 1 ...
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_prph 2 ...
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 3 ...
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_prph 4 ...
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_x
+reading mc_prph 5 ...
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_prph 6 ...
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_prph 7 ...
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_prph 8 ...
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_prph 9 ...
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_prph 10 ...
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_prph 11 ...
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_prph 12 ...
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_prph 13 ...
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_prph 14 ...
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Inclusive_Photon/h_incl_phot_deltaz
+reading mc_prph 15 ...
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Inclusive_Photon/h_incl_phot_fmax
+reading mc_prph 16 ...
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Inclusive_Photon/h_incl_phot_phi
+reading mc_prph 17 ...
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Inclusive_Photon/h_incl_phot_eta
+reading mc_prph 18 ...
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 19 ...
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 20 ...
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Inclusive_DIS/h_Q2_da
+reading mc_prph 21 ...
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Inclusive_DIS/h_Q2_el
+reading mc_prph 22 ...
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Inclusive_DIS/h_Q2_jb
+reading mc_prph 23 ...
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Inclusive_DIS/h_elec_zufo_dr_min
+reading mc_prph 24 ...
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Inclusive_DIS/h_cal_empz
+reading mc_prph 25 ...
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Inclusive_DIS/h_dis_electron_e
+reading mc_prph 26 ...
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Inclusive_DIS/h_dis_electron_theta
+reading mc_prph 27 ...
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Inclusive_DIS/h_dis_electron_probability
+reading mc_prph 28 ...
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Inclusive_DIS/h_n_vtx_tracks
+reading mc_prph 29 ...
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Inclusive_DIS/h_siyjb
+reading mc_prph 30 ...
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Inclusive_DIS/h_x_el
+reading mc_prph 31 ...
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Inclusive_DIS/h_zvtx
+reading mc_prph 32 ...
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Inclusive_DIS/h_zufos_near_electron
+reading mc_prph 33 ...
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+opening file data 06e
+opening file mc_bg_norad 06e
+opening file mc_bg_rad 06e
+opening file mc_prph 06e
+06e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_prph 1 ...
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_prph 2 ...
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 3 ...
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_prph 4 ...
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_x
+reading mc_prph 5 ...
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_prph 6 ...
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_prph 7 ...
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_prph 8 ...
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_prph 9 ...
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_prph 10 ...
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_prph 11 ...
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_prph 12 ...
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_prph 13 ...
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_prph 14 ...
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Inclusive_Photon/h_incl_phot_deltaz
+reading mc_prph 15 ...
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Inclusive_Photon/h_incl_phot_fmax
+reading mc_prph 16 ...
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Inclusive_Photon/h_incl_phot_phi
+reading mc_prph 17 ...
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Inclusive_Photon/h_incl_phot_eta
+reading mc_prph 18 ...
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 19 ...
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 20 ...
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Inclusive_DIS/h_Q2_da
+reading mc_prph 21 ...
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Inclusive_DIS/h_Q2_el
+reading mc_prph 22 ...
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Inclusive_DIS/h_Q2_jb
+reading mc_prph 23 ...
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Inclusive_DIS/h_elec_zufo_dr_min
+reading mc_prph 24 ...
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Inclusive_DIS/h_cal_empz
+reading mc_prph 25 ...
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Inclusive_DIS/h_dis_electron_e
+reading mc_prph 26 ...
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Inclusive_DIS/h_dis_electron_theta
+reading mc_prph 27 ...
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Inclusive_DIS/h_dis_electron_probability
+reading mc_prph 28 ...
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Inclusive_DIS/h_n_vtx_tracks
+reading mc_prph 29 ...
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Inclusive_DIS/h_siyjb
+reading mc_prph 30 ...
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Inclusive_DIS/h_x_el
+reading mc_prph 31 ...
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Inclusive_DIS/h_zvtx
+reading mc_prph 32 ...
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Inclusive_DIS/h_zufos_near_electron
+reading mc_prph 33 ...
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+opening file data 0607p
+opening file mc_bg_norad 0607p
+opening file mc_bg_rad 0607p
+opening file mc_prph 0607p
+0607p files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_prph 1 ...
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_prph 2 ...
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 3 ...
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_prph 4 ...
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_x
+reading mc_prph 5 ...
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_prph 6 ...
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_prph 7 ...
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_prph 8 ...
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_prph 9 ...
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_prph 10 ...
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_prph 11 ...
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_prph 12 ...
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_prph 13 ...
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_prph 14 ...
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Inclusive_Photon/h_incl_phot_deltaz
+reading mc_prph 15 ...
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Inclusive_Photon/h_incl_phot_fmax
+reading mc_prph 16 ...
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Inclusive_Photon/h_incl_phot_phi
+reading mc_prph 17 ...
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Inclusive_Photon/h_incl_phot_eta
+reading mc_prph 18 ...
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 19 ...
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Inclusive_Photon/h_incl_phot_elphot_dphi
+reading mc_prph 20 ...
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Inclusive_DIS/h_Q2_da
+reading mc_prph 21 ...
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Inclusive_DIS/h_Q2_el
+reading mc_prph 22 ...
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Inclusive_DIS/h_Q2_jb
+reading mc_prph 23 ...
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Inclusive_DIS/h_elec_zufo_dr_min
+reading mc_prph 24 ...
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Inclusive_DIS/h_cal_empz
+reading mc_prph 25 ...
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Inclusive_DIS/h_dis_electron_e
+reading mc_prph 26 ...
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Inclusive_DIS/h_dis_electron_theta
+reading mc_prph 27 ...
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Inclusive_DIS/h_dis_electron_probability
+reading mc_prph 28 ...
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Inclusive_DIS/h_n_vtx_tracks
+reading mc_prph 29 ...
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Inclusive_DIS/h_siyjb
+reading mc_prph 30 ...
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Inclusive_DIS/h_x_el
+reading mc_prph 31 ...
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Inclusive_DIS/h_zvtx
+reading mc_prph 32 ...
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Inclusive_DIS/h_zufos_near_electron
+reading mc_prph 33 ...
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+histos succesfully read
+data: 2659, rad mc: 215
+0405e, data: 2659 215
+lumi data: 134.16, lumi mc: 134.52
+06e, data: 1014 87
+lumi data: 54.7957, lumi mc: 54.71
+0607p, data: 2542 627
+lumi data: 142.938, lumi mc: 364.6
+data: 2659, rad mc: 214.425
+data: 6215, rad mc: 547.37
+mc signal: 14572 14572 14572 14572
+Before fitting: 
+Photon_with_jet/h_deltaz_data
+data: 
+0   99   9.94987
+1   701   26.4764
+2   816   28.5657
+3   689   26.2488
+4   511   22.6053
+5   366   19.1311
+6   328   18.1108
+7   319   17.8606
+8   327   18.0831
+9   455   21.3307
+10   488   22.0907
+11   224   14.9666
+12   154   12.4097
+13   106   10.2956
+14   109   10.4403
+15   90   9.48683
+16   84   9.16515
+17   81   9
+18   84   9.16515
+19   52   7.2111
+20   37   6.08276
+21   25   5
+22   9   3
+23   14   3.74166
+24   10   3.16228
+25   9   3
+26   3   1.73205
+27   3   1.73205
+28   3   1.73205
+29   5   2.23607
+mc_sum: 
+0   242.543   9.68623
+1   937.678   19.0453
+2   1113.3   20.7523
+3   876.172   18.4101
+4   640.979   15.7464
+5   457.234   13.2993
+6   369.81   11.9605
+7   271.555   10.2492
+8   230.938   9.45166
+9   247.959   9.79377
+10   206.181   8.93068
+11   44.0987   4.13022
+12   12.3786   2.18825
+13   2.70782   1.02346
+14   1.16049   0.670011
+15   0.773662   0.547061
+16   0.386831   0.386831
+17   0.386831   0.386831
+18   0.386831   0.386831
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_rad: 
+0   18.4321   3.72651
+1   92.3475   8.30167
+2   119.473   9.41422
+3   87.919   7.97114
+4   65.3019   6.79509
+5   42.5617   5.53211
+6   26.4516   4.05305
+7   31.6642   4.70247
+8   19.7827   3.71563
+9   14.447   3.14908
+10   19.6426   3.94573
+11   4.17658   1.86065
+12   1.17612   0.679033
+13   0.997324   0.997324
+14   0   0
+15   0   0
+16   0   0
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_norad: 
+0   80.6265   8.78479
+1   269.213   16.382
+2   410.541   20.6128
+3   406.365   20.4175
+4   394.293   20.1939
+5   335.288   18.3801
+6   369.384   19.8021
+7   395.525   20.3271
+8   384.191   19.5945
+9   493.764   22.3342
+10   564.276   24.0771
+11   341.86   18.5404
+12   228.332   15.3189
+13   152.18   12.415
+14   132.999   11.5954
+15   127.894   11.5274
+16   117.758   11.029
+17   121.092   11.315
+18   106.394   10.7475
+19   82.1109   9.03133
+20   38.868   6.28903
+21   31.7125   5.57006
+22   20.5413   4.63988
+23   13.6981   3.78987
+24   5.71796   2.0648
+25   11.7665   3.48396
+26   5.21795   2.50697
+27   5.7121   2.06087
+28   5.46503   2.29479
+29   3.8398   2.09418
+mc_photon: 
+0   645.432   25.3157
+1   2516.35   49.9291
+2   2997.47   54.4668
+3   2352.92   48.2549
+4   1722.3   41.2695
+5   1224.56   34.8225
+6   982.452   31.1838
+7   733.664   26.9094
+8   616.783   24.7145
+9   655.447   25.5131
+10   552.643   23.4215
+11   118.177   10.838
+12   33.1761   5.69746
+13   7.99732   2.82748
+14   3   1.73205
+15   2   1.41421
+16   1   1
+17   1   1
+18   1   1
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 ALPHA        3.00000e-01  1.00000e-01    0.00000e+00  1.00000e+00
+after simplex
+ **********
+ **    1 **MINI         1000        0.01
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-05
+ FCN=43.8214 FROM MIGRAD    STATUS=INITIATE        4 CALLS           5 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.00000e-01   1.00000e-01   2.21072e-01  -1.11823e+02
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=36.8286 FROM MIGRAD    STATUS=CONVERGED      17 CALLS          18 TOTAL
+                     EDM=1.18209e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.56154e-01   2.08110e-02   1.30091e-04   3.53688e-03
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  1    ERR DEF=1
+  4.334e-04 
+After MINI: 0.356154 +- 0.020811
+ **********
+ **    2 **CALL FCN           1
+ **********
+ **********
+ **    3 **SET PRINT           0
+ **********
+ **********
+ **    4 **MIGRAD
+ **********
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ FCN=36.8286 FROM MIGRAD    STATUS=CONVERGED       5 CALLS          24 TOTAL
+                     EDM=5.85257e-20    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   0.0 per cent
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.56153e-01   2.08110e-02  -3.34736e-06   1.11297e-08
+ **********
+ **    5 **MINOS
+ **********
+ FCN=36.8286 FROM MINOS     STATUS=SUCCESSFUL      4 CALLS          28 TOTAL
+                     EDM=5.85257e-20    STRATEGY= 1  ERROR MATRIX UNCERTAINTY   0.0 per cent
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  ALPHA        3.56153e-01   2.08110e-02  -2.09703e-02   2.06709e-02
+ **********
+ **    6 **CALL FCN           3
+ **********
+after migrad
+after hesse
+after minos
+Barlow-Beeston chi2 approach: 
+param = 0.356153 +- 0.020811
+with chi2 / 19-1 = 36.8286
+Ians param: 48.5688Gauss chi2 approach: 
+param = 0 +- 0
+with chi2 / 19-1 = 621.657
+0: 0.405237 42.5753 77.6985
+1: 0.405653 42.6748 77.8311
+2: 0.40607 42.7752 77.965
+3: 0.406486 42.8764 78.1004
+4: 0.406902 42.9785 78.2372
+5: 0.407318 43.0815 78.3754
+6: 0.407734 43.1854 78.515
+7: 0.408151 43.2902 78.6561
+8: 0.408567 43.3959 78.7986
+9: 0.408983 43.5024 78.9425
+10: 0.409399 43.6098 79.0878
+11: 0.409815 43.7181 79.2345
+12: 0.410232 43.8273 79.3826
+13: 0.410648 43.9374 79.5322
+14: 0.411064 44.0484 79.6832
+15: 0.41148 44.1602 79.8356
+16: 0.411897 44.273 79.9894
+17: 0.412313 44.3866 80.1446
+18: 0.412729 44.5012 80.3013
+19: 0.413145 44.6166 80.4594
+20: 0.413561 44.7329 80.6189
+21: 0.413978 44.8501 80.7798
+22: 0.414394 44.9682 80.9421
+23: 0.41481 45.0872 81.1059
+24: 0.415226 45.2071 81.271
+25: 0.415643 45.3279 81.4376
+26: 0.416059 45.4496 81.6056
+27: 0.416475 45.5722 81.775
+28: 0.416891 45.6957 81.9459
+29: 0.417307 45.82 82.1181
+30: 0.417724 45.9453 82.2918
+31: 0.41814 46.0715 82.4669
+32: 0.418556 46.1986 82.6434
+33: 0.418972 46.3265 82.8213
+34: 0.419389 46.4554 83.0007
+35: 0.419805 46.5852 83.1815
+36: 0.420221 46.7159 83.3637
+37: 0.420637 46.8475 83.5473
+38: 0.421053 46.98 83.7323
+39: 0.42147 47.1134 83.9187
+40: 0.421886 47.2477 84.1066
+41: 0.422302 47.3829 84.2959
+42: 0.422718 47.519 84.4866
+43: 0.423135 47.656 84.6787
+44: 0.423551 47.7939 84.8722
+45: 0.423967 47.9328 85.0672
+46: 0.424383 48.0725 85.2636
+47: 0.424799 48.2132 85.4614
+48: 0.425216 48.3548 85.6606
+49: 0.425632 48.4972 85.8612
+50: 0.426048 48.6406 86.0632
+51: 0.426464 48.7849 86.2667
+52: 0.426881 48.9301 86.4716
+53: 0.427297 49.0763 86.6779
+54: 0.427713 49.2233 86.8856
+55: 0.428129 49.3713 87.0948
+56: 0.428545 49.5202 87.3053
+57: 0.428962 49.6699 87.5173
+58: 0.429378 49.8207 87.7307
+59: 0.429794 49.9723 87.9455
+60: 0.43021 50.1248 88.1617
+61: 0.430627 50.2783 88.3794
+62: 0.431043 50.4327 88.5985
+63: 0.431459 50.588 88.8189
+64: 0.431875 50.7442 89.0409
+65: 0.432291 50.9014 89.2642
+66: 0.432708 51.0594 89.4889
+67: 0.433124 51.2184 89.7151
+68: 0.43354 51.3783 89.9427
+69: 0.433956 51.5392 90.1717
+70: 0.434373 51.7009 90.4021
+71: 0.434789 51.8636 90.6339
+72: 0.435205 52.0272 90.8672
+73: 0.435621 52.1918 91.1018
+74: 0.436037 52.3573 91.3379
+75: 0.436454 52.5237 91.5754
+76: 0.43687 52.691 91.8144
+77: 0.437286 52.8592 92.0547
+78: 0.437702 53.0284 92.2965
+79: 0.438119 53.1985 92.5397
+80: 0.438535 53.3696 92.7843
+81: 0.438951 53.5416 93.0303
+82: 0.439367 53.7145 93.2777
+83: 0.439783 53.8883 93.5266
+84: 0.4402 54.0631 93.7769
+85: 0.440616 54.2388 94.0286
+86: 0.441032 54.4155 94.2817
+87: 0.441448 54.5931 94.5362
+88: 0.441865 54.7716 94.7922
+89: 0.442281 54.951 95.0495
+90: 0.442697 55.1314 95.3083
+91: 0.443113 55.3128 95.5685
+92: 0.443529 55.495 95.8301
+93: 0.443946 55.6782 96.0932
+94: 0.444362 55.8624 96.3577
+95: 0.444778 56.0475 96.6235
+96: 0.445194 56.2335 96.8908
+97: 0.44561 56.4205 97.1596
+98: 0.446027 56.6084 97.4297
+99: 0.446443 56.7973 97.7012
+err before: 0 0 0.682894
+err after: 0 0 0.696619
+err before: 0 1 0
+err after: 0 1 0
+err before: 0 2 0
+err after: 0 2 0
+err before: 0 3 0
+err after: 0 3 0
+err before: 0 4 0.165626
+err after: 0 4 0.165824
+err before: 0 5 0.331252
+err after: 0 5 0.332831
+err before: 0 6 0.597173
+err after: 0 6 0.606373
+err before: 0 7 1.03433
+err after: 0 7 1.08143
+err before: 0 8 1.25045
+err after: 0 8 1.33285
+err before: 0 9 2.2649
+err after: 0 9 2.72412
+err before: 0 10 3.09858
+err after: 0 10 4.19845
+err before: 0 11 3.13817
+err after: 0 11 4.27691
+err before: 0 12 3.47815
+err after: 0 12 4.9839
+err before: 0 13 3.85236
+err after: 0 13 5.83234
+err before: 0 14 4.65819
+err after: 0 14 7.91778
+err before: 0 15 5.8417
+err after: 0 15 11.6411
+err before: 0 16 7.44212
+err after: 0 16 17.957
+err before: 0 17 9.97889
+err after: 0 17 31.0304
+err before: 0 18 10.3248
+err after: 0 18 33.1054
+err before: 0 19 5.21919
+err after: 0 19 9.58346
+err before: 1 0 4.12478
+err after: 1 0 6.51857
+err before: 1 1 8.11024
+err after: 1 1 21.1323
+err before: 1 2 8.83716
+err after: 1 2 24.7971
+err before: 1 3 7.83974
+err after: 1 3 19.848
+err before: 1 4 6.70546
+err after: 1 4 14.93
+err before: 1 5 5.66339
+err after: 1 5 11.0733
+err before: 1 6 5.09327
+err after: 1 6 9.22886
+err before: 1 7 4.36452
+err after: 1 7 7.1405
+err before: 1 8 4.0249
+err after: 1 8 6.26881
+err before: 1 9 4.17058
+err after: 1 9 6.63492
+err before: 1 10 3.80304
+err after: 1 10 5.73362
+err before: 1 11 1.75881
+err after: 1 11 1.98385
+err before: 1 12 0.931842
+err after: 1 12 0.966796
+err before: 1 13 0.435829
+err after: 1 13 0.439457
+err before: 1 14 0.285317
+err after: 1 14 0.286338
+err before: 1 15 0.232961
+err after: 1 15 0.233516
+err before: 1 16 0.164728
+err after: 1 16 0.164925
+err before: 1 17 0.164728
+err after: 1 17 0.164925
+err before: 1 18 0.164728
+err after: 1 18 0.164925
+err before: 1 19 0
+err after: 1 19 0
+err before: 1 20 0
+err after: 1 20 0
+err before: 1 21 0
+err after: 1 21 0
+err before: 1 22 0
+err after: 1 22 0
+err before: 1 23 0
+err after: 1 23 0
+err before: 1 24 0
+err after: 1 24 0
+err before: 1 25 0
+err after: 1 25 0
+err before: 1 26 0
+err after: 1 26 0
+err before: 1 27 0
+err after: 1 27 0
+err before: 1 28 0
+err after: 1 28 0
+err before: 1 29 0
+err after: 1 29 0
+err before: 2 0 0
+err after: 2 0 0
+err before: 2 1 9.786
+err after: 2 1 29.9877
+err before: 2 2 7.47737
+err after: 2 2 18.1601
+err before: 2 3 6.21295
+err after: 2 3 13.0055
+err before: 2 4 5.32966
+err after: 2 4 9.9547
+err before: 2 5 4.95046
+err after: 2 5 8.78217
+err before: 2 6 4.36833
+err after: 2 6 7.14035
+err before: 2 7 4.24168
+err after: 2 7 6.80826
+err before: 2 8 3.89667
+err after: 2 8 5.94839
+err before: 2 9 3.40377
+err after: 2 9 4.83173
+err before: 2 10 3.32272
+err after: 2 10 4.66043
+err before: 2 11 3.163
+err after: 2 11 4.33287
+err before: 2 12 3.06228
+err after: 2 12 4.13304
+err before: 2 13 2.85974
+err after: 2 13 3.7467
+err before: 2 14 2.71299
+err after: 2 14 3.47945
+err before: 2 15 2.48759
+err after: 2 15 3.08917
+err before: 2 16 2.44894
+err after: 2 16 3.02464
+err before: 2 17 2.25781
+err after: 2 17 2.71559
+err before: 2 18 2.14639
+err after: 2 18 2.54294
+err before: 2 19 1.91125
+err after: 2 19 2.19589
+err before: 2 20 1.84595
+err after: 2 20 2.10353
+err before: 2 21 1.76286
+err after: 2 21 1.98842
+err before: 2 22 1.4675
+err after: 2 22 1.59997
+err before: 2 23 1.48596
+err after: 2 23 1.62335
+err before: 2 24 1.41068
+err after: 2 24 1.52871
+err before: 2 25 1.22447
+err after: 2 25 1.30241
+err before: 2 26 1.22447
+err after: 2 26 1.30241
+err before: 2 27 1.1439
+err after: 2 27 1.20769
+err before: 2 28 0.873665
+err after: 2 28 0.902405
+err before: 2 29 0.933987
+err after: 2 29 0.969021
+err before: 2 30 0.719686
+err after: 2 30 0.735833
+err before: 2 31 0.791826
+err after: 2 31 0.813284
+err before: 2 32 0.466994
+err after: 2 32 0.471434
+err before: 2 33 0.547599
+err after: 2 33 0.554745
+err before: 2 34 0.285974
+err after: 2 34 0.286997
+err before: 2 35 0
+err after: 2 35 0
+err before: 2 36 0
+err after: 2 36 0
+err before: 2 37 0
+err after: 2 37 0
+err before: 2 38 0
+err after: 2 38 0
+err before: 2 39 0
+err after: 2 39 0
+err before: 3 0 0
+err after: 3 0 0
+err before: 3 1 5.81402
+err after: 3 1 11.572
+err before: 3 2 8.13561
+err after: 3 2 21.2133
+err before: 3 3 7.51192
+err after: 3 3 18.3141
+err before: 3 4 6.80754
+err after: 3 4 15.3134
+err before: 3 5 6.24358
+err after: 3 5 13.1194
+err before: 3 6 5.62819
+err after: 3 6 10.9356
+err before: 3 7 5.13162
+err after: 3 7 9.33212
+err before: 3 8 4.59342
+err after: 3 8 7.75264
+err before: 3 9 4.21266
+err after: 3 9 6.73341
+err before: 3 10 3.74324
+err after: 3 10 5.58684
+err before: 3 11 3.43962
+err after: 3 11 4.90859
+err before: 3 12 3.11524
+err after: 3 12 4.23746
+err before: 3 13 2.71801
+err after: 3 13 3.48842
+err before: 3 14 2.37548
+err after: 3 14 2.9039
+err before: 3 15 2.14639
+err after: 3 15 2.54294
+err before: 3 16 1.83113
+err after: 3 16 2.08279
+err before: 3 17 1.68377
+err after: 3 17 1.8813
+err before: 3 18 1.0572
+err after: 3 18 1.10775
+err before: 3 19 0
+err after: 3 19 0
+err before: 4 0 0
+err after: 4 0 0
+err before: 4 1 13.6621
+err after: 4 1 56.9118
+err before: 4 2 10.2672
+err after: 4 2 32.8482
+err before: 4 3 7.62001
+err after: 4 3 18.8002
+err before: 4 4 5.38563
+err after: 4 4 10.1347
+err before: 4 5 3.5373
+err after: 4 5 5.12145
+err before: 4 6 2.19039
+err after: 4 6 2.61047
+err before: 4 7 1.33114
+err after: 4 7 1.43073
+err before: 4 8 0.719686
+err after: 4 8 0.735833
+err before: 4 9 0.495322
+err after: 4 9 0.500617
+err before: 4 10 0.285974
+err after: 4 10 0.286997
+err before: 4 11 0.165107
+err after: 4 11 0.165304
+err before: 4 12 0
+err after: 4 12 0
+err before: 4 13 0
+err after: 4 13 0
+err before: 4 14 0
+err after: 4 14 0
+err before: 4 15 0
+err after: 4 15 0
+err before: 4 16 0
+err after: 4 16 0
+err before: 4 17 0
+err after: 4 17 0
+err before: 4 18 0
+err after: 4 18 0
+err before: 4 19 0
+err after: 4 19 0
+err before: 5 0 12.1468
+err after: 5 0 45.3478
+err before: 5 1 8.83066
+err after: 5 1 24.7224
+err before: 5 2 6.97662
+err after: 5 2 16.0127
+err before: 5 3 5.59913
+err after: 5 3 10.8412
+err before: 5 4 4.48647
+err after: 5 4 7.4602
+err before: 5 5 3.8775
+err after: 5 5 5.90395
+err before: 5 6 3.32951
+err after: 5 6 4.67562
+err before: 5 7 2.99351
+err after: 5 7 4.0003
+err before: 5 8 2.56738
+err after: 5 8 3.22508
+err before: 5 9 2.14549
+err after: 5 9 2.54186
+err before: 5 10 2.06132
+err after: 5 10 2.41498
+err before: 5 11 1.8079
+err after: 5 11 2.05067
+err before: 5 12 1.60859
+err after: 5 12 1.78175
+err before: 5 13 1.30994
+err after: 5 13 1.40504
+err before: 5 14 1.3203
+err after: 5 14 1.41762
+err before: 5 15 1.11934
+err after: 5 15 1.17922
+err before: 5 16 1.01736
+err after: 5 16 1.06252
+err before: 5 17 0.888754
+err after: 5 17 0.919017
+err before: 5 18 1.01736
+err after: 5 18 1.06252
+err before: 5 19 0.73807
+err after: 5 19 0.755492
+err before: 6 0 1.29923
+err after: 6 0 1.3921
+err before: 6 1 2.91452
+err after: 6 1 3.85021
+err before: 6 2 3.25853
+err after: 6 2 4.52859
+err before: 6 3 3.83785
+err after: 6 3 5.81037
+err before: 6 4 4.4244
+err after: 6 4 7.29316
+err before: 6 5 4.98295
+err after: 6 5 8.88331
+err before: 6 6 5.38726
+err after: 6 6 10.1446
+err before: 6 7 5.98801
+err after: 6 7 12.1918
+err before: 6 8 6.54208
+err after: 6 8 14.2648
+err before: 6 9 7.09893
+err after: 6 9 16.5282
+err before: 6 10 7.43792
+err after: 6 10 17.9947
+err before: 6 11 7.08549
+err after: 6 11 16.4714
+err before: 6 12 5.89637
+err after: 6 12 11.8661
+err before: 6 13 3.74449
+err after: 6 13 5.59171
+err before: 6 14 2.0806
+err after: 6 14 2.44392
+err before: 6 15 1.1191
+err after: 6 15 1.17897
+err before: 6 16 0.63905
+err after: 6 16 0.650397
+err before: 6 17 0.368956
+err after: 6 17 0.371152
+err before: 6 18 0.330004
+err after: 6 18 0.331577
+err before: 6 19 0
+err after: 6 19 0
+err before: 7 0 0
+err after: 7 0 0
+err before: 7 1 0
+err after: 7 1 0
+err before: 7 2 0
+err after: 7 2 0
+err before: 7 3 0.919278
+err after: 7 3 0.952701
+err before: 7 4 3.15869
+err after: 7 4 4.32421
+err before: 7 5 3.14138
+err after: 7 5 4.28954
+err before: 7 6 3.66969
+err after: 7 6 5.41803
+err before: 7 7 3.96257
+err after: 7 7 6.10761
+err before: 7 8 4.2705
+err after: 7 8 6.88306
+err before: 7 9 4.61415
+err after: 7 9 7.81044
+err before: 7 10 4.96146
+err after: 7 10 8.81503
+err before: 7 11 5.52554
+err after: 7 11 10.5925
+err before: 7 12 5.89319
+err after: 7 12 11.8492
+err before: 7 13 6.33461
+err after: 7 13 13.461
+err before: 7 14 6.9737
+err after: 7 14 15.9952
+err before: 7 15 7.82127
+err after: 7 15 19.7236
+err before: 7 16 7.9646
+err after: 7 16 20.3957
+err before: 7 17 2.54179
+err after: 7 17 3.18083
+err before: 7 18 0
+err after: 7 18 0
+err before: 7 19 0
+err after: 7 19 0
+err before: 8 0 0
+err after: 8 0 0
+err before: 8 1 0.369191
+err after: 8 1 0.371389
+err before: 8 2 0.719686
+err after: 8 2 0.735833
+err before: 8 3 0.774421
+err after: 8 3 0.794506
+err before: 8 4 0.841885
+err after: 8 4 0.86763
+err before: 8 5 1.07002
+err after: 8 5 1.1224
+err before: 8 6 1.1439
+err after: 8 6 1.20769
+err before: 8 7 1.08268
+err after: 8 7 1.13692
+err before: 8 8 1.0952
+err after: 8 8 1.15131
+err before: 8 9 1.51323
+err after: 8 9 1.65809
+err before: 8 10 1.67565
+err after: 8 10 1.87044
+err before: 8 11 1.77826
+err after: 8 11 2.00955
+err before: 8 12 2.22742
+err after: 8 12 2.66796
+err before: 8 13 2.54715
+err after: 8 13 3.18997
+err before: 8 14 2.88347
+err after: 8 14 3.79091
+err before: 8 15 2.91637
+err after: 8 15 3.85266
+err before: 8 16 2.12084
+err after: 8 16 2.5041
+err before: 8 17 0.330214
+err after: 8 17 0.331788
+err before: 8 18 18.7395
+err after: 8 18 105.619
+err before: 8 19 0
+err after: 8 19 0
+err before: 9 0 0
+err after: 9 0 0
+err before: 9 1 1.67565
+err after: 9 1 1.87044
+err before: 9 2 2.72302
+err after: 9 2 3.49738
+err before: 9 3 2.94428
+err after: 9 3 3.90547
+err before: 9 4 2.87874
+err after: 9 4 3.78207
+err before: 9 5 3.06228
+err after: 9 5 4.13304
+err before: 9 6 3.02646
+err after: 9 6 4.06322
+err before: 9 7 3.23964
+err after: 9 7 4.4884
+err before: 9 8 3.41576
+err after: 9 8 4.85736
+err before: 9 9 3.36349
+err after: 9 9 4.74617
+err before: 9 10 3.67711
+err after: 9 10 5.43493
+err before: 9 11 3.77226
+err after: 9 11 5.65425
+err before: 9 12 3.7614
+err after: 9 12 5.62898
+err before: 9 13 4.06781
+err after: 9 13 6.36676
+err before: 9 14 4.50352
+err after: 9 14 7.50471
+err before: 9 15 4.81366
+err after: 9 15 8.3792
+err before: 9 16 4.39322
+err after: 9 16 7.20667
+err before: 9 17 1.92546
+err after: 9 17 2.21622
+err before: 9 18 13.964
+err after: 9 18 59.3819
+err before: 9 19 0
+err after: 9 19 0
+err before: 10 0 0
+err after: 10 0 0
+err before: 10 1 0
+err after: 10 1 0
+err before: 10 2 0
+err after: 10 2 0
+err before: 10 3 0
+err after: 10 3 0
+err before: 10 4 0
+err after: 10 4 0
+err before: 10 5 5.68362
+err after: 10 5 11.1233
+err before: 10 6 6.40735
+err after: 10 6 13.7375
+err before: 10 7 6.43918
+err after: 10 7 13.8594
+err before: 10 8 6.38604
+err after: 10 8 13.6562
+err before: 10 9 6.48768
+err after: 10 9 14.0464
+err before: 10 10 6.48348
+err after: 10 10 14.0301
+err before: 10 11 6.43495
+err after: 10 11 13.8432
+err before: 10 12 6.56911
+err after: 10 12 14.3633
+err before: 10 13 6.44976
+err after: 10 13 13.9001
+err before: 10 14 5.76222
+err after: 10 14 11.3926
+err before: 10 15 0
+err after: 10 15 0
+err before: 10 16 0
+err after: 10 16 0
+err before: 10 17 0
+err after: 10 17 0
+err before: 10 18 0
+err after: 10 18 0
+err before: 10 19 0
+err after: 10 19 0
+err before: 11 0 0
+err after: 11 0 0
+err before: 11 1 4.26411
+err after: 11 1 6.86644
+err before: 11 2 4.65532
+err after: 11 2 7.92598
+err before: 11 3 4.7164
+err after: 11 3 8.09915
+err before: 11 4 4.88114
+err after: 11 4 8.57666
+err before: 11 5 5.21331
+err after: 11 5 9.58621
+err before: 11 6 5.0809
+err after: 11 6 9.17627
+err before: 11 7 5.28601
+err after: 11 7 9.81554
+err before: 11 8 5.19498
+err after: 11 8 9.52885
+err before: 11 9 5.21592
+err after: 11 9 9.5944
+err before: 11 10 5.31173
+err after: 11 10 9.8974
+err before: 11 11 5.07554
+err after: 11 11 9.15986
+err before: 11 12 5.19498
+err after: 11 12 9.52885
+err before: 11 13 5.07822
+err after: 11 13 9.16807
+err before: 11 14 4.97792
+err after: 11 14 8.86432
+err before: 11 15 4.80516
+err after: 11 15 8.35451
+err before: 11 16 4.83908
+err after: 11 16 8.45327
+err before: 11 17 0
+err after: 11 17 0
+err before: 12 0 0.233497
+err after: 12 0 0.234054
+err before: 12 1 0.873665
+err after: 12 1 0.902405
+err before: 12 2 1.75511
+err after: 12 2 1.97782
+err before: 12 3 2.37548
+err after: 12 3 2.9039
+err before: 12 4 3.10647
+err after: 12 4 4.22008
+err before: 12 5 3.49076
+err after: 12 5 5.01939
+err before: 12 6 4.43644
+err after: 12 6 7.32265
+err before: 12 7 6.87528
+err after: 12 7 15.5894
+err before: 12 8 11.2249
+err after: 12 8 38.947
+err before: 12 9 13.2168
+err after: 12 9 53.3679
+err before: 12 10 0.285974
+err after: 12 10 0.286997
+err before: 12 11 0
+err after: 12 11 0
+err before: 13 0 1.60927
+err after: 13 0 1.78251
+err before: 13 1 2.75783
+err after: 13 1 3.56
+err before: 13 2 3.53345
+err after: 13 2 5.11296
+err before: 13 3 3.90366
+err after: 13 3 5.96517
+err before: 13 4 4.47011
+err after: 13 4 7.41371
+err before: 13 5 4.66702
+err after: 13 5 7.95898
+err before: 13 6 4.91731
+err after: 13 6 8.68355
+err before: 13 7 4.88114
+err after: 13 7 8.57666
+err before: 13 8 5.12099
+err after: 13 8 9.29931
+err before: 13 9 5.21069
+err after: 13 9 9.57802
+err before: 13 10 5.07016
+err after: 13 10 9.14345
+err before: 13 11 5.15811
+err after: 13 11 9.4141
+err before: 13 12 5.29889
+err after: 13 12 9.85647
+err before: 13 13 5.05131
+err after: 13 13 9.08601
+err before: 13 14 4.97518
+err after: 13 14 8.85611
+err before: 13 15 4.69032
+err after: 13 15 8.02495
+err before: 13 16 4.71929
+err after: 13 16 8.10739
+err before: 13 17 4.70773
+err after: 13 17 8.07442
+err before: 13 18 3.87563
+err after: 13 18 5.89805
+err before: 13 19 2.43218
+err after: 13 19 2.99688
+err before: 14 0 0.719686
+err after: 14 0 0.735833
+err before: 14 1 1.80111
+err after: 14 1 2.04107
+err before: 14 2 3.22699
+err after: 14 2 4.46252
+err before: 14 3 4.46095
+err after: 14 3 7.38888
+err before: 14 4 5.83742
+err after: 14 4 11.6535
+err before: 14 5 6.35609
+err after: 14 5 13.5424
+err before: 14 6 5.98044
+err after: 14 6 12.1588
+err before: 14 7 5.52061
+err after: 14 7 10.5762
+err before: 14 8 4.52767
+err after: 14 8 7.57086
+err before: 14 9 2.40966
+err after: 14 9 2.95978
+err before: 14 10 2.53642
+err after: 14 10 3.17169
+err before: 14 11 4.5457
+err after: 14 11 7.62046
+err before: 14 12 5.35518
+err after: 14 12 10.0365
+err before: 14 13 5.98044
+err after: 14 13 12.1588
+err before: 14 14 6.3967
+err after: 14 14 13.6968
+err before: 14 15 5.70516
+err after: 14 15 11.1968
+err before: 14 16 4.36833
+err after: 14 16 7.14035
+err before: 14 17 3.12397
+err after: 14 17 4.25483
+err before: 14 18 1.93253
+err after: 14 18 2.22636
+err before: 14 19 0.639457
+err after: 14 19 0.650811
+err before: 15 0 9.14339
+err after: 15 0 16.8603
+err before: 15 1 17.9979
+err after: 15 1 57.7623
+err before: 15 2 19.5998
+err after: 15 2 67.9785
+err before: 15 3 17.3675
+err after: 15 3 53.9795
+err before: 15 4 14.794
+err after: 15 4 39.9265
+err before: 15 5 12.746
+err after: 15 5 30.3356
+err before: 15 6 11.1965
+err after: 15 6 24.0117
+err before: 15 7 9.56143
+err after: 15 7 18.2039
+err before: 15 8 8.89436
+err after: 15 8 16.087
+err before: 15 9 9.14794
+err after: 15 9 16.8746
+err before: 15 10 8.39889
+err after: 15 10 14.6085
+err before: 15 11 3.98603
+err after: 15 11 4.81002
+err before: 15 12 2.15833
+err after: 15 12 2.29814
+err before: 15 13 1.11704
+err after: 15 13 1.13688
+err before: 15 14 0.70648
+err after: 15 14 0.711524
+err before: 15 15 0.576838
+err after: 15 15 0.579587
+err before: 15 16 0.499557
+err after: 15 16 0.501343
+err before: 15 17 0.576838
+err after: 15 17 0.579587
+err before: 15 18 0.499557
+err after: 15 18 0.501343
+err before: 15 19 0
+err after: 15 19 0
+err before: 15 20 0.288419
+err after: 15 20 0.288763
+err before: 15 21 0
+err after: 15 21 0
+err before: 15 22 0
+err after: 15 22 0
+err before: 15 23 0
+err after: 15 23 0
+err before: 15 24 0
+err after: 15 24 0
+err before: 15 25 0
+err after: 15 25 0
+err before: 15 26 0.288419
+err after: 15 26 0.288763
+err before: 15 27 0
+err after: 15 27 0
+err before: 15 28 0
+err after: 15 28 0
+err before: 15 29 0
+err after: 15 29 0
+err before: 16 0 1.71671
+err after: 16 0 1.78702
+err before: 16 1 0
+err after: 16 1 0
+err before: 16 2 0
+err after: 16 2 0
+err before: 16 3 0
+err after: 16 3 0
+err before: 16 4 0.290177
+err after: 16 4 0.290523
+err before: 16 5 0.648856
+err after: 16 5 0.652718
+err before: 16 6 1.12385
+err after: 16 6 1.1438
+err before: 16 7 2.28486
+err after: 16 7 2.44819
+err before: 16 8 2.73753
+err after: 16 8 3.01446
+err before: 16 9 5.05108
+err after: 16 9 6.63149
+err before: 16 10 6.86071
+err after: 16 10 10.4838
+err before: 16 11 6.93396
+err after: 16 11 10.6606
+err before: 16 12 7.72656
+err after: 16 12 12.6803
+err before: 16 13 8.57865
+err after: 16 13 15.0735
+err before: 16 14 10.123
+err after: 16 14 20.0082
+err before: 16 15 12.9511
+err after: 16 15 31.0761
+err before: 16 16 16.6568
+err after: 16 16 49.6069
+err before: 16 17 22.2038
+err after: 16 17 85.948
+err before: 16 18 22.7655
+err after: 16 18 90.2048
+err before: 16 19 11.6794
+err after: 16 19 25.7718
+err before: 17 0 9.10812
+err after: 17 0 16.7124
+err before: 17 1 10.1636
+err after: 17 1 20.1927
+err before: 17 2 9.89235
+err after: 17 2 19.2633
+err before: 17 3 9.93457
+err after: 17 3 19.4064
+err before: 17 4 10.0518
+err after: 17 4 19.8068
+err before: 17 5 9.87541
+err after: 17 5 19.2061
+err before: 17 6 9.78172
+err after: 17 6 18.8913
+err before: 17 7 10.1472
+err after: 17 7 20.1355
+err before: 17 8 9.99338
+err after: 17 8 19.6066
+err before: 17 9 10.056
+err after: 17 9 19.8211
+err before: 17 10 9.92614
+err after: 17 10 19.3778
+err before: 17 11 10.0101
+err after: 17 11 19.6638
+err before: 17 12 9.83719
+err after: 17 12 19.0773
+err before: 17 13 10.0393
+err after: 17 13 19.7639
+err before: 17 14 10.0143
+err after: 17 14 19.6781
+err before: 17 15 10.0518
+err after: 17 15 19.8068
+err before: 17 16 10.2006
+err after: 17 16 20.3213
+err before: 17 17 9.79882
+err after: 17 17 18.9485
+err before: 17 18 10.0352
+err after: 17 18 19.7496
+err before: 17 19 9.1768
+err after: 17 19 16.9278
+err before: 18 0 0
+err after: 18 0 0
+err before: 18 1 0
+err after: 18 1 0
+err before: 18 2 6.44366
+err after: 18 2 9.52402
+err before: 18 3 7.08709
+err after: 18 3 11.0545
+err before: 18 4 7.33094
+err after: 18 4 11.6682
+err before: 18 5 7.50585
+err after: 18 5 12.1199
+err before: 18 6 7.4891
+err after: 18 6 12.0762
+err before: 18 7 7.67131
+err after: 18 7 12.5561
+err before: 18 8 7.71484
+err after: 18 8 12.6723
+err before: 18 9 7.72026
+err after: 18 9 12.6868
+err before: 18 10 7.8493
+err after: 18 10 13.0351
+err before: 18 11 8.1167
+err after: 18 11 13.7736
+err before: 18 12 7.99722
+err after: 18 12 13.4408
+err before: 18 13 7.98674
+err after: 18 13 13.4118
+err before: 18 14 8.01812
+err after: 18 14 13.4987
+err before: 18 15 8.11154
+err after: 18 15 13.7591
+err before: 18 16 7.89715
+err after: 18 16 13.1655
+err before: 18 17 8.19369
+err after: 18 17 13.9904
+err before: 18 18 8.0857
+err after: 18 18 13.6868
+err before: 18 19 7.91303
+err after: 18 19 13.209
+err before: 18 20 8.10121
+err after: 18 20 13.7302
+err before: 18 21 8.18858
+err after: 18 21 13.976
+err before: 18 22 8.04938
+err after: 18 22 13.5855
+err before: 18 23 7.94471
+err after: 18 23 13.2959
+err before: 18 24 7.94997
+err after: 18 24 13.3104
+err before: 18 25 8.16298
+err after: 18 25 13.9037
+err before: 18 26 7.93944
+err after: 18 26 13.2815
+err before: 18 27 8.1167
+err after: 18 27 13.7736
+err before: 18 28 7.9236
+err after: 18 28 13.238
+err before: 18 29 7.9815
+err after: 18 29 13.3973
+err before: 18 30 7.65493
+err after: 18 30 12.5125
+err before: 18 31 7.82259
+err after: 18 31 12.9626
+err before: 18 32 7.80116
+err after: 18 32 12.9045
+err before: 18 33 7.64398
+err after: 18 33 12.4835
+err before: 18 34 0
+err after: 18 34 0
+err before: 18 35 0
+err after: 18 35 0
+err before: 19 0 0
+err after: 19 0 0
+err before: 19 1 0
+err after: 19 1 0
+err before: 19 2 0
+err after: 19 2 0
+err before: 19 3 0
+err after: 19 3 0
+err before: 19 4 0
+err after: 19 4 0
+err before: 19 5 0
+err after: 19 5 0
+err before: 19 6 0
+err after: 19 6 0
+err before: 19 7 0
+err after: 19 7 0
+err before: 19 8 0
+err after: 19 8 0
+err before: 19 9 0
+err after: 19 9 0
+err before: 19 10 0
+err after: 19 10 0
+err before: 19 11 0
+err after: 19 11 0
+err before: 19 12 0
+err after: 19 12 0
+err before: 19 13 0
+err after: 19 13 0
+err before: 19 14 0
+err after: 19 14 0
+err before: 19 15 0
+err after: 19 15 0
+err before: 19 16 0
+err after: 19 16 0
+err before: 19 17 0
+err after: 19 17 0
+err before: 19 18 0
+err after: 19 18 0
+err before: 19 19 0
+err after: 19 19 0
+err before: 19 20 0
+err after: 19 20 0
+err before: 19 21 0
+err after: 19 21 0
+err before: 19 22 0
+err after: 19 22 0
+err before: 19 23 0
+err after: 19 23 0
+err before: 19 24 0
+err after: 19 24 0
+err before: 19 25 0
+err after: 19 25 0
+err before: 19 26 3.15621
+err after: 19 26 3.57671
+err before: 19 27 6.4696
+err after: 19 27 9.58323
+err before: 19 28 9.83719
+err after: 19 28 19.0773
+err before: 19 29 12.1897
+err after: 19 29 27.9015
+err before: 19 30 14.8997
+err after: 19 30 40.3501
+err before: 19 31 17.112
+err after: 19 31 52.3371
+err before: 19 32 17.7484
+err after: 19 32 56.0897
+err before: 19 33 16.7311
+err after: 19 33 50.156
+err before: 19 34 15.2798
+err after: 19 34 42.2922
+err before: 19 35 12.9812
+err after: 19 35 31.2836
+err before: 19 36 10.5238
+err after: 19 36 21.4638
+err before: 19 37 6.48898
+err after: 19 37 9.62762
+err before: 19 38 1.35707
+err after: 19 38 1.39227
+err before: 19 39 0
+err after: 19 39 0
+err before: 19 40 0
+err after: 19 40 0
+err before: 19 41 0
+err after: 19 41 0
+err before: 19 42 0
+err after: 19 42 0
+err before: 19 43 0
+err after: 19 43 0
+err before: 19 44 0
+err after: 19 44 0
+err before: 19 45 0
+err after: 19 45 0
+err before: 19 46 0
+err after: 19 46 0
+err before: 19 47 0
+err after: 19 47 0
+err before: 19 48 0
+err after: 19 48 0
+err before: 19 49 0
+err after: 19 49 0
+err before: 20 0 0
+err after: 20 0 0
+err before: 20 1 0
+err after: 20 1 0
+err before: 20 2 0
+err after: 20 2 0
+err before: 20 3 0
+err after: 20 3 0
+err before: 20 4 0
+err after: 20 4 0
+err before: 20 5 0
+err after: 20 5 0
+err before: 20 6 0
+err after: 20 6 0
+err before: 20 7 0
+err after: 20 7 0
+err before: 20 8 0
+err after: 20 8 0
+err before: 20 9 0
+err after: 20 9 0
+err before: 20 10 0
+err after: 20 10 0
+err before: 20 11 0
+err after: 20 11 0
+err before: 20 12 0
+err after: 20 12 0
+err before: 20 13 0
+err after: 20 13 0
+err before: 20 14 0
+err after: 20 14 0
+err before: 20 15 0
+err after: 20 15 0
+err before: 20 16 0
+err after: 20 16 0
+err before: 20 17 0
+err after: 20 17 0
+err before: 20 18 0
+err after: 20 18 0
+err before: 20 19 0
+err after: 20 19 0
+err before: 20 20 0
+err after: 20 20 0
+err before: 20 21 0
+err after: 20 21 0
+err before: 20 22 0
+err after: 20 22 0
+err before: 20 23 0
+err after: 20 23 0
+err before: 20 24 0
+err after: 20 24 0
+err before: 20 25 0
+err after: 20 25 0
+err before: 20 26 3.15621
+err after: 20 26 3.57671
+err before: 20 27 6.4696
+err after: 20 27 9.58323
+err before: 20 28 9.83719
+err after: 20 28 19.0773
+err before: 20 29 12.1897
+err after: 20 29 27.9015
+err before: 20 30 14.8997
+err after: 20 30 40.3501
+err before: 20 31 17.112
+err after: 20 31 52.3371
+err before: 20 32 17.7484
+err after: 20 32 56.0897
+err before: 20 33 16.7311
+err after: 20 33 50.156
+err before: 20 34 15.2798
+err after: 20 34 42.2922
+err before: 20 35 12.9812
+err after: 20 35 31.2836
+err before: 20 36 10.5238
+err after: 20 36 21.4638
+err before: 20 37 6.48898
+err after: 20 37 9.62762
+err before: 20 38 1.35707
+err after: 20 38 1.39227
+err before: 20 39 0
+err after: 20 39 0
+err before: 20 40 0
+err after: 20 40 0
+err before: 20 41 0
+err after: 20 41 0
+err before: 20 42 0
+err after: 20 42 0
+err before: 20 43 0
+err after: 20 43 0
+err before: 20 44 0
+err after: 20 44 0
+err before: 20 45 0
+err after: 20 45 0
+err before: 20 46 0
+err after: 20 46 0
+err before: 20 47 0
+err after: 20 47 0
+err before: 20 48 0
+err after: 20 48 0
+err before: 20 49 0
+err after: 20 49 0
+err before: 21 0 66.6892
+err after: 21 0 159.887
+err before: 21 1 217.223
+err after: 21 1 1556.97
+err before: 21 2 169.187
+err after: 21 2 950.445
+err before: 21 3 141.643
+err after: 21 3 670.655
+err before: 21 4 121.999
+err after: 21 4 501.378
+err before: 21 5 109.942
+err after: 21 5 409.956
+err before: 21 6 99.5743
+err after: 21 6 338.92
+err before: 21 7 88.979
+err after: 21 7 273.562
+err before: 21 8 83.7865
+err after: 21 8 244.2
+err before: 21 9 76.2812
+err after: 21 9 204.855
+err before: 21 10 72.3992
+err after: 21 10 185.938
+err before: 21 11 67.2903
+err after: 21 11 162.531
+err before: 21 12 65.145
+err after: 21 12 153.204
+err before: 21 13 61.1414
+err after: 21 13 136.592
+err before: 21 14 58.1983
+err after: 21 14 125.037
+err before: 21 15 54.3624
+err after: 21 15 110.811
+err before: 21 16 53.8663
+err after: 21 16 109.04
+err before: 21 17 48.6968
+err after: 21 17 91.5141
+err before: 21 18 48.4204
+err after: 21 18 90.6246
+err before: 21 19 44.3447
+err after: 21 19 78.0687
+err before: 21 20 42.8306
+err after: 21 20 73.6691
+err before: 21 21 38.4837
+err after: 21 21 61.8268
+err before: 21 22 38.3672
+err after: 21 22 61.5255
+err before: 21 23 35.4896
+err after: 21 23 54.3424
+err before: 21 24 33.7448
+err after: 21 24 50.2294
+err before: 21 25 32.3572
+err after: 21 25 47.0876
+err before: 21 26 29.2334
+err after: 21 26 40.4261
+err before: 21 27 27.376
+err after: 21 27 36.7297
+err before: 21 28 24.4858
+err after: 21 28 31.3579
+err before: 21 29 22.831
+err after: 21 29 28.4838
+err before: 21 30 20.0671
+err after: 21 30 23.9959
+err before: 21 31 18.1961
+err after: 21 31 21.1691
+err before: 21 32 12.6031
+err after: 21 32 13.6298
+err before: 21 33 9.09805
+err after: 21 33 9.49153
+err before: 21 34 4.48713
+err after: 21 34 4.5351
+err before: 21 35 2.59065
+err after: 21 35 2.59991
+err before: 21 36 0
+err after: 21 36 0
+err before: 21 37 0
+err after: 21 37 0
+err before: 21 38 0
+err after: 21 38 0
+err before: 21 39 0
+err after: 21 39 0
+err before: 22 0 41.1522
+err after: 22 0 68.9588
+err before: 22 1 223.731
+err after: 22 1 1650.75
+err before: 22 2 169.438
+err after: 22 2 953.219
+err before: 22 3 141.39
+err after: 22 3 668.312
+err before: 22 4 123.737
+err after: 22 4 515.344
+err before: 22 5 109.176
+err after: 22 5 404.468
+err before: 22 6 97.3127
+err after: 22 6 324.357
+err before: 22 7 90.5611
+err after: 22 7 282.859
+err before: 22 8 82.7653
+err after: 22 8 238.632
+err before: 22 9 77.0977
+err after: 22 9 208.959
+err before: 22 10 72.337
+err after: 22 10 185.644
+err before: 22 11 67.1569
+err after: 22 11 161.943
+err before: 22 12 64.6276
+err after: 22 12 150.999
+err before: 22 13 62.7661
+err after: 22 13 143.209
+err before: 22 14 58.6766
+err after: 22 14 126.878
+err before: 22 15 55.4218
+err after: 22 15 114.647
+err before: 22 16 52.9868
+err after: 22 16 105.939
+err before: 22 17 49.5392
+err after: 22 17 94.2547
+err before: 22 18 46.2702
+err after: 22 18 83.8709
+err before: 22 19 44.8711
+err after: 22 19 79.632
+err before: 22 20 41.6655
+err after: 22 20 70.3807
+err before: 22 21 38.3962
+err after: 22 21 61.6006
+err before: 22 22 36.7286
+err after: 22 22 57.3738
+err before: 22 23 35.6781
+err after: 22 23 54.7977
+err before: 22 24 32.8374
+err after: 22 24 48.1623
+err before: 22 25 31.7287
+err after: 22 25 45.7019
+err before: 22 26 28.497
+err after: 22 26 38.9374
+err before: 22 27 26.6302
+err after: 22 27 35.2999
+err before: 22 28 23.6492
+err after: 22 28 29.8868
+err before: 22 29 22.0331
+err after: 22 29 27.1487
+err before: 22 30 20.779
+err after: 22 30 25.1155
+err before: 22 31 17.886
+err after: 22 31 20.7164
+err before: 22 32 15.4717
+err after: 22 32 17.3362
+err before: 22 33 12.9532
+err after: 22 33 14.0655
+err before: 22 34 4.96069
+err after: 22 34 5.02543
+err before: 22 35 0
+err after: 22 35 0
+err before: 22 36 0
+err after: 22 36 0
+err before: 22 37 0
+err after: 22 37 0
+err before: 22 38 0
+err after: 22 38 0
+err before: 22 39 0
+err after: 22 39 0
+err before: 23 0 156.545
+err after: 23 0 812.377
+err before: 23 1 176.081
+err after: 23 1 1023.79
+err before: 23 2 163.699
+err after: 23 2 886.913
+err before: 23 3 144.574
+err after: 23 3 695.096
+err before: 23 4 128.882
+err after: 23 4 555.477
+err before: 23 5 115.44
+err after: 23 5 448.596
+err before: 23 6 101.986
+err after: 23 6 353.369
+err before: 23 7 92.4185
+err after: 23 7 292.8
+err before: 23 8 84.7621
+err after: 23 8 248.601
+err before: 23 9 77.1066
+err after: 23 9 208.2
+err before: 23 10 71.8954
+err after: 23 10 182.864
+err before: 23 11 67.9407
+err after: 23 11 164.805
+err before: 23 12 63.0647
+err after: 23 12 143.924
+err before: 23 13 59.3207
+err after: 23 13 128.924
+err before: 23 14 55.1196
+err after: 23 14 113.159
+err before: 23 15 51.8706
+err after: 23 15 101.736
+err before: 23 16 49.7834
+err after: 23 16 94.7506
+err before: 23 17 44.1867
+err after: 23 17 77.3697
+err before: 23 18 42.6796
+err after: 23 18 73.0231
+err before: 23 19 39.2927
+err after: 23 19 63.7658
+err before: 23 20 36.8928
+err after: 23 20 57.6304
+err before: 23 21 35.5531
+err after: 23 21 54.3563
+err before: 23 22 31.8706
+err after: 23 22 45.9063
+err before: 23 23 29.9726
+err after: 23 23 41.8605
+err before: 23 24 28.7032
+err after: 23 24 39.2693
+err before: 23 25 25.8481
+err after: 23 25 33.7706
+err before: 23 26 23.897
+err after: 23 26 30.2677
+err before: 23 27 21.511
+err after: 23 27 26.2541
+err before: 23 28 19.988
+err after: 23 28 23.8414
+err before: 23 29 18.5836
+err after: 23 29 21.7151
+err before: 23 30 17.3914
+err after: 23 30 19.9815
+err before: 23 31 15.4681
+err after: 23 31 17.3157
+err before: 23 32 13.6047
+err after: 23 32 14.8774
+err before: 23 33 12.9241
+err after: 23 33 14.0197
+err before: 23 34 10.7292
+err after: 23 34 11.3639
+err before: 23 35 11.0403
+err after: 23 35 11.7306
+err before: 23 36 7.94991
+err after: 23 36 8.21143
+err before: 23 37 8.09063
+err after: 23 37 8.36613
+err before: 23 38 7.36019
+err after: 23 38 7.56819
+err before: 23 39 7.36019
+err after: 23 39 7.56819
+err before: 24 0 272.362
+err after: 24 0 2440.13
+err before: 24 1 281.899
+err after: 24 1 2612.93
+err before: 24 2 178.172
+err after: 24 2 1052.9
+err before: 24 3 109.076
+err after: 24 3 403.92
+err before: 24 4 62.1112
+err after: 24 4 140.573
+err before: 24 5 36.0051
+err after: 24 5 55.607
+err before: 24 6 20.4988
+err after: 24 6 24.6754
+err before: 24 7 13.8643
+err after: 24 7 15.2217
+err before: 24 8 10.2494
+err after: 24 8 10.8094
+err before: 24 9 8.58829
+err after: 24 9 8.92032
+err before: 24 10 7.01231
+err after: 24 10 7.19418
+err before: 24 11 5.39041
+err after: 24 11 5.47345
+err before: 24 12 5.17893
+err after: 24 12 5.25262
+err before: 24 13 3.95548
+err after: 24 13 3.9884
+err before: 24 14 3.95548
+err after: 24 14 3.9884
+err before: 24 15 3.95548
+err after: 24 15 3.9884
+err before: 24 16 1.49503
+err after: 24 16 1.49681
+err before: 24 17 1.49503
+err after: 24 17 1.49681
+err before: 24 18 1.49503
+err after: 24 18 1.49681
+err before: 24 19 2.11429
+err after: 24 19 2.11933
+err before: 24 20 2.11429
+err after: 24 20 2.11933
+err before: 24 21 2.11429
+err after: 24 21 2.11933
+err before: 24 22 2.11429
+err after: 24 22 2.11933
+err before: 24 23 0
+err after: 24 23 0
+err before: 24 24 0
+err after: 24 24 0
+err before: 24 25 0
+err after: 24 25 0
+err before: 24 26 0
+err after: 24 26 0
+err before: 24 27 0
+err after: 24 27 0
+err before: 24 28 0
+err after: 24 28 0
+err before: 24 29 0
+err after: 24 29 0
+err before: 24 30 1.49503
+err after: 24 30 1.49681
+err before: 24 31 1.49503
+err after: 24 31 1.49681
+err before: 24 32 0
+err after: 24 32 0
+err before: 24 33 0
+err after: 24 33 0
+err before: 24 34 0
+err after: 24 34 0
+err before: 24 35 0
+err after: 24 35 0
+err before: 24 36 0
+err after: 24 36 0
+err before: 24 37 0
+err after: 24 37 0
+err before: 24 38 0
+err after: 24 38 0
+err before: 24 39 0
+err after: 24 39 0
+err before: 25 0 0
+err after: 25 0 0
+err before: 25 1 0
+err after: 25 1 0
+err before: 25 2 8.97422
+err after: 25 2 9.35207
+err before: 25 3 17.8234
+err after: 25 3 20.6254
+err before: 25 4 27.7815
+err after: 25 4 37.5201
+err before: 25 5 42.4632
+err after: 25 5 72.6233
+err before: 25 6 64.6968
+err after: 25 6 151.293
+err before: 25 7 96.1099
+err after: 25 7 316.746
+err before: 25 8 136.732
+err after: 25 8 625.978
+err before: 25 9 184.275
+err after: 25 9 1124.72
+err before: 25 10 219.797
+err after: 25 10 1593.74
+err before: 25 11 218.122
+err after: 25 11 1569.76
+err before: 25 12 167.037
+err after: 25 12 926.828
+err before: 25 13 93.2509
+err after: 25 13 299.035
+err before: 25 14 42.1725
+err after: 25 14 71.8013
+err before: 25 15 15.829
+err after: 25 15 17.8208
+err before: 25 16 6.16694
+err after: 25 16 6.29089
+err before: 25 17 0
+err after: 25 17 0
+err before: 25 18 0
+err after: 25 18 0
+err before: 25 19 0
+err after: 25 19 0
+err before: 26 0 66.42
+err after: 26 0 158.712
+err before: 26 1 102.813
+err after: 26 1 360.356
+err before: 26 2 126.128
+err after: 26 2 534.869
+err before: 26 3 157.405
+err after: 26 3 824.698
+err before: 26 4 193.166
+err after: 26 4 1234.37
+err before: 26 5 230.639
+err after: 26 5 1753.31
+err before: 26 6 216.526
+err after: 26 6 1547.1
+err before: 26 7 97.3127
+err after: 26 7 324.357
+err before: 26 8 29.3097
+err after: 26 8 40.5822
+err before: 26 9 10.8889
+err after: 26 9 11.5575
+err before: 26 10 6.68899
+err after: 26 10 6.84688
+err before: 26 11 4.96069
+err after: 26 11 5.02543
+err before: 26 12 3.66371
+err after: 26 12 3.68987
+err before: 26 13 2.99141
+err after: 26 13 3.00566
+err before: 26 14 2.11524
+err after: 26 14 2.12029
+err before: 26 15 0
+err after: 26 15 0
+err before: 26 16 0
+err after: 26 16 0
+err before: 26 17 0
+err after: 26 17 0
+err before: 26 18 0
+err after: 26 18 0
+err before: 26 19 0
+err after: 26 19 0
+err before: 27 0 0
+err after: 27 0 0
+err before: 27 1 0
+err after: 27 1 0
+err before: 27 2 0
+err after: 27 2 0
+err before: 27 3 18.9784
+err after: 27 3 22.331
+err before: 27 4 70.8528
+err after: 27 4 178.676
+err before: 27 5 75.9134
+err after: 27 5 203.022
+err before: 27 6 80.5878
+err after: 27 6 226.985
+err before: 27 7 87.3547
+err after: 27 7 264.19
+err before: 27 8 93.2149
+err after: 27 8 298.816
+err before: 27 9 99.5627
+err after: 27 9 338.845
+err before: 27 10 108.147
+err after: 27 10 397.153
+err before: 27 11 119.404
+err after: 27 11 480.899
+err before: 27 12 129.394
+err after: 27 12 562.144
+err before: 27 13 142.83
+err after: 27 13 681.692
+err before: 27 14 157.547
+err after: 27 14 826.16
+err before: 27 15 175.591
+err after: 27 15 1022.6
+err before: 27 16 188.31
+err after: 27 16 1173.85
+err before: 27 17 74.305
+err after: 27 17 195.104
+err before: 27 18 0
+err after: 27 18 0
+err before: 27 19 0
+err after: 27 19 0
+err before: 28 0 0
+err after: 28 0 0
+err before: 28 1 3.66371
+err after: 28 1 3.68987
+err before: 28 2 7.62662
+err after: 28 2 7.85985
+err before: 28 3 8.8487
+err after: 28 3 9.21112
+err before: 28 4 8.59216
+err after: 28 4 8.92434
+err before: 28 5 8.32773
+err after: 28 5 8.63051
+err before: 28 6 8.72138
+err after: 28 6 9.06857
+err before: 28 7 10.0335
+err after: 28 7 10.5589
+err before: 28 8 10.3625
+err after: 28 8 10.9404
+err before: 28 9 9.45966
+err after: 28 9 9.90121
+err before: 28 10 11.7772
+err after: 28 10 12.6191
+err before: 28 11 11.7772
+err after: 28 11 12.6191
+err before: 28 12 13.7897
+err after: 28 12 15.1248
+err before: 28 13 15.5438
+err after: 28 13 17.4336
+err before: 28 14 16.1785
+err after: 28 14 18.2999
+err before: 28 15 18.5612
+err after: 28 15 21.7079
+err before: 28 16 20.9399
+err after: 28 16 25.3719
+err before: 28 17 28.3395
+err after: 28 17 38.6231
+err before: 28 18 45.0453
+err after: 28 18 80.153
+err before: 28 19 445.363
+err after: 28 19 6496.11
+err before: 29 0 147.878
+err after: 29 0 729.655
+err before: 29 1 221.202
+err after: 29 1 1613.98
+err before: 29 2 275.376
+err after: 29 2 2492.99
+err before: 29 3 174.748
+err after: 29 3 1012.95
+err before: 29 4 141.089
+err after: 29 4 665.534
+err before: 29 5 64.8522
+err after: 29 5 151.954
+err before: 29 6 44.0916
+err after: 29 6 77.3233
+err before: 29 7 15.8995
+err after: 29 7 17.917
+err before: 29 8 10.3625
+err after: 29 8 10.9404
+err before: 29 9 2.99141
+err after: 29 9 3.00566
+err before: 29 10 2.59063
+err after: 29 10 2.5999
+err before: 29 11 1.4957
+err after: 29 11 1.49749
+err before: 29 12 0
+err after: 29 12 0
+err before: 29 13 0
+err after: 29 13 0
+err before: 29 14 0
+err after: 29 14 0
+err before: 29 15 0
+err after: 29 15 0
+err before: 29 16 0
+err after: 29 16 0
+err before: 29 17 0
+err after: 29 17 0
+err before: 29 18 0
+err after: 29 18 0
+err before: 29 19 0
+err after: 29 19 0
+err before: 30 0 184.606
+err after: 30 0 1128.69
+err before: 30 1 267.083
+err after: 30 1 2345.95
+err before: 30 2 215.826
+err after: 30 2 1537.18
+err before: 30 3 166.98
+err after: 30 3 926.185
+err before: 30 4 126.094
+err after: 30 4 534.585
+err before: 30 5 80.9215
+err after: 30 5 228.747
+err before: 30 6 34.5316
+err after: 30 6 52.0612
+err before: 30 7 8.84885
+err after: 30 7 9.21127
+err before: 30 8 2.99146
+err after: 30 8 3.00571
+err before: 30 9 1.49573
+err after: 30 9 1.49751
+err before: 30 10 0
+err after: 30 10 0
+err before: 30 11 1.49573
+err after: 30 11 1.49751
+err before: 31 0 431.539
+err after: 31 0 6307.78
+err before: 31 1 30.7808
+err after: 31 1 44.4131
+err before: 31 2 14.0959
+err after: 31 2 15.6133
+err before: 31 3 10.0196
+err after: 31 3 10.5784
+err before: 31 4 8.05214
+err after: 31 4 8.3449
+err before: 31 5 5.60113
+err after: 31 5 5.70058
+err before: 31 6 4.33862
+err after: 31 6 4.385
+err before: 31 7 3.8263
+err after: 31 7 3.85815
+err before: 31 8 4.33862
+err after: 31 8 4.385
+err before: 31 9 2.04524
+err after: 31 9 2.05012
+err before: 31 10 2.04524
+err after: 31 10 2.05012
+err before: 31 11 2.04524
+err after: 31 11 2.05012
+err before: 31 12 2.5049
+err after: 31 12 2.51386
+err before: 31 13 2.89241
+err after: 31 13 2.9062
+err before: 31 14 2.04524
+err after: 31 14 2.05012
+err before: 31 15 0
+err after: 31 15 0
+err before: 31 16 2.5049
+err after: 31 16 2.51386
+err before: 31 17 1.44621
+err after: 31 17 1.44793
+err before: 31 18 1.44621
+err after: 31 18 1.44793
+err before: 31 19 0
+err after: 31 19 0
+err before: 31 20 1.44621
+err after: 31 20 1.44793
+err before: 31 21 1.44621
+err after: 31 21 1.44793
+err before: 31 22 2.04524
+err after: 31 22 2.05012
+err before: 31 23 1.44621
+err after: 31 23 1.44793
+err before: 31 24 0
+err after: 31 24 0
+err before: 32 0 0
+err after: 32 0 0
+err before: 32 1 0
+err after: 32 1 0
+err before: 32 2 21.4674
+err after: 32 2 26.2218
+err before: 32 3 27.1708
+err after: 32 3 36.3333
+err before: 32 4 41.4502
+err after: 32 4 69.7822
+err before: 32 5 64.0713
+err after: 32 5 148.648
+err before: 32 6 104.185
+err after: 32 6 369.647
+err before: 32 7 143.041
+err after: 32 7 683.666
+err before: 32 8 180.324
+err after: 32 8 1077.64
+err before: 32 9 199.849
+err after: 32 9 1320.19
+err before: 32 10 194.482
+err after: 32 10 1251.04
+err before: 32 11 164.527
+err after: 32 11 899.633
+err before: 32 12 123.819
+err after: 32 12 516.002
+err before: 32 13 85.4255
+err after: 32 13 253.28
+err before: 32 14 53.3235
+err after: 32 14 107.12
+err before: 32 15 35.9592
+err after: 32 15 55.4804
+err before: 32 16 27.0056
+err after: 32 16 36.0158
+err before: 32 17 20.5081
+err after: 32 17 24.6865
+err before: 32 18 0
+err after: 32 18 0
+err before: 32 19 0
+err after: 32 19 0
+err before: 33 0 18.9784
+err after: 33 0 22.331
+err before: 33 1 0
+err after: 33 1 0
+err before: 33 2 448.552
+err after: 33 2 6589.24
+err before: 33 3 0
+err after: 33 3 0
+err before: 33 4 42.3841
+err after: 33 4 72.3991
+err before: 33 5 0
+err after: 33 5 0
+err before: 33 6 15.3992
+err after: 33 6 17.2386
+err before: 33 7 0
+err after: 33 7 0
+err before: 33 8 2.99141
+err after: 33 8 3.00566
+err before: 33 9 0
+err after: 33 9 0
+err before: 33 10 0
+err after: 33 10 0
+err before: 33 11 0
+err after: 33 11 0
+err before: 33 12 0
+err after: 33 12 0
+err before: 33 13 0
+err after: 33 13 0
+err before: 33 14 0
+err after: 33 14 0
+err before: 33 15 0
+err after: 33 15 0
+err before: 33 16 0
+err after: 33 16 0
+err before: 33 17 0
+err after: 33 17 0
+err before: 33 18 0
+err after: 33 18 0
+err before: 33 19 0
+err after: 33 19 0
+After fitting: 
+data: 
+0   99   9.94987
+1   701   26.4764
+2   816   28.5657
+3   689   26.2488
+4   511   22.6053
+5   366   19.1311
+6   328   18.1108
+7   319   17.8606
+8   327   18.0831
+9   455   21.3307
+10   488   22.0907
+11   224   14.9666
+12   154   12.4097
+13   106   10.2956
+14   109   10.4403
+15   90   9.48683
+16   84   9.16515
+17   81   9
+18   84   9.16515
+19   52   7.2111
+20   37   6.08276
+21   25   5
+22   9   3
+23   14   3.74166
+24   10   3.16228
+25   9   3
+26   3   1.73205
+27   3   1.73205
+28   3   1.73205
+29   5   2.23607
+mc_sum: 
+0   103.284   6.51857
+1   399.301   21.1323
+2   474.087   24.7971
+3   373.109   19.848
+4   272.954   14.93
+5   194.709   11.0733
+6   157.48   9.22886
+7   115.639   7.1405
+8   98.3426   6.26881
+9   105.591   6.63492
+10   87.8   5.73362
+11   18.779   1.98385
+12   5.2713   0.966796
+13   1.1531   0.439457
+14   0.494184   0.286338
+15   0.329456   0.233516
+16   0.164728   0.164925
+17   0.164728   0.164925
+18   0.164728   0.164925
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_rad: 
+0   18.4321   3.72651
+1   92.3475   8.30167
+2   119.473   9.41422
+3   87.919   7.97114
+4   65.3019   6.79509
+5   42.5617   5.53211
+6   26.4516   4.05305
+7   31.6642   4.70247
+8   19.7827   3.71563
+9   14.447   3.14908
+10   19.6426   3.94573
+11   4.17658   1.86065
+12   1.17612   0.679033
+13   0.997324   0.997324
+14   0   0
+15   0   0
+16   0   0
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_norad: 
+0   46.2925   5.31565
+1   154.571   10.948
+2   235.716   14.5967
+3   233.319   14.4549
+4   226.388   14.2044
+5   192.509   12.6514
+6   212.086   13.7245
+7   227.095   14.2817
+8   220.587   13.8021
+9   283.499   16.4326
+10   323.985   18.1386
+11   196.283   12.8037
+12   131.099   9.99705
+13   87.3755   7.80006
+14   76.3627   7.21006
+15   73.4315   7.13367
+16   67.6122   6.79008
+17   69.5264   6.96828
+18   61.087   6.55597
+19   47.1448   5.45974
+20   22.3164   3.7004
+21   18.2081   3.26549
+22   11.794   2.69812
+23   7.8649   2.19459
+24   3.28302   1.19148
+25   6.75583   2.01528
+26   2.99594   1.44349
+27   3.27966   1.18923
+28   3.1378   1.32248
+29   2.20466   1.20505
+mc_result: 
+0   168.009   9.19972
+1   646.219   25.2062
+2   829.277   30.2752
+3   694.346   25.8152
+4   564.644   21.6989
+5   429.779   17.6997
+6   396.017   17.0282
+7   374.398   16.6453
+8   338.712   15.6077
+9   403.537   17.9991
+10   431.427   19.4281
+11   219.238   13.0894
+12   137.547   10.0666
+13   89.5259   7.87583
+14   76.8569   7.21574
+15   73.761   7.13749
+16   67.7769   6.79208
+17   69.6911   6.97023
+18   61.2517   6.55805
+19   47.1448   5.45974
+20   22.3164   3.7004
+21   18.2081   3.26549
+22   11.794   2.69812
+23   7.8649   2.19459
+24   3.28302   1.19148
+25   6.75583   2.01528
+26   2.99594   1.44349
+27   3.27966   1.18923
+28   3.1378   1.32248
+29   2.20466   1.20505
+There are 2413.5 + 547.37 fitted photons
+ cd 0 1
+ cd 0 2
+ cd 0 3
+ cd 1 1
+ cd 1 2
+ cd 1 3
+ cd 2 1
+ cd 2 2
+ cd 2 3
+ cd 3 1
+ cd 3 2
+ cd 3 3
+ cd 4 1
+ cd 4 2
+ cd 4 3
+ cd 5 1
+ cd 5 2
+ cd 5 3
+ cd 6 1
+ cd 6 2
+ cd 7 1
+ cd 7 2
+ cd 7 3
+ cd 8 1
+ cd 8 2
+ cd 8 3
+ cd 9 1
+ cd 9 2
+ cd 9 3
+ cd 10 1
+ cd 10 2
+ cd 10 3
+ cd 11 1

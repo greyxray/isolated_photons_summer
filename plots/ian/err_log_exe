@@ -1,0 +1,520 @@
+0 1 adding :Photon_with_jet/h_fmax_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+0 2 adding :Photon_with_jet/h_fmax_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+1 1 adding :Photon_with_jet/h_deltaz_data06e
+300
+data - ok
+300
+mc_rad - ok
+300
+mc_norad - ok
+1 2 adding :Photon_with_jet/h_deltaz_data0607p
+300
+data - ok
+300
+mc_rad - ok
+300
+mc_norad - ok
+2 1 adding :Photon_with_jet/h_comp_Q2_data06e
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+2 2 adding :Photon_with_jet/h_comp_Q2_data0607p
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+3 1 adding :Photon_with_jet/h_prph_energy_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+3 2 adding :Photon_with_jet/h_prph_energy_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+4 1 adding :Photon_with_jet/h_comp_jet_e_data06e
+100
+data - ok
+100
+mc_rad - ok
+100
+mc_norad - ok
+4 2 adding :Photon_with_jet/h_comp_jet_e_data0607p
+100
+data - ok
+100
+mc_rad - ok
+100
+mc_norad - ok
+5 1 adding :Photon_with_jet/h_comp_x_data06e
+100
+data - ok
+100
+mc_rad - ok
+100
+mc_norad - ok
+5 2 adding :Photon_with_jet/h_comp_x_data0607p
+100
+data - ok
+100
+mc_rad - ok
+100
+mc_norad - ok
+6 1 adding :Photon_with_jet/h_phjet_electron_e_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+6 2 adding :Photon_with_jet/h_phjet_electron_e_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+7 1 adding :Photon_with_jet/h_phjet_electron_theta_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+7 2 adding :Photon_with_jet/h_phjet_electron_theta_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+8 1 adding :Photon_with_jet/h_prph_cell_energy_frac_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+8 2 adding :Photon_with_jet/h_prph_cell_energy_frac_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+9 1 adding :Photon_with_jet/h_prph_jet_energy_frac_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+9 2 adding :Photon_with_jet/h_prph_jet_energy_frac_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+10 1 adding :Photon_with_jet/h_prph_phi_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+10 2 adding :Photon_with_jet/h_prph_phi_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+11 1 adding :Photon_with_jet/h_prph_eta_data06e
+180
+data - ok
+180
+mc_rad - ok
+180
+mc_norad - ok
+11 2 adding :Photon_with_jet/h_prph_eta_data0607p
+180
+data - ok
+180
+mc_rad - ok
+180
+mc_norad - ok
+12 1 adding :Photon_with_jet/h_x_gamma_data06e
+120
+data - ok
+120
+mc_rad - ok
+120
+mc_norad - ok
+12 2 adding :Photon_with_jet/h_x_gamma_data0607p
+120
+data - ok
+120
+mc_rad - ok
+120
+mc_norad - ok
+13 1 adding :Photon_with_jet/h_phjet_jet_eta_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+13 2 adding :Photon_with_jet/h_phjet_jet_eta_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+14 1 adding :Photon_with_jet/h_phjet_dphi_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+14 2 adding :Photon_with_jet/h_phjet_dphi_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+15 1 adding :Inclusive_Photon/h_incl_phot_deltaz_data06e
+300
+data - ok
+300
+mc_rad - ok
+300
+mc_norad - ok
+15 2 adding :Inclusive_Photon/h_incl_phot_deltaz_data0607p
+300
+data - ok
+300
+mc_rad - ok
+300
+mc_norad - ok
+16 1 adding :Inclusive_Photon/h_incl_phot_fmax_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+16 2 adding :Inclusive_Photon/h_incl_phot_fmax_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+17 1 adding :Inclusive_Photon/h_incl_phot_phi_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+17 2 adding :Inclusive_Photon/h_incl_phot_phi_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+18 1 adding :Inclusive_Photon/h_incl_phot_eta_data06e
+180
+data - ok
+180
+mc_rad - ok
+180
+mc_norad - ok
+18 2 adding :Inclusive_Photon/h_incl_phot_eta_data0607p
+180
+data - ok
+180
+mc_rad - ok
+180
+mc_norad - ok
+19 1 adding :Inclusive_Photon/h_incl_phot_elphot_dphi_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+19 2 adding :Inclusive_Photon/h_incl_phot_elphot_dphi_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+20 1 adding :Inclusive_Photon/h_incl_phot_elphot_dphi_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+20 2 adding :Inclusive_Photon/h_incl_phot_elphot_dphi_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+21 1 adding :Inclusive_DIS/h_Q2_da_data06e
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+21 2 adding :Inclusive_DIS/h_Q2_da_data0607p
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+22 1 adding :Inclusive_DIS/h_Q2_el_data06e
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+22 2 adding :Inclusive_DIS/h_Q2_el_data0607p
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+23 1 adding :Inclusive_DIS/h_Q2_jb_data06e
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+23 2 adding :Inclusive_DIS/h_Q2_jb_data0607p
+400
+data - ok
+400
+mc_rad - ok
+400
+mc_norad - ok
+24 1 adding :Inclusive_DIS/h_elec_zufo_dr_min_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+24 2 adding :Inclusive_DIS/h_elec_zufo_dr_min_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+25 1 adding :Inclusive_DIS/h_cal_empz_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+25 2 adding :Inclusive_DIS/h_cal_empz_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+26 1 adding :Inclusive_DIS/h_dis_electron_e_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+26 2 adding :Inclusive_DIS/h_dis_electron_e_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+27 1 adding :Inclusive_DIS/h_dis_electron_theta_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+27 2 adding :Inclusive_DIS/h_dis_electron_theta_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+28 1 adding :Inclusive_DIS/h_dis_electron_probability_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+28 2 adding :Inclusive_DIS/h_dis_electron_probability_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+29 1 adding :Inclusive_DIS/h_n_vtx_tracks_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+29 2 adding :Inclusive_DIS/h_n_vtx_tracks_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+30 1 adding :Inclusive_DIS/h_siyjb_data06e
+120
+data - ok
+120
+mc_rad - ok
+120
+mc_norad - ok
+30 2 adding :Inclusive_DIS/h_siyjb_data0607p
+120
+data - ok
+120
+mc_rad - ok
+120
+mc_norad - ok
+31 1 adding :Inclusive_DIS/h_x_el_data06e
+500
+data - ok
+500
+mc_rad - ok
+500
+mc_norad - ok
+31 2 adding :Inclusive_DIS/h_x_el_data0607p
+500
+data - ok
+500
+mc_rad - ok
+500
+mc_norad - ok
+32 1 adding :Inclusive_DIS/h_zvtx_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+32 2 adding :Inclusive_DIS/h_zvtx_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+33 1 adding :Inclusive_DIS/h_zufos_near_electron_data06e
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+33 2 adding :Inclusive_DIS/h_zufos_near_electron_data0607p
+200
+data - ok
+200
+mc_rad - ok
+200
+mc_norad - ok
+ADDING : OK
+fitting 0
+Info in <TCanvas::Print>: eps file chi2_deltaz.eps has been created
+Warning in <TCanvas::Constructor>: Deleting canvas with same name: c1
+Info in <TCanvas::Print>: eps file c0.eps has been created
+Info in <TCanvas::Print>: png file c0.png has been created
+Info in <TCanvas::Print>: eps file c1.eps has been created
+Info in <TCanvas::Print>: png file c1.png has been created
+Info in <TCanvas::Print>: eps file c2.eps has been created
+Info in <TCanvas::Print>: png file c2.png has been created
+Info in <TCanvas::Print>: eps file c3.eps has been created
+Info in <TCanvas::Print>: png file c3.png has been created
+Info in <TCanvas::Print>: eps file c4.eps has been created
+Info in <TCanvas::Print>: png file c4.png has been created
+Info in <TCanvas::Print>: eps file c5.eps has been created
+Info in <TCanvas::Print>: png file c5.png has been created
+Info in <TCanvas::Print>: eps file c6.eps has been created
+Info in <TCanvas::Print>: png file c6.png has been created
+Info in <TCanvas::Print>: eps file c7.eps has been created
+Info in <TCanvas::Print>: png file c7.png has been created
+Info in <TCanvas::Print>: eps file c8.eps has been created
+Info in <TCanvas::Print>: png file c8.png has been created
+Info in <TCanvas::Print>: eps file c9.eps has been created
+Info in <TCanvas::Print>: png file c9.png has been created
+Info in <TCanvas::Print>: eps file c10.eps has been created
+Info in <TCanvas::Print>: png file c10.png has been created
+Info in <TCanvas::Print>: eps file c11.eps has been created
+Info in <TCanvas::Print>: png file c11.png has been created
+Info in <TCanvas::Print>: eps file deltaz.eps has been created
+Info in <TCanvas::Print>: png file deltaz.png has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: deltaz.C has been generated
+Barlow-Beeston: 
+=== N prph = 6227.06 +- 98.3975
+=== N rad = 926 +- 30.4302
+=== N norad = 3901.42 +- 54.7268
+=== N data = 6201 +- 78.7464
+Gauss: 
+=== N prph = 6213.11 +- 51.3796
+=== N rad = 926 +- 30.4302
+=== N norad = 3907.9 +- 47.4077
+=== N data = 6201 +- 78.7464
+Info in <TCanvas::Print>: eps file deltaz_diff_chi2.eps has been created
+Info in <TCanvas::Print>: png file deltaz_diff_chi2.png has been created
+Info in <TCanvas::Print>: eps file fit_err_ian.eps has been created

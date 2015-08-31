@@ -1,0 +1,144 @@
+opening file data 0405e
+opening file mc_bg_norad 0405e
+opening file mc_bg_rad 0405e
+opening file mc_prph 0405e
+0405e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_rew_eph.root
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_prph 1 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_rew_eph.root
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+opening file data 06e
+opening file mc_bg_norad 06e
+opening file mc_bg_rad 06e
+opening file mc_prph 06e
+06e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_rew_eph.root
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_prph 1 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_rew_eph.root
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+opening file data 0607p
+opening file mc_bg_norad 0607p
+opening file mc_bg_rad 0607p
+0607p files attached
+reading Photon_with_jet/h_fmax
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Photon_with_jet/h_deltaz
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+histos succesfully read
+data: 2671, rad mc: 479
+0405e, data: 2671 479
+lumi data: 134.16, lumi mc: 271.36
+06e, data: 1015 288
+lumi data: 54.7957, lumi mc: 165.26
+0607p, data: 2535 676
+lumi data: 142.938, lumi mc: 364.6
+data: 2671, rad mc: 236.817
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 ALPHA        3.64800e-01  5.00000e-02    0.00000e+00  1.00000e+00
+     2 BETA         3.64800e-01  5.00000e-02    0.00000e+00  1.00000e+00
+ **********
+ **    1 **SIMPLEX
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START SIMPLEX MINIMIZATION.    CONVERGENCE WHEN EDM .LT. 0.1
+ FCN=174.044 FROM SIMPLEX   STATUS=PROGRESS        6 CALLS           7 TOTAL
+                     EDM=255.739    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA        5.70598e-01   5.00000e-02   0.00000e+00   1.00000e+00
+   2  BETA         5.70598e-01   5.00000e-02   0.00000e+00   1.00000e+00
+ SIMPLEX MINIMIZATION HAS CONVERGED.
+ FCN=47.7778 FROM SIMPLEX   STATUS=PROGRESS       39 CALLS          40 TOTAL
+                     EDM=0.0289315    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA        3.26140e-01   5.00000e-02   0.00000e+00   1.00000e+00
+   2  BETA         6.66404e-01   5.00000e-02   0.00000e+00   1.00000e+00
+after simplex
+====== NUMBER OF ENTRIES ======
+data: 6230
+mc_norad: 5264.69
+mc_rad: 843.236
+mc_signal: 14118
+ **********
+ **    2 **MIGRAD
+ **********
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-04
+ FCN=47.7778 FROM MIGRAD    STATUS=INITIATE        8 CALLS          48 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.26140e-01   5.00000e-02   1.33831e-02  -1.96791e+00
+   2  BETA         6.66404e-01   5.00000e-02   1.35085e-02  -4.61491e+00
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=47.7714 FROM MIGRAD    STATUS=CONVERGED      30 CALLS          70 TOTAL
+                     EDM=1.43286e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.25636e-01   2.26163e-02   1.21847e-04  -1.79982e-03
+   2  BETA         6.67929e-01   2.12298e-02   1.13779e-04  -4.76681e-03
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  2    ERR DEF=1
+  5.119e-04 -3.228e-04 
+ -3.228e-04  4.510e-04 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2
+        1  0.67184   1.000 -0.672
+        2  0.67184  -0.672  1.000
+after migrad
+ **********
+ **    3 **HESSE
+ **********
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=47.7714 FROM HESSE     STATUS=OK             10 CALLS          80 TOTAL
+                     EDM=1.43266e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  ALPHA        3.25636e-01   2.26172e-02   2.43694e-05  -3.56213e-01
+   2  BETA         6.67929e-01   2.12307e-02   2.27559e-05   3.42516e-01
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  2    ERR DEF=1
+  5.119e-04 -3.229e-04 
+ -3.229e-04  4.510e-04 
+ PARAMETER  CORRELATION COEFFICIENTS  
+       NO.  GLOBAL      1      2
+        1  0.67187   1.000 -0.672
+        2  0.67187  -0.672  1.000
+after hesse
+ **********
+ **    4 **MINOS
+ **********
+ FCN=47.7714 FROM MINOS     STATUS=SUCCESSFUL     42 CALLS         122 TOTAL
+                     EDM=1.43266e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  ALPHA        3.25636e-01   2.26172e-02  -2.26689e-02   2.25897e-02
+   2  BETA         6.67929e-01   2.12307e-02  -2.10754e-02   2.14080e-02
+after minos
+par 0 = 0.325636 +- 0.0226172
+par 1 = 0.667929 +- 0.0212307
+Barlow-Beeston chi2 approach: 
+param 0 = 0.325636 +- 0.0226172
+param 1 = 0.667929 +- 0.0212307
+with chi2 / 28-1 = 1.76931

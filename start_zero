@@ -1,0 +1,27 @@
+#!/bin/sh
+
+PREFIX="zero" 
+
+for INPUTDATA in data mc_bg_rad mc_bg_norad mc_prph; do
+    for PERIOD in 0405e 06e 0607p; do
+        if [[ "$INPUTDATA" == "mc_prph" && "$PERIOD" == "0607p" ]]; then
+            continue
+        fi
+        ./main $PERIOD $INPUTDATA 0 0 0 1> output_${INPUTDATA}_${PERIOD}_${PREFIX}.txt 2> /dev/null &
+    done 
+done 
+FAIL=0 
+for job in `jobs -p` 
+do
+        echo $job
+        wait $job || let "FAIL+=1" 
+done
+    echo $FAIL 
+if [ "$FAIL" == "0" ];then
+    echo "YAY!" 
+else
+    echo "FAIL! ($FAIL)" 
+fi
+
+
+cp *_zero.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/

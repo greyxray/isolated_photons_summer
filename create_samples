@@ -1,0 +1,94 @@
+#!/bin/sh
+
+echo "making"
+make clean
+make -j8
+
+FAIL=0
+
+echo "starting"
+
+
+#touch output_data_0405e.txt
+#touch output_data_06e.txt
+#touch output_data_0607p.txt
+     
+#./main 0405e data 0 0 0 > output_data_0405e.txt 2> /dev/null &        
+#./main 06e data 0 0 0 > output_data_06e.txt 2> /dev/null &        
+#./main 0607p data 0 0 0 > output_data_0607p.txt 2> /dev/null &
+./main 0405e data 0 0 0 > /dev/null 2> /dev/null &        
+./main 06e data 0 0 0 > /dev/null 2> /dev/null &        
+./main 0607p data 0 0 0 > /dev/null 2> /dev/null &
+        
+#touch output_mc_bg_rad_0405e.txt
+#touch output_mc_bg_rad_06e.txt
+#touch output_mc_bg_rad_0607p.txt
+        
+#./main 0405e mc_bg_rad 0 0 0 > output_mc_bg_rad_0405e.txt 2> /dev/null &        
+#./main 06e mc_bg_rad 0 0 0 > output_mc_bg_rad_06e.txt 2> /dev/null &        
+#./main 0607p mc_bg_rad 0 0 0 > output_mc_bg_rad_0607p.txt 2> /dev/null &  
+./main 0405e mc_bg_rad 0 0 0 > /dev/null 2> /dev/null &        
+./main 06e mc_bg_rad 0 0 0 > /dev/null 2> /dev/null &        
+./main 0607p mc_bg_rad 0 0 0 > /dev/null 2> /dev/null &  
+      
+#touch output_mc_bg_norad_0405e.txt
+#touch output_mc_bg_norad_06e.txt
+#touch output_mc_bg_norad_0607p.txt
+        
+#./main 0405e mc_bg_norad 0 0 0 > output_mc_bg_norad_0405e.txt 2> /dev/null &        
+#./main 06e mc_bg_norad 0 0 0 > output_mc_bg_norad_06e.txt 2> /dev/null &        
+#./main 0607p mc_bg_norad 0 0 0 > output_mc_bg_norad_0607p.txt 2> /dev/null & 
+./main 0405e mc_bg_norad 0 0 0 > /dev/null 2> /dev/null &        
+./main 06e mc_bg_norad 0 0 0 > /dev/null 2> /dev/null &        
+./main 0607p mc_bg_norad 0 0 0 > /dev/null 2> /dev/null &  
+      
+
+#touch output_mc_prph_0405e.txt
+#touch output_mc_prph_06e.txt
+        
+#./main 0405e mc_prph 0 0 0 > output_mc_prph_0405e.txt 2> /dev/null &        
+#./main 06e mc_prph 0 0 0 > output_mc_prph_06e.txt 2> /dev/null &  
+./main 0405e mc_prph 0 0 0 > /dev/null 2> /dev/null &        
+./main 06e mc_prph 0 0 0 > /dev/null 2> /dev/null &  
+
+        
+for job in `jobs -p`
+do
+echo $job
+    wait $job || let "FAIL+=1"
+done
+
+echo $FAIL
+
+if [ "$FAIL" == "0" ];
+then
+echo "YAY!"
+else
+echo "FAIL! ($FAIL)"
+fi
+
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_data_0405e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_data_0405e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_data_06e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_data_06e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_data_0607p.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_data_0607p.txt 
+#rm output_data_0405e.txt
+#rm output_data_06e.txt
+#rm output_data_0607p.txt
+
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_rad_0405e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_rad_0405e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_rad_06e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_rad_06e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_rad_0607p.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_rad_0607p.txt 
+#rm output_mc_bg_rad_0405e.txt
+#rm output_mc_bg_rad_06e.txt
+#rm output_mc_bg_rad_0607p.txt
+
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_norad_0405e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_norad_0405e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_norad_06e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_norad_06e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_bg_norad_0607p.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_bg_norad_0607p.txt 
+#rm output_mc_bg_norad_0405e.txt
+#rm output_mc_bg_norad_06e.txt
+#rm output_mc_bg_norad_0607p.txt
+
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_prph_0405e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_prph_0405e.txt 
+#cp  /nfs/dust/zeus/group/glushenko/isolated_photons_summer/output_mc_prph_06e.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/output_mc_prph_06e.txt 
+#rm output_mc_prph_0405e.txt
+#rm output_mc_prph_06e.txt

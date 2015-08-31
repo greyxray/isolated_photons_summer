@@ -1,0 +1,3113 @@
+opening file data 0405e
+opening file mc_bg_norad 0405e
+opening file mc_bg_rad 0405e
+opening file mc_prph 0405e
+0405e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Cross_Sections_Histograms/h_deltaz_eta_0
+reading mc_prph 1 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 2 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_prph 3 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_x
+reading mc_prph 4 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_y
+reading mc_prph 5 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_prph 6 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_prph 7 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_phjet_electron_phi
+reading mc_prph 8 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_phjet_cal_empz
+reading mc_prph 9 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_phjet_zvtx
+reading mc_prph 10 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_prph 11 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 12 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_prph 13 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_prph 14 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_prph 15 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_prph 16 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Photon_with_jet/h_phjet_jet_phi
+reading mc_prph 17 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Photon_with_jet/h_et_jet_photon_ratio
+reading mc_prph 18 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_prph 19 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_prph 20 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_prph 21 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Photon_with_jet/h_et_3system_event_ratio
+reading mc_prph 22 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Photon_with_jet/h_phjet_electron_probability
+reading mc_prph 23 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Photon_with_jet/h_phjet_q2_dz_gt_035
+reading mc_prph 24 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Photon_with_jet/h_phjet_q2_dz_lt_035
+reading mc_prph 25 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Photon_with_jet/h_phjet_q2_dz_full
+reading mc_prph 26 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Photon_with_jet/h_phjet_y_dz_gt_035
+reading mc_prph 27 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Photon_with_jet/h_phjet_y_dz_lt_035
+reading mc_prph 28 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Photon_with_jet/h_phjet_y_dz_full
+reading mc_prph 29 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Photon_with_jet/h_phjet_etaph_dz_gt_035
+reading mc_prph 30 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Photon_with_jet/h_phjet_etaph_dz_lt_035
+reading mc_prph 31 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Photon_with_jet/h_phjet_etaph_dz_full
+reading mc_prph 32 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Photon_with_jet/h_phjet_eph_dz_gt_035
+reading mc_prph 33 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+reading Photon_with_jet/h_phjet_eph_dz_lt_035
+reading mc_prph 34 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 34 ...
+reading mc_norad 34 ...
+reading data 34 ...
+reading Photon_with_jet/h_phjet_eph_dz_full
+reading mc_prph 35 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 35 ...
+reading mc_norad 35 ...
+reading data 35 ...
+reading Photon_with_jet/h_phjet_eel_dz_gt_035
+reading mc_prph 36 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 36 ...
+reading mc_norad 36 ...
+reading data 36 ...
+reading Photon_with_jet/h_phjet_eel_dz_lt_035
+reading mc_prph 37 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 37 ...
+reading mc_norad 37 ...
+reading data 37 ...
+reading Photon_with_jet/h_phjet_eel_dz_full
+reading mc_prph 38 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 38 ...
+reading mc_norad 38 ...
+reading data 38 ...
+reading Photon_with_jet/phjet_y_y_gt_05
+reading mc_prph 39 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 39 ...
+reading mc_norad 39 ...
+reading data 39 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_prph 40 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 40 ...
+reading mc_norad 40 ...
+reading data 40 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_prph 41 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 41 ...
+reading mc_norad 41 ...
+reading data 41 ...
+reading Photon_with_jet/phjet_eel_y_gt_05
+reading mc_prph 42 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 42 ...
+reading mc_norad 42 ...
+reading data 42 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_prph 43 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 43 ...
+reading mc_norad 43 ...
+reading data 43 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_prph 44 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 44 ...
+reading mc_norad 44 ...
+reading data 44 ...
+reading Photon_with_jet/phjet_phiph_phij_y_gt_05
+reading mc_prph 45 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 45 ...
+reading mc_norad 45 ...
+reading data 45 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_prph 46 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 46 ...
+reading mc_norad 46 ...
+reading data 46 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_prph 47 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 47 ...
+reading mc_norad 47 ...
+reading data 47 ...
+reading Photon_with_jet/phjet_thetael_y_gt_05
+reading mc_prph 48 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 48 ...
+reading mc_norad 48 ...
+reading data 48 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_prph 49 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 49 ...
+reading mc_norad 49 ...
+reading data 49 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_prph 50 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 50 ...
+reading mc_norad 50 ...
+reading data 50 ...
+reading Photon_with_jet/phjet_etaph_y_gt_05
+reading mc_prph 51 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 51 ...
+reading mc_norad 51 ...
+reading data 51 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_prph 52 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 52 ...
+reading mc_norad 52 ...
+reading data 52 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_prph 53 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 53 ...
+reading mc_norad 53 ...
+reading data 53 ...
+reading Photon_with_jet/phjet_etph_y_gt_05
+reading mc_prph 54 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 54 ...
+reading mc_norad 54 ...
+reading data 54 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_prph 55 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 55 ...
+reading mc_norad 55 ...
+reading data 55 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_prph 56 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph0405e_norew.root
+reading mc_rad 56 ...
+reading mc_norad 56 ...
+reading data 56 ...
+opening file data 06e
+opening file mc_bg_norad 06e
+opening file mc_bg_rad 06e
+opening file mc_prph 06e
+06e files attached
+reading Photon_with_jet/h_fmax
+reading mc_prph 0 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Cross_Sections_Histograms/h_deltaz_eta_0
+reading mc_prph 1 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 2 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_prph 3 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_x
+reading mc_prph 4 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_y
+reading mc_prph 5 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_prph 6 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_prph 7 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_phjet_electron_phi
+reading mc_prph 8 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_phjet_cal_empz
+reading mc_prph 9 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_phjet_zvtx
+reading mc_prph 10 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_prph 11 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_prph 12 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_prph 13 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_prph 14 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_prph 15 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_prph 16 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Photon_with_jet/h_phjet_jet_phi
+reading mc_prph 17 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Photon_with_jet/h_et_jet_photon_ratio
+reading mc_prph 18 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_prph 19 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_prph 20 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_prph 21 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Photon_with_jet/h_et_3system_event_ratio
+reading mc_prph 22 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Photon_with_jet/h_phjet_electron_probability
+reading mc_prph 23 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Photon_with_jet/h_phjet_q2_dz_gt_035
+reading mc_prph 24 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Photon_with_jet/h_phjet_q2_dz_lt_035
+reading mc_prph 25 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Photon_with_jet/h_phjet_q2_dz_full
+reading mc_prph 26 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Photon_with_jet/h_phjet_y_dz_gt_035
+reading mc_prph 27 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Photon_with_jet/h_phjet_y_dz_lt_035
+reading mc_prph 28 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Photon_with_jet/h_phjet_y_dz_full
+reading mc_prph 29 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Photon_with_jet/h_phjet_etaph_dz_gt_035
+reading mc_prph 30 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Photon_with_jet/h_phjet_etaph_dz_lt_035
+reading mc_prph 31 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Photon_with_jet/h_phjet_etaph_dz_full
+reading mc_prph 32 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Photon_with_jet/h_phjet_eph_dz_gt_035
+reading mc_prph 33 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+reading Photon_with_jet/h_phjet_eph_dz_lt_035
+reading mc_prph 34 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 34 ...
+reading mc_norad 34 ...
+reading data 34 ...
+reading Photon_with_jet/h_phjet_eph_dz_full
+reading mc_prph 35 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 35 ...
+reading mc_norad 35 ...
+reading data 35 ...
+reading Photon_with_jet/h_phjet_eel_dz_gt_035
+reading mc_prph 36 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 36 ...
+reading mc_norad 36 ...
+reading data 36 ...
+reading Photon_with_jet/h_phjet_eel_dz_lt_035
+reading mc_prph 37 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 37 ...
+reading mc_norad 37 ...
+reading data 37 ...
+reading Photon_with_jet/h_phjet_eel_dz_full
+reading mc_prph 38 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 38 ...
+reading mc_norad 38 ...
+reading data 38 ...
+reading Photon_with_jet/phjet_y_y_gt_05
+reading mc_prph 39 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 39 ...
+reading mc_norad 39 ...
+reading data 39 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_prph 40 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 40 ...
+reading mc_norad 40 ...
+reading data 40 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_prph 41 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 41 ...
+reading mc_norad 41 ...
+reading data 41 ...
+reading Photon_with_jet/phjet_eel_y_gt_05
+reading mc_prph 42 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 42 ...
+reading mc_norad 42 ...
+reading data 42 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_prph 43 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 43 ...
+reading mc_norad 43 ...
+reading data 43 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_prph 44 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 44 ...
+reading mc_norad 44 ...
+reading data 44 ...
+reading Photon_with_jet/phjet_phiph_phij_y_gt_05
+reading mc_prph 45 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 45 ...
+reading mc_norad 45 ...
+reading data 45 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_prph 46 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 46 ...
+reading mc_norad 46 ...
+reading data 46 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_prph 47 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 47 ...
+reading mc_norad 47 ...
+reading data 47 ...
+reading Photon_with_jet/phjet_thetael_y_gt_05
+reading mc_prph 48 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 48 ...
+reading mc_norad 48 ...
+reading data 48 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_prph 49 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 49 ...
+reading mc_norad 49 ...
+reading data 49 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_prph 50 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 50 ...
+reading mc_norad 50 ...
+reading data 50 ...
+reading Photon_with_jet/phjet_etaph_y_gt_05
+reading mc_prph 51 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 51 ...
+reading mc_norad 51 ...
+reading data 51 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_prph 52 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 52 ...
+reading mc_norad 52 ...
+reading data 52 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_prph 53 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 53 ...
+reading mc_norad 53 ...
+reading data 53 ...
+reading Photon_with_jet/phjet_etph_y_gt_05
+reading mc_prph 54 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 54 ...
+reading mc_norad 54 ...
+reading data 54 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_prph 55 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 55 ...
+reading mc_norad 55 ...
+reading data 55 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_prph 56 ...
+/data/zenith234b/kuprash/analyses/prompt_photons/mc_prph06e_norew.root
+reading mc_rad 56 ...
+reading mc_norad 56 ...
+reading data 56 ...
+opening file data 0607p
+opening file mc_bg_norad 0607p
+opening file mc_bg_rad 0607p
+0607p files attached
+reading Photon_with_jet/h_fmax
+reading mc_rad 0 ...
+reading mc_norad 0 ...
+reading data 0 ...
+reading Cross_Sections_Histograms/h_deltaz_eta_0
+reading mc_rad 1 ...
+reading mc_norad 1 ...
+reading data 1 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_rad 2 ...
+reading mc_norad 2 ...
+reading data 2 ...
+reading Photon_with_jet/h_comp_Q2
+reading mc_rad 3 ...
+reading mc_norad 3 ...
+reading data 3 ...
+reading Photon_with_jet/h_comp_x
+reading mc_rad 4 ...
+reading mc_norad 4 ...
+reading data 4 ...
+reading Photon_with_jet/h_comp_y
+reading mc_rad 5 ...
+reading mc_norad 5 ...
+reading data 5 ...
+reading Photon_with_jet/h_phjet_electron_e
+reading mc_rad 6 ...
+reading mc_norad 6 ...
+reading data 6 ...
+reading Photon_with_jet/h_phjet_electron_theta
+reading mc_rad 7 ...
+reading mc_norad 7 ...
+reading data 7 ...
+reading Photon_with_jet/h_phjet_electron_phi
+reading mc_rad 8 ...
+reading mc_norad 8 ...
+reading data 8 ...
+reading Photon_with_jet/h_phjet_cal_empz
+reading mc_rad 9 ...
+reading mc_norad 9 ...
+reading data 9 ...
+reading Photon_with_jet/h_phjet_zvtx
+reading mc_rad 10 ...
+reading mc_norad 10 ...
+reading data 10 ...
+reading Photon_with_jet/h_x_gamma
+reading mc_rad 11 ...
+reading mc_norad 11 ...
+reading data 11 ...
+reading Photon_with_jet/h_prph_energy
+reading mc_rad 12 ...
+reading mc_norad 12 ...
+reading data 12 ...
+reading Photon_with_jet/h_prph_eta
+reading mc_rad 13 ...
+reading mc_norad 13 ...
+reading data 13 ...
+reading Photon_with_jet/h_prph_phi
+reading mc_rad 14 ...
+reading mc_norad 14 ...
+reading data 14 ...
+reading Photon_with_jet/h_comp_jet_e
+reading mc_rad 15 ...
+reading mc_norad 15 ...
+reading data 15 ...
+reading Photon_with_jet/h_phjet_jet_eta
+reading mc_rad 16 ...
+reading mc_norad 16 ...
+reading data 16 ...
+reading Photon_with_jet/h_phjet_jet_phi
+reading mc_rad 17 ...
+reading mc_norad 17 ...
+reading data 17 ...
+reading Photon_with_jet/h_et_jet_photon_ratio
+reading mc_rad 18 ...
+reading mc_norad 18 ...
+reading data 18 ...
+reading Photon_with_jet/h_prph_cell_energy_frac
+reading mc_rad 19 ...
+reading mc_norad 19 ...
+reading data 19 ...
+reading Photon_with_jet/h_prph_jet_energy_frac
+reading mc_rad 20 ...
+reading mc_norad 20 ...
+reading data 20 ...
+reading Photon_with_jet/h_phjet_dphi
+reading mc_rad 21 ...
+reading mc_norad 21 ...
+reading data 21 ...
+reading Photon_with_jet/h_et_3system_event_ratio
+reading mc_rad 22 ...
+reading mc_norad 22 ...
+reading data 22 ...
+reading Photon_with_jet/h_phjet_electron_probability
+reading mc_rad 23 ...
+reading mc_norad 23 ...
+reading data 23 ...
+reading Photon_with_jet/h_phjet_q2_dz_gt_035
+reading mc_rad 24 ...
+reading mc_norad 24 ...
+reading data 24 ...
+reading Photon_with_jet/h_phjet_q2_dz_lt_035
+reading mc_rad 25 ...
+reading mc_norad 25 ...
+reading data 25 ...
+reading Photon_with_jet/h_phjet_q2_dz_full
+reading mc_rad 26 ...
+reading mc_norad 26 ...
+reading data 26 ...
+reading Photon_with_jet/h_phjet_y_dz_gt_035
+reading mc_rad 27 ...
+reading mc_norad 27 ...
+reading data 27 ...
+reading Photon_with_jet/h_phjet_y_dz_lt_035
+reading mc_rad 28 ...
+reading mc_norad 28 ...
+reading data 28 ...
+reading Photon_with_jet/h_phjet_y_dz_full
+reading mc_rad 29 ...
+reading mc_norad 29 ...
+reading data 29 ...
+reading Photon_with_jet/h_phjet_etaph_dz_gt_035
+reading mc_rad 30 ...
+reading mc_norad 30 ...
+reading data 30 ...
+reading Photon_with_jet/h_phjet_etaph_dz_lt_035
+reading mc_rad 31 ...
+reading mc_norad 31 ...
+reading data 31 ...
+reading Photon_with_jet/h_phjet_etaph_dz_full
+reading mc_rad 32 ...
+reading mc_norad 32 ...
+reading data 32 ...
+reading Photon_with_jet/h_phjet_eph_dz_gt_035
+reading mc_rad 33 ...
+reading mc_norad 33 ...
+reading data 33 ...
+reading Photon_with_jet/h_phjet_eph_dz_lt_035
+reading mc_rad 34 ...
+reading mc_norad 34 ...
+reading data 34 ...
+reading Photon_with_jet/h_phjet_eph_dz_full
+reading mc_rad 35 ...
+reading mc_norad 35 ...
+reading data 35 ...
+reading Photon_with_jet/h_phjet_eel_dz_gt_035
+reading mc_rad 36 ...
+reading mc_norad 36 ...
+reading data 36 ...
+reading Photon_with_jet/h_phjet_eel_dz_lt_035
+reading mc_rad 37 ...
+reading mc_norad 37 ...
+reading data 37 ...
+reading Photon_with_jet/h_phjet_eel_dz_full
+reading mc_rad 38 ...
+reading mc_norad 38 ...
+reading data 38 ...
+reading Photon_with_jet/phjet_y_y_gt_05
+reading mc_rad 39 ...
+reading mc_norad 39 ...
+reading data 39 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_rad 40 ...
+reading mc_norad 40 ...
+reading data 40 ...
+reading Photon_with_jet/phjet_y_y_lt_05
+reading mc_rad 41 ...
+reading mc_norad 41 ...
+reading data 41 ...
+reading Photon_with_jet/phjet_eel_y_gt_05
+reading mc_rad 42 ...
+reading mc_norad 42 ...
+reading data 42 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_rad 43 ...
+reading mc_norad 43 ...
+reading data 43 ...
+reading Photon_with_jet/phjet_eel_y_lt_05
+reading mc_rad 44 ...
+reading mc_norad 44 ...
+reading data 44 ...
+reading Photon_with_jet/phjet_phiph_phij_y_gt_05
+reading mc_rad 45 ...
+reading mc_norad 45 ...
+reading data 45 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_rad 46 ...
+reading mc_norad 46 ...
+reading data 46 ...
+reading Photon_with_jet/phjet_phiph_phij_y_lt_05
+reading mc_rad 47 ...
+reading mc_norad 47 ...
+reading data 47 ...
+reading Photon_with_jet/phjet_thetael_y_gt_05
+reading mc_rad 48 ...
+reading mc_norad 48 ...
+reading data 48 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_rad 49 ...
+reading mc_norad 49 ...
+reading data 49 ...
+reading Photon_with_jet/phjet_thetael_y_lt_05
+reading mc_rad 50 ...
+reading mc_norad 50 ...
+reading data 50 ...
+reading Photon_with_jet/phjet_etaph_y_gt_05
+reading mc_rad 51 ...
+reading mc_norad 51 ...
+reading data 51 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_rad 52 ...
+reading mc_norad 52 ...
+reading data 52 ...
+reading Photon_with_jet/phjet_etaph_y_lt_05
+reading mc_rad 53 ...
+reading mc_norad 53 ...
+reading data 53 ...
+reading Photon_with_jet/phjet_etph_y_gt_05
+reading mc_rad 54 ...
+reading mc_norad 54 ...
+reading data 54 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_rad 55 ...
+reading mc_norad 55 ...
+reading data 55 ...
+reading Photon_with_jet/phjet_etph_y_lt_05
+reading mc_rad 56 ...
+reading mc_norad 56 ...
+reading data 56 ...
+histos succesfully read
+data: 2671, rad mc: 479
+0405e, data: 2671 479
+lumi data: 134.16, lumi mc: 271.36
+06e, data: 1015 288
+lumi data: 54.7957, lumi mc: 165.26
+0607p, data: 2535 676
+lumi data: 142.938, lumi mc: 364.6
+data: 2671, rad mc: 236.817
+After summing: 
+Cross_Sections_Histograms/h_deltaz_eta_0_data
+total events in data: 1772 1772 1772
+data: 
+0   3   1.73205
+1   0   0
+2   0   0
+3   0   0
+4   0   0
+5   0   0
+6   2   1.41421
+7   1   1
+8   5   2.23607
+9   2   1.41421
+10   11   3.31662
+11   9   3
+12   16   4
+13   15   3.87298
+14   13   3.60555
+15   22   4.69042
+16   15   3.87298
+17   22   4.69042
+18   29   5.38516
+19   30   5.47723
+20   31   5.56776
+21   27   5.19615
+22   23   4.79583
+23   28   5.2915
+24   24   4.89898
+25   18   4.24264
+26   28   5.2915
+27   29   5.38516
+28   23   4.79583
+29   27   5.19615
+30   26   5.09902
+31   23   4.79583
+32   23   4.79583
+33   23   4.79583
+34   19   4.3589
+35   28   5.2915
+36   19   4.3589
+37   27   5.19615
+38   20   4.47214
+39   25   5
+40   21   4.58258
+41   24   4.89898
+42   21   4.58258
+43   26   5.09902
+44   16   4
+45   17   4.12311
+46   15   3.87298
+47   13   3.60555
+48   13   3.60555
+49   15   3.87298
+50   14   3.74166
+51   5   2.23607
+52   16   4
+53   8   2.82843
+54   13   3.60555
+55   7   2.64575
+56   11   3.31662
+57   13   3.60555
+58   9   3
+59   16   4
+60   16   4
+61   9   3
+62   9   3
+63   11   3.31662
+64   10   3.16228
+65   5   2.23607
+66   9   3
+67   8   2.82843
+68   6   2.44949
+69   8   2.82843
+70   9   3
+71   11   3.31662
+72   8   2.82843
+73   6   2.44949
+74   10   3.16228
+75   9   3
+76   8   2.82843
+77   12   3.4641
+78   11   3.31662
+79   7   2.64575
+80   10   3.16228
+81   9   3
+82   10   3.16228
+83   6   2.44949
+84   5   2.23607
+85   5   2.23607
+86   6   2.44949
+87   7   2.64575
+88   9   3
+89   11   3.31662
+90   11   3.31662
+91   8   2.82843
+92   9   3
+93   5   2.23607
+94   10   3.16228
+95   13   3.60555
+96   12   3.4641
+97   12   3.4641
+98   21   4.58258
+99   10   3.16228
+100   14   3.74166
+101   9   3
+102   8   2.82843
+103   22   4.69042
+104   7   2.64575
+105   16   4
+106   17   4.12311
+107   17   4.12311
+108   11   3.31662
+109   10   3.16228
+110   5   2.23607
+111   8   2.82843
+112   7   2.64575
+113   6   2.44949
+114   8   2.82843
+115   12   3.4641
+116   5   2.23607
+117   2   1.41421
+118   3   1.73205
+119   5   2.23607
+120   4   2
+121   5   2.23607
+122   5   2.23607
+123   7   2.64575
+124   2   1.41421
+125   5   2.23607
+126   5   2.23607
+127   10   3.16228
+128   3   1.73205
+129   1   1
+130   3   1.73205
+131   3   1.73205
+132   2   1.41421
+133   2   1.41421
+134   2   1.41421
+135   2   1.41421
+136   3   1.73205
+137   0   0
+138   3   1.73205
+139   6   2.44949
+140   2   1.41421
+141   3   1.73205
+142   1   1
+143   5   2.23607
+144   2   1.41421
+145   7   2.64575
+146   5   2.23607
+147   0   0
+148   1   1
+149   1   1
+150   8   2.82843
+151   0   0
+152   4   2
+153   3   1.73205
+154   1   1
+155   0   0
+156   4   2
+157   0   0
+158   3   1.73205
+159   4   2
+160   1   1
+161   2   1.41421
+162   3   1.73205
+163   2   1.41421
+164   1   1
+165   3   1.73205
+166   4   2
+167   2   1.41421
+168   3   1.73205
+169   2   1.41421
+170   3   1.73205
+171   0   0
+172   3   1.73205
+173   1   1
+174   2   1.41421
+175   2   1.41421
+176   2   1.41421
+177   2   1.41421
+178   3   1.73205
+179   3   1.73205
+180   4   2
+181   1   1
+182   4   2
+183   2   1.41421
+184   1   1
+185   1   1
+186   4   2
+187   0   0
+188   0   0
+189   1   1
+190   3   1.73205
+191   4   2
+192   1   1
+193   0   0
+194   3   1.73205
+195   1   1
+196   4   2
+197   0   0
+198   0   0
+199   2   1.41421
+200   2   1.41421
+201   1   1
+202   0   0
+203   1   1
+204   0   0
+205   0   0
+206   0   0
+207   2   1.41421
+208   0   0
+209   1   1
+210   0   0
+211   0   0
+212   0   0
+213   0   0
+214   0   0
+215   2   1.41421
+216   0   0
+217   0   0
+218   0   0
+219   0   0
+220   0   0
+221   1   1
+222   0   0
+223   0   0
+224   0   0
+225   1   1
+226   2   1.41421
+227   0   0
+228   0   0
+229   0   0
+230   0   0
+231   0   0
+232   0   0
+233   0   0
+234   0   0
+235   0   0
+236   0   0
+237   0   0
+238   0   0
+239   1   1
+240   0   0
+241   0   0
+242   1   1
+243   0   0
+244   1   1
+245   0   0
+246   0   0
+247   1   1
+248   0   0
+249   1   1
+250   0   0
+251   0   0
+252   0   0
+253   0   0
+254   0   0
+255   0   0
+256   0   0
+257   0   0
+258   0   0
+259   0   0
+260   0   0
+261   0   0
+262   0   0
+263   0   0
+264   0   0
+265   0   0
+266   0   0
+267   0   0
+268   1   1
+269   0   0
+270   0   0
+271   0   0
+272   0   0
+273   0   0
+274   0   0
+275   0   0
+276   0   0
+277   0   0
+278   0   0
+279   0   0
+280   0   0
+281   0   0
+282   0   0
+283   0   0
+284   1   1
+285   0   0
+286   0   0
+287   0   0
+288   1   1
+289   0   0
+290   1   1
+291   0   0
+292   0   0
+293   0   0
+294   0   0
+295   0   0
+296   0   0
+297   0   0
+298   0   0
+299   1   1
+mc_sum: 
+0   16   4
+1   0   0
+2   0   0
+3   0   0
+4   1   1
+5   3   1.73205
+6   2   1.41421
+7   8   2.82843
+8   13   3.60555
+9   17   4.12311
+10   33   5.74456
+11   27   5.19615
+12   47   6.85565
+13   36   6
+14   40   6.32456
+15   52   7.2111
+16   53   7.28011
+17   68   8.24621
+18   66   8.12404
+19   63   7.93725
+20   80   8.94427
+21   81   9
+22   73   8.544
+23   71   8.42615
+24   69   8.30662
+25   85   9.21954
+26   69   8.30662
+27   76   8.7178
+28   72   8.48528
+29   56   7.48331
+30   55   7.4162
+31   55   7.4162
+32   45   6.7082
+33   45   6.7082
+34   50   7.07107
+35   66   8.12404
+36   50   7.07107
+37   42   6.48074
+38   35   5.91608
+39   54   7.34847
+40   46   6.78233
+41   41   6.40312
+42   35   5.91608
+43   26   5.09902
+44   38   6.16441
+45   28   5.2915
+46   34   5.83095
+47   26   5.09902
+48   33   5.74456
+49   22   4.69042
+50   22   4.69042
+51   14   3.74166
+52   22   4.69042
+53   25   5
+54   21   4.58258
+55   17   4.12311
+56   26   5.09902
+57   27   5.19615
+58   17   4.12311
+59   19   4.3589
+60   21   4.58258
+61   23   4.79583
+62   16   4
+63   19   4.3589
+64   23   4.79583
+65   16   4
+66   18   4.24264
+67   15   3.87298
+68   14   3.74166
+69   19   4.3589
+70   13   3.60555
+71   11   3.31662
+72   14   3.74166
+73   7   2.64575
+74   12   3.4641
+75   15   3.87298
+76   15   3.87298
+77   14   3.74166
+78   14   3.74166
+79   14   3.74166
+80   12   3.4641
+81   8   2.82843
+82   22   4.69042
+83   17   4.12311
+84   10   3.16228
+85   7   2.64575
+86   14   3.74166
+87   14   3.74166
+88   13   3.60555
+89   16   4
+90   10   3.16228
+91   12   3.4641
+92   11   3.31662
+93   15   3.87298
+94   12   3.4641
+95   16   4
+96   12   3.4641
+97   14   3.74166
+98   17   4.12311
+99   19   4.3589
+100   18   4.24264
+101   10   3.16228
+102   12   3.4641
+103   22   4.69042
+104   13   3.60555
+105   17   4.12311
+106   9   3
+107   11   3.31662
+108   3   1.73205
+109   5   2.23607
+110   5   2.23607
+111   2   1.41421
+112   1   1
+113   2   1.41421
+114   2   1.41421
+115   3   1.73205
+116   0   0
+117   1   1
+118   2   1.41421
+119   0   0
+120   2   1.41421
+121   1   1
+122   0   0
+123   0   0
+124   2   1.41421
+125   0   0
+126   0   0
+127   0   0
+128   1   1
+129   0   0
+130   0   0
+131   0   0
+132   0   0
+133   0   0
+134   0   0
+135   0   0
+136   0   0
+137   0   0
+138   0   0
+139   0   0
+140   0   0
+141   0   0
+142   0   0
+143   1   1
+144   0   0
+145   0   0
+146   0   0
+147   0   0
+148   0   0
+149   0   0
+150   0   0
+151   0   0
+152   0   0
+153   0   0
+154   0   0
+155   0   0
+156   0   0
+157   1   1
+158   0   0
+159   0   0
+160   0   0
+161   0   0
+162   0   0
+163   0   0
+164   0   0
+165   0   0
+166   0   0
+167   0   0
+168   0   0
+169   1   1
+170   0   0
+171   0   0
+172   0   0
+173   0   0
+174   0   0
+175   0   0
+176   0   0
+177   0   0
+178   0   0
+179   0   0
+180   0   0
+181   0   0
+182   0   0
+183   0   0
+184   0   0
+185   0   0
+186   0   0
+187   0   0
+188   0   0
+189   0   0
+190   0   0
+191   0   0
+192   0   0
+193   0   0
+194   0   0
+195   0   0
+196   0   0
+197   0   0
+198   0   0
+199   0   0
+200   0   0
+201   0   0
+202   0   0
+203   0   0
+204   0   0
+205   0   0
+206   0   0
+207   0   0
+208   0   0
+209   0   0
+210   0   0
+211   0   0
+212   0   0
+213   0   0
+214   0   0
+215   0   0
+216   0   0
+217   0   0
+218   0   0
+219   0   0
+220   0   0
+221   0   0
+222   0   0
+223   0   0
+224   0   0
+225   0   0
+226   0   0
+227   0   0
+228   0   0
+229   0   0
+230   0   0
+231   0   0
+232   0   0
+233   0   0
+234   0   0
+235   0   0
+236   0   0
+237   0   0
+238   0   0
+239   0   0
+240   0   0
+241   0   0
+242   0   0
+243   0   0
+244   0   0
+245   0   0
+246   0   0
+247   0   0
+248   0   0
+249   0   0
+250   0   0
+251   0   0
+252   0   0
+253   0   0
+254   0   0
+255   0   0
+256   0   0
+257   0   0
+258   0   0
+259   0   0
+260   0   0
+261   0   0
+262   0   0
+263   0   0
+264   0   0
+265   0   0
+266   0   0
+267   0   0
+268   0   0
+269   0   0
+270   0   0
+271   0   0
+272   0   0
+273   0   0
+274   0   0
+275   0   0
+276   0   0
+277   0   0
+278   0   0
+279   0   0
+280   0   0
+281   0   0
+282   0   0
+283   0   0
+284   0   0
+285   0   0
+286   0   0
+287   0   0
+288   0   0
+289   0   0
+290   0   0
+291   0   0
+292   0   0
+293   0   0
+294   0   0
+295   0   0
+296   0   0
+297   0   0
+298   0   0
+299   0   0
+mc_rad: 
+0   2.26728   1.02014
+1   0   0
+2   0   0
+3   0   0
+4   0.494398   0.494398
+5   0   0
+6   0.825971   0.59529
+7   0.494398   0.494398
+8   0.494398   0.494398
+9   3.09325   1.18112
+10   2.88853   1.10163
+11   3.44932   1.15876
+12   6.86822   1.734
+13   3.87733   1.30478
+14   4.48001   1.37061
+15   6.89271   1.68656
+16   6.54256   1.65462
+17   8.70748   1.92034
+18   8.18858   1.89883
+19   8.81576   1.90248
+20   9.26235   1.99397
+21   10.6606   2.1972
+22   10.7096   2.12207
+23   10.9807   2.13761
+24   6.83225   1.67354
+25   7.04288   1.68023
+26   9.26235   1.99397
+27   10.8479   2.19088
+28   6.99507   1.71325
+29   10.1302   2.09219
+30   7.03696   1.72691
+31   4.66733   1.36044
+32   4.60094   1.40217
+33   6.15052   1.60751
+34   5.32455   1.49322
+35   5.72251   1.49143
+36   5.50595   1.53655
+37   8.39448   1.89065
+38   6.15052   1.60751
+39   5.75848   1.55897
+40   4.45669   1.35217
+41   6.57853   1.71575
+42   5.52927   1.5528
+43   5.83753   1.57192
+44   3.81686   1.2879
+45   5.38502   1.5078
+46   2.04398   0.928674
+47   4.14843   1.3299
+48   3.09917   1.11176
+49   3.96229   1.25854
+50   2.88853   1.10163
+51   3.23868   1.14904
+52   4.76377   1.44933
+53   2.00209   0.903026
+54   2.88853   1.10163
+55   1.38676   0.695354
+56   3.35843   1.2729
+57   2.26728   1.02014
+58   1.50769   0.755663
+59   0.78408   0.554428
+60   4.41362   1.41204
+61   2.23131   0.913599
+62   3.17821   1.12984
+63   3.61214   1.21541
+64   1.67052   0.83995
+65   1.27848   0.742846
+66   2.55696   1.05054
+67   1.71241   0.867465
+68   1.77288   0.892329
+69   1.56816   0.78408
+70   2.04398   0.928674
+71   2.00209   0.903026
+72   2.00209   0.903026
+73   2.26728   1.02014
+74   1.67052   0.83995
+75   2.7257   1.03879
+76   2.55696   1.05054
+77   4.16701   1.32868
+78   0.886438   0.630972
+79   1.38084   0.801595
+80   1.82069   0.827159
+81   1.61005   0.813487
+82   2.7257   1.03879
+83   1.21801   0.712787
+84   1.17612   0.679033
+85   1.27848   0.742846
+86   1.94162   0.878466
+87   0.494398   0.494398
+88   1.21801   0.712787
+89   3.09325   1.18112
+90   1.67052   0.83995
+91   1.89973   0.851306
+92   0.78408   0.554428
+93   1.21801   0.712787
+94   0.723613   0.513455
+95   2.88853   1.10163
+96   2.10445   0.951941
+97   0.494398   0.494398
+98   0.78408   0.554428
+99   0.886438   0.630972
+100   4.49858   1.36943
+101   1.05519   0.611209
+102   2.88853   1.10163
+103   2.30917   1.04291
+104   2.33366   0.961976
+105   1.83927   0.825207
+106   1.77288   0.892329
+107   0   0
+108   0   0
+109   0.331573   0.331573
+110   0.494398   0.494398
+111   0   0
+112   0   0
+113   0.723613   0.513455
+114   0   0
+115   0   0
+116   0   0
+117   0   0
+118   0   0
+119   0.39204   0.39204
+120   0.39204   0.39204
+121   0   0
+122   0   0
+123   0   0
+124   0   0
+125   0   0
+126   0   0
+127   0   0
+128   0.494398   0.494398
+129   0   0
+130   0   0
+131   0   0
+132   0   0
+133   0   0
+134   0   0
+135   0   0
+136   0   0
+137   0   0
+138   0   0
+139   0   0
+140   0   0
+141   0   0
+142   0   0
+143   0   0
+144   0   0
+145   0   0
+146   0   0
+147   0   0
+148   0   0
+149   0   0
+150   0   0
+151   0   0
+152   0   0
+153   0   0
+154   0   0
+155   0   0
+156   0   0
+157   0   0
+158   0   0
+159   0   0
+160   0   0
+161   0   0
+162   0   0
+163   0   0
+164   0   0
+165   0   0
+166   0   0
+167   0   0
+168   0   0
+169   0   0
+170   0   0
+171   0   0
+172   0   0
+173   0   0
+174   0   0
+175   0   0
+176   0   0
+177   0   0
+178   0   0
+179   0   0
+180   0   0
+181   0   0
+182   0   0
+183   0   0
+184   0   0
+185   0   0
+186   0   0
+187   0   0
+188   0   0
+189   0   0
+190   0   0
+191   0   0
+192   0   0
+193   0   0
+194   0   0
+195   0   0
+196   0   0
+197   0   0
+198   0   0
+199   0   0
+200   0   0
+201   0   0
+202   0   0
+203   0   0
+204   0   0
+205   0   0
+206   0   0
+207   0   0
+208   0   0
+209   0   0
+210   0   0
+211   0   0
+212   0   0
+213   0   0
+214   0   0
+215   0   0
+216   0   0
+217   0   0
+218   0   0
+219   0   0
+220   0   0
+221   0   0
+222   0   0
+223   0   0
+224   0   0
+225   0   0
+226   0   0
+227   0   0
+228   0   0
+229   0   0
+230   0   0
+231   0   0
+232   0   0
+233   0   0
+234   0   0
+235   0   0
+236   0   0
+237   0   0
+238   0   0
+239   0   0
+240   0   0
+241   0   0
+242   0   0
+243   0   0
+244   0   0
+245   0   0
+246   0   0
+247   0   0
+248   0   0
+249   0   0
+250   0   0
+251   0   0
+252   0   0
+253   0   0
+254   0   0
+255   0   0
+256   0   0
+257   0   0
+258   0   0
+259   0   0
+260   0   0
+261   0   0
+262   0   0
+263   0   0
+264   0   0
+265   0   0
+266   0   0
+267   0   0
+268   0   0
+269   0   0
+270   0   0
+271   0   0
+272   0   0
+273   0   0
+274   0   0
+275   0   0
+276   0   0
+277   0   0
+278   0   0
+279   0   0
+280   0   0
+281   0   0
+282   0   0
+283   0   0
+284   0   0
+285   0   0
+286   0   0
+287   0   0
+288   0   0
+289   0   0
+290   0   0
+291   0   0
+292   0   0
+293   0   0
+294   0   0
+295   0   0
+296   0   0
+297   0   0
+298   0   0
+299   0   0
+mc_norad: 
+0   5.42691   1.5233
+1   0   0
+2   0   0
+3   0   0
+4   1.71241   0.867465
+5   1.88116   0.853198
+6   2.82806   1.08159
+7   1.17612   0.679033
+8   1.50769   0.755663
+9   4.26937   1.3624
+10   4.16701   1.32868
+11   4.12512   1.31089
+12   4.49858   1.36943
+13   5.11391   1.48569
+14   3.67853   1.16702
+15   3.97969   1.3391
+16   3.65403   1.23458
+17   8.64701   1.90892
+18   6.29596   1.58409
+19   4.44404   1.29327
+20   11.1795   2.21582
+21   8.01311   1.82078
+22   10.6491   2.11174
+23   6.54849   1.60585
+24   7.80247   1.81461
+25   7.98979   1.80695
+26   9.7022   2.00438
+27   8.99716   1.93667
+28   9.43109   1.9878
+29   12.4824   2.30205
+30   7.9479   1.7939
+31   10.2571   2.07503
+32   7.30807   1.74597
+33   7.63372   1.82137
+34   10.0942   2.04236
+35   6.43428   1.67514
+36   5.05937   1.4158
+37   11.909   2.2393
+38   6.37974   1.61347
+39   10.4013   2.10795
+40   3.81686   1.2879
+41   6.91603   1.70138
+42   10.1547   2.05305
+43   8.67151   1.86593
+44   7.88151   1.82575
+45   9.30424   2.00571
+46   8.58062   1.93888
+47   9.13549   2.01182
+48   10.0697   2.08171
+49   7.82104   1.81373
+50   4.31718   1.32064
+51   7.63372   1.82137
+52   8.97266   1.97812
+53   9.03905   1.94876
+54   9.81721   2.06497
+55   3.87733   1.30478
+56   5.90273   1.60253
+57   6.91011   1.74749
+58   9.09952   1.95995
+59   8.05618   1.77476
+60   8.00244   1.84956
+61   4.49858   1.36943
+62   5.36644   1.50887
+63   7.2476   1.73339
+64   5.9877   1.56512
+65   7.1579   1.75206
+66   3.97969   1.3391
+67   7.98387   1.85043
+68   8.7308   1.93337
+69   6.6635   1.68086
+70   7.51397   1.73707
+71   7.07885   1.74046
+72   7.03696   1.72691
+73   6.99507   1.71325
+74   9.4066   2.02821
+75   8.9367   1.92534
+76   8.11072   1.831
+77   9.62989   2.07168
+78   9.1833   1.98378
+79   7.01365   1.71231
+80   9.16591   1.93032
+81   9.50303   2.08887
+82   6.41571   1.6761
+83   8.31544   1.8799
+84   9.75001   1.97623
+85   8.17119   1.84291
+86   8.29687   1.88076
+87   6.72989   1.64621
+88   7.71868   1.78854
+89   10.0697   2.08171
+90   5.42691   1.5233
+91   10.3535   2.13436
+92   7.88151   1.82575
+93   7.30215   1.79093
+94   9.32281   2.00491
+95   12.0544   2.22255
+96   10.8119   2.14334
+97   14.2063   2.53381
+98   9.71485   2.04288
+99   16.1598   2.6218
+100   8.25616   1.81047
+101   13.5922   2.42401
+102   18.8563   2.83932
+103   11.7881   2.21968
+104   11.481   2.15749
+105   12.2287   2.33291
+106   9.43109   1.9878
+107   11.0293   2.22063
+108   11.5355   2.20399
+109   10.806   2.18013
+110   10.9993   2.13685
+111   9.64173   1.99344
+112   5.61423   1.51416
+113   8.35733   1.89236
+114   6.39831   1.61247
+115   7.36854   1.75845
+116   5.09534   1.48678
+117   8.47827   1.91534
+118   5.9877   1.56512
+119   6.9346   1.70043
+120   5.98178   1.61513
+121   5.54785   1.55176
+122   3.67261   1.23328
+123   4.14251   1.3884
+124   5.94581   1.55004
+125   5.20362   1.46363
+126   4.43811   1.35336
+127   3.05136   1.16106
+128   6.41571   1.6761
+129   2.33366   0.961976
+130   3.87733   1.30478
+131   2.76167   1.13363
+132   5.65613   1.52959
+133   2.53838   1.05208
+134   2.66524   1.01752
+135   1.27848   0.742846
+136   3.81686   1.2879
+137   2.88853   1.10163
+138   3.92514   1.2611
+139   5.71659   1.54383
+140   3.88325   1.24234
+141   2.43602   1.00803
+142   1.21801   0.712787
+143   4.7278   1.37643
+144   4.02158   1.35652
+145   4.37173   1.3953
+146   3.77497   1.26953
+147   1.77288   0.892329
+148   2.66524   1.01752
+149   3.15371   1.1995
+150   3.58765   1.28042
+151   1.71241   0.867465
+152   1.67052   0.83995
+153   2.10445   0.951941
+154   1.77288   0.892329
+155   2.93634   1.04953
+156   3.58765   1.28042
+157   1.71241   0.867465
+158   2.49649   1.02951
+159   3.15964   1.13127
+160   2.43602   1.00803
+161   2.29177   0.937239
+162   3.7145   1.25218
+163   3.15371   1.1995
+164   1.11565   0.646012
+165   1.61005   0.813487
+166   2.49649   1.02951
+167   1.71241   0.867465
+168   1.9602   0.876628
+169   3.55168   1.19727
+170   4.02158   1.35652
+171   2.99089   1.14207
+172   1.50769   0.755663
+173   2.39413   0.984455
+174   3.81686   1.2879
+175   3.05136   1.16106
+176   0   0
+177   0.723613   0.513455
+178   2.00209   0.903026
+179   2.26728   1.02014
+180   2.10445   0.951941
+181   2.20681   0.998462
+182   0.994719   0.574301
+183   0.494398   0.494398
+184   2.49649   1.02951
+185   3.61214   1.21541
+186   3.09325   1.18112
+187   2.65932   1.09287
+188   0.331573   0.331573
+189   0.988797   0.699185
+190   1.77288   0.892329
+191   2.10445   0.951941
+192   2.04398   0.928674
+193   1.94162   0.878466
+194   2.10445   0.951941
+195   1.56816   0.78408
+196   1.77288   0.892329
+197   0.331573   0.331573
+198   1.21801   0.712787
+199   3.32246   1.18923
+200   1.67052   0.83995
+201   1.67052   0.83995
+202   2.06256   0.926936
+203   1.38084   0.801595
+204   0.886438   0.630972
+205   0.494398   0.494398
+206   0   0
+207   0   0
+208   0.331573   0.331573
+209   0   0
+210   0   0
+211   0.39204   0.39204
+212   1.4832   0.856323
+213   0.39204   0.39204
+214   0.331573   0.331573
+215   1.17612   0.679033
+216   0.39204   0.39204
+217   0.39204   0.39204
+218   0   0
+219   1.32037   0.773822
+220   0.494398   0.494398
+221   0.39204   0.39204
+222   0.825971   0.59529
+223   0.78408   0.554428
+224   0   0
+225   0   0
+226   0.886438   0.630972
+227   0.331573   0.331573
+228   0   0
+229   0   0
+230   0.494398   0.494398
+231   0   0
+232   0.39204   0.39204
+233   0   0
+234   1.4832   0.856323
+235   0.39204   0.39204
+236   0.331573   0.331573
+237   0   0
+238   0.886438   0.630972
+239   0.494398   0.494398
+240   0.331573   0.331573
+241   0   0
+242   0.39204   0.39204
+243   0   0
+244   0   0
+245   0   0
+246   0   0
+247   0.494398   0.494398
+248   0   0
+249   0   0
+250   0.39204   0.39204
+251   0.494398   0.494398
+252   0   0
+253   0.331573   0.331573
+254   0.39204   0.39204
+255   0   0
+256   0   0
+257   0   0
+258   0.331573   0.331573
+259   0.494398   0.494398
+260   0   0
+261   0   0
+262   0.494398   0.494398
+263   0.39204   0.39204
+264   0.39204   0.39204
+265   0.494398   0.494398
+266   0.494398   0.494398
+267   0   0
+268   0   0
+269   0   0
+270   0.331573   0.331573
+271   0   0
+272   0.494398   0.494398
+273   0.39204   0.39204
+274   0   0
+275   0   0
+276   0   0
+277   0.39204   0.39204
+278   0   0
+279   0.39204   0.39204
+280   0   0
+281   0   0
+282   0   0
+283   0   0
+284   0   0
+285   0   0
+286   0.494398   0.494398
+287   0.331573   0.331573
+288   0   0
+289   0.39204   0.39204
+290   0   0
+291   0   0
+292   0   0
+293   0   0
+294   0   0
+295   0   0
+296   0   0
+297   0   0
+298   0   0
+299   0   0
+mc_photon: 
+0   18.2673   4.12804
+1   0   0
+2   0   0
+3   0   0
+4   1.4944   1.11554
+5   3   1.73205
+6   2.82597   1.5344
+7   8.4944   2.87131
+8   13.4944   3.63929
+9   20.0932   4.28895
+10   35.8885   5.84924
+11   30.4493   5.32379
+12   53.8682   7.07155
+13   39.8773   6.14023
+14   44.48   6.47137
+15   58.8927   7.40571
+16   59.5426   7.46577
+17   76.7075   8.46686
+18   74.1886   8.34299
+19   71.8158   8.16207
+20   89.2623   9.16384
+21   91.6606   9.26432
+22   83.7096   8.80359
+23   81.9807   8.69306
+24   75.8322   8.47353
+25   92.0429   9.3714
+26   78.2623   8.54259
+27   86.8479   8.98888
+28   78.9951   8.65651
+29   66.1302   7.77028
+30   62.037   7.6146
+31   59.6673   7.53995
+32   49.6009   6.85318
+33   51.1505   6.89812
+34   55.3246   7.22701
+35   71.7225   8.2598
+36   55.506   7.23609
+37   50.3945   6.75089
+38   41.1505   6.13059
+39   59.7585   7.51202
+40   50.4567   6.91581
+41   47.5785   6.62901
+42   40.5293   6.11647
+43   31.8375   5.33581
+44   41.8169   6.29751
+45   33.385   5.50213
+46   36.044   5.90444
+47   30.1484   5.26959
+48   36.0992   5.85115
+49   25.9623   4.85633
+50   24.8885   4.81805
+51   17.2387   3.91412
+52   26.7638   4.90923
+53   27.0021   5.08089
+54   23.8885   4.71313
+55   18.3868   4.18133
+56   29.3584   5.2555
+57   29.2673   5.29535
+58   18.5077   4.19178
+59   19.7841   4.39402
+60   25.4136   4.79519
+61   25.2313   4.88208
+62   19.1782   4.15651
+63   22.6121   4.52518
+64   24.6705   4.86883
+65   17.2785   4.06839
+66   20.557   4.37077
+67   16.7124   3.96894
+68   15.7729   3.84659
+69   20.5682   4.42886
+70   15.044   3.72323
+71   13.0021   3.43736
+72   16.0021   3.84909
+73   9.26728   2.83561
+74   13.6705   3.56448
+75   17.7257   4.00987
+76   17.557   4.01293
+77   18.167   3.97057
+78   14.8864   3.79449
+79   15.3808   3.82656
+80   13.8207   3.56149
+81   9.61005   2.94309
+82   24.7257   4.80407
+83   18.218   4.18426
+84   11.1761   3.23436
+85   8.27848   2.74806
+86   15.9416   3.8434
+87   14.4944   3.77418
+88   14.218   3.67533
+89   19.0932   4.17074
+90   11.6705   3.27193
+91   13.8997   3.56717
+92   11.7841   3.36265
+93   16.218   3.93803
+94   12.7236   3.50195
+95   18.8885   4.14893
+96   14.1044   3.59252
+97   14.4944   3.77418
+98   17.7841   4.16022
+99   19.8864   4.40433
+100   22.4986   4.45818
+101   11.0552   3.2208
+102   14.8885   3.63505
+103   24.3092   4.80496
+104   15.3337   3.73167
+105   18.8393   4.20487
+106   10.7729   3.1299
+107   11   3.31662
+108   3   1.73205
+109   5.33157   2.26052
+110   5.4944   2.29007
+111   2   1.41421
+112   1   1
+113   2.72361   1.50454
+114   2   1.41421
+115   3   1.73205
+116   0   0
+117   1   1
+118   2   1.41421
+119   0.39204   0.39204
+120   2.39204   1.46755
+121   1   1
+122   0   0
+123   0   0
+124   2   1.41421
+125   0   0
+126   0   0
+127   0   0
+128   1.4944   1.11554
+129   0   0
+130   0   0
+131   0   0
+132   0   0
+133   0   0
+134   0   0
+135   0   0
+136   0   0
+137   0   0
+138   0   0
+139   0   0
+140   0   0
+141   0   0
+142   0   0
+143   1   1
+144   0   0
+145   0   0
+146   0   0
+147   0   0
+148   0   0
+149   0   0
+150   0   0
+151   0   0
+152   0   0
+153   0   0
+154   0   0
+155   0   0
+156   0   0
+157   1   1
+158   0   0
+159   0   0
+160   0   0
+161   0   0
+162   0   0
+163   0   0
+164   0   0
+165   0   0
+166   0   0
+167   0   0
+168   0   0
+169   1   1
+170   0   0
+171   0   0
+172   0   0
+173   0   0
+174   0   0
+175   0   0
+176   0   0
+177   0   0
+178   0   0
+179   0   0
+180   0   0
+181   0   0
+182   0   0
+183   0   0
+184   0   0
+185   0   0
+186   0   0
+187   0   0
+188   0   0
+189   0   0
+190   0   0
+191   0   0
+192   0   0
+193   0   0
+194   0   0
+195   0   0
+196   0   0
+197   0   0
+198   0   0
+199   0   0
+200   0   0
+201   0   0
+202   0   0
+203   0   0
+204   0   0
+205   0   0
+206   0   0
+207   0   0
+208   0   0
+209   0   0
+210   0   0
+211   0   0
+212   0   0
+213   0   0
+214   0   0
+215   0   0
+216   0   0
+217   0   0
+218   0   0
+219   0   0
+220   0   0
+221   0   0
+222   0   0
+223   0   0
+224   0   0
+225   0   0
+226   0   0
+227   0   0
+228   0   0
+229   0   0
+230   0   0
+231   0   0
+232   0   0
+233   0   0
+234   0   0
+235   0   0
+236   0   0
+237   0   0
+238   0   0
+239   0   0
+240   0   0
+241   0   0
+242   0   0
+243   0   0
+244   0   0
+245   0   0
+246   0   0
+247   0   0
+248   0   0
+249   0   0
+250   0   0
+251   0   0
+252   0   0
+253   0   0
+254   0   0
+255   0   0
+256   0   0
+257   0   0
+258   0   0
+259   0   0
+260   0   0
+261   0   0
+262   0   0
+263   0   0
+264   0   0
+265   0   0
+266   0   0
+267   0   0
+268   0   0
+269   0   0
+270   0   0
+271   0   0
+272   0   0
+273   0   0
+274   0   0
+275   0   0
+276   0   0
+277   0   0
+278   0   0
+279   0   0
+280   0   0
+281   0   0
+282   0   0
+283   0   0
+284   0   0
+285   0   0
+286   0   0
+287   0   0
+288   0   0
+289   0   0
+290   0   0
+291   0   0
+292   0   0
+293   0   0
+294   0   0
+295   0   0
+296   0   0
+297   0   0
+298   0   0
+299   0   0
+data: 6221, rad mc: 597.329
+mc signal: 14054 9926 4128
+Before fitting: 
+Cross_Sections_Histograms/h_deltaz_eta_0_data
+data: 
+0   13   3.60555
+1   182   13.4907
+2   258   16.0624
+3   233   15.2643
+4   181   13.4536
+5   112   10.583
+6   91   9.53939
+7   91   9.53939
+8   78   8.83176
+9   111   10.5357
+10   131   11.4455
+11   61   7.81025
+12   47   6.85565
+13   26   5.09902
+14   27   5.19615
+15   27   5.19615
+16   23   4.79583
+17   21   4.58258
+18   18   4.24264
+19   18   4.24264
+20   7   2.64575
+21   2   1.41421
+22   4   2
+23   1   1
+24   4   2
+25   0   0
+26   1   1
+27   0   0
+28   2   1.41421
+29   2   1.41421
+mc_sum: 
+0   27.3269   3.52789
+1   220.893   10.0302
+2   333.389   12.3224
+3   226.358   10.1536
+4   149.843   8.2611
+5   95.6443   6.60008
+6   83.8026   6.17801
+7   58.7529   5.17291
+8   60.5747   5.2525
+9   62.852   5.35032
+10   54.6539   4.98919
+11   8.19808   1.93231
+12   2.73269   1.11562
+13   0   0
+14   0.455449   0.455449
+15   0.455449   0.455449
+16   0.455449   0.455449
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_rad: 
+0   7.66969   1.87707
+1   60.7105   5.0635
+2   92.7238   6.29193
+3   59.3123   4.97868
+4   44.8578   4.36319
+5   25.0858   3.269
+6   23.9947   3.17912
+7   21.7029   3.03782
+8   16.5763   2.62017
+9   13.4539   2.362
+10   17.0288   2.65758
+11   1.61005   0.813487
+12   0.886438   0.630972
+13   0   0
+14   0   0
+15   0   0
+16   0   0
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_norad: 
+0   22.0587   3.28901
+1   57.0234   5.25621
+2   108.87   7.31177
+3   97.8761   6.93422
+4   96.6173   6.94448
+5   86.3796   6.56919
+6   76.9854   6.19452
+7   94.9207   6.87078
+8   98.7112   6.99171
+9   121.117   7.82089
+10   139.619   8.35652
+11   87.8457   6.5665
+12   54.8284   5.2369
+13   41.2088   4.52374
+14   37.5728   4.33162
+15   29.0261   3.82571
+16   28.2073   3.70909
+17   26.7208   3.67487
+18   22.2701   3.36016
+19   21.3298   3.25262
+20   9.96872   2.24614
+21   6.89789   1.86166
+22   4.35795   1.46909
+23   5.24911   1.67472
+24   1.429   0.836261
+25   2.85801   1.18265
+26   2.66003   1.19685
+27   2.34891   1.05945
+28   1.429   0.836261
+29   0   0
+mc_photon: 
+0   67.6697   7.97016
+1   545.71   22.5973
+2   824.724   27.7775
+3   556.312   22.8427
+4   373.858   18.6558
+5   235.086   14.8555
+6   207.995   13.9322
+7   150.703   11.7571
+8   149.576   11.8265
+9   151.454   11.9824
+10   137.029   11.2722
+11   19.6101   4.31993
+12   6.88644   2.52945
+13   0   0
+14   1   1
+15   1   1
+16   1   1
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 ALPHA        3.64800e-01  5.00000e-02    0.00000e+00  5.00000e-01
+ **********
+ **    1 **SIMPLEX
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START SIMPLEX MINIMIZATION.    CONVERGENCE WHEN EDM .LT. 0.1
+ FCN=41.2427 FROM SIMPLEX   STATUS=PROGRESS        3 CALLS           4 TOTAL
+                     EDM=0.777273    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA        3.44362e-01   5.00000e-02   0.00000e+00   5.00000e-01
+ SIMPLEX MINIMIZATION HAS CONVERGED.
+ FCN=41.0293 FROM SIMPLEX   STATUS=PROGRESS       10 CALLS          11 TOTAL
+                     EDM=0.00338408    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA        3.28522e-01   5.00000e-02   0.00000e+00   5.00000e-01
+after simplex
+====== NUMBER OF ENTRIES ======
+data: 1772
+mc_norad: 1680.86
+mc_rad: 541.844
+mc_signal: 3044
+ **********
+ **    2 **MIGRAD
+ **********
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-04
+ FCN=41.0293 FROM MIGRAD    STATUS=INITIATE        4 CALLS          15 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.28522e-01   5.00000e-02   2.25141e-02   6.91588e-01
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=41.0261 FROM MIGRAD    STATUS=CONVERGED      12 CALLS          23 TOTAL
+                     EDM=6.50129e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                   STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA        3.26313e-01   3.87341e-02   5.18949e-04  -2.20642e-03
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  1    ERR DEF=1
+  1.514e-03 
+after migrad
+ **********
+ **    3 **HESSE
+ **********
+ COVARIANCE MATRIX CALCULATED SUCCESSFULLY
+ FCN=41.0261 FROM HESSE     STATUS=OK              5 CALLS          28 TOTAL
+                     EDM=6.50079e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                                INTERNAL      INTERNAL  
+  NO.   NAME      VALUE            ERROR       STEP SIZE       VALUE   
+   1  ALPHA        3.26313e-01   3.87341e-02   1.03790e-04   3.10202e-01
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  1    ERR DEF=1
+  1.514e-03 
+after hesse
+ **********
+ **    4 **MINOS
+ **********
+ FCN=41.0261 FROM MINOS     STATUS=SUCCESSFUL      3 CALLS          31 TOTAL
+                     EDM=6.50079e-08    STRATEGY= 1      ERROR MATRIX ACCURATE 
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  ALPHA        3.26313e-01   3.87341e-02  -3.92387e-02   3.86021e-02
+after minos
+Barlow-Beeston chi2 approach: 
+param = 0.326313 +- 0.0387341
+with chi2 / 28-1 = 1.51948
+ PARAMETER DEFINITIONS:
+    NO.   NAME         VALUE      STEP SIZE      LIMITS
+     1 ALPHA_GAUSS   3.50000e-01  1.00000e-01    0.00000e+00  1.00000e+00
+ **********
+ **    5 **SIMPLEX
+ **********
+ FIRST CALL TO USER FUNCTION AT NEW START POINT, WITH IFLAG=4.
+ START SIMPLEX MINIMIZATION.    CONVERGENCE WHEN EDM .LT. 0.1
+ FCN=inf FROM SIMPLEX   STATUS=PROGRESS        6 CALLS          38 TOTAL
+                     EDM=nan    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA_GAUSS   3.50000e-01   1.00000e-01   0.00000e+00   1.00000e+00
+ SIMPLEX TERMINATES WITHOUT CONVERGENCE.
+ FCN=inf FROM SIMPLEX   STATUS=CALL LIMIT    307 CALLS         339 TOTAL
+                     EDM=nan    STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS      PHYSICAL LIMITS       
+  NO.   NAME      VALUE            ERROR       NEGATIVE      POSITIVE  
+   1  ALPHA_GAUSS   3.50000e-01   1.00000e-01   0.00000e+00   1.00000e+00
+ **********
+ **    6 **MIGRAD
+ **********
+ START MIGRAD MINIMIZATION.  STRATEGY  1.  CONVERGENCE WHEN EDM .LT. 1.00e-04
+ FCN=inf FROM MIGRAD    STATUS=INITIATE       23 CALLS         362 TOTAL
+                     EDM= unknown      STRATEGY= 1      NO ERROR MATRIX       
+  EXT PARAMETER               CURRENT GUESS       STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA_GAUSS   3.50000e-01   1.00000e-01   0.00000e+00           nan
+ MIGRAD FAILS TO FIND IMPROVEMENT
+ MACHINE ACCURACY LIMITS FURTHER IMPROVEMENT.
+ MIGRAD MINIMIZATION HAS CONVERGED.
+ MIGRAD WILL VERIFY CONVERGENCE AND ERROR MATRIX.
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING nan TO DIAGONAL.
+ FCN=inf FROM MIGRAD    STATUS=CONVERGED      47 CALLS         386 TOTAL
+                     EDM=nan    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                APPROXIMATE        STEP         FIRST   
+  NO.   NAME      VALUE            ERROR          SIZE      DERIVATIVE 
+   1  ALPHA_GAUSS   3.50000e-01           nan   5.00000e-01           nan
+ EXTERNAL ERROR MATRIX.    NDIM=  25    NPAR=  1    ERR DEF=1
+        nan 
+ERR MATRIX NOT POS-DEF
+ **********
+ **    7 **MINOS
+ **********
+ MINUIT WARNING IN HESSE   
+ ============== MATRIX FORCED POS-DEF BY ADDING nan TO DIAGONAL.
+ MINUIT WARNING IN MNCROS    
+ ============== Cannot find slope of the right sign
+                         POSITIVE MINOS ERROR NOT CALCULATED FOR PARAMETER 1
+ MINUIT WARNING IN MNCROS    
+ ============== Cannot find slope of the right sign
+                         NEGATIVE MINOS ERROR NOT CALCULATED FOR PARAMETER 1
+ FCN=inf FROM MINOS     STATUS=FAILURE        26 CALLS         421 TOTAL
+                     EDM=nan    STRATEGY= 1      ERR MATRIX NOT POS-DEF
+  EXT PARAMETER                  PARABOLIC         MINOS ERRORS        
+  NO.   NAME      VALUE            ERROR      NEGATIVE      POSITIVE   
+   1  ALPHA_GAUSS   3.50000e-01           nan                            
+Gauss chi2 approach: 
+param = 0.35 +- nan
+with chi2 / 28-1 = inf
+param 0: 0.134579 2.33849 inf
+param 1: 0.138452 2.3074 inf
+param 2: 0.142326 2.27683 inf
+param 3: 0.146199 2.2468 inf
+param 4: 0.150073 2.21731 inf
+param 5: 0.153946 2.18836 inf
+param 6: 0.15782 2.15996 inf
+param 7: 0.161693 2.13211 inf
+param 8: 0.165566 2.10482 inf
+param 9: 0.16944 2.07809 inf
+param 10: 0.173313 2.05193 inf
+param 11: 0.177187 2.02634 inf
+param 12: 0.18106 2.00132 inf
+param 13: 0.184933 1.97688 inf
+param 14: 0.188807 1.95303 inf
+param 15: 0.19268 1.92977 inf
+param 16: 0.196554 1.90709 inf
+param 17: 0.200427 1.88502 inf
+param 18: 0.2043 1.86355 inf
+param 19: 0.208174 1.84268 inf
+param 20: 0.212047 1.82243 inf
+param 21: 0.215921 1.80278 inf
+param 22: 0.219794 1.78376 inf
+param 23: 0.223667 1.76536 inf
+param 24: 0.227541 1.74759 inf
+param 25: 0.231414 1.73045 inf
+param 26: 0.235288 1.71395 inf
+param 27: 0.239161 1.69809 inf
+param 28: 0.243034 1.68287 inf
+param 29: 0.246908 1.66831 inf
+param 30: 0.250781 1.65439 inf
+param 31: 0.254655 1.64114 inf
+param 32: 0.258528 1.62854 inf
+param 33: 0.262401 1.61661 inf
+param 34: 0.266275 1.60535 inf
+param 35: 0.270148 1.59477 inf
+param 36: 0.274022 1.58486 inf
+param 37: 0.277895 1.57563 inf
+param 38: 0.281769 1.5671 inf
+param 39: 0.285642 1.55925 inf
+param 40: 0.289515 1.55209 inf
+param 41: 0.293389 1.54564 inf
+param 42: 0.297262 1.53988 inf
+param 43: 0.301136 1.53483 inf
+param 44: 0.305009 1.53049 inf
+param 45: 0.308882 1.52687 inf
+param 46: 0.312756 1.52396 inf
+param 47: 0.316629 1.52177 inf
+param 48: 0.320503 1.52031 inf
+param 49: 0.324376 1.51958 inf
+param 50: 0.328249 1.51957 inf
+param 51: 0.332123 1.52031 inf
+param 52: 0.335996 1.52178 inf
+param 53: 0.33987 1.524 inf
+param 54: 0.343743 1.52697 inf
+param 55: 0.347616 1.53068 inf
+param 56: 0.35149 1.53515 inf
+param 57: 0.355363 1.54037 inf
+param 58: 0.359237 1.54636 inf
+param 59: 0.36311 1.55311 inf
+param 60: 0.366983 1.56063 inf
+param 61: 0.370857 1.56892 inf
+param 62: 0.37473 1.57798 inf
+param 63: 0.378604 1.58782 inf
+param 64: 0.382477 1.59844 inf
+param 65: 0.38635 1.60984 inf
+param 66: 0.390224 1.62203 inf
+param 67: 0.394097 1.63501 inf
+param 68: 0.397971 1.64879 inf
+param 69: 0.401844 1.66335 inf
+param 70: 0.405718 1.67872 inf
+param 71: 0.409591 1.69489 inf
+param 72: 0.413464 1.71186 inf
+param 73: 0.417338 1.72964 inf
+param 74: 0.421211 1.74823 inf
+param 75: 0.425085 1.76764 inf
+param 76: 0.428958 1.78785 inf
+param 77: 0.432831 1.80889 inf
+param 78: 0.436705 1.83075 inf
+param 79: 0.440578 1.85343 inf
+param 80: 0.444452 1.87693 inf
+param 81: 0.448325 1.90127 inf
+param 82: 0.452198 1.92643 inf
+param 83: 0.456072 1.95243 inf
+param 84: 0.459945 1.97926 inf
+param 85: 0.463819 2.00693 inf
+param 86: 0.467692 2.03544 inf
+param 87: 0.471565 2.06479 inf
+param 88: 0.475439 2.09498 inf
+param 89: 0.479312 2.12602 inf
+param 90: 0.483186 2.15791 inf
+param 91: 0.487059 2.19064 inf
+param 92: 0.490932 2.22423 inf
+param 93: 0.494806 2.25867 inf
+param 94: 0.498679 2.29397 inf
+param 95: 0.502553 2.33012 inf
+param 96: 0.506426 2.36713 inf
+param 97: 0.510299 2.405 inf
+param 98: 0.514173 2.44373 inf
+param 99: 0.518046 2.48332 inf
+in the region dz < 0.35 QQ fraction is higher in 1.35848 times than in full region 
+in the region dz > 0.35 QQ fraction is lower in 0.536616 times than in full region 
+in the region dz < 0.35 LL fraction is higher in 1.35004 times than in full region 
+in the region dz > 0.35 LL fraction is lower in 0.551973 times than in full region 
+in the region dz < 0.35 bg fraction is higher in 0.650792 times than in full region 
+in the region dz > 0.35 bg fraction is lower in 1.48029 times than in full region 
+After fitting: 
+data: 
+0   13   3.60555
+1   182   13.4907
+2   258   16.0624
+3   233   15.2643
+4   181   13.4536
+5   112   10.583
+6   91   9.53939
+7   91   9.53939
+8   78   8.83176
+9   111   10.5357
+10   131   11.4455
+11   61   7.81025
+12   47   6.85565
+13   26   5.09902
+14   27   5.19615
+15   27   5.19615
+16   23   4.79583
+17   21   4.58258
+18   18   4.24264
+19   18   4.24264
+20   7   2.64575
+21   2   1.41421
+22   4   2
+23   1   1
+24   4   2
+25   0   0
+26   1   1
+27   0   0
+28   2   1.41421
+29   2   1.41421
+mc_sum: 
+0   8.91713   1.56385
+1   72.0801   9.16073
+2   108.789   13.525
+3   73.8635   9.37291
+4   48.8956   6.39949
+5   31.21   4.28522
+6   27.3459   3.82109
+7   19.1718   2.83342
+8   19.7663   2.90565
+9   20.5094   2.99582
+10   17.8343   2.67059
+11   2.67514   0.705982
+12   0.891713   0.379116
+13   0   0
+14   0.148619   0.149662
+15   0.148619   0.149662
+16   0.148619   0.149662
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_rad: 
+0   7.66969   1.87707
+1   60.7105   5.0635
+2   92.7238   6.29193
+3   59.3123   4.97868
+4   44.8578   4.36319
+5   25.0858   3.269
+6   23.9947   3.17912
+7   21.7029   3.03782
+8   16.5763   2.62017
+9   13.4539   2.362
+10   17.0288   2.65758
+11   1.61005   0.813487
+12   0.886438   0.630972
+13   0   0
+14   0   0
+15   0   0
+16   0   0
+17   0   0
+18   0   0
+19   0   0
+20   0   0
+21   0   0
+22   0   0
+23   0   0
+24   0   0
+25   0   0
+26   0   0
+27   0   0
+28   0   0
+29   0   0
+mc_norad: 
+0   14.8607   2.37479
+1   38.4159   4.17343
+2   73.3443   6.48436
+3   65.9379   6.01628
+4   65.0898   5.99107
+5   58.1929   5.54801
+6   51.8641   5.12907
+7   63.9469   5.91128
+8   66.5005   6.06674
+9   81.5951   7.05475
+10   94.0596   7.80641
+11   59.1805   5.581
+12   36.9372   4.11792
+13   27.7619   3.44029
+14   25.3123   3.26093
+15   19.5545   2.81188
+16   19.0029   2.72719
+17   18.0015   2.68336
+18   15.0031   2.42248
+19   14.3696   2.34183
+20   6.7158   1.56168
+21   4.64702   1.28232
+22   2.9359   1.004
+23   3.53626   1.14641
+24   0.962701   0.566091
+25   1.9254   0.804391
+26   1.79203   0.812861
+27   1.58243   0.719517
+28   0.962701   0.566091
+29   0   0
+mc_result: 
+0   31.4475   3.40715
+1   171.207   11.2683
+2   274.857   16.2654
+3   199.114   12.1998
+4   158.843   9.79203
+5   114.489   7.73498
+6   103.205   7.14247
+7   104.822   7.22495
+8   102.843   7.21896
+9   115.558   8.02019
+10   128.923   8.66803
+11   63.4657   5.68399
+12   38.7154   4.18319
+13   27.7619   3.44029
+14   25.4609   3.26436
+15   19.7032   2.81586
+16   19.1515   2.73129
+17   18.0015   2.68336
+18   15.0031   2.42248
+19   14.3696   2.34183
+20   6.7158   1.56168
+21   4.64702   1.28232
+22   2.9359   1.004
+23   3.53626   1.14641
+24   0.962701   0.566091
+25   1.9254   0.804391
+26   1.79203   0.812861
+27   1.58243   0.719517
+28   0.962701   0.566091
+29   0   0
+There are 452.396 + 385.613 fitted photons
+452.396 +- 21.5487
+385.613 +- 12.7736
+There are 1772 events in total in fitted MC
+There are 933.991 fitted background events
+933.991 +- 22.1378
+if(i == 0) y_max = 1237.2;
+if(i == 1) y_max = 309.6;
+if(i == 2) y_max = 1768.8;
+if(i == 3) y_max = 1930.8;
+if(i == 4) y_max = 326.4;
+if(i == 5) y_max = 522;
+if(i == 6) y_max = 962.4;
+if(i == 7) y_max = 1408.8;
+if(i == 8) y_max = 422.4;
+if(i == 9) y_max = 1701.6;
+if(i == 10) y_max = 1490.4;
+if(i == 11) y_max = 2236.8;
+if(i == 12) y_max = 1768.8;
+if(i == 13) y_max = 567.6;
+if(i == 14) y_max = 828;
+if(i == 15) y_max = 2689.2;
+if(i == 16) y_max = 580.8;
+if(i == 17) y_max = 450;
+if(i == 18) y_max = 3478.8;
+if(i == 19) y_max = 6709.2;
+if(i == 20) y_max = 3018;
+if(i == 21) y_max = 874.8;
+if(i == 22) y_max = 1110;
+if(i == 23) y_max = 7146;
+if(i == 24) y_max = 1425.6;
+if(i == 25) y_max = 1665.6;
+if(i == 26) y_max = 3091.2;
+if(i == 27) y_max = 445.2;
+if(i == 28) y_max = 561.6;
+if(i == 29) y_max = 1003.2;
+if(i == 30) y_max = 684;
+if(i == 31) y_max = 1033.2;
+if(i == 32) y_max = 1717.2;
+if(i == 33) y_max = 2720.4;
+if(i == 34) y_max = 3118.8;
+if(i == 35) y_max = 5839.2;
+if(i == 36) y_max = 1141.2;
+if(i == 37) y_max = 1378.8;
+if(i == 38) y_max = 2443.2;
+if(i == 39) y_max = 0;
+if(i == 40) y_max = 0;
+if(i == 41) y_max = 0;
+if(i == 42) y_max = 110.4;
+if(i == 43) y_max = 336;
+if(i == 44) y_max = 336;
+if(i == 45) y_max = 62.4;
+if(i == 46) y_max = 250.8;
+if(i == 47) y_max = 250.8;
+if(i == 48) y_max = 517.2;
+if(i == 49) y_max = 3259.2;
+if(i == 50) y_max = 3259.2;
+if(i == 51) y_max = 40.8;
+if(i == 52) y_max = 166.8;
+if(i == 53) y_max = 166.8;
+if(i == 54) y_max = 74.4;
+if(i == 55) y_max = 720;
+if(i == 56) y_max = 720;
+ cd 0 1
+ cd 0 2
+ cd 0 3
+ cd 1 1
+ cd 1 2
+ cd 1 3
+ cd 2 1
+ cd 2 2
+ cd 2 3
+ cd 3 1
+ cd 3 2
+ cd 3 3
+ cd 4 1
+ cd 4 2
+ cd 4 3
+ cd 5 1
+ cd 5 2
+ cd 5 3
+ cd 6 1
+ cd 6 2
+ cd 6 3
+ cd 7 1
+ cd 7 2
+ cd 8 1
+ cd 8 2
+ cd 8 3
+ cd 9 1
+ cd 9 2
+ cd 9 3
+ cd 10 1
+ cd 10 2
+ cd 10 3
+ cd 11 1
+ cd 11 2
+ cd 11 3
+ cd 12 1
+ cd 12 2
+ cd 12 3
+ cd 13 1
+ cd 13 2
+ cd 13 3
+ cd 14 1
+ cd 14 2
+ cd 14 3
+ cd 15 1
+ cd 15 2
+ cd 15 3
+ cd 16 1
+ cd 16 2
+ cd 16 3
+ cd 17 1
+ cd 17 2
+ cd 17 3
+ cd 18 1
+ cd 18 2
+ cd 18 3

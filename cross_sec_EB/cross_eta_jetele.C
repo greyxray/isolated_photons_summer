@@ -1,0 +1,203 @@
+{
+//=========Macro generated from canvas: canv_cross_eta_jet/
+//=========  (Thu Feb  9 15:15:01 2012) by ROOT version5.26/00c
+   TCanvas *canv_cross_eta_jet = new TCanvas("canv_cross_eta_jet", "",0,0,1200,900);
+   canv_cross_eta_jet->SetHighLightColor(2);
+   canv_cross_eta_jet->Range(0,0,1,1);
+   canv_cross_eta_jet->SetFillColor(0);
+   canv_cross_eta_jet->SetBorderMode(0);
+   canv_cross_eta_jet->SetBorderSize(2);
+   canv_cross_eta_jet->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: canv_cross_eta_jet_1
+   TPad *canv_cross_eta_jet_1 = new TPad("canv_cross_eta_jet_1", "canv_cross_eta_jet_1",0.01,0.01,0.99,0.99);
+   canv_cross_eta_jet_1->Draw();
+   canv_cross_eta_jet_1->cd();
+   canv_cross_eta_jet_1->Range(-2.023171,-1.170548,2.00122,5.610274);
+   canv_cross_eta_jet_1->SetFillColor(0);
+   canv_cross_eta_jet_1->SetBorderMode(0);
+   canv_cross_eta_jet_1->SetBorderSize(2);
+   canv_cross_eta_jet_1->SetGridy();
+   canv_cross_eta_jet_1->SetTickx(1);
+   canv_cross_eta_jet_1->SetTicky(1);
+   canv_cross_eta_jet_1->SetLeftMargin(0.13);
+   canv_cross_eta_jet_1->SetRightMargin(0.05);
+   canv_cross_eta_jet_1->SetBottomMargin(0.18);
+   canv_cross_eta_jet_1->SetFrameBorderMode(0);
+   canv_cross_eta_jet_1->SetFrameBorderMode(0);
+   Double_t xAxis16[5] = {-1.5, -0.7, 0.1, 0.9, 1.8}; 
+   
+   TH2D *h_window_cross_eta_jet = new TH2D("h_window_cross_eta_jet","",4, xAxis16,10,0.05,5);
+   h_window_cross_eta_jet->SetStats(0);
+   h_window_cross_eta_jet->GetXaxis()->SetTitle("#eta^{jet}");
+   h_window_cross_eta_jet->GetXaxis()->SetNdivisions(507);
+   h_window_cross_eta_jet->GetXaxis()->SetLabelFont(22);
+   h_window_cross_eta_jet->GetXaxis()->SetLabelSize(0.04829268);
+   h_window_cross_eta_jet->GetXaxis()->SetTitleSize(0.05365854);
+   h_window_cross_eta_jet->GetXaxis()->SetTitleOffset(0.9);
+   h_window_cross_eta_jet->GetYaxis()->SetTitle("d#sigma/d #eta^{jet} (pb)");
+   h_window_cross_eta_jet->GetYaxis()->SetNdivisions(507);
+   h_window_cross_eta_jet->GetYaxis()->SetLabelFont(22);
+   h_window_cross_eta_jet->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_eta_jet->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_eta_jet->GetYaxis()->SetTitleOffset(0.9);
+   h_window_cross_eta_jet->Draw("");
+   
+   TGraphAsymmErrors *grae = new TGraphAsymmErrors(4);
+   grae->SetName("Graph");
+   grae->SetTitle("Graph");
+
+   Int_t ci;   // for color index setting
+   ci = TColor::GetColor("#000000");
+   grae->SetFillColor(ci);
+
+   ci = TColor::GetColor("#000000");
+   grae->SetLineColor(ci);
+   grae->SetPoint(0,-1.1,3.119294);
+   grae->SetPointError(0,0.4,0.4,0.3922363,0.3922363);
+   grae->SetPoint(1,-0.3,4.615198);
+   grae->SetPointError(1,0.4,0.4,0.4870878,0.4870878);
+   grae->SetPoint(2,0.5,4.464178);
+   grae->SetPointError(2,0.4,0.4,0.5900308,0.5900308);
+   grae->SetPoint(3,1.35,3.642093);
+   grae->SetPointError(3,0.45,0.45,0.6312019,0.6312019);
+   
+   TH1F *Graph6 = new TH1F("Graph6","Graph",100,-1.83,2.13);
+   Graph6->SetMinimum(2.489535);
+   Graph6->SetMaximum(5.339809);
+   Graph6->SetDirectory(0);
+   Graph6->SetStats(0);
+   Graph6->GetXaxis()->SetTitleFont(42);
+   grae->SetHistogram(Graph6);
+   
+   grae->Draw("2 ");
+   TBox *box = new TBox(-1.5,0.8703857,-0.7,1.091311);
+   box->SetFillColor(19);
+   box->SetFillStyle(0);
+   box->Draw();
+   box = new TBox(-1.5,0.8703857,-0.7,1.091311);
+   box->SetFillColor(1);
+   box->SetFillStyle(3325);
+   box->Draw();
+   box = new TBox(-0.7,2.275507,0.1,2.595034);
+   box->SetFillColor(19);
+   box->SetFillStyle(0);
+   box->Draw();
+   box = new TBox(-0.7,2.275507,0.1,2.595034);
+   box->SetFillColor(1);
+   box->SetFillStyle(3325);
+   box->Draw();
+   box = new TBox(0.1,3.139937,0.9,3.475849);
+   box->SetFillColor(19);
+   box->SetFillStyle(0);
+   box->Draw();
+   box = new TBox(0.1,3.139937,0.9,3.475849);
+   box->SetFillColor(1);
+   box->SetFillStyle(3325);
+   box->Draw();
+   box = new TBox(0.9,2.95511,1.8,3.183958);
+   box->SetFillColor(19);
+   box->SetFillStyle(0);
+   box->Draw();
+   box = new TBox(0.9,2.95511,1.8,3.183958);
+   box->SetFillColor(1);
+   box->SetFillStyle(3325);
+   box->Draw();
+   Double_t xAxis17[5] = {-1.5, -0.7, 0.1, 0.9, 1.8}; 
+   
+   TH1D *h_cross_section_eta_jet = new TH1D("h_cross_section_eta_jet","det_cross_eta_jet",4, xAxis17);
+   h_cross_section_eta_jet->SetBinContent(1,1.485879);
+   h_cross_section_eta_jet->SetBinContent(2,2.681989);
+   h_cross_section_eta_jet->SetBinContent(3,3.848627);
+   h_cross_section_eta_jet->SetBinContent(4,3.68495);
+   h_cross_section_eta_jet->SetBinError(1,0.1685129);
+   h_cross_section_eta_jet->SetBinError(2,0.2447865);
+   h_cross_section_eta_jet->SetBinError(3,0.3282464);
+   h_cross_section_eta_jet->SetBinError(4,0.2979941);
+   h_cross_section_eta_jet->SetEntries(14126);
+   h_cross_section_eta_jet->SetFillColor(41);
+   h_cross_section_eta_jet->SetLineWidth(2);
+   h_cross_section_eta_jet->SetMarkerStyle(20);
+   h_cross_section_eta_jet->SetMarkerSize(0.7);
+   h_cross_section_eta_jet->Draw("E1 X0 SAME");
+   
+   grae = new TGraphAsymmErrors(4);
+   grae->SetName("Graph");
+   grae->SetTitle("Graph");
+   grae->SetFillColor(1);
+   grae->SetLineWidth(2);
+   grae->SetPoint(0,-1.1,1.485879);
+   grae->SetPointError(0,0,0,0.2793907,0.2455479);
+   grae->SetPoint(1,-0.3,2.681989);
+   grae->SetPointError(1,0,0,0.3249577,0.3069218);
+   grae->SetPoint(2,0.5,3.848627);
+   grae->SetPointError(2,0,0,0.4336539,0.4317996);
+   grae->SetPoint(3,1.35,3.68495);
+   grae->SetPointError(3,0,0,0.4825683,0.3972569);
+   grae->Draw("z ");
+   Double_t xAxis18[5] = {-1.5, -0.7, 0.1, 0.9, 1.8}; 
+   
+   TH2D *h_window_cross_eta_jet__6 = new TH2D("h_window_cross_eta_jet__6","",4, xAxis18,10,0.05,5);
+   h_window_cross_eta_jet__6->SetDirectory(0);
+   h_window_cross_eta_jet__6->SetStats(0);
+   h_window_cross_eta_jet__6->GetXaxis()->SetTitle("#eta^{jet}");
+   h_window_cross_eta_jet__6->GetXaxis()->SetNdivisions(507);
+   h_window_cross_eta_jet__6->GetXaxis()->SetLabelFont(22);
+   h_window_cross_eta_jet__6->GetXaxis()->SetLabelSize(0.04829268);
+   h_window_cross_eta_jet__6->GetXaxis()->SetTitleSize(0.05365854);
+   h_window_cross_eta_jet__6->GetXaxis()->SetTitleOffset(0.9);
+   h_window_cross_eta_jet__6->GetYaxis()->SetTitle("d#sigma/d #eta^{jet} (pb)");
+   h_window_cross_eta_jet__6->GetYaxis()->SetNdivisions(507);
+   h_window_cross_eta_jet__6->GetYaxis()->SetLabelFont(22);
+   h_window_cross_eta_jet__6->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_eta_jet__6->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_eta_jet__6->GetYaxis()->SetTitleOffset(0.9);
+   h_window_cross_eta_jet__6->Draw("sameaxis");
+   
+   TLegend *leg = new TLegend(0.47,0.2,0.87,0.48,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextFont(62);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(1);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("h_cross_section_eta_jet","ZEUS (prel.) 332 pb^{-1}","p");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(20);
+   entry->SetMarkerSize(0.7);
+   entry=leg->AddEntry("Graph","Spiesberger et al., e^{-}p, NLO","f");
+   entry->SetFillColor(1);
+   entry->SetFillStyle(3225);
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   entry=leg->AddEntry("Graph","Zotov et al.","fl");
+
+   ci = TColor::GetColor("#000000");
+   entry->SetFillColor(ci);
+   entry->SetFillStyle(1001);
+
+   ci = TColor::GetColor("#000000");
+   entry->SetLineColor(ci);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(21);
+   entry->SetMarkerSize(1);
+   leg->Draw();
+   canv_cross_eta_jet_1->Modified();
+   canv_cross_eta_jet->cd();
+   TText *text = new TText(0.45,0.92,"ZEUS");
+   text->SetTextSize(0.07);
+   text->Draw();
+   canv_cross_eta_jet->Modified();
+   canv_cross_eta_jet->cd();
+   canv_cross_eta_jet->SetSelected(canv_cross_eta_jet);
+}

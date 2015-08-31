@@ -1,0 +1,131 @@
+{
+//=========Macro generated from canvas: canv_cross_et_jet/
+//=========  (Wed Aug 12 00:25:06 2015) by ROOT version5.34/00
+   TCanvas *canv_cross_et_jet = new TCanvas("canv_cross_et_jet", "",0,0,1200,1000);
+   canv_cross_et_jet->SetHighLightColor(2);
+   canv_cross_et_jet->Range(0,0,1,1);
+   canv_cross_et_jet->SetFillColor(0);
+   canv_cross_et_jet->SetBorderMode(0);
+   canv_cross_et_jet->SetBorderSize(2);
+   canv_cross_et_jet->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: canv_cross_et_jet_1
+   TPad *canv_cross_et_jet_1 = new TPad("canv_cross_et_jet_1", "canv_cross_et_jet_1",0.01,0.01,0.99,0.99);
+   canv_cross_et_jet_1->Draw();
+   canv_cross_et_jet_1->cd();
+   canv_cross_et_jet_1->Range(-3.59375,-2.391286,37.03125,0.7608099);
+   canv_cross_et_jet_1->SetFillColor(0);
+   canv_cross_et_jet_1->SetBorderMode(0);
+   canv_cross_et_jet_1->SetBorderSize(2);
+   canv_cross_et_jet_1->SetLogy();
+   canv_cross_et_jet_1->SetTickx(1);
+   canv_cross_et_jet_1->SetTicky(1);
+   canv_cross_et_jet_1->SetLeftMargin(0.15);
+   canv_cross_et_jet_1->SetRightMargin(0.05);
+   canv_cross_et_jet_1->SetBottomMargin(0.18);
+   canv_cross_et_jet_1->SetFrameBorderMode(0);
+   canv_cross_et_jet_1->SetFrameBorderMode(0);
+   Double_t xAxis13[7] = {2.5, 4, 6, 8, 10, 15, 35}; 
+   
+   TH2D *h_window_cross_et_jet = new TH2D("h_window_cross_et_jet","",6, xAxis13,10,0.015,3);
+   h_window_cross_et_jet->SetStats(0);
+   h_window_cross_et_jet->GetXaxis()->SetTitle("E_{T}^{jet} (GeV)");
+   h_window_cross_et_jet->GetXaxis()->SetNdivisions(507);
+   h_window_cross_et_jet->GetXaxis()->SetLabelFont(22);
+   h_window_cross_et_jet->GetXaxis()->SetLabelSize(0.05424658);
+   h_window_cross_et_jet->GetXaxis()->SetTitleSize(0.06027398);
+   h_window_cross_et_jet->GetXaxis()->SetTitleOffset(1.02);
+   h_window_cross_et_jet->GetXaxis()->SetTitleFont(22);
+   h_window_cross_et_jet->GetYaxis()->SetTitle("d#sigma/dE_{T}^{jet} (pb/GeV)");
+   h_window_cross_et_jet->GetYaxis()->SetNdivisions(507);
+   h_window_cross_et_jet->GetYaxis()->SetLabelFont(22);
+   h_window_cross_et_jet->GetYaxis()->SetLabelOffset(0.016);
+   h_window_cross_et_jet->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_et_jet->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_et_jet->GetYaxis()->SetTitleOffset(1.2);
+   h_window_cross_et_jet->GetYaxis()->SetTitleFont(22);
+   h_window_cross_et_jet->Draw("");
+   Double_t xAxis14[7] = {2.5, 4, 6, 8, 10, 15, 35}; 
+   
+   TH1D *h_cross_section_et_jet_stat_fit_err = new TH1D("h_cross_section_et_jet_stat_fit_err","det_cross_et_jet",6, xAxis14);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(1,1.380051);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(2,1.249185);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(3,1.045874);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(4,0.7928444);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(5,0.3254907);
+   h_cross_section_et_jet_stat_fit_err->SetBinContent(6,0.03679016);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(1,0.1792247);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(2,0.111104);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(3,0.09570643);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(4,0.07259588);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(5,0.03495968);
+   h_cross_section_et_jet_stat_fit_err->SetBinError(6,0.005830555);
+   h_cross_section_et_jet_stat_fit_err->SetEntries(13885);
+   h_cross_section_et_jet_stat_fit_err->SetFillColor(43);
+
+   Int_t ci;   // for color index setting
+   ci = TColor::GetColor("#000099");
+   h_cross_section_et_jet_stat_fit_err->SetLineColor(ci);
+   h_cross_section_et_jet_stat_fit_err->SetLineWidth(2);
+   h_cross_section_et_jet_stat_fit_err->SetMarkerStyle(20);
+   h_cross_section_et_jet_stat_fit_err->GetXaxis()->SetLabelFont(42);
+   h_cross_section_et_jet_stat_fit_err->GetXaxis()->SetLabelSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetXaxis()->SetTitleSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetXaxis()->SetTitleFont(42);
+   h_cross_section_et_jet_stat_fit_err->GetYaxis()->SetLabelFont(42);
+   h_cross_section_et_jet_stat_fit_err->GetYaxis()->SetLabelSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetYaxis()->SetTitleSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetYaxis()->SetTitleFont(42);
+   h_cross_section_et_jet_stat_fit_err->GetZaxis()->SetLabelFont(42);
+   h_cross_section_et_jet_stat_fit_err->GetZaxis()->SetLabelSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetZaxis()->SetTitleSize(0.035);
+   h_cross_section_et_jet_stat_fit_err->GetZaxis()->SetTitleFont(42);
+   h_cross_section_et_jet_stat_fit_err->Draw("E1 X0 SAME");
+   Double_t xAxis15[7] = {2.5, 4, 6, 8, 10, 15, 35}; 
+   
+   TH2D *h_window_cross_et_jet__5 = new TH2D("h_window_cross_et_jet__5","",6, xAxis15,10,0.015,3);
+   h_window_cross_et_jet__5->SetDirectory(0);
+   h_window_cross_et_jet__5->SetStats(0);
+   h_window_cross_et_jet__5->GetXaxis()->SetTitle("E_{T}^{jet} (GeV)");
+   h_window_cross_et_jet__5->GetXaxis()->SetNdivisions(507);
+   h_window_cross_et_jet__5->GetXaxis()->SetLabelFont(22);
+   h_window_cross_et_jet__5->GetXaxis()->SetLabelSize(0.05424658);
+   h_window_cross_et_jet__5->GetXaxis()->SetTitleSize(0.06027398);
+   h_window_cross_et_jet__5->GetXaxis()->SetTitleOffset(1.02);
+   h_window_cross_et_jet__5->GetXaxis()->SetTitleFont(22);
+   h_window_cross_et_jet__5->GetYaxis()->SetTitle("d#sigma/dE_{T}^{jet} (pb/GeV)");
+   h_window_cross_et_jet__5->GetYaxis()->SetNdivisions(507);
+   h_window_cross_et_jet__5->GetYaxis()->SetLabelFont(22);
+   h_window_cross_et_jet__5->GetYaxis()->SetLabelOffset(0.016);
+   h_window_cross_et_jet__5->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_et_jet__5->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_et_jet__5->GetYaxis()->SetTitleOffset(1.2);
+   h_window_cross_et_jet__5->GetYaxis()->SetTitleFont(22);
+   h_window_cross_et_jet__5->Draw("sameaxis");
+   
+   TLegend *leg = new TLegend(0.5,0.6,0.9,0.9,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextFont(22);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(1);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("h_cross_section_et_jet","ZEUS 326 pb^{-1}","p");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(20);
+   entry->SetMarkerSize(1);
+   leg->Draw();
+   canv_cross_et_jet_1->Modified();
+   canv_cross_et_jet->cd();
+   TText *text = new TText(0.45,0.95,"ZEUS");
+   text->SetTextFont(22);
+   text->SetTextSize(0.07);
+   text->Draw();
+   canv_cross_et_jet->Modified();
+   canv_cross_et_jet->cd();
+   canv_cross_et_jet->SetSelected(canv_cross_et_jet);
+}

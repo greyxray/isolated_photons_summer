@@ -1,0 +1,37 @@
+#!/bin/sh
+#cp /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/control_plots.cxx .
+SOURCE=fit_traectory.cxx
+EXE=exe
+
+if [ "$1" ]
+then
+ SOURCE="$1.cxx"
+fi
+
+touch output_control_plots.txt
+touch output_control_plots_err.txt
+
+echo compiling $EXE
+rm -f $EXE *.o
+
+echo "g++ -o $EXE $SOURCE `root-config --cflags` `root-config --libs` `gsl-config --cflags` `gsl-config --libs` -lMinuit -lMathMore"
+g++ -o $EXE $SOURCE -I/diskmnt/b/huettmaa/CodeTim/lib/GSL/include `root-config --cflags` `root-config --libs` `gsl-config --libs` -lMinuit -lMathMore -L/diskmnt/b/huettmaa/CodeTim/lib/GSL/lib 
+
+rm -rf log_$EXE err_log_$EXE
+
+./$EXE 
+#> output_control_plots.txt
+#2> output_err.txt
+
+cp *.png /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures/
+cp *.eps /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures
+#cp output_control_plots.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/
+#cp output_control_plots_err.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/
+
+#./$EXE $2
+#echo $2
+# > log_$EXE 2> err_log_$EXE  &
+#tail -f err_log_$EXE
+#echo FINISHED press Ctrl+C to exit
+#exit 0
+#readme

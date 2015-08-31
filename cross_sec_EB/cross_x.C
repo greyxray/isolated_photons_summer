@@ -1,0 +1,132 @@
+{
+//=========Macro generated from canvas: canv_cross_x/
+//=========  (Wed Aug 12 00:25:06 2015) by ROOT version5.34/00
+   TCanvas *canv_cross_x = new TCanvas("canv_cross_x", "",0,0,1200,1000);
+   canv_cross_x->SetHighLightColor(2);
+   canv_cross_x->Range(0,0,1,1);
+   canv_cross_x->SetFillColor(0);
+   canv_cross_x->SetBorderMode(0);
+   canv_cross_x->SetBorderSize(2);
+   canv_cross_x->SetFrameBorderMode(0);
+  
+// ------------>Primitives in pad: canv_cross_x_1
+   TPad *canv_cross_x_1 = new TPad("canv_cross_x_1", "canv_cross_x_1",0.01,0.01,0.99,0.99);
+   canv_cross_x_1->Draw();
+   canv_cross_x_1->cd();
+   canv_cross_x_1->Range(-4.07397,0.2376465,-1.57397,4.702903);
+   canv_cross_x_1->SetFillColor(0);
+   canv_cross_x_1->SetBorderMode(0);
+   canv_cross_x_1->SetBorderSize(2);
+   canv_cross_x_1->SetLogx();
+   canv_cross_x_1->SetLogy();
+   canv_cross_x_1->SetTickx(1);
+   canv_cross_x_1->SetTicky(1);
+   canv_cross_x_1->SetLeftMargin(0.15);
+   canv_cross_x_1->SetRightMargin(0.05);
+   canv_cross_x_1->SetBottomMargin(0.18);
+   canv_cross_x_1->SetFrameBorderMode(0);
+   canv_cross_x_1->SetFrameBorderMode(0);
+   Double_t xAxis10[5] = {0.0002, 0.001, 0.003, 0.01, 0.02}; 
+   
+   TH2D *h_window_cross_x = new TH2D("h_window_cross_x","",4, xAxis10,10,11,20000);
+   h_window_cross_x->SetStats(0);
+   h_window_cross_x->GetXaxis()->SetTitle("x");
+   h_window_cross_x->GetXaxis()->SetNdivisions(507);
+   h_window_cross_x->GetXaxis()->SetLabelFont(22);
+   h_window_cross_x->GetXaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x->GetXaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x->GetXaxis()->SetTitleOffset(1.1);
+   h_window_cross_x->GetXaxis()->SetTitleFont(22);
+   h_window_cross_x->GetYaxis()->SetTitle("d#sigma/dx (pb)");
+   h_window_cross_x->GetYaxis()->SetNdivisions(507);
+   h_window_cross_x->GetYaxis()->SetLabelFont(22);
+   h_window_cross_x->GetYaxis()->SetLabelOffset(0.016);
+   h_window_cross_x->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x->GetYaxis()->SetTitleOffset(1.2);
+   h_window_cross_x->GetYaxis()->SetTitleFont(22);
+   h_window_cross_x->Draw("");
+   Double_t xAxis11[5] = {0.0002, 0.001, 0.003, 0.01, 0.02}; 
+   
+   TH1D *h_cross_section_x_stat_fit_err = new TH1D("h_cross_section_x_stat_fit_err","det_cross_x",4, xAxis11);
+   h_cross_section_x_stat_fit_err->SetBinContent(0,5.426807);
+   h_cross_section_x_stat_fit_err->SetBinContent(1,5089.498);
+   h_cross_section_x_stat_fit_err->SetBinContent(2,1881.85);
+   h_cross_section_x_stat_fit_err->SetBinContent(3,286.6107);
+   h_cross_section_x_stat_fit_err->SetBinContent(4,29.08361);
+   h_cross_section_x_stat_fit_err->SetBinContent(5,14.57512);
+   h_cross_section_x_stat_fit_err->SetBinError(0,0.8127005);
+   h_cross_section_x_stat_fit_err->SetBinError(1,354.6933);
+   h_cross_section_x_stat_fit_err->SetBinError(2,147.0079);
+   h_cross_section_x_stat_fit_err->SetBinError(3,31.1299);
+   h_cross_section_x_stat_fit_err->SetBinError(4,6.301603);
+   h_cross_section_x_stat_fit_err->SetBinError(5,1.020531);
+   h_cross_section_x_stat_fit_err->SetEntries(13883);
+   h_cross_section_x_stat_fit_err->SetFillColor(43);
+
+   Int_t ci;   // for color index setting
+   ci = TColor::GetColor("#000099");
+   h_cross_section_x_stat_fit_err->SetLineColor(ci);
+   h_cross_section_x_stat_fit_err->SetLineWidth(2);
+   h_cross_section_x_stat_fit_err->SetMarkerStyle(20);
+   h_cross_section_x_stat_fit_err->GetXaxis()->SetLabelFont(42);
+   h_cross_section_x_stat_fit_err->GetXaxis()->SetLabelSize(0.035);
+   h_cross_section_x_stat_fit_err->GetXaxis()->SetTitleSize(0.035);
+   h_cross_section_x_stat_fit_err->GetXaxis()->SetTitleFont(42);
+   h_cross_section_x_stat_fit_err->GetYaxis()->SetLabelFont(42);
+   h_cross_section_x_stat_fit_err->GetYaxis()->SetLabelSize(0.035);
+   h_cross_section_x_stat_fit_err->GetYaxis()->SetTitleSize(0.035);
+   h_cross_section_x_stat_fit_err->GetYaxis()->SetTitleFont(42);
+   h_cross_section_x_stat_fit_err->GetZaxis()->SetLabelFont(42);
+   h_cross_section_x_stat_fit_err->GetZaxis()->SetLabelSize(0.035);
+   h_cross_section_x_stat_fit_err->GetZaxis()->SetTitleSize(0.035);
+   h_cross_section_x_stat_fit_err->GetZaxis()->SetTitleFont(42);
+   h_cross_section_x_stat_fit_err->Draw("E1 X0 SAME");
+   Double_t xAxis12[5] = {0.0002, 0.001, 0.003, 0.01, 0.02}; 
+   
+   TH2D *h_window_cross_x__4 = new TH2D("h_window_cross_x__4","",4, xAxis12,10,11,20000);
+   h_window_cross_x__4->SetDirectory(0);
+   h_window_cross_x__4->SetStats(0);
+   h_window_cross_x__4->GetXaxis()->SetTitle("x");
+   h_window_cross_x__4->GetXaxis()->SetNdivisions(507);
+   h_window_cross_x__4->GetXaxis()->SetLabelFont(22);
+   h_window_cross_x__4->GetXaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x__4->GetXaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x__4->GetXaxis()->SetTitleOffset(1.1);
+   h_window_cross_x__4->GetXaxis()->SetTitleFont(22);
+   h_window_cross_x__4->GetYaxis()->SetTitle("d#sigma/dx (pb)");
+   h_window_cross_x__4->GetYaxis()->SetNdivisions(507);
+   h_window_cross_x__4->GetYaxis()->SetLabelFont(22);
+   h_window_cross_x__4->GetYaxis()->SetLabelOffset(0.016);
+   h_window_cross_x__4->GetYaxis()->SetLabelSize(0.05424658);
+   h_window_cross_x__4->GetYaxis()->SetTitleSize(0.06027398);
+   h_window_cross_x__4->GetYaxis()->SetTitleOffset(1.2);
+   h_window_cross_x__4->GetYaxis()->SetTitleFont(22);
+   h_window_cross_x__4->Draw("sameaxis");
+   
+   TLegend *leg = new TLegend(0.16,0.3,0.55,0.6,NULL,"brNDC");
+   leg->SetBorderSize(0);
+   leg->SetTextFont(22);
+   leg->SetLineColor(1);
+   leg->SetLineStyle(1);
+   leg->SetLineWidth(1);
+   leg->SetFillColor(0);
+   leg->SetFillStyle(1001);
+   TLegendEntry *entry=leg->AddEntry("h_cross_section_x","ZEUS 326 pb^{-1}","p");
+   entry->SetLineColor(1);
+   entry->SetLineStyle(1);
+   entry->SetLineWidth(1);
+   entry->SetMarkerColor(1);
+   entry->SetMarkerStyle(20);
+   entry->SetMarkerSize(1);
+   leg->Draw();
+   canv_cross_x_1->Modified();
+   canv_cross_x->cd();
+   TText *text = new TText(0.45,0.95,"ZEUS");
+   text->SetTextFont(22);
+   text->SetTextSize(0.07);
+   text->Draw();
+   canv_cross_x->Modified();
+   canv_cross_x->cd();
+   canv_cross_x->SetSelected(canv_cross_x);
+}
