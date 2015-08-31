@@ -119,6 +119,7 @@ class selector {
   Double_t x_gamma;
   Double_t wtx;
 
+//Delete this if read again
   //cut values
   Double_t ET_JET_CUT;
   
