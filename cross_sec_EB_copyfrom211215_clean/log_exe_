@@ -1,0 +1,1203 @@
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_data_0405e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_data_0405e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_data_0405e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_data_0405e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_data_0405e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_data_0405e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_data_0405e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_data_0405e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_data_0405e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_data_0405e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_data_0405e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_data_0405e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_data_0405e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_data_0405e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_data_0405e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_data_0405e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_data_0405e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_data_et0405e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_data_0405e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_data_eta0405e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_data_0405e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_data_Q20405e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_data_0405e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_data_x0405e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_data_0405e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_norad_0405e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_norad_0405e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_norad_0405e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_norad_0405e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_norad_0405e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_norad_0405e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_norad_0405e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_norad_0405e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_norad_0405e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_norad_0405e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_norad_0405e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_norad_0405e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_norad_0405e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_norad_0405e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_norad_0405e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_norad_0405e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_norad_0405e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_norad_et0405e
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_norad_et0405e
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_norad_et0405e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_norad_et0405e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_norad_eta0405e
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_norad_eta0405e
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_norad_eta0405e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_norad_eta0405e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_norad_Q20405e
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_norad_Q20405e
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_norad_Q20405e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_norad_Q20405e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_norad_x0405e
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_norad_x0405e
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_norad_x0405e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_norad_x0405e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_rad_0405e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_rad_0405e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_rad_0405e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_rad_0405e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_rad_0405e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_rad_0405e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_rad_0405e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_rad_0405e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_rad_0405e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_rad_0405e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_rad_0405e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_rad_0405e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_rad_0405e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_rad_0405e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_rad_0405e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_rad_0405e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_rad_0405e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_rad_et0405e
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_rad_et0405e
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_rad_et0405e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_rad_et0405e
+reading h_had_cross_et ...
+OK: renamed to h_had_cross_et_rad_et0405e
+reading h_hd_cross_et ...
+OK: renamed to h_hd_cross_et_rad_et0405e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_rad_eta0405e
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_rad_eta0405e
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_rad_eta0405e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_rad_eta0405e
+reading h_had_cross_eta ...
+OK: renamed to h_had_cross_eta_rad_eta0405e
+reading h_hd_cross_eta ...
+OK: renamed to h_hd_cross_eta_rad_eta0405e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_rad_Q20405e
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_rad_Q20405e
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_rad_Q20405e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_rad_Q20405e
+reading h_had_cross_Q2 ...
+OK: renamed to h_had_cross_Q2_rad_Q20405e
+reading h_hd_cross_Q2 ...
+OK: renamed to h_hd_cross_Q2_rad_Q20405e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_rad_x0405e
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_rad_x0405e
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_rad_x0405e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_rad_x0405e
+reading h_had_cross_x ...
+OK: renamed to h_had_cross_x_rad_x0405e
+reading h_hd_cross_x ...
+OK: renamed to h_hd_cross_x_rad_x0405e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_data_06e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_data_06e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_data_06e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_data_06e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_data_06e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_data_06e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_data_06e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_data_06e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_data_06e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_data_06e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_data_06e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_data_06e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_data_06e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_data_06e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_data_06e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_data_06e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_data_06e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_data_et06e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_data_06e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_data_eta06e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_data_06e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_data_Q206e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_data_06e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_data_x06e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_data_06e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_norad_06e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_norad_06e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_norad_06e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_norad_06e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_norad_06e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_norad_06e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_norad_06e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_norad_06e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_norad_06e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_norad_06e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_norad_06e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_norad_06e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_norad_06e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_norad_06e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_norad_06e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_norad_06e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_norad_06e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_norad_et06e
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_norad_et06e
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_norad_et06e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_norad_et06e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_norad_eta06e
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_norad_eta06e
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_norad_eta06e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_norad_eta06e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_norad_Q206e
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_norad_Q206e
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_norad_Q206e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_norad_Q206e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_norad_x06e
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_norad_x06e
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_norad_x06e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_norad_x06e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_rad_06e
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_rad_06e
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_rad_06e
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_rad_06e
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_rad_06e
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_rad_06e
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_rad_06e
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_rad_06e
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_rad_06e
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_rad_06e
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_rad_06e
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_rad_06e
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_rad_06e
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_rad_06e
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_rad_06e
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_rad_06e
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_rad_06e
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_rad_et06e
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_rad_et06e
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_rad_et06e
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_rad_et06e
+reading h_had_cross_et ...
+OK: renamed to h_had_cross_et_rad_et06e
+reading h_hd_cross_et ...
+OK: renamed to h_hd_cross_et_rad_et06e
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_rad_eta06e
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_rad_eta06e
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_rad_eta06e
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_rad_eta06e
+reading h_had_cross_eta ...
+OK: renamed to h_had_cross_eta_rad_eta06e
+reading h_hd_cross_eta ...
+OK: renamed to h_hd_cross_eta_rad_eta06e
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_rad_Q206e
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_rad_Q206e
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_rad_Q206e
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_rad_Q206e
+reading h_had_cross_Q2 ...
+OK: renamed to h_had_cross_Q2_rad_Q206e
+reading h_hd_cross_Q2 ...
+OK: renamed to h_hd_cross_Q2_rad_Q206e
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_rad_x06e
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_rad_x06e
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_rad_x06e
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_rad_x06e
+reading h_had_cross_x ...
+OK: renamed to h_had_cross_x_rad_x06e
+reading h_hd_cross_x ...
+OK: renamed to h_hd_cross_x_rad_x06e
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_data_0607p
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_data_0607p
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_data_0607p
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_data_0607p
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_data_0607p
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_data_0607p
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_data_0607p
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_data_0607p
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_data_0607p
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_data_0607p
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_data_0607p
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_data_0607p
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_data_0607p
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_data_0607p
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_data_0607p
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_data_0607p
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_data_0607p
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_data_et0607p
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_data_0607p
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_data_eta0607p
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_data_0607p
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_data_Q20607p
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_data_0607p
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_data_x0607p
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_data_0607p
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_norad_0607p
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_norad_0607p
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_norad_0607p
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_norad_0607p
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_norad_0607p
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_norad_0607p
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_norad_0607p
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_norad_0607p
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_norad_0607p
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_norad_0607p
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_norad_0607p
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_norad_0607p
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_norad_0607p
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_norad_0607p
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_norad_0607p
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_norad_0607p
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_norad_0607p
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_norad_et0607p
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_norad_et0607p
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_norad_et0607p
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_norad_et0607p
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_norad_eta0607p
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_norad_eta0607p
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_norad_eta0607p
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_norad_eta0607p
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_norad_Q20607p
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_norad_Q20607p
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_norad_Q20607p
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_norad_Q20607p
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_norad_x0607p
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_norad_x0607p
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_norad_x0607p
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_norad_x0607p
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_rad_0607p
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_rad_0607p
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_rad_0607p
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_rad_0607p
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_rad_0607p
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_rad_0607p
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_rad_0607p
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_rad_0607p
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_rad_0607p
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_rad_0607p
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_rad_0607p
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_rad_0607p
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_rad_0607p
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_rad_0607p
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_rad_0607p
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_rad_0607p
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_rad_0607p
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_rad_et0607p
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_rad_et0607p
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_rad_et0607p
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_rad_et0607p
+reading h_had_cross_et ...
+OK: renamed to h_had_cross_et_rad_et0607p
+reading h_hd_cross_et ...
+OK: renamed to h_hd_cross_et_rad_et0607p
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_rad_eta0607p
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_rad_eta0607p
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_rad_eta0607p
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_rad_eta0607p
+reading h_had_cross_eta ...
+OK: renamed to h_had_cross_eta_rad_eta0607p
+reading h_hd_cross_eta ...
+OK: renamed to h_hd_cross_eta_rad_eta0607p
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_rad_Q20607p
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_rad_Q20607p
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_rad_Q20607p
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_rad_Q20607p
+reading h_had_cross_Q2 ...
+OK: renamed to h_had_cross_Q2_rad_Q20607p
+reading h_hd_cross_Q2 ...
+OK: renamed to h_hd_cross_Q2_rad_Q20607p
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_rad_x0607p
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_rad_x0607p
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_rad_x0607p
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_rad_x0607p
+reading h_had_cross_x ...
+OK: renamed to h_had_cross_x_rad_x0607p
+reading h_hd_cross_x ...
+OK: renamed to h_hd_cross_x_rad_x0607p
+reading h_deltaz_et_0 ...
+OK: renamed to h_deltaz_et_0_prph
+reading h_deltaz_et_1 ...
+OK: renamed to h_deltaz_et_1_prph
+reading h_deltaz_et_2 ...
+OK: renamed to h_deltaz_et_2_prph
+reading h_deltaz_et_3 ...
+OK: renamed to h_deltaz_et_3_prph
+reading h_deltaz_eta_0 ...
+OK: renamed to h_deltaz_eta_0_prph
+reading h_deltaz_eta_1 ...
+OK: renamed to h_deltaz_eta_1_prph
+reading h_deltaz_eta_2 ...
+OK: renamed to h_deltaz_eta_2_prph
+reading h_deltaz_eta_3 ...
+OK: renamed to h_deltaz_eta_3_prph
+reading h_deltaz_q2_0 ...
+OK: renamed to h_deltaz_q2_0_prph
+reading h_deltaz_q2_1 ...
+OK: renamed to h_deltaz_q2_1_prph
+reading h_deltaz_q2_2 ...
+OK: renamed to h_deltaz_q2_2_prph
+reading h_deltaz_q2_3 ...
+OK: renamed to h_deltaz_q2_3_prph
+reading h_deltaz_q2_4 ...
+OK: renamed to h_deltaz_q2_4_prph
+reading h_deltaz_x_0 ...
+OK: renamed to h_deltaz_x_0_prph
+reading h_deltaz_x_1 ...
+OK: renamed to h_deltaz_x_1_prph
+reading h_deltaz_x_2 ...
+OK: renamed to h_deltaz_x_2_prph
+reading h_deltaz_x_3 ...
+OK: renamed to h_deltaz_x_3_prph
+reading prof_det_cross_et ...
+OK: renamed to prof_det_cross_et_prph_et
+reading prof_had_cross_et ...
+OK: renamed to prof_had_cross_et_prph_et
+reading prof_hd_cross_et ...
+OK: renamed to prof_hd_cross_et_prph_et
+reading h_det_cross_et ...
+OK: renamed to h_det_cross_et_prph_et
+reading h_had_cross_et ...
+OK: renamed to h_had_cross_et_prph_et
+reading h_hd_cross_et ...
+OK: renamed to h_hd_cross_et_prph_et
+reading prof_det_cross_eta ...
+OK: renamed to prof_det_cross_eta_prph_eta
+reading prof_had_cross_eta ...
+OK: renamed to prof_had_cross_eta_prph_eta
+reading prof_hd_cross_eta ...
+OK: renamed to prof_hd_cross_eta_prph_eta
+reading h_det_cross_eta ...
+OK: renamed to h_det_cross_eta_prph_eta
+reading h_had_cross_eta ...
+OK: renamed to h_had_cross_eta_prph_eta
+reading h_hd_cross_eta ...
+OK: renamed to h_hd_cross_eta_prph_eta
+reading prof_det_cross_Q2 ...
+OK: renamed to prof_det_cross_Q2_prph_Q2
+reading prof_had_cross_Q2 ...
+OK: renamed to prof_had_cross_Q2_prph_Q2
+reading prof_hd_cross_Q2 ...
+OK: renamed to prof_hd_cross_Q2_prph_Q2
+reading h_det_cross_Q2 ...
+OK: renamed to h_det_cross_Q2_prph_Q2
+reading h_had_cross_Q2 ...
+OK: renamed to h_had_cross_Q2_prph_Q2
+reading h_hd_cross_Q2 ...
+OK: renamed to h_hd_cross_Q2_prph_Q2
+reading prof_det_cross_x ...
+OK: renamed to prof_det_cross_x_prph_x
+reading prof_had_cross_x ...
+OK: renamed to prof_had_cross_x_prph_x
+reading prof_hd_cross_x ...
+OK: renamed to prof_hd_cross_x_prph_x
+reading h_det_cross_x ...
+OK: renamed to h_det_cross_x_prph_x
+reading h_had_cross_x ...
+OK: renamed to h_had_cross_x_prph_x
+reading h_hd_cross_x ...
+OK: renamed to h_hd_cross_x_prph_x
+ ---------- data dz in bins of et ------------
+0405e	134.16	271.36:		1653		587		223		199		
+06e	54.7957	165.26:		618		226		102		68		
+0607p	142.938	364.6:		1518		559		261		210		
+sum:				3789		1372		586		477		
+prph:				6812		3903		2112		1813		
+
+ ---------- data dz in bins of eta ------------
+0405e	134.16	271.36:		712		694		657		599		
+06e	54.7957	165.26:		298		246		267		203		
+0607p	142.938	364.6:		724		701		607		516		
+sum:				1734		1641		1531		1318		
+prph:				3152		3959		3968		3561		
+
+ ---------- data dz in bins of q2 ------------
+0405e	134.16	271.36:		819		743		601		337		162		
+06e	54.7957	165.26:		285		300		228		129		72		
+0607p	142.938	364.6:		756		734		565		344		149		
+sum:				1860		1777		1394		810		383		
+prph:				3513		3467		3301		2668		1691		
+
+ ---------- data dz in bins of x ------------
+0405e	134.16	271.36:		1034		964		537		70		
+06e	54.7957	165.26:		395		363		212		26		
+0607p	142.938	364.6:		1008		894		523		67		
+sum:				2437		2221		1272		163		
+prph:				4541		5279		3823		682		
+
+ ---------- norad dz in bins of et ------------
+0405e	134.16	271.36:		2022		747		346		240		
+06e	54.7957	165.26:		1281		446		194		144		
+0607p	142.938	364.6:		2728		1025		430		280		
+sum:				3516.23		1296.72		578.902		397.518		
+
+ ---------- norad dz in bins of eta ------------
+0405e	134.16	271.36:		1059		947		723		626		
+06e	54.7957	165.26:		673		573		447		372		
+0607p	142.938	364.6:		1375		1304		989		795		
+sum:				1821.2		1648.21		1258.94		1061.02		
+
+ ---------- norad dz in bins of q2 ------------
+0405e	134.16	271.36:		1042		957		769		410		177		
+06e	54.7957	165.26:		666		617		473		240		69		
+0607p	142.938	364.6:		1488		1238		980		549		208		
+sum:				1846.18		1646.93		1310.03		704.807		281.423		
+
+ ---------- norad dz in bins of x ------------
+0405e	134.16	271.36:		1269		1245		693		84		
+06e	54.7957	165.26:		798		782		407		43		
+0607p	142.938	364.6:		1711		1634		940		84		
+sum:				2204.38		2144.88		1196.47		131.189		
+
+ ---------- rad dz in bins of et ------------
+0405e	134.16	271.36:		195		93		65		90		
+06e	54.7957	165.26:		128		62		36		48		
+0607p	142.938	364.6:		275		149		104		100		
+sum:				345.252		171.971		117.709		145.119		
+
+ ---------- rad dz in bins of eta ------------
+0405e	134.16	271.36:		269		119		39		16		
+06e	54.7957	165.26:		165		81		18		10		
+0607p	142.938	364.6:		392		152		72		12		
+sum:				477.389		205.447		73.1952		24.0202		
+
+ ---------- rad dz in bins of q2 ------------
+0405e	134.16	271.36:		39		68		139		112		85		
+06e	54.7957	165.26:		23		35		78		80		58		
+0607p	142.938	364.6:		48		90		178		156		156		
+sum:				65.4441		114.889		234.646		199.684		165.389		
+
+ ---------- rad dz in bins of x ------------
+0405e	134.16	271.36:		85		170		164		18		
+06e	54.7957	165.26:		48		104		97		21		
+0607p	142.938	364.6:		108		225		252		34		
+sum:				143.256		292.693		294.957		38.2924		
+
+ ---------- Profile  et  ------------
+data_det	norad_det	rad_det	norad_had	rad_had	norad_hd	rad_hd
+0405e	134.16	271.36:	2662	3355	443	0	512	0	299
+06e	54.7957	165.26:	1014	2065	274	0	333	0	184
+0607p	142.938	364.6:	2548	4463	628	0	752	0	406
+sum:			6224	5789.37	780.052	0	917.228	0	519.178
+prph:			det: 14640	had: 17929	hd: 9099
+ ---------- Profile  eta  ------------
+data_det	norad_det	rad_det	norad_had	rad_had	norad_hd	rad_hd
+0405e	134.16	271.36:	2662	3355	443	0	512	0	357
+06e	54.7957	165.26:	1014	2065	274	0	333	0	221
+0607p	142.938	364.6:	2548	4463	628	0	752	0	501
+sum:			6224	5789.37	780.052	0	917.228	0	626.69
+prph:			det: 14640	had: 17929	hd: 10876
+ ---------- Profile  Q2  ------------
+data_det	norad_det	rad_det	norad_had	rad_had	norad_hd	rad_hd
+0405e	134.16	271.36:	2662	3355	443	0	512	0	339
+06e	54.7957	165.26:	1014	2065	274	0	333	0	208
+0607p	142.938	364.6:	2548	4463	628	0	752	0	469
+sum:			6224	5789.37	780.052	0	917.228	0	591.834
+prph:			det: 14640	had: 17929	hd: 10318
+ ---------- Profile  x  ------------
+data_det	norad_det	rad_det	norad_had	rad_had	norad_hd	rad_hd
+0405e	134.16	271.36:	2662	3355	443	0	512	0	319
+06e	54.7957	165.26:	1014	2065	274	0	333	0	202
+0607p	142.938	364.6:	2548	4463	628	0	752	0	440
+sum:			6224	5789.37	780.052	0	917.228	0	558.475
+prph:			det: 14640	had: 17929	hd: 9117
+ ---------- Histogram  et  ------------
+data_det	norad_det	rad_det	rad_had	rad_hd
+0405e	134.16	271.36:	2662	3355	443	512	299
+06e	54.7957	165.26:	1014	2065	274	333	184
+0607p	142.938	364.6:	2548	4463	628	752	406
+sum:			6224	5789.37	780.052	917.228	519.178
+prph:			det: 14640	had: 17929	hd: 9099
+ ---------- Histogram  eta  ------------
+data_det	norad_det	rad_det	rad_had	rad_hd
+0405e	134.16	271.36:	2662	3355	443	512	357
+06e	54.7957	165.26:	1014	2065	274	333	221
+0607p	142.938	364.6:	2548	4463	628	752	501
+sum:			6224	5789.37	780.052	917.228	626.69
+prph:			det: 14640	had: 17929	hd: 10876
+ ---------- Histogram  Q2  ------------
+data_det	norad_det	rad_det	rad_had	rad_hd
+0405e	134.16	271.36:	2662	3355	443	512	339
+06e	54.7957	165.26:	1014	2065	274	333	208
+0607p	142.938	364.6:	2548	4463	628	752	469
+sum:			6224	5789.37	780.052	917.228	591.834
+prph:			det: 14640	had: 17929	hd: 10318
+ ---------- Histogram  x  ------------
+data_det	norad_det	rad_det	rad_had	rad_hd
+0405e	134.16	271.36:	2662	3355	443	512	319
+06e	54.7957	165.26:	1014	2065	274	333	202
+0607p	142.938	364.6:	2548	4463	628	752	440
+sum:			6224	5789.37	780.052	917.228	558.475
+prph:			det: 14640	had: 17929	hd: 9117
+acceptance h_acceptance_rad_et
+bin 0: 246.66 294.883
+bin 1: 124.951 154.77
+bin 2: 84.8447 98.0614
+bin 3: 99.6154 110.645
+acceptance h_acceptance_rad_eta
+bin 0: 341.382 406.122
+bin 1: 145.281 167.847
+bin 2: 53.4767 64.4752
+bin 3: 15.9306 19.9162
+acceptance h_acceptance_rad_Q2
+bin 0: 45.7256 54.3422
+bin 1: 80.5077 90.8976
+bin 2: 164.367 187.577
+bin 3: 143.057 176.665
+bin 4: 122.413 148.878
+acceptance h_acceptance_rad_x
+bin 0: 100.28 114.799
+bin 1: 206.74 253.071
+bin 2: 212.038 258.645
+bin 3: 29.1916 30.3373
+before shift: 4 15 first bin center: 5
+after shift: 13.9 24.9 first bin center: 5
+after drawing: 13.9 24.9 first bin center: 5
+before shift: -0.7 0.9 first bin center: -0.5
+after shift: 0.74 2.34 first bin center: -0.5
+after drawing: 0.74 2.34 first bin center: -0.5
+before shift: 4 350 first bin center: 12
+after shift: 315.4 661.4 first bin center: 12
+after drawing: 315.4 661.4 first bin center: 12
+before shift: 0.0002 0.02 first bin center: 0.0006
+after shift: 0.01802 0.03782 first bin center: 0.0006
+after drawing: 0.01802 0.03782 first bin center: 0.0006
+par in bin et 0: 0.299641 +- 0.0224249
+par in bin et 1: 0.475326 +- 0.0359488
+par in bin et 2: 0.573927 +- 0.0621726
+par in bin et 3: 0.60861 +- 0.0746335
+par in bin eta 0: 0.348578 +- 0.0358873
+par in bin eta 1: 0.422812 +- 0.0352649
+par in bin eta 2: 0.357286 +- 0.0344213
+par in bin eta 3: 0.347271 +- 0.0325326
+par in bin q2 0: 0.386605 +- 0.0294291
+par in bin q2 1: 0.365722 +- 0.0313289
+par in bin q2 2: 0.336671 +- 0.0393613
+par in bin q2 3: 0.43461 +- 0.0546787
+par in bin q2 4: 0.333344 +- 0.105222
+par in bin x 0: 0.392875 +- 0.0260104
+par in bin x 1: 0.376941 +- 0.0291226
+par in bin x 2: 0.272609 +- 0.0457285
+par in bin x 3: 0.43516 +- 0.127332
+draw 0
+et bin# 0 3774 3774 1057.23 245.665 2471.1
+dz before shift: 0 1.5 first bin center: 0.025
+dz after shift: 0.015 1.515 first bin center: 0.04
+draw 1
+et bin# 1 1369 1369 591.564 124.456 652.98
+dz before shift: 0 1.5 first bin center: 0.025
+dz after shift: 0.015 1.515 first bin center: 0.04
+draw 2
+et bin# 2 584 584 286.987 83.9582 213.054
+dz before shift: 0 1.5 first bin center: 0.025
+dz after shift: 0.015 1.515 first bin center: 0.04
+draw 3
+et bin# 3 474 474 228.155 99.121 146.724
+dz before shift: 0 1.5 first bin center: 0.025
+dz after shift: 0.015 1.515 first bin center: 0.04
+draw 0
+eta bin# 0 1731 1731 485.391 338.512 907.097
+draw 1
+eta bin# 1 1641 1641 632.407 145.281 863.312
+draw 2
+eta bin# 2 1531 1531 527.898 53.4767 949.625
+draw 3
+eta bin# 3 1298 1298 445.226 15.9306 836.843
+draw 0
+q2 bin# 0 1851 1851 697.929 45.7256 1107.35
+0 Q2
+draw 1
+q2 bin# 1 1769 1769 617.64 80.1762 1071.18
+1 Q2
+draw 2
+q2 bin# 2 1389 1389 412.854 162.715 813.43
+2 Q2
+draw 3
+q2 bin# 3 810 810 290.075 142.562 377.363
+3 Q2
+draw 4
+q2 bin# 4 382 382 86.6623 122.021 173.316
+4 Q2
+draw 0
+x bin# 0 2430 2430 915.483 99.7853 1414.73
+draw 1
+x bin# 1 2211 2211 756.236 204.757 1250.01
+draw 2
+x bin# 2 1267 1267 287.699 211.646 767.655
+draw 3
+x bin# 3 163 163 58.2281 29.1916 75.5804
+Fit in different bins has been drawed
+exiting...
+========== calculate and plot cross sections ==============
+in CalculateCrossSec: calculate h_cross_section_et, lumi = 331.893 pb^{-1}
+bin 0, data = 3789 +- 61.5549, ll = 246.66 +- 10.1982, prph = 6812 +- 82.5348
+scale_data_ll (in bin 0) = 3789 - 246.66 = 0.520015 +- 8.39019e-05
+--> scaling by N_{data-LL}
+scaling: old content: 0 6812 +- 82.5348
+scaling: new content: 0 3542.34 +- 42.9231
+bin 1, data = 1372 +- 37.0405, ll = 124.951 +- 7.24216, prph = 3903 +- 62.474
+scale_data_ll (in bin 1) = 1372 - 124.951 = 0.31951 +- 9.3517e-05
+--> scaling by N_{data-LL}
+scaling: old content: 1 3903 +- 62.474
+scaling: new content: 1 1247.05 +- 19.9644
+bin 2, data = 586 +- 24.2074, ll = 84.8447 +- 5.98583, prph = 2112 +- 45.9565
+scale_data_ll (in bin 2) = 586 - 84.8447 = 0.237289 +- 0.000139426
+--> scaling by N_{data-LL}
+scaling: old content: 2 2112 +- 45.9565
+scaling: new content: 2 501.155 +- 10.909
+bin 3, data = 477 +- 21.8403, ll = 99.6154 +- 6.53034, prph = 1813 +- 42.5793
+scale_data_ll (in bin 3) = 477 - 99.6154 = 0.208155 +- 0.000158118
+--> scaling by N_{data-LL}
+scaling: old content: 3 1813 +- 42.5793
+scaling: new content: 3 377.385 +- 8.86773
+bin 0, data = 3789 +- 61.5549, ll = 246.66 +- 10.1982, prph = 3542.34 +- 42.9231
+scale_data_ll (in bin 0) = 3789 - 246.66 = 1 +- 0.000310341
+--> scaling by N_{data-LL}
+bin 1, data = 1372 +- 37.0405, ll = 124.951 +- 7.24216, prph = 1247.05 +- 19.9644
+scale_data_ll (in bin 1) = 1372 - 124.951 = 1 +- 0.000916806
+--> scaling by N_{data-LL}
+bin 2, data = 586 +- 24.2074, ll = 84.8447 +- 5.98583, prph = 501.155 +- 10.909
+scale_data_ll (in bin 2) = 586 - 84.8447 = 1 +- 0.002482
+--> scaling by N_{data-LL}
+bin 3, data = 477 +- 21.8403, ll = 99.6154 +- 6.53034, prph = 377.385 +- 8.86773
+scale_data_ll (in bin 3) = 477 - 99.6154 = 1 +- 0.00366206
+--> scaling by N_{data-LL}
+bin 0, data = 3789 +- 61.5549, ll = 246.66 +- 10.1982, prph = 3542.34 +- 42.9231
+scale_data_ll (in bin 0) = 3789 - 246.66 = 1 +- 0.000310349
+--> scaling by N_{data-LL}
+bin 1, data = 1372 +- 37.0405, ll = 124.951 +- 7.24216, prph = 1247.05 +- 19.9644
+scale_data_ll (in bin 1) = 1372 - 124.951 = 1 +- 0.000916806
+--> scaling by N_{data-LL}
+bin 2, data = 586 +- 24.2074, ll = 84.8447 +- 5.98583, prph = 501.155 +- 10.909
+scale_data_ll (in bin 2) = 586 - 84.8447 = 1 +- 0.002482
+--> scaling by N_{data-LL}
+bin 3, data = 477 +- 21.8403, ll = 99.6154 +- 6.53034, prph = 377.385 +- 8.86773
+scale_data_ll (in bin 3) = 477 - 99.6154 = 1 +- 0.00366206
+--> scaling by N_{data-LL}
+--> scaling by fit param
+scaling: old content: 0 3542.34 +- 42.9231, param = 0.299641 +- 0.0224249
+scaling: old content: 0 1061.43 +- 80.4709
+scaling: old content: 1 1247.05 +- 19.9644, param = 0.475326 +- 0.0359488
+scaling: old content: 1 592.755 +- 45.8233
+scaling: old content: 2 501.155 +- 10.909, param = 0.573927 +- 0.0621726
+scaling: old content: 2 287.627 +- 31.7809
+scaling: old content: 3 377.385 +- 8.86773, param = 0.60861 +- 0.0746335
+scaling: old content: 3 229.68 +- 28.678
+h_cross_section_et cros sec in bin 0: 2.03215 +- 0.166165, lumi = 331.893, acc_Prompt = 0.786878, binWidth = 2, nentries = 1061.43
+errors (stat. and fit, acc., lumi., total), %: 0.0758136, 0.0161961, 0.026, 0.0817681
+h_cross_section_et cros sec in bin 1: 1.07008 +- 0.0903071, lumi = 331.893, acc_Prompt = 0.834509, binWidth = 2, nentries = 592.755
+errors (stat. and fit, acc., lumi., total), %: 0.0773056, 0.0216801, 0.026, 0.084393
+h_cross_section_et cros sec in bin 2: 0.500401 +- 0.0587164, lumi = 331.893, acc_Prompt = 0.865929, binWidth = 2, nentries = 287.627
+errors (stat. and fit, acc., lumi., total), %: 0.110494, 0.0297235, 0.026, 0.117339
+h_cross_section_et cros sec in bin 3: 0.164591 +- 0.021637, lumi = 331.893, acc_Prompt = 0.840909, binWidth = 5, nentries = 229.68
+errors (stat. and fit, acc., lumi., total), %: 0.12486, 0.0318652, 0.026, 0.131459
+sigma_tot = 8.02821 pb
+Entering hist_compare1st2nd.c
+0, ratio 1st/2nd = 1.00652 +- 0.119549
+1, ratio 1st/2nd = 0.994918 +- 0.126297
+2, ratio 1st/2nd = 0.992678 +- 0.186889
+3, ratio 1st/2nd = 1.15526 +- 0.220268
+exiting hist_compare1st2nd.c
+in CalculateCrossSec: calculate h_cross_section_eta, lumi = 331.893 pb^{-1}
+bin 0, data = 1734 +- 41.6413, ll = 341.382 +- 12.0058, prph = 3152 +- 56.1427
+scale_data_ll (in bin 0) = 1734 - 341.382 = 0.44182 +- 0.000189077
+--> scaling by N_{data-LL}
+scaling: old content: 0 3152 +- 56.1427
+scaling: new content: 0 1392.62 +- 24.8121
+bin 1, data = 1641 +- 40.5093, ll = 145.281 +- 7.83288, prph = 3959 +- 62.9206
+scale_data_ll (in bin 1) = 1641 - 145.281 = 0.377802 +- 0.000108624
+--> scaling by N_{data-LL}
+scaling: old content: 1 3959 +- 62.9206
+scaling: new content: 1 1495.72 +- 23.7754
+bin 2, data = 1531 +- 39.128, ll = 53.4767 +- 4.75161, prph = 3968 +- 62.9921
+scale_data_ll (in bin 2) = 1531 - 53.4767 = 0.37236 +- 9.86808e-05
+--> scaling by N_{data-LL}
+scaling: old content: 2 3968 +- 62.9921
+scaling: new content: 2 1477.52 +- 23.459
+bin 3, data = 1318 +- 36.3043, ll = 15.9306 +- 2.61813, prph = 3561 +- 59.6741
+scale_data_ll (in bin 3) = 1318 - 15.9306 = 0.365647 +- 0.000104489
+--> scaling by N_{data-LL}
+scaling: old content: 3 3561 +- 59.6741
+scaling: new content: 3 1302.07 +- 21.8228
+bin 0, data = 1734 +- 41.6413, ll = 341.382 +- 12.0058, prph = 1392.62 +- 24.8121
+scale_data_ll (in bin 0) = 1734 - 341.382 = 1 +- 0.000969359
+--> scaling by N_{data-LL}
+bin 1, data = 1641 +- 40.5093, ll = 145.281 +- 7.83288, prph = 1495.72 +- 23.7754
+scale_data_ll (in bin 1) = 1641 - 145.281 = 1 +- 0.000761519
+--> scaling by N_{data-LL}
+bin 2, data = 1531 +- 39.128, ll = 53.4767 +- 4.75161, prph = 1477.52 +- 23.459
+scale_data_ll (in bin 2) = 1531 - 53.4767 = 1 +- 0.000712154
+--> scaling by N_{data-LL}
+bin 3, data = 1318 +- 36.3043, ll = 15.9306 +- 2.61813, prph = 1302.07 +- 21.8228
+scale_data_ll (in bin 3) = 1318 - 15.9306 = 1 +- 0.000782059
+--> scaling by N_{data-LL}
+bin 0, data = 1734 +- 41.6413, ll = 341.382 +- 12.0058, prph = 1392.62 +- 24.8121
+scale_data_ll (in bin 0) = 1734 - 341.382 = 1 +- 0.00096936
+--> scaling by N_{data-LL}
+bin 1, data = 1641 +- 40.5093, ll = 145.281 +- 7.83288, prph = 1495.72 +- 23.7754
+scale_data_ll (in bin 1) = 1641 - 145.281 = 1 +- 0.000761519
+--> scaling by N_{data-LL}
+bin 2, data = 1531 +- 39.128, ll = 53.4767 +- 4.75161, prph = 1477.52 +- 23.459
+scale_data_ll (in bin 2) = 1531 - 53.4767 = 1 +- 0.000712154
+--> scaling by N_{data-LL}
+bin 3, data = 1318 +- 36.3043, ll = 15.9306 +- 2.61813, prph = 1302.07 +- 21.8228
+scale_data_ll (in bin 3) = 1318 - 15.9306 = 1 +- 0.000782059
+--> scaling by N_{data-LL}
+--> scaling by fit param
+scaling: old content: 0 1392.62 +- 24.8121, param = 0.348578 +- 0.0358873
+scaling: old content: 0 485.436 +- 50.7202
+scaling: old content: 1 1495.72 +- 23.7754, param = 0.422812 +- 0.0352649
+scaling: old content: 1 632.407 +- 53.6957
+scaling: old content: 2 1477.52 +- 23.459, param = 0.357286 +- 0.0344213
+scaling: old content: 2 527.898 +- 51.5442
+scaling: old content: 3 1302.07 +- 21.8228, param = 0.347271 +- 0.0325326
+scaling: old content: 3 452.171 +- 43.0322
+h_cross_section_eta cros sec in bin 0: 4.33985 +- 0.478909, lumi = 331.893, acc_Prompt = 0.842555, binWidth = 0.4, nentries = 485.436
+errors (stat. and fit, acc., lumi., total), %: 0.104484, 0.0241778, 0.026, 0.110351
+h_cross_section_eta cros sec in bin 1: 5.56499 +- 0.508641, lumi = 331.893, acc_Prompt = 0.856, binWidth = 0.4, nentries = 632.407
+errors (stat. and fit, acc., lumi., total), %: 0.0849069, 0.0216519, 0.026, 0.0914001
+h_cross_section_eta cros sec in bin 2: 4.94947 +- 0.511119, lumi = 331.893, acc_Prompt = 0.803401, binWidth = 0.4, nentries = 527.898
+errors (stat. and fit, acc., lumi., total), %: 0.0976406, 0.0213187, 0.026, 0.103267
+h_cross_section_eta cros sec in bin 3: 4.42273 +- 0.447331, lumi = 331.893, acc_Prompt = 0.770112, binWidth = 0.4, nentries = 452.171
+errors (stat. and fit, acc., lumi., total), %: 0.095168, 0.0222954, 0.026, 0.101144
+sigma_tot = 7.71082 pb
+Entering hist_compare1st2nd.c
+0, ratio 1st/2nd = 1.03698 +- 0.168314
+1, ratio 1st/2nd = 1.00593 +- 0.127277
+2, ratio 1st/2nd = 1.01061 +- 0.146076
+3, ratio 1st/2nd = 1.13175 +- 0.16209
+exiting hist_compare1st2nd.c
+in CalculateCrossSec: calculate h_cross_section_Q2, lumi = 331.893 pb^{-1}
+bin 0, data = 1860 +- 43.1277, ll = 45.7256 +- 4.40894, prph = 3513 +- 59.2706
+scale_data_ll (in bin 0) = 1860 - 45.7256 = 0.516446 +- 0.000152313
+--> scaling by N_{data-LL}
+scaling: old content: 0 3513 +- 59.2706
+scaling: new content: 0 1814.27 +- 30.6147
+bin 1, data = 1777 +- 42.1545, ll = 80.5077 +- 5.85677, prph = 3467 +- 58.8812
+scale_data_ll (in bin 1) = 1777 - 80.5077 = 0.489326 +- 0.000150712
+--> scaling by N_{data-LL}
+scaling: old content: 1 3467 +- 58.8812
+scaling: new content: 1 1696.49 +- 28.8168
+bin 2, data = 1394 +- 37.3363, ll = 164.367 +- 8.36115, prph = 3301 +- 57.4543
+scale_data_ll (in bin 2) = 1394 - 164.367 = 0.372503 +- 0.000134364
+--> scaling by N_{data-LL}
+scaling: old content: 2 3301 +- 57.4543
+scaling: new content: 2 1229.63 +- 21.4065
+bin 3, data = 810 +- 28.4605, ll = 143.057 +- 7.75551, prph = 2668 +- 51.6527
+scale_data_ll (in bin 3) = 810 - 143.057 = 0.249979 +- 0.000122257
+--> scaling by N_{data-LL}
+scaling: old content: 3 2668 +- 51.6527
+scaling: new content: 3 666.943 +- 12.9162
+bin 4, data = 383 +- 19.5704, ll = 122.413 +- 7.15049, prph = 1691 +- 41.1218
+scale_data_ll (in bin 4) = 383 - 122.413 = 0.154102 +- 0.000151844
+--> scaling by N_{data-LL}
+scaling: old content: 4 1691 +- 41.1218
+scaling: new content: 4 260.587 +- 6.34215
+bin 0, data = 1860 +- 43.1277, ll = 45.7256 +- 4.40894, prph = 1814.27 +- 30.6147
+scale_data_ll (in bin 0) = 1860 - 45.7256 = 1 +- 0.000571308
+--> scaling by N_{data-LL}
+bin 1, data = 1777 +- 42.1545, ll = 80.5077 +- 5.85677, prph = 1696.49 +- 28.8168
+scale_data_ll (in bin 1) = 1777 - 80.5077 = 1 +- 0.000629739
+--> scaling by N_{data-LL}
+bin 2, data = 1394 +- 37.3363, ll = 164.367 +- 8.36115, prph = 1229.63 +- 21.4065
+scale_data_ll (in bin 2) = 1394 - 164.367 = 1 +- 0.000969134
+--> scaling by N_{data-LL}
+bin 3, data = 810 +- 28.4605, ll = 143.057 +- 7.75551, prph = 666.943 +- 12.9162
+scale_data_ll (in bin 3) = 810 - 143.057 = 1 +- 0.00196004
+--> scaling by N_{data-LL}
+bin 4, data = 383 +- 19.5704, ll = 122.413 +- 7.15049, prph = 260.587 +- 6.34215
+scale_data_ll (in bin 4) = 383 - 122.413 = 1 +- 0.00643407
+--> scaling by N_{data-LL}
+bin 0, data = 1860 +- 43.1277, ll = 45.7256 +- 4.40894, prph = 1814.27 +- 30.6147
+scale_data_ll (in bin 0) = 1860 - 45.7256 = 1 +- 0.000571356
+--> scaling by N_{data-LL}
+bin 1, data = 1777 +- 42.1545, ll = 80.5077 +- 5.85677, prph = 1696.49 +- 28.8168
+scale_data_ll (in bin 1) = 1777 - 80.5077 = 1 +- 0.000629739
+--> scaling by N_{data-LL}
+bin 2, data = 1394 +- 37.3363, ll = 164.367 +- 8.36115, prph = 1229.63 +- 21.4065
+scale_data_ll (in bin 2) = 1394 - 164.367 = 1 +- 0.000969134
+--> scaling by N_{data-LL}
+bin 3, data = 810 +- 28.4605, ll = 143.057 +- 7.75551, prph = 666.943 +- 12.9162
+scale_data_ll (in bin 3) = 810 - 143.057 = 1 +- 0.00196004
+--> scaling by N_{data-LL}
+bin 4, data = 383 +- 19.5704, ll = 122.413 +- 7.15049, prph = 260.587 +- 6.34215
+scale_data_ll (in bin 4) = 383 - 122.413 = 1 +- 0.00643407
+--> scaling by N_{data-LL}
+--> scaling by fit param
+scaling: old content: 0 1814.27 +- 30.6147, param = 0.386605 +- 0.0294291
+scaling: old content: 0 701.408 +- 54.6887
+scaling: old content: 1 1696.49 +- 28.8168, param = 0.365722 +- 0.0313289
+scaling: old content: 1 620.444 +- 54.1841
+scaling: old content: 2 1229.63 +- 21.4065, param = 0.336671 +- 0.0393613
+scaling: old content: 2 413.982 +- 48.9335
+scaling: old content: 3 666.943 +- 12.9162, param = 0.43461 +- 0.0546787
+scaling: old content: 3 289.86 +- 36.8971
+scaling: old content: 4 260.587 +- 6.34215, param = 0.333344 +- 0.105222
+scaling: old content: 4 86.865 +- 27.5009
+h_cross_section_Q2 cros sec in bin 0: 0.168104 +- 0.014327, lumi = 331.893, acc_Prompt = 0.78573, binWidth = 16, nentries = 701.408
+errors (stat. and fit, acc., lumi., total), %: 0.0779698, 0.022546, 0.026, 0.0852268
+h_cross_section_Q2 cros sec in bin 1: 0.112828 +- 0.0106023, lumi = 331.893, acc_Prompt = 0.828435, binWidth = 20, nentries = 620.444
+errors (stat. and fit, acc., lumi., total), %: 0.0873311, 0.0229648, 0.026, 0.0939686
+h_cross_section_Q2 cros sec in bin 2: 0.0375409 +- 0.00462871, lumi = 331.893, acc_Prompt = 0.830649, binWidth = 40, nentries = 413.982
+errors (stat. and fit, acc., lumi., total), %: 0.118202, 0.0235494, 0.026, 0.123298
+h_cross_section_Q2 cros sec in bin 3: 0.0149128 +- 0.0019766, lumi = 331.893, acc_Prompt = 0.836626, binWidth = 70, nentries = 289.86
+errors (stat. and fit, acc., lumi., total), %: 0.127293, 0.0262372, 0.026, 0.132544
+h_cross_section_Q2 cros sec in bin 4: 0.00163288 +- 0.000521431, lumi = 331.893, acc_Prompt = 0.801422, binWidth = 200, nentries = 86.865
+errors (stat. and fit, acc., lumi., total), %: 0.316593, 0.0326389, 0.026, 0.319331
+sigma_tot = 7.81833 pb
+Entering hist_compare1st2nd.c
+0, ratio 1st/2nd = 1.02063 +- 0.107555
+1, ratio 1st/2nd = 0.33574 +- 0.0554692
+2, ratio 1st/2nd = 0.391933 +- 0.0754599
+3, ratio 1st/2nd = 0.113547 +- 0.0449192
+4, ratio 1st/2nd = 1 +- 0.451603
+exiting hist_compare1st2nd.c
+in CalculateCrossSec: calculate h_cross_section_x, lumi = 331.893 pb^{-1}
+bin 0, data = 2437 +- 49.366, ll = 100.28 +- 6.53091, prph = 4541 +- 67.3869
+scale_data_ll (in bin 0) = 2437 - 100.28 = 0.514583 +- 0.000120265
+--> scaling by N_{data-LL}
+scaling: old content: 0 4541 +- 67.3869
+scaling: new content: 0 2336.72 +- 34.6805
+bin 1, data = 2221 +- 47.1275, ll = 206.74 +- 9.3578, prph = 5279 +- 72.6567
+scale_data_ll (in bin 1) = 2221 - 206.74 = 0.381561 +- 8.28467e-05
+--> scaling by N_{data-LL}
+scaling: old content: 1 5279 +- 72.6567
+scaling: new content: 1 2014.26 +- 27.7264
+bin 2, data = 1272 +- 35.6651, ll = 212.038 +- 9.45949, prph = 3823 +- 61.8304
+scale_data_ll (in bin 2) = 1272 - 212.038 = 0.277259 +- 9.31631e-05
+--> scaling by N_{data-LL}
+scaling: old content: 2 3823 +- 61.8304
+scaling: new content: 2 1059.96 +- 17.1468
+bin 3, data = 163 +- 12.7671, ll = 29.1916 +- 3.45458, prph = 682 +- 26.1151
+scale_data_ll (in bin 3) = 163 - 29.1916 = 0.1962 +- 0.000376244
+--> scaling by N_{data-LL}
+scaling: old content: 3 682 +- 26.1151
+scaling: new content: 3 133.808 +- 5.13021
+bin 0, data = 2437 +- 49.366, ll = 100.28 +- 6.53091, prph = 2336.72 +- 34.6805
+scale_data_ll (in bin 0) = 2437 - 100.28 = 1 +- 0.000454333
+--> scaling by N_{data-LL}
+bin 1, data = 2221 +- 47.1275, ll = 206.74 +- 9.3578, prph = 2014.26 +- 27.7264
+scale_data_ll (in bin 1) = 2221 - 206.74 = 1 +- 0.000569323
+--> scaling by N_{data-LL}
+bin 2, data = 1272 +- 35.6651, ll = 212.038 +- 9.45949, prph = 1059.96 +- 17.1468
+scale_data_ll (in bin 2) = 1272 - 212.038 = 1 +- 0.00121327
+--> scaling by N_{data-LL}
+bin 3, data = 163 +- 12.7671, ll = 29.1916 +- 3.45458, prph = 133.808 +- 5.13021
+scale_data_ll (in bin 3) = 163 - 29.1916 = 1 +- 0.00986578
+--> scaling by N_{data-LL}
+bin 0, data = 2437 +- 49.366, ll = 100.28 +- 6.53091, prph = 2336.72 +- 34.6805
+scale_data_ll (in bin 0) = 2437 - 100.28 = 1 +- 0.000454429
+--> scaling by N_{data-LL}
+bin 1, data = 2221 +- 47.1275, ll = 206.74 +- 9.3578, prph = 2014.26 +- 27.7264
+scale_data_ll (in bin 1) = 2221 - 206.74 = 1 +- 0.000569324
+--> scaling by N_{data-LL}
+bin 2, data = 1272 +- 35.6651, ll = 212.038 +- 9.45949, prph = 1059.96 +- 17.1468
+scale_data_ll (in bin 2) = 1272 - 212.038 = 1 +- 0.00121327
+--> scaling by N_{data-LL}
+bin 3, data = 163 +- 12.7671, ll = 29.1916 +- 3.45458, prph = 133.808 +- 5.13021
+scale_data_ll (in bin 3) = 163 - 29.1916 = 1 +- 0.00986578
+--> scaling by N_{data-LL}
+--> scaling by fit param
+scaling: old content: 0 2336.72 +- 34.6805, param = 0.392875 +- 0.0260104
+scaling: old content: 0 918.039 +- 62.2875
+scaling: old content: 1 2014.26 +- 27.7264, param = 0.376941 +- 0.0291226
+scaling: old content: 1 759.258 +- 59.5843
+scaling: old content: 2 1059.96 +- 17.1468, param = 0.272609 +- 0.0457285
+scaling: old content: 2 288.955 +- 48.6953
+scaling: old content: 3 133.808 +- 5.13021, param = 0.43516 +- 0.127332
+scaling: old content: 3 58.2281 +- 17.1837
+h_cross_section_x cros sec in bin 0: 4247.17 +- 320.06, lumi = 331.893, acc_Prompt = 0.814091, binWidth = 0.0008, nentries = 918.039
+errors (stat. and fit, acc., lumi., total), %: 0.0678484, 0.0199873, 0.026, 0.0753585
+h_cross_section_x cros sec in bin 1: 1435.26 +- 121.574, lumi = 331.893, acc_Prompt = 0.79695, binWidth = 0.002, nentries = 759.258
+errors (stat. and fit, acc., lumi., total), %: 0.078477, 0.0184498, 0.026, 0.0847056
+h_cross_section_x cros sec in bin 2: 157.006 +- 26.987, lumi = 331.893, acc_Prompt = 0.792167, binWidth = 0.007, nentries = 288.955
+errors (stat. and fit, acc., lumi., total), %: 0.168522, 0.0216515, 0.026, 0.171885
+h_cross_section_x cros sec in bin 3: 19.2677 +- 5.79851, lumi = 331.893, acc_Prompt = 0.910547, binWidth = 0.01, nentries = 58.2281
+errors (stat. and fit, acc., lumi., total), %: 0.29511, 0.0529282, 0.026, 0.300944
+sigma_tot = 7.55997 pb
+Entering hist_compare1st2nd.c
+0, ratio 1st/2nd = 1.03442 +- 0.107641
+1, ratio 1st/2nd = 0.99746 +- 0.124512
+2, ratio 1st/2nd = 1.09089 +- 0.270171
+3, ratio 1st/2nd = 1.24887 +- 0.522192
+exiting hist_compare1st2nd.c
+after returning integral is 3.76722
+return to main
+Finish

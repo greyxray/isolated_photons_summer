@@ -17,8 +17,5 @@
 *.zip
 exe
 EXE
-/cross_sec_EB_copyfrom211215_clean
-/cross_sec_EB
 /calib
-/plots
 /input

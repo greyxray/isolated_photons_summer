@@ -2,6 +2,8 @@
 #cp /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/control_plots.cxx .
 SOURCE=fit_traectory.cxx
 EXE=exe
+echo $1
+echo $2
 
 if [ "$1" ]
 then
@@ -19,12 +21,12 @@ g++ -o $EXE $SOURCE -I/diskmnt/b/huettmaa/CodeTim/lib/GSL/include `root-config -
 
 rm -rf log_$EXE err_log_$EXE
 
-./$EXE 
+./$EXE $2 
 #> output_control_plots.txt
 #2> output_err.txt
 
-cp *.png /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures/
-cp *.eps /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures
+#cp *.png /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures/
+#cp *.eps /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/pictures
 #cp output_control_plots.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/
 #cp output_control_plots_err.txt /afs/desy.de/user/g/glusheno/zeus/dustexchange/new_variables/
 

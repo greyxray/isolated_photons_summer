@@ -1,0 +1,35 @@
+Info in <TCanvas::Print>: eps file acceptance.eps has been created
+Info in <TCanvas::Print>: png file acceptance.png has been created
+Info in <TCanvas::Print>: eps file c_dz_et.eps has been created
+Info in <TCanvas::Print>: png file c_dz_et.png has been created
+Info in <TCanvas::Print>: eps file c_dz_eta.eps has been created
+Info in <TCanvas::Print>: png file c_dz_eta.png has been created
+Info in <TCanvas::Print>: eps file c_dz_q2.eps has been created
+Info in <TCanvas::Print>: png file c_dz_q2.png has been created
+Info in <TCanvas::Print>: eps file c_dz_x.eps has been created
+Info in <TCanvas::Print>: png file c_dz_x.png has been created
+Info in <TCanvas::Print>: eps file cross_et.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: cross_et.C has been generated
+Info in <TCanvas::Print>: png file cross_et.png has been created
+Info in <TCanvas::Print>: eps file cross_eta.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: cross_eta.C has been generated
+Info in <TCanvas::Print>: png file cross_eta.png has been created
+Info in <TCanvas::Print>: eps file cross_Q2.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: cross_Q2.C has been generated
+Info in <TCanvas::Print>: png file cross_Q2.png has been created
+Info in <TCanvas::Print>: eps file cross_x.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: cross_x.C has been generated
+Info in <TCanvas::Print>: png file cross_x.png has been created
+Info in <TCanvas::Print>: eps file comp_1st2nd_et.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: comp_1st2nd_et.C has been generated
+Info in <TCanvas::Print>: png file comp_1st2nd_et.png has been created
+Info in <TCanvas::Print>: eps file comp_1st2nd_eta.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: comp_1st2nd_eta.C has been generated
+Info in <TCanvas::Print>: png file comp_1st2nd_eta.png has been created
+Info in <TCanvas::Print>: eps file comp_1st2nd_Q2.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: comp_1st2nd_Q2.C has been generated
+Info in <TCanvas::Print>: png file comp_1st2nd_Q2.png has been created
+Info in <TCanvas::Print>: eps file comp_1st2nd_x.eps has been created
+Info in <TCanvas::SaveSource>: C++ Macro file: comp_1st2nd_x.C has been generated
+Info in <TCanvas::Print>: png file comp_1st2nd_x.png has been created
+Finish
