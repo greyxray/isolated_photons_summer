@@ -1,0 +1,22 @@
+#!/bin/sh
+FAIL=0
+#zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
+for i in systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
+do
+    ./start_photonssys $i &
+    echo "starting ($i)"    
+done
+
+for job in `jobs -p`
+do
+    echo $job
+    wait $job || let "FAIL+=1"
+done
+echo $FAIL
+if [ "$FAIL" == "0" ];
+then
+echo "startfor YAY!"
+else
+echo "startfor FAIL! ($FAIL) ($i)"
+fi
+echo "startfor end ($i)"

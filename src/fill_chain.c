@@ -176,7 +176,7 @@ void fill(TChain* chain, TString location, TString* str, Int_t n)
     {
       TString file = location + str[i];
       chain->Add(file);
-      cout << file << " added to chain in fill" << endl;
+      //cout << file << " added to chain in fill" << endl;
     }
     cout << chain->GetEntries() << " events chained" << endl;
 }

@@ -1,12 +1,45 @@
 #!/bin/sh
-for i in systJetE+ systJetE-
+SOURCE=systAcc
+
+if [ "$1" ]
+then
+ SOURCE="$1"
+fi
+echo $SOURCE
+# systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc
+FAIL=0
+#./main 0405e data 0 0 0 > /dev/null 2> /dev/null &
+#./main 06e data 0 0 0 > /dev/null 2> /dev/null &
+#./main 0607p data 0 0 0 > /dev/null 2> /dev/null &
+    
+#./main 0405e mc_bg_rad 0 0 0  > /dev/null 2> /dev/null &
+#./main 06e mc_bg_rad 0 0 0  > /dev/null 2> /dev/null &
+#./main 0607p mc_bg_rad 0 0 0  > /dev/null 2> /dev/null &
+      
+#./main 0405e mc_bg_norad 0 0 0  > /dev/null 2> /dev/null &
+#./main 06e mc_bg_norad 0 0 0  > /dev/null 2> /dev/null &
+#./main 0607p mc_bg_norad 0 0 0  > /dev/null 2> /dev/null &
+      
+#./main 0405e mc_prph 0 0 0 > /dev/null 2> /dev/null &
+#./main 06e mc_prph 0 0 0  > /dev/null 2> /dev/null &
+
+#systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc 
+for i in  $SOURCE
 do
-    FAIL=0
+    #./start_photonssys $i &
     echo "starting ($i)"
+
+    #this block uncommented only for i==zero
+    if [ "$i" == "zero" ];
+    then 
+    echo "Yes it is zero"
     ./main 0405e data 0 0 0 $i > /dev/null 2> /dev/null &
     ./main 06e data 0 0 0 $i > /dev/null 2> /dev/null &
     ./main 0607p data 0 0 0 $i > /dev/null 2> /dev/null &
-       
+    else
+    echo "No it's not zero"
+    fi
+
     ./main 0405e mc_bg_rad 0 0 0 $i > /dev/null 2> /dev/null &
     ./main 06e mc_bg_rad 0 0 0 $i > /dev/null 2> /dev/null &
     ./main 0607p mc_bg_rad 0 0 0 $i > /dev/null 2> /dev/null &
@@ -18,17 +51,19 @@ do
     ./main 0405e mc_prph 0 0 0 $i > /dev/null 2> /dev/null &
     ./main 06e mc_prph 0 0 0 $i > /dev/null 2> /dev/null &
     
-    for job in `jobs -p`
-    do
-        echo $job
-        wait $job || let "FAIL+=1"
-    done
-    echo $FAIL
-    if [ "$FAIL" == "0" ];
-    then
-    echo "YAY!"
-    else
-    echo "FAIL! ($FAIL)"
-    fi
-    echo "end ($i)"
+
 done
+
+for job in `jobs -p`
+do
+    echo $job
+    wait $job || let "FAIL+=1"
+done
+echo $FAIL
+if [ "$FAIL" == "0" ];
+then
+echo "YAY!"
+else
+echo "FAIL! ($FAIL) ($i)"
+fi
+echo "end ($i)"

@@ -41,7 +41,7 @@ void Hist::Init(TDirectory** dir)
   Double_t  q2_binning[n_q2_bins+1];
   for(Int_t i=0; i<n_q2_bins+1; i++) {
     q2_binning[i] = q2start + (q2end-q2start)*TMath::Exp(float(i)*5./float(n_q2_bins))/TMath::Exp(5.);
-    cout << "q2 binning: " << i << " " << q2_binning[i] << endl;
+    //cout << "q2 binning: " << i << " " << q2_binning[i] << endl;
   }
   mccorel_q2_y = new TH2D("h2d_mccorel_q2_y", "x - Q^{2}, y - y", n_q2_bins-1, q2_binning, 200, 0., 1.);
   mccorel_q2_x = new TH2D("h2d_mccorel_q2_x", "x - Q^{2}, y - x", n_q2_bins-1, q2_binning, n_x_bins-1, x_el_binning);
@@ -80,13 +80,21 @@ void Hist::Init(TDirectory** dir)
   //
   // for fit fmax and deltaz in different bins and cross sections
   //
-  dir[4]->cd();//detector leverl
+  dir[4]->cd();
+  //detector leverl
   det_cross_et = new TH1D("h_det_cross_et", "det_cross_et", number_etbins, et_bin);
   det_cross_eta = new TH1D("h_det_cross_eta", "det_cross_eta", number_etabins, eta_bin_crosssec);
   det_cross_Q2 = new TH1D("h_det_cross_Q2", "det_cross_Q2", number_Q2bins, Q2_bin);
   det_cross_x = new TH1D("h_det_cross_x", "det_cross_x", number_xbins, x_bin);
   det_cross_et_jet = new TH1D("h_det_cross_et_jet", "det_cross_et_jet", number_et_jetbins, et_jet_bin);
   det_cross_eta_jet = new TH1D("h_det_cross_eta_jet", "det_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
+    det_cross_xgamma = new TH1D("h_det_cross_xgamma", "det_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    det_cross_xp = new TH1D("h_det_cross_xp", "det_cross_xp", number_xp_bins, xp_bin);
+    det_cross_dphi = new TH1D("h_det_cross_dphi", "det_cross_dphi", number_dphi_bins, dphi_bin);
+    det_cross_deta = new TH1D("h_det_cross_deta", "det_cross_deta", number_deta_bins, deta_bin);
+    det_cross_dphi_e_ph = new TH1D("h_det_cross_dphi_e_ph", "det_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    det_cross_deta_e_ph = new TH1D("h_det_cross_deta_e_ph", "det_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
+
   //hadron leverl
   had_cross_et = new TH1D("h_had_cross_et", "had_cross_et", number_etbins, et_bin);
   had_cross_eta = new TH1D("h_had_cross_eta", "had_cross_eta", number_etabins, eta_bin_crosssec);
@@ -94,6 +102,13 @@ void Hist::Init(TDirectory** dir)
   had_cross_x = new TH1D("h_had_cross_x", "had_cross_x", number_xbins, x_bin);
   had_cross_et_jet = new TH1D("h_had_cross_et_jet", "had_cross_et_jet", number_et_jetbins, et_jet_bin);
   had_cross_eta_jet = new TH1D("h_had_cross_eta_jet", "had_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
+    had_cross_xgamma = new TH1D("h_had_cross_xgamma", "had_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    had_cross_xp = new TH1D("h_had_cross_xp", "had_cross_xp", number_xp_bins, xp_bin);
+    had_cross_dphi = new TH1D("h_had_cross_dphi", "had_cross_dphi", number_dphi_bins, dphi_bin);
+    had_cross_deta = new TH1D("h_had_cross_deta", "had_cross_deta", number_deta_bins, deta_bin);
+    had_cross_dphi_e_ph = new TH1D("h_had_cross_dphi_e_ph", "had_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    had_cross_deta_e_ph = new TH1D("h_had_cross_deta_e_ph", "had_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
+
   //detector and hadron leverl
   hd_cross_et = new TH1D("h_hd_cross_et", "hd_cross_et", number_etbins, et_bin);
   hd_cross_eta = new TH1D("h_hd_cross_eta", "hd_cross_eta", number_etabins, eta_bin_crosssec);
@@ -101,13 +116,25 @@ void Hist::Init(TDirectory** dir)
   hd_cross_x = new TH1D("h_hd_cross_x", "hd_cross_x", number_xbins, x_bin);
   hd_cross_et_jet = new TH1D("h_hd_cross_et_jet", "hd_cross_et_jet", number_et_jetbins, et_jet_bin);
   hd_cross_eta_jet = new TH1D("h_hd_cross_eta_jet", "hd_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
-
+    hd_cross_xgamma = new TH1D("h_hd_cross_xgamma", "hd_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    hd_cross_xp = new TH1D("h_hd_cross_xp", "hd_cross_xp", number_xp_bins, xp_bin);
+    hd_cross_dphi = new TH1D("h_hd_cross_dphi", "hd_cross_dphi", number_dphi_bins, dphi_bin);
+    hd_cross_deta = new TH1D("h_hd_cross_deta", "hd_cross_deta", number_deta_bins, deta_bin);
+    hd_cross_dphi_e_ph = new TH1D("h_hd_cross_dphi_e_ph", "hd_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    hd_cross_deta_e_ph = new TH1D("h_hd_cross_deta_e_ph", "hd_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
+    
   prof_det_cross_et = new TProfile("prof_det_cross_et", "det_cross_et", number_etbins, et_bin);
   prof_det_cross_eta = new TProfile("prof_det_cross_eta", "det_cross_eta", number_etabins, eta_bin_crosssec);
   prof_det_cross_Q2 = new TProfile("prof_det_cross_Q2", "det_cross_Q2", number_Q2bins, Q2_bin);
   prof_det_cross_x = new TProfile("prof_det_cross_x", "det_cross_x", number_xbins, x_bin);
   prof_det_cross_et_jet = new TProfile("prof_det_cross_et_jet", "det_cross_et_jet", number_et_jetbins, et_jet_bin);
   prof_det_cross_eta_jet = new TProfile("prof_det_cross_eta_jet", "det_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
+    prof_det_cross_xgamma = new TProfile("prof_det_cross_xgamma", "det_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    prof_det_cross_xp = new TProfile("prof_det_cross_xp", "det_cross_xp", number_xp_bins, xp_bin);
+    prof_det_cross_dphi = new TProfile("prof_det_cross_dphi", "det_cross_dphi", number_dphi_bins, dphi_bin);
+    prof_det_cross_deta = new TProfile("prof_det_cross_deta", "det_cross_deta", number_deta_bins, deta_bin);
+    prof_det_cross_dphi_e_ph = new TProfile("prof_det_cross_dphi_e_ph", "det_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    prof_det_cross_deta_e_ph = new TProfile("prof_det_cross_deta_e_ph", "det_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
 
   prof_had_cross_et = new TProfile("prof_had_cross_et", "had_cross_et", number_etbins, et_bin);
   prof_had_cross_eta = new TProfile("prof_had_cross_eta", "had_cross_eta", number_etabins, eta_bin_crosssec);
@@ -115,6 +142,12 @@ void Hist::Init(TDirectory** dir)
   prof_had_cross_x = new TProfile("prof_had_cross_x", "had_cross_x", number_xbins, x_bin);
   prof_had_cross_et_jet = new TProfile("prof_had_cross_et_jet", "had_cross_et_jet", number_et_jetbins, et_jet_bin);
   prof_had_cross_eta_jet = new TProfile("prof_had_cross_eta_jet", "had_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
+    prof_had_cross_xgamma = new TProfile("prof_had_cross_xgamma", "had_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    prof_had_cross_xp = new TProfile("prof_had_cross_xp", "had_cross_xp", number_xp_bins, xp_bin);
+    prof_had_cross_dphi = new TProfile("prof_had_cross_dphi", "had_cross_dphi", number_dphi_bins, dphi_bin);
+    prof_had_cross_deta = new TProfile("prof_had_cross_deta", "had_cross_deta", number_deta_bins, deta_bin);
+    prof_had_cross_dphi_e_ph = new TProfile("prof_had_cross_dphi_e_ph", "had_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    prof_had_cross_deta_e_ph = new TProfile("prof_had_cross_deta_e_ph", "had_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
 
   prof_hd_cross_et = new TProfile("prof_hd_cross_et", "hd_cross_et", number_etbins, et_bin);
   prof_hd_cross_eta = new TProfile("prof_hd_cross_eta", "hd_cross_eta", number_etabins, eta_bin_crosssec);
@@ -122,15 +155,99 @@ void Hist::Init(TDirectory** dir)
   prof_hd_cross_x = new TProfile("prof_hd_cross_x", "hd_cross_x", number_xbins, x_bin);
   prof_hd_cross_et_jet = new TProfile("prof_hd_cross_et_jet", "hd_cross_et_jet", number_et_jetbins, et_jet_bin);
   prof_hd_cross_eta_jet = new TProfile("prof_hd_cross_eta_jet", "hd_cross_eta_jet", number_eta_jetbins, eta_jet_bin);
+    prof_hd_cross_xgamma = new TProfile("prof_hd_cross_xgamma", "hd_cross_xgamma", number_xgamma_bins, xgamma_bin);
+    prof_hd_cross_xp = new TProfile("prof_hd_cross_xp", "hd_cross_xp", number_xp_bins, xp_bin);
+    prof_hd_cross_dphi = new TProfile("prof_hd_cross_dphi", "hd_cross_dphi", number_dphi_bins, dphi_bin);
+    prof_hd_cross_deta = new TProfile("prof_hd_cross_deta", "hd_cross_deta", number_deta_bins, deta_bin);
+    prof_hd_cross_dphi_e_ph = new TProfile("prof_hd_cross_dphi_e_ph", "hd_cross_dphi_e_ph", number_dphi_e_ph_bins, dphi_e_ph_bin);
+    prof_hd_cross_deta_e_ph = new TProfile("prof_hd_cross_deta_e_ph", "hd_cross_deta_e_ph", number_deta_e_ph_bins, deta_e_ph_bin);
+
+  for(Int_t i = 0; i < number_xgamma_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < x_{gamma} < %.0f", xgamma_bin[i], xgamma_bin[i+1]);
+
+    s.Form("h_fmax_xgamma_%i", i);
+    fmax_xgamma[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_xgamma_%i", i);
+    deltaz_xgamma[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
+  for(Int_t i = 0; i < number_xp_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < x_{p} < %.0f", xp_bin[i], xp_bin[i+1]);
+
+    s.Form("h_fmax_xp_%i", i);
+    fmax_xp[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_xp_%i", i);
+    deltaz_xp[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
+
+  for(Int_t i = 0; i < number_dphi_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < #Delta#phi < %.0f", dphi_bin[i], dphi_bin[i+1]);
+
+    s.Form("h_fmax_dphi_%i", i);
+    fmax_dphi[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_dphi_%i", i);
+    deltaz_dphi[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
+
+  for(Int_t i = 0; i < number_deta_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < #Delta#eta < %.0f", deta_bin[i], deta_bin[i+1]);
+
+    s.Form("h_fmax_deta_%i", i);
+    fmax_deta[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_deta_%i", i);
+    deltaz_deta[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
+
+  for(Int_t i = 0; i < number_dphi_e_ph_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < #Delta#phi_{e, #gamma} < %.0f", dphi_e_ph_bin[i], dphi_e_ph_bin[i+1]);
+
+    s.Form("h_fmax_dphi_e_ph_%i", i);
+    fmax_dphi_e_ph[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_dphi_e_ph_%i", i);
+    deltaz_dphi_e_ph[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
+  for(Int_t i = 0; i < number_deta_e_ph_bins; i++)
+  {
+    TString s; 
+    TString s_title; 
+    s_title.Form("%.0f < #Delta#eta_{e, #gamma} < %.0f", deta_e_ph_bin[i], deta_e_ph_bin[i+1]);
+
+    s.Form("h_fmax_deta_e_ph_%i", i);
+    fmax_deta_e_ph[i] = new TH1D(s, s_title, 200, 0., 1.);
+
+    s.Form("h_deltaz_deta_e_ph_%i", i);
+    deltaz_deta_e_ph[i] = new TH1D(s, s_title, 300, 0., 1.5);
+  }
 
   //fmax and delta_z per E_{t,\gamma} bins  //per == in different
-  for(Int_t i=0; i<number_etbins; i++)
+  for(Int_t i = 0; i < number_etbins; i++)
     {
       TString s; 
-      s.Form("h_fmax_et_%i", i);
       TString s_title; 
       s_title.Form("%.0f < E_{T, photon} < %.0f", et_bin[i], et_bin[i+1]);
+
+      s.Form("h_fmax_et_%i", i);
       fmax_et[i] = new TH1D(s, s_title, 200, 0., 1.);
+
       s.Form("h_deltaz_et_%i", i);
       deltaz_et[i] = new TH1D(s, s_title, 300, 0., 1.5);
     }
@@ -213,24 +330,36 @@ void Hist::Init(TDirectory** dir)
   comp_y_jb_norew = new TH1D("h_comp_y_jb_norew", "y_jb_norew", 200, 0., 1.);  
   comp_s = new TH1D("h_comp_s", "s", 200, 220., 420.);
   
-  /*New Stydies Variables*/
-  x_gamma_unmarged = new TH1D("h_x_gamma_unmarged", "x_{#gamma} variable", 120, 0., 1.2);
-  x_gamma = new TH1D("h_x_gamma", "x_{#gamma} variable", number_xgamma_bins, xgamma_bin);
-  x_pomeron_unmarged = new TH1D("h_x_pomeron_unmarged", "x_{#P} variable", 300, 0., 0.03);
-  x_pomeron = new TH1D("h_x_pomeron", "x_{#P} variable", number_xp_bins, xp_bin);
-  phjet_deta_unmarged = new TH1D("h_phjet_deta_unmarged", "#eta_{jet} - #eta_{photon}", 200, -7., -7.);
-  phjet_deta = new TH1D("h_phjet_deta", "#eta_{jet} - #eta_{photon}", number_deta_bins, deta_bin);
-  phjet_dphi_unmarged = new TH1D("h_phjet_dphi_unmarged", "#phi_{jet} - #phi_{photon}", 1000, 0, 180);
-  phjet_dphi = new TH1D("h_phjet_dphi", "#phi_{jet} - #phi_{photon}", number_dphi_bins, dphi_bin);
-  
+          /*New Stydies Variables*/
+          x_gamma_unmarged = new TH1D("h_x_gamma_unmarged", "x_{#gamma} variable", 120, 0., 1.2);
+          x_gamma = new TH1D("h_x_gamma", "x_{#gamma} variable", number_xgamma_bins, xgamma_bin);
+          x_gamma_exp = new TH1D("h_x_gamma_exp", "x_{#gamma} variable", number_xgamma_bins, xgamma_bin);
+          x_gamma_diff = new TH1D("h_x_gamma_diff", "x_{#gamma} variable", 200, -1.1, 1.1);
+
+          x_pomeron_unmarged = new TH1D("h_x_pomeron_unmarged", "x_{#P} variable", 300, 0., 0.03);
+          x_pomeron = new TH1D("h_x_pomeron", "x_{#P} variable", number_xp_bins, xp_bin);
+          x_pomeron_exp = new TH1D("h_x_pomeron_exp", "x_{#P} variable", number_xp_bins, xp_bin);
+          x_pomeron_diff = new TH1D("h_x_pomeron_diff", "x_{P} variable", 200, -0.1, 0.1);
+          
+          phjet_deta_unmarged = new TH1D("h_phjet_deta_unmarged", "#eta_{jet} - #eta_{photon}", 200, -7., 7.);
+          phjet_deta = new TH1D("h_phjet_deta", "#eta_{jet} - #eta_{photon}", number_deta_bins, deta_bin);
+          phjet_dphi_unmarged = new TH1D("h_phjet_dphi_unmarged", "#phi_{jet} - #phi_{photon}", 1000, 0, 180);
+          phjet_dphi = new TH1D("h_phjet_dphi", "#phi_{jet} - #phi_{photon}", number_dphi_bins, dphi_bin);
+          
+          phjet_dphi_el_ph_true = new TH1D("h_phjet_dphi_el_ph_true", "#phi_{el} - #phi_{photon}", number_dphi_e_ph_bins, dphi_e_ph_bin);//merged bins
+          phjet_dphi_el_ph_true_unmerged = new TH1D("h_phjet_dphi_el_ph_true_unmerged", "#phi_{el} - #phi_{photon}", 200, -0.5, 3.5);//many unmerged bins
+          phjet_deta_el_ph_true = new TH1D("h_phjet_deta_el_ph_true", "#eta_{el} - #eta_{photon}", number_deta_e_ph_bins, deta_e_ph_bin);//merged bins
+          phjet_deta_el_ph_true_unmerged = new TH1D("h_phjet_deta_el_ph_true_unmerged", "#eta_{el} - #eta_{photon}", 200, -7., 7.);//many unmerged bins
+          
+          phjet_deta_el_ph = new TH1D("h_phjet_deta_el_ph", "#eta_{el} - #eta_{photon}", 200, -7., 7.);
+          phjet_dphi_el_ph = new TH1D("h_phjet_dphi_el_ph", "#phi_{el} - #phi_{photon}", 200, -0.5, 3.5);
+
   phjet_dphi_deta = new TH2D("h2d_phjet_dphi_deta", "#Delta #eta vs. #Delta #phi", 200, -0.5, 3.5, 200, -7., 7.);
   phjet_jet_et = new TH1D("h_phjet_jet_et", "Accomp. jet transverse energy", 200, 0., 50.);
   phjet_jet_eta = new TH1D("h_phjet_jet_eta", "Accomp. jet eta", 200, -1.6, 1.9);
   phjet_jet_phi = new TH1D("h_phjet_jet_phi", "Accomp. jet phi", 200, -3.5, 3.5);
   
-  phjet_deta_el_ph = new TH1D("h_phjet_deta_el_ph", "#eta_{el} - #eta_{photon}", 200, -7., -7.);
-  phjet_dphi_el_ph = new TH1D("h_phjet_dphi_el_ph", "#phi_{el} - #phi_{photon}", 200, -0.5, 3.5);
-  phjet_deta_el_jet = new TH1D("h_phjet_deta_el_jet", "#eta_{el} - #eta_{jet}", 200, -7., -7.);
+  phjet_deta_el_jet = new TH1D("h_phjet_deta_el_jet", "#eta_{el} - #eta_{jet}", 200, -7., 7.);
   phjet_dphi_el_jet = new TH1D("h_phjet_dphi_el_jet", "#phi_{el} - #phi_{jet}", 200, -0.5, 3.5);
 
   et_jet_photon_ratio = new TH1D("h_et_jet_photon_ratio", "E_{T, jet} / E_{T, photon}", 200, 0., 20.);
@@ -270,7 +399,8 @@ void Hist::Init(TDirectory** dir)
 
   phjet_y_y_gt_05 = new TH1D("phjet_y_y_gt_05", "y for y > 0.5", 50, 10., 30.);
   phjet_y_y_lt_05 = new TH1D("phjet_y_y_lt_05", "y for y < 0.5", 50, 10., 30.);
-  phjet_eph = new TH1D("phjet_eph", "photon cand energy", 50, 0, 20); phjet_eph->Sumw2();
+  phjet_eph = new TH1D("phjet_eph", "photon cand energy", 50, 0, 20); 
+  phjet_eph->Sumw2();
   phjet_eel_y_gt_05 = new TH1D("phjet_eel_y_gt_05", "E^{el} for y > 0.5", 50, 10., 30.);
   phjet_eel_y_lt_05 = new TH1D("phjet_eel_y_lt_05", "E^{el} for y < 0.5", 50, 10., 30.);
   phjet_phiph_phij_y_gt_05 = new TH1D("phjet_phiph_phij_y_gt_05", "phiph - phijet for y > 0.5", 50, 0., 3.2);
@@ -362,6 +492,8 @@ void Hist::Init(TDirectory** dir)
 
   dir[5]->cd(); //inclusive jet
   ijet_njets = new TH1I("ijet_njets", "# of jets with E_{T} > 2.5 GeV", 10, 0, 10); ijet_njets->Sumw2();
+  cout << " Reached Here  " << endl;
+
   ijet_njets_vs_etjet = new TH2D("h2d_ijet_njets_vs_etjet", "# of jets vs E_{T}^{jet}", 200, 0., 100., 10, 0, 10); ijet_njets_vs_etjet->Sumw2();
   zvtx->Sumw2();
    for(Int_t i=0; i<2; i++)
@@ -467,11 +599,17 @@ void Hist::Init(TDirectory** dir)
    comp_y->Sumw2();
    comp_s->Sumw2();
    phjet_dphi_deta->Sumw2();
+   phjet_deta_el_ph_true->Sumw2();
+   phjet_deta_el_ph_true_unmerged->Sumw2(); 
+   phjet_dphi_el_ph_true->Sumw2();
+   phjet_dphi_el_ph_true_unmerged->Sumw2();
    phjet_jet_et->Sumw2();
    phjet_jet_eta->Sumw2();
    phjet_jet_phi->Sumw2();
    phjet_dphi->Sumw2();
    phjet_deta->Sumw2();
+   phjet_dphi_unmarged->Sumw2();
+   phjet_deta_unmarged->Sumw2();
    phjet_dphi_el_ph->Sumw2();
    phjet_deta_el_ph->Sumw2();
    phjet_dphi_el_jet->Sumw2();
@@ -569,6 +707,8 @@ void Hist::Init(TDirectory** dir)
    dis_y_el->Sumw2();
    x_gamma->Sumw2();
    x_pomeron->Sumw2();
+   x_gamma_unmarged->Sumw2();
+   x_pomeron_unmarged->Sumw2();
    dis_px_event->Sumw2();
    dis_py_event->Sumw2();
    dis_pz_event->Sumw2();

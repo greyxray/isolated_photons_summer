@@ -199,28 +199,28 @@ Double_t selector::jet_en_corr_1stana(Double_t eta, Double_t et, TString period,
   Double_t corfac = 1.;
 
   for(Int_t i=0; i<num_eta_bins; i++)
+  {
+    if(eta>eta_bins[i] && eta<eta_bins[i+1])
     {
-      if(eta>eta_bins[i] && eta<eta_bins[i+1])
-	{
-	  if(period == "0405e" || period == "06e"){
-	    a1_corr = a1_corr040506e[i];
-	    a0_corr = a0_corr040506e[i];
-	  }
-	  if(period == "0607p" || period == "04p") {
-	    a1_corr = a1_corr0607p[i];
-	    a0_corr = a0_corr0607p[i];
-	  }
-	  if(!Data && mc_type == "mc_prph") {
-	    a1_corr = a1_corr_prph[i];
-	    a0_corr = a0_corr_prph[i];
-	  }
-	  et_corr = (et-a0_corr)/a1_corr;
-	  //	  et_corr = (-a1_corr[i]+sqrt(a1_corr[i]*a1_corr[i]-4*a2_corr[i]*(a0_corr[i]-et)))*(0.5/a2_corr[i]);
-	    ///	  corfac = (1./a1_corr[i]) - (a0_corr[i]/(a1_corr[i] * et));
-	}
+      if(period == "0405e" || period == "06e"){
+        a1_corr = a1_corr040506e[i];
+        a0_corr = a0_corr040506e[i];
+      }
+      if(period == "0607p" || period == "04p") {
+        a1_corr = a1_corr0607p[i];
+        a0_corr = a0_corr0607p[i];
+      }
+      if(!Data && mc_type == "mc_prph") {
+        a1_corr = a1_corr_prph[i];
+        a0_corr = a0_corr_prph[i];
+      }
+      et_corr = (et-a0_corr)/a1_corr;
+      //	  et_corr = (-a1_corr[i]+sqrt(a1_corr[i]*a1_corr[i]-4*a2_corr[i]*(a0_corr[i]-et)))*(0.5/a2_corr[i]);
+      ///	  corfac = (1./a1_corr[i]) - (a0_corr[i]/(a1_corr[i] * et));
     }
+  }
   //  cout << "return " << et_corr << endl;
   if(check_cuts)
-    cout << "return value: " << eta << ", " << et  << ", " << period << ", " << mc_type << ", " << et_corr << ", " << a0_corr << ", " << a1_corr << endl;
+    if (nodebugmode) cout << "return value: " << eta << ", " << et  << ", " << period << ", " << mc_type << ", " << et_corr << ", " << a0_corr << ", " << a1_corr << endl;
   return et_corr;
 }

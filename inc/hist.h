@@ -32,6 +32,12 @@ class Hist
   TH1D* det_cross_x;
   TH1D* det_cross_et_jet;
   TH1D* det_cross_eta_jet;  
+    TH1D* det_cross_xgamma;
+    TH1D* det_cross_xp;
+    TH1D* det_cross_dphi;
+    TH1D* det_cross_deta;
+    TH1D* det_cross_dphi_e_ph;
+    TH1D* det_cross_deta_e_ph;
 
   TH1D* had_cross_et;
   TH1D* had_cross_eta;
@@ -39,6 +45,12 @@ class Hist
   TH1D* had_cross_x;
   TH1D* had_cross_et_jet;
   TH1D* had_cross_eta_jet;  
+    TH1D* had_cross_xgamma;
+    TH1D* had_cross_xp;
+    TH1D* had_cross_dphi;
+    TH1D* had_cross_deta;
+    TH1D* had_cross_dphi_e_ph;
+    TH1D* had_cross_deta_e_ph;
 
   TH1D* hd_cross_et;
   TH1D* hd_cross_eta;
@@ -46,6 +58,12 @@ class Hist
   TH1D* hd_cross_x;
   TH1D* hd_cross_et_jet;
   TH1D* hd_cross_eta_jet;  
+    TH1D* hd_cross_xgamma;
+    TH1D* hd_cross_xp;
+    TH1D* hd_cross_dphi;
+    TH1D* hd_cross_deta;
+    TH1D* hd_cross_dphi_e_ph;
+    TH1D* hd_cross_deta_e_ph;
 
   TProfile* prof_det_cross_et;
   TProfile* prof_det_cross_eta;
@@ -53,6 +71,12 @@ class Hist
   TProfile* prof_det_cross_x;
   TProfile* prof_det_cross_et_jet;
   TProfile* prof_det_cross_eta_jet;
+    TProfile* prof_det_cross_xgamma;
+    TProfile* prof_det_cross_xp;
+    TProfile* prof_det_cross_dphi;
+    TProfile* prof_det_cross_deta;
+    TProfile* prof_det_cross_dphi_e_ph;
+    TProfile* prof_det_cross_deta_e_ph;
 
   TProfile* prof_had_cross_et;
   TProfile* prof_had_cross_eta;
@@ -60,6 +84,12 @@ class Hist
   TProfile* prof_had_cross_x;
   TProfile* prof_had_cross_et_jet;
   TProfile* prof_had_cross_eta_jet;
+    TProfile* prof_had_cross_xgamma;
+    TProfile* prof_had_cross_xp;
+    TProfile* prof_had_cross_dphi;
+    TProfile* prof_had_cross_deta;
+    TProfile* prof_had_cross_dphi_e_ph;
+    TProfile* prof_had_cross_deta_e_ph;
 
   TProfile* prof_hd_cross_et;
   TProfile* prof_hd_cross_eta;
@@ -67,6 +97,13 @@ class Hist
   TProfile* prof_hd_cross_x;
   TProfile* prof_hd_cross_et_jet;
   TProfile* prof_hd_cross_eta_jet;
+    TProfile* prof_hd_cross_xgamma;
+    TProfile* prof_hd_cross_xp;
+    TProfile* prof_hd_cross_dphi;
+    TProfile* prof_hd_cross_deta;
+    TProfile* prof_hd_cross_dphi_e_ph;
+    TProfile* prof_hd_cross_deta_e_ph;
+
 
   TH1D* fmax_et[number_etbins];
   TH1D* fmax_q2[number_Q2bins];
@@ -74,10 +111,12 @@ class Hist
   TH1D* fmax_eta[number_etabins];
   TH1D* fmax_et_jet[number_et_jetbins];
   TH1D* fmax_eta_jet[number_eta_jetbins];
-  TH1D* fmax_xgamma[number_xgamma_bins];
-  TH1D* fmax_xp[number_xp_bins];
-  TH1D* fmax_dphi[number_dphi_bins];
-  TH1D* fmax_deta[number_deta_bins];
+    TH1D* fmax_xgamma[number_xgamma_bins];
+    TH1D* fmax_xp[number_xp_bins];
+    TH1D* fmax_dphi[number_dphi_bins];
+    TH1D* fmax_deta[number_deta_bins];
+    TH1D* fmax_dphi_e_ph[number_dphi_e_ph_bins];
+    TH1D* fmax_deta_e_ph[number_deta_e_ph_bins];
   
   TH1D* deltaz_et[number_etbins];
   TH1D* deltaz_q2[number_Q2bins];
@@ -85,10 +124,12 @@ class Hist
   TH1D* deltaz_eta[number_etabins];
   TH1D* deltaz_et_jet[number_et_jetbins];
   TH1D* deltaz_eta_jet[number_eta_jetbins];
-  TH1D* deltaz_xgamma[number_xgamma_bins];
-  TH1D* deltaz_xp[number_xp_bins];
-  TH1D* deltaz_dphi[number_dphi_bins];
-  TH1D* deltaz_deta[number_deta_bins];
+    TH1D* deltaz_xgamma[number_xgamma_bins];
+    TH1D* deltaz_xp[number_xp_bins];
+    TH1D* deltaz_dphi[number_dphi_bins];
+    TH1D* deltaz_deta[number_deta_bins];
+    TH1D* deltaz_dphi_e_ph[number_dphi_e_ph_bins];
+    TH1D* deltaz_deta_e_ph[number_deta_e_ph_bins];
 
   TH1D* had_prph_e;
   TH1D* had_jet_e;
@@ -96,6 +137,12 @@ class Hist
   TH1D* had_x;
   TH1D* had_et_jet;
   TH1D* had_eta_jet;
+    TH1D* had_xgamma;
+    TH1D* had_xp;
+    TH1D* had_dphi;
+    TH1D* had_deta;
+    TH1D* had_dphi_e_ph;
+    TH1D* had_deta_e_ph;
 
   //fmax and deltaz for different particles;
   TH1D* fmax_exact_part[9];
@@ -141,6 +188,11 @@ class Hist
   TH1D* phjet_dphi_unmarged;//many unmerged bins
   TH1D* phjet_deta_unmarged;//many unmerged bins
 
+        TH1D* phjet_dphi_el_ph_true;//merged bins
+        TH1D* phjet_dphi_el_ph_true_unmerged;//many unmerged bins
+        TH1D* phjet_deta_el_ph_true;//merged bins
+        TH1D* phjet_deta_el_ph_true_unmerged;//many unmerged bins
+        
   TH1D* phjet_dphi_el_ph;
   TH1D* phjet_deta_el_ph;
   TH1D* phjet_dphi_el_jet;
@@ -243,9 +295,13 @@ class Hist
   TH1D* dis_y_el;
 
   TH1D* x_gamma;//merged bins
+  TH1D* x_gamma_exp;//merged bins
+  TH1D* x_gamma_diff;//merged bins
   TH1D* x_gamma_unmarged;//many bins
   TH1D* x_pomeron;
   TH1D* x_pomeron_unmarged;//many bins
+  TH1D* x_pomeron_exp;//merged bins
+  TH1D* x_pomeron_diff;//merged bins
 
   TH1D* dis_px_event;
   TH1D* dis_py_event;

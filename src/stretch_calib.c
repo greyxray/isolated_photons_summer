@@ -17,7 +17,7 @@ Double_t selector::stretch_calib(Double_t value,       // Value of the distribut
    // If not prompt photon MC - return initial value
   if (Data || (!Data && mc_type == "mc_bg_norad")) return value;
 
-//  cout<<"Debug:: Calibration is in process.."<<endl;
+  //  cout<<"Debug:: Calibration is in process.."<<endl;
   // Construct graph name
   string graph_name;
   /*******************
@@ -60,23 +60,23 @@ Double_t selector::stretch_calib(Double_t value,       // Value of the distribut
   if (!gCalib)
   delete gCalib;
 
-/*
-  Double_t x,y;
-  for (int iii=0;iii<200;iii++)
-  {
-    gCalib->GetPoint(iii,x,y);
-    cout<<"Point "<<iii<<"  "<<x<<"  "<<y<<endl;
-  }
-*/
-/*
-  Int_t argc = 0;
-  char **argv = 0;
-  TApplication theApp("App", &argc, argv);
-  TBrowser *b = 0;
-  b = new TBrowser("RunMC Browser", fCalib, "Histograms", 10, 20, 600 , 300);
-//  gCalib->Draw();
-  theApp.Run();
-*/
+  /*
+    Double_t x,y;
+    for (int iii=0;iii<200;iii++)
+    {
+      gCalib->GetPoint(iii,x,y);
+      cout<<"Point "<<iii<<"  "<<x<<"  "<<y<<endl;
+    }
+  */
+  /*
+    Int_t argc = 0;
+    char **argv = 0;
+    TApplication theApp("App", &argc, argv);
+    TBrowser *b = 0;
+    b = new TBrowser("RunMC Browser", fCalib, "Histograms", 10, 20, 600 , 300);
+  //  gCalib->Draw();
+    theApp.Run();
+  */
   return return_value;
 }
 
