@@ -272,63 +272,63 @@ void Hist::PlotCrossSec()
         {
             if (s_var[i] == "et")
             {
-                param = param_et;
-                param_err = param_err_et;
+                param = param_et_PhotonsFit; //param_et;//param_xgamma_PhotonsFit
+                param_err = param_err_et_PhotonsFit;//param_err_et;
             }
             if(s_var[i]=="eta") 
             {
-                param = param_eta;
-                param_err = param_err_eta;
+                param = param_eta_PhotonsFit; //param_eta;
+                param_err = param_err_eta_PhotonsFit;//param_err_eta;
             }
             if(s_var[i] == "Q2")
             {
-                param = param_q2;
-                param_err = param_err_q2;
+                param = param_q2_PhotonsFit;//param_q2;
+                param_err = param_err_q2_PhotonsFit;//param_err_q2;
             }
             if(s_var[i]=="x") 
             {
-                param = param_x;
-                param_err = param_err_x;
+                param = param_x_PhotonsFit;//param_x;
+                param_err = param_err_x_PhotonsFit;//param_err_x;
             }
             if(s_var[i]=="et_jet") 
             {
-                param = param_et_jet;
-                param_err = param_err_et_jet;
+                param = param_et_jet_PhotonsFit;//param_et_jet;
+                param_err = param_err_et_jet_PhotonsFit;//param_err_et_jet;
             }
             if(s_var[i]=="eta_jet") 
             {
-                param = param_eta_jet;
-                param_err = param_err_eta_jet;
+                param = param_eta_jet_PhotonsFit;//param_eta_jet;
+                param_err = param_err_eta_jet_PhotonsFit;//param_err_eta_jet;
             }
             if(s_var[i]=="xgamma") 
             {
-                param = param_xgamma;
-                param_err = param_err_xgamma;
+                param = param_xgamma_PhotonsFit;//param_xgamma;
+                param_err = param_err_xgamma_PhotonsFit;//param_err_xgamma;
             }
             if(s_var[i]=="xp") 
             {
-                param = param_xp;
-                param_err = param_err_xp;
+                param = param_xp_PhotonsFit;//param_xp;
+                param_err = param_err_xp_PhotonsFit;//param_err_xp;
             }
             if(s_var[i]=="dphi") 
             {
-                param = param_dphi;
-                param_err = param_err_dphi;
+                param = param_dphi_PhotonsFit;//param_dphi;
+                param_err = param_err_dphi_PhotonsFit;//param_err_dphi;
             }
             if(s_var[i]=="deta") 
             {
-                param = param_deta;
-                param_err = param_err_deta;
+                param = param_deta_PhotonsFit;//param_deta;
+                param_err = param_err_deta_PhotonsFit;//param_err_deta;
             }
             if(s_var[i]=="dphi_e_ph") 
             {
-                param = param_dphi_e_ph;
-                param_err = param_err_dphi_e_ph;
+                param = param_dphi_e_ph_PhotonsFit;//param_dphi_e_ph;
+                param_err = param_err_dphi_e_ph_PhotonsFit;//param_err_dphi_e_ph;
             }
             if(s_var[i]=="deta_e_ph") 
             {
-                param = param_deta_e_ph;
-                param_err = param_err_deta_e_ph;
+                param = param_deta_e_ph_PhotonsFit;//param_deta_e_ph;
+                param_err = param_err_deta_e_ph_PhotonsFit;//param_err_deta_e_ph;
             }
         }
         CalculateCrossSec(h_det_data_sum[i],

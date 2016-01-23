@@ -299,7 +299,7 @@ void Hist::Init()
                         mult = 0;
                     if (j==0 && i==0)
                     {
-                        dout("xgamma mult for hist_mc_sum[i][0]:", mult,"hist_mc_sum[i]->", hist_mc_sum[i]->GetBinContent(j+1));
+                        if (nodebugmode) dout("xgamma mult for hist_mc_sum[i][0]:", mult,"hist_mc_sum[i]->", hist_mc_sum[i]->GetBinContent(j+1));
                     }
                     hist_mc_sum[i]->SetBinContent(j+1, hist_mc_sum[i]->GetBinContent(j+1) * mult);
                     hist_mc_sum[i]->SetBinError(j+1, hist_mc_sum[i]->GetBinError(j+1) * mult);
@@ -315,7 +315,7 @@ void Hist::Init()
                         mult = 0;
                     if (j==0 && i==0)
                     {
-                        dout("xgamma mult for hist_mc_norad_sum[i][0]:", mult,"hist_mc_norad_sum[i]->", hist_mc_norad_sum[i]->GetBinContent(j+1));
+                        if (nodebugmode) dout("xgamma mult for hist_mc_norad_sum[i][0]:", mult,"hist_mc_norad_sum[i]->", hist_mc_norad_sum[i]->GetBinContent(j+1));
                     }
                     hist_mc_norad_sum[i]->SetBinContent(j+1, hist_mc_norad_sum[i]->GetBinContent(j+1) * mult);
                     hist_mc_norad_sum[i]->SetBinError(j+1, hist_mc_norad_sum[i]->GetBinError(j+1) * mult);
@@ -323,7 +323,6 @@ void Hist::Init()
             }
             else if (i == n_hist - 1 )// this is general deltaZ 
             {
-
                 hist_data_sum[i] -> Rebin(hist_rebin[i]);
                 hist_mc_sum[i] -> Rebin(hist_rebin[i]);
                 hist_mc_rad_sum[i] -> Rebin(hist_rebin[i]);
@@ -495,7 +494,6 @@ void Hist::Init()
 
     for(Int_t i = 0; i < n_periods; i++) 
     {//data, mc_rad, mc_norad
-        dout("------->1");
         //====================== data =============================================
         {
             file_data[i]->cd();
@@ -517,7 +515,6 @@ void Hist::Init()
             //
             // dz in bins of xp
             //
-dout("------->1.1");
             for(Int_t j = 0; j < number_xp_bins; j++) //number_etbins = 4;
             {
 
@@ -525,14 +522,13 @@ dout("------->1.1");
                 s.Form("h_deltaz_xp_%i", j);
                 //if (nodebugmode) cout << "reading " << s << " ..." << endl;
                 h_deltaz_xp_data[j][i] = (TH1D*)file_data[i]->Get( "Cross_Sections_Histograms/" + s)->Clone();
-                dout(j);
+               
                 //s = s + "_data_" + s_periods[i];
                 h_deltaz_xp_data[j][i]->SetName(s + "_data_" + s_periods[i]);
                 //if (nodebugmode) cout << "OK: renamed to " << s + "_data_" + s_periods[i] << endl;
                 h_deltaz_xp_data[j][i]->Sumw2();
                 h_deltaz_xp_data[j][i]->Rebin(10);
             }
-            dout("------->1.2");
             //
             // dz in bins of dphi
             //
@@ -704,7 +700,6 @@ dout("------->1.1");
                 h_det_data[j][i]->Sumw2();
             }
         }
-dout("------->2");
         //====================== mc norad =============================================
         {
             file_norad[i]->cd();
@@ -943,7 +938,6 @@ dout("------->2");
                 h_hd_norad[j][i]->Sumw2();*/
             }
         }
-dout("------->3");
         //====================== mc rad =============================================
         {
             file_rad[i]->cd();
@@ -1189,7 +1183,6 @@ dout("------->3");
                 h_hd_rad[j][i]->Sumw2();
             }
         }
-dout("------->4");
         //====================== mc prph =============================================
         if(i != 2) 
         {
@@ -1426,7 +1419,6 @@ dout("------->4");
                 h_hd_prph[j][i]->Sumw2();
             }
         }//exclude 0607p (there is no mc_prph for 0607p)
-        dout("------->5");
     }//for i over periods
 
     //////////////////////////////////////////////////
@@ -3071,7 +3063,7 @@ void Hist::PlotFitInBinsOfCrossSec()
             c_dz_eta->GetPad(i+1)->RedrawAxis();
             pave_eta[i]->Draw();
         }
-        c_dz_eta->Print("c_dz_eta.eps");  
+        //c_dz_eta->Print("c_dz_eta.eps");  
         c_dz_eta->Print("c_dz_eta.png");  
     }
     ///////////////////////////////////////////////////////

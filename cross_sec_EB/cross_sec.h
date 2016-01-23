@@ -49,15 +49,6 @@ const Int_t n_data_type = 4;// data norad rad prph
 const Int_t n_cross = 12; //et, eta, q2, x, et_jet, eta_jet, xgamma, xp, dphi, deta, dphi_e_ph, deta_e_ph
 const Int_t n_periods = 3; //0405e, 06e, 0607p
 
-Double_t param_eta_PhotonsFit[number_etabins] = {0.};
-Double_t param_err_eta_PhotonsFit[number_etabins] = {0.};
-Double_t param_eta[number_etabins] = {0.};
-Double_t param_err_eta[number_etabins] = {0.};
-Double_t chi2_eta[number_etabins] = {0.};
-Int_t    dof_eta[number_etabins] = {0};
-Int_t    left_eta[number_etabins] = {0};
-Int_t    right_eta[number_etabins] = {0};
-
 Double_t param_xgamma_PhotonsFit[number_xgamma_bins] = {0.};
 Double_t param_xgamma_PhotonsFitforQQ[number_xgamma_bins] = {0.};
 Double_t param_err_xgamma_PhotonsFit[number_xgamma_bins] = {0.};
@@ -124,8 +115,11 @@ Int_t    dof_deta_e_ph[number_deta_e_ph_bins] = {0};
 Int_t    left_deta_e_ph[number_deta_e_ph_bins] = {0};
 Int_t    right_deta_e_ph[number_deta_e_ph_bins] = {0};
 
+
 Double_t param_et_PhotonsFit[number_etbins] = {0.};
+Double_t param_et_PhotonsFitforQQ[number_etbins] = {0.};
 Double_t param_err_et_PhotonsFit[number_etbins] = {0.};
+Double_t param_err_et_PhotonsFitforQQ[number_etbins] = {0.};
 Double_t param_et[number_etbins] = {0.};
 Double_t param_err_et[number_etbins] = {0.};
 Double_t chi2_et[number_etbins] = {0.};
@@ -133,8 +127,21 @@ Int_t    dof_et[number_etbins] = {0};
 Int_t    left_et[number_etbins] = {0};
 Int_t    right_et[number_etbins] = {0};
 
+Double_t param_eta_PhotonsFit[number_etabins] = {0.};
+Double_t param_eta_PhotonsFitforQQ[number_etabins] = {0.};
+Double_t param_err_eta_PhotonsFit[number_etabins] = {0.};
+Double_t param_err_eta_PhotonsFitforQQ[number_etabins] = {0.};
+Double_t param_eta[number_etabins] = {0.};
+Double_t param_err_eta[number_etabins] = {0.};
+Double_t chi2_eta[number_etabins] = {0.};
+Int_t    dof_eta[number_etabins] = {0};
+Int_t    left_eta[number_etabins] = {0};
+Int_t    right_eta[number_etabins] = {0};
+
 Double_t param_q2_PhotonsFit[number_Q2bins] = {0.};
-Double_t param_err_q2_PhotonsFit[number_Q2bins] = {0.} ;
+Double_t param_q2_PhotonsFitforQQ[number_Q2bins] = {0.};
+Double_t param_err_q2_PhotonsFit[number_Q2bins] = {0.};
+Double_t param_err_q2_PhotonsFitforQQ[number_Q2bins] = {0.};
 Double_t param_q2[number_Q2bins] = {0.};
 Double_t param_err_q2[number_Q2bins] = {0.} ;
 Double_t chi2_q2[number_Q2bins] = {0.};
@@ -143,7 +150,9 @@ Int_t    left_q2[number_Q2bins] = {0};
 Int_t    right_q2[number_Q2bins] = {0};
 
 Double_t param_x_PhotonsFit[number_xbins] = {0.};
-Double_t param_err_x_PhotonsFit[number_xbins] = {0.}; 
+Double_t param_x_PhotonsFitforQQ[number_xbins] = {0.};
+Double_t param_err_x_PhotonsFit[number_xbins] = {0.};
+Double_t param_err_x_PhotonsFitforQQ[number_xbins] = {0.};
 Double_t param_x[number_xbins] = {0.};
 Double_t param_err_x[number_xbins] = {0.}; 
 Double_t chi2_x[number_xbins] = {0.};
@@ -152,7 +161,9 @@ Int_t    left_x[number_xbins] = {0};
 Int_t    right_x[number_xbins] = {0};
 
 Double_t param_et_jet_PhotonsFit[number_et_jetbins] = {0.};
+Double_t param_et_jet_PhotonsFitforQQ[number_et_jetbins] = {0.};
 Double_t param_err_et_jet_PhotonsFit[number_et_jetbins] = {0.};
+Double_t param_err_et_jet_PhotonsFitforQQ[number_et_jetbins] = {0.};
 Double_t param_et_jet[number_et_jetbins] = {0.};
 Double_t param_err_et_jet[number_et_jetbins] = {0.}; 
 Double_t chi2_et_jet[number_et_jetbins] = {0.};
@@ -161,7 +172,9 @@ Int_t    left_et_jet[number_et_jetbins] = {0};
 Int_t    right_et_jet[number_et_jetbins] = {0};
 
 Double_t param_eta_jet_PhotonsFit[number_eta_jetbins] = {0.};
-Double_t param_err_eta_jet_PhotonsFit[number_eta_jetbins] = {0.}; 
+Double_t param_eta_jet_PhotonsFitforQQ[number_eta_jetbins] = {0.};
+Double_t param_err_eta_jet_PhotonsFit[number_eta_jetbins] = {0.};
+Double_t param_err_eta_jet_PhotonsFitforQQ[number_eta_jetbins] = {0.};
 Double_t param_eta_jet[number_eta_jetbins] = {0.};
 Double_t param_err_eta_jet[number_eta_jetbins] = {0.}; 
 Double_t chi2_eta_jet[number_eta_jetbins] = {0.};
@@ -181,10 +194,14 @@ Int_t g_index_deltaz = 0;
 
 Double_t b_scale, d_scale;//for the reparam
 
-Double_t * PhotonsFits[6] = {param_xp_PhotonsFit, param_xgamma_PhotonsFit, param_deta_PhotonsFit, param_dphi_PhotonsFit, param_dphi_e_ph_PhotonsFit, param_deta_e_ph_PhotonsFit};
-Double_t * PhotonsFits_err[6] = {param_err_xp_PhotonsFit, param_err_xgamma_PhotonsFit, param_err_deta_PhotonsFit, param_err_dphi_PhotonsFit, param_err_dphi_e_ph_PhotonsFit, param_err_deta_e_ph_PhotonsFit};
-Double_t * PhotonsFitsforQQ[6] = {param_xp_PhotonsFitforQQ, param_xgamma_PhotonsFitforQQ, param_deta_PhotonsFitforQQ, param_dphi_PhotonsFitforQQ, param_dphi_e_ph_PhotonsFitforQQ, param_deta_e_ph_PhotonsFitforQQ};
-Double_t * PhotonsFitsforQQ_err[6] = {param_err_xp_PhotonsFitforQQ, param_err_xgamma_PhotonsFitforQQ, param_err_deta_PhotonsFitforQQ, param_err_dphi_PhotonsFitforQQ, param_err_dphi_e_ph_PhotonsFitforQQ, param_err_deta_e_ph_PhotonsFitforQQ};
+Double_t * PhotonsFits[6+6] = {param_xp_PhotonsFit, param_xgamma_PhotonsFit, param_deta_PhotonsFit, param_dphi_PhotonsFit, param_dphi_e_ph_PhotonsFit, param_deta_e_ph_PhotonsFit,\
+							 param_et_PhotonsFit, param_eta_PhotonsFit, param_q2_PhotonsFit, param_x_PhotonsFit, param_et_jet_PhotonsFit, param_eta_jet_PhotonsFit};
+Double_t * PhotonsFits_err[6+6] = {param_err_xp_PhotonsFit, param_err_xgamma_PhotonsFit, param_err_deta_PhotonsFit, param_err_dphi_PhotonsFit, param_err_dphi_e_ph_PhotonsFit, param_err_deta_e_ph_PhotonsFit,\
+								 param_err_et_PhotonsFit, param_err_eta_PhotonsFit, param_err_q2_PhotonsFit, param_err_x_PhotonsFit, param_err_et_jet_PhotonsFit, param_err_eta_jet_PhotonsFit};
+Double_t * PhotonsFitsforQQ[6+6] = {param_xp_PhotonsFitforQQ, param_xgamma_PhotonsFitforQQ, param_deta_PhotonsFitforQQ, param_dphi_PhotonsFitforQQ, param_dphi_e_ph_PhotonsFitforQQ, param_deta_e_ph_PhotonsFitforQQ,\
+								  param_et_PhotonsFitforQQ, param_eta_PhotonsFitforQQ, param_q2_PhotonsFitforQQ, param_x_PhotonsFitforQQ, param_et_jet_PhotonsFitforQQ, param_eta_jet_PhotonsFitforQQ};
+Double_t * PhotonsFitsforQQ_err[6+6] = {param_err_xp_PhotonsFitforQQ, param_err_xgamma_PhotonsFitforQQ, param_err_deta_PhotonsFitforQQ, param_err_dphi_PhotonsFitforQQ, param_err_dphi_e_ph_PhotonsFitforQQ, param_err_deta_e_ph_PhotonsFitforQQ,\
+									  param_err_et_PhotonsFitforQQ, param_err_eta_PhotonsFitforQQ, param_err_q2_PhotonsFitforQQ, param_err_x_PhotonsFitforQQ, param_err_et_jet_PhotonsFitforQQ, param_err_eta_jet_PhotonsFitforQQ};
 TFile *f;// = new TFile("cross_sec_histos.root", "recreate", "root file with histohrams");
 //f->cd();
 

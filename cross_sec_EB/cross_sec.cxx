@@ -1,9 +1,9 @@
 #include "cross_sec.h"
 
-TString whichCorrection("NoCorrection");//"NoCorrection"
-vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//"IanSgCorr"
-vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//"PeterSgCorr"
-vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//"PeterBgCorr"
+TString whichCorrection("NoCorrection");//"IanSgCorr" NoCorrection
+vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
+vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
+vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
 unsigned int NoScalingForBinsTest = 0;
 unsigned int ProduceDZoverollPlot = 0;
 Bool_t nodebugmode = kFALSE;
@@ -16,7 +16,7 @@ unsigned int QQfit = 0;
 //1 : data = LL + QQ' * a + bg' * (1 - a);
     //QQ' = QQ.scale([Data - LL] / QQ) if fitWithLL==1 and fitWithLLinBg=0
     //bg' = bg.scale([Data] / bg)
-unsigned int fitWithLL = 1; 
+unsigned int fitWithLL = 0; 
 unsigned int fitWithLLinBg = 0; 
 //data =LL’ +  QQ’ * a + bg’ * (1- a)
     //unsigned int QQfit = 1;
@@ -292,6 +292,31 @@ void DoComplicatedScale(TH1D* h, Double_t a, Double_t a_err)
         }
 }
 
+void MakeCorrection(TH1D* d, TH1D* nr)
+{
+    if(!whichCorrection.Contains("NoCorrection"))//Think how to extend it to other case
+        {
+            if (nodebugmode) dout("correction: ", whichCorrection);
+            if (whichCorrection.Contains("IanSg"))
+                for (size_t j = 0; j != IanCorrectionSg.size(); ++j) 
+                {
+                    d->SetBinContent(j+1, d->GetBinContent(j+1) * IanCorrectionSg[j]); 
+                    d->SetBinError(j+1, d->GetBinError(j+1) * IanCorrectionSg[j]);
+                }
+            if (whichCorrection.Contains("PeterSg"))
+                for (size_t j = 0; j != PeterCorrectionSg.size(); ++j) 
+                {
+                    d->SetBinContent(j+1, d->GetBinContent(j+1) * PeterCorrectionSg[j]);  
+                    d->SetBinError(j+1, d->GetBinError(j+1) * PeterCorrectionSg[j]);                   
+                }
+            if (whichCorrection.Contains("PeterBg"))
+                for (size_t j = 0; j != PeterCorrectionBg.size(); ++j) 
+                {
+                    nr->SetBinContent(j+1, nr->GetBinContent(j+1) * PeterCorrectionBg[j]);  
+                    nr->SetBinError(j+1, nr->GetBinError(j+1) * PeterCorrectionBg[j]);                   
+                }
+        }
+}
 
 void minuitFunction(int& nDim, double* gout, double& result, double par[], int flg);
 //void minuitFunctionBarlowBeeston(int& nDim, double* gout, double& result, double par[], int flg);
@@ -365,33 +390,85 @@ int main(int argc, char *argv[])
     //          Fit in bins of et
     //
     ///////////////////////////////////////////////////////
-    for(Int_t i = 0; i < number_etbins; i++)// процедура фитирования выполняется на каждый бин по Et
-    {      
-        hist_data[0] = (TH1D*)hist.h_deltaz_et_data_sum[i]->Clone(); 
-        hist_data[0]->SetName("data");
-        hist_mc[0] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone();
-        hist_mc[0]->SetName("prph");
-        hist_mc_rad[0] = (TH1D*)hist.h_deltaz_et_rad_sum[i]->Clone(); 
-        hist_mc_rad[0]->SetName("rad");
-        hist_mc_norad[0] = (TH1D*)hist.h_deltaz_et_norad_sum[i]->Clone(); 
-        hist_mc_norad[0]->SetName("norad");
-        hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); 
-        hist_mc_photon[0]->SetName("photon");
+    dout("hist.h_deltaz_eta_data_sum[0]->GetNbinsX():",hist.h_deltaz_eta_data_sum[0]->GetNbinsX());
 
+    for(Int_t i = 0; i < number_etbins; i++)// процедура фитирования выполняется на каждый бин по Et
+    {
+        MakeCorrection(hist.h_deltaz_et_data_sum[i], hist.h_deltaz_et_norad_sum[i]);
+
+        hist_data[0] = (TH1D*)hist.h_deltaz_et_data_sum[i]->Clone(); 
+        hist_mc[0] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone();
         hist_mc[0]->Scale(hist.total_luminosity_data / hist.lumi_mc_prph);
+        hist_mc_rad[0] = (TH1D*)hist.h_deltaz_et_rad_sum[i]->Clone(); 
+        hist_mc_norad[0] = (TH1D*)hist.h_deltaz_et_norad_sum[i]->Clone(); 
+        hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); 
         hist_mc_photon[0]->Add(hist_mc[0]);//LL + QQ.scale(data)
 
-        Double_t n_mc_photon, n_mc_photon_err, n_data, n_data_err;
+        if (!nodebugmode && i == 0) dout("0)hist_data[0]->GetSum() ", hist_data[0]->GetSum() );
+        if (!nodebugmode && i == 0) dout("0)hist_mc[0]->GetSum() ", hist_mc[0]->GetSum() );
+        if (!nodebugmode && i == 0) dout("0)hist_mc_rad[0]->GetSum() ", hist_mc_rad[0]->GetSum() );
+        if (!nodebugmode && i == 0) dout("0)hist_mc_norad[0]->GetSum() ", hist_mc_norad[0]->GetSum() );
+        if (!nodebugmode && i == 0) dout("0)hist_mc_photon[0]->GetSum() ", hist_mc_photon[0]->GetSum() );
 
-        calc_integral_err(hist_mc_photon[0], n_mc_photon, n_mc_photon_err);
-        scale_hist_to_hist_with_err(hist_mc_photon[0], hist_data[0]);//QQ+LL->data
-        scale_hist_to_hist_with_err(hist_mc_norad[0], hist_data[0]);//
+        hist_data[0]->SetName("data");
+        hist_mc[0]->SetName("prph");
+        hist_mc_rad[0]->SetName("rad");
+        hist_mc_norad[0]->SetName("norad");
+        hist_mc_photon[0]->SetName("photon");
 
-        //      hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/n_mc_photon);
+        bool oldway = false;
+        if (QQfit == 0)
+        {
+            if (oldway)
+            {
+                Double_t n_mc_photon, n_mc_photon_err, n_data, n_data_err;
 
-        hist_mc[0]->Scale(hist_data[0]->GetSum()/n_mc_photon);
-        hist_mc_rad[0]->Scale(hist_data[0]->GetSum()/n_mc_photon);
-        //hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());           
+                calc_integral_err(hist_mc_photon[0], n_mc_photon, n_mc_photon_err);
+                if (!nodebugmode && i == 0) dout("1)calc_integral_err hist_mc_photon[0]: ",  n_mc_photon, n_mc_photon_err);
+                scale_hist_to_hist_with_err(hist_mc_photon[0], hist_data[0]);//QQ+LL->data
+                scale_hist_to_hist_with_err(hist_mc_norad[0], hist_data[0]);//
+                if (!nodebugmode && i == 0) dout("2)hist_mc_norad[0]->GetSum() ", hist_mc_norad[0]->GetSum() );
+                if (!nodebugmode && i == 0) dout("2)hist_mc_photon[0]->GetSum() ", hist_mc_photon[0]->GetSum() );
+
+                hist_mc[0]->Scale(hist_data[0]->GetSum()/n_mc_photon);
+                hist_mc_rad[0]->Scale(hist_data[0]->GetSum()/n_mc_photon);
+                if (!nodebugmode && i == 0) dout("3)hist_mc[0]->GetSum() ", hist_mc[0]->GetSum() );
+                if (!nodebugmode && i == 0) dout("3)hist_mc_rad[0]->GetSum() ", hist_mc_rad[0]->GetSum() );
+                if (!nodebugmode && i == 0) dout("3)sum:", hist_mc_rad[0]->GetSum() + hist_mc[0]->GetSum() );                
+            }
+            else
+            {
+                hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());//Photon = [LL + QQ.Scale()].scale(DATA/Photon)
+
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+                hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+                
+                //for the CS further painting...
+                hist.h_deltaz_et_prph_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_prph_sum[i]->GetSum());
+                hist.h_deltaz_et_norad_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_norad_sum[i]->GetSum()); 
+           
+            }
+        }
+        else 
+        {
+            if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+                hist.h_deltaz_et_prph_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_prph_sum[i]->GetSum());
+
+                hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+                hist.h_deltaz_et_norad_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_norad_sum[i]->GetSum()); 
+            }
+            else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+                hist.h_deltaz_et_prph_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_prph_sum[i]->GetSum());
+
+                hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+                hist.h_deltaz_et_norad_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_norad_sum[i]->GetSum()); 
+            }
+        }
+       
 
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
@@ -447,19 +524,45 @@ int main(int argc, char *argv[])
         // ----------- end chi2 per bin
         
         //leftet[i]++; //? зачем
-        hist.h_deltaz_et_norad_sum[i]->Scale(0.);
-        hist.h_deltaz_et_norad_sum[i]->Add(hist_mc_norad[0], 1-param_et[i]);
-        hist.h_deltaz_et_photon_sum[i] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone(); 
-        hist.h_deltaz_et_photon_sum[i]->SetName((TString)hist.h_deltaz_et_prph_sum[i]->GetName()+"photon");
-        hist.h_deltaz_et_photon_sum[i]->Scale(0.);
-        hist.h_deltaz_et_photon_sum[i]->Add(hist_mc_photon[0], param_et[i]);
-        hist.h_deltaz_et_rad_sum[i]->Scale(0.);
-        hist.h_deltaz_et_rad_sum[i]->Add(hist_mc_rad[0], param_et[i]);
-        hist.h_deltaz_et_prph_sum[i]->Scale(0.);
-        hist.h_deltaz_et_prph_sum[i]->Add(hist_mc[0], param_et[i]);
-        hist.h_deltaz_et_res[i]->Scale(0.);//Add(hist.h_deltaz_et_norad_sum[i]);
-        hist.h_deltaz_et_res[i]->Add(hist_mc_photon[0], param_et[i]);
-        hist.h_deltaz_et_res[i]->Add(hist_mc_norad[0], 1-param_et[i]);
+        param_et_PhotonsFit[i] = param_et[i];
+        param_err_et_PhotonsFit[i] = param_err_et[i];
+        param_et_PhotonsFitforQQ[i] = param_et[i];
+        param_err_et_PhotonsFitforQQ[i] = param_err_et[i];
+
+        if (QQfit == 0 && oldway)
+        {
+            hist.h_deltaz_et_norad_sum[i]->Scale(0.);//bg = 0
+            hist.h_deltaz_et_norad_sum[i]->Add(hist_mc_norad[0], 1-param_et[i]);//bg = bg.scale(data)
+            hist.h_deltaz_et_photon_sum[i] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone(); //photons = QQ
+            hist.h_deltaz_et_photon_sum[i]->SetName((TString)hist.h_deltaz_et_prph_sum[i]->GetName()+"photon");
+            hist.h_deltaz_et_photon_sum[i]->Scale(0.);//photons = 0
+            hist.h_deltaz_et_photon_sum[i]->Add(hist_mc_photon[0], param_et[i]);////photons = photons.scale(data)*a
+            hist.h_deltaz_et_rad_sum[i]->Scale(0.);//LL =0
+            hist.h_deltaz_et_rad_sum[i]->Add(hist_mc_rad[0], param_et[i]);//LL = LL'*a , LL' = LL.scale(photon?)
+            hist.h_deltaz_et_prph_sum[i]->Scale(0.);
+            hist.h_deltaz_et_prph_sum[i]->Add(hist_mc[0], param_et[i]);
+            hist.h_deltaz_et_res[i]->Scale(0.);//Add(hist.h_deltaz_et_norad_sum[i]);
+            hist.h_deltaz_et_res[i]->Add(hist_mc_photon[0], param_et[i]);
+            hist.h_deltaz_et_res[i]->Add(hist_mc_norad[0], 1-param_et[i]);
+        }
+        else if (!oldway)
+        {
+            //DOIT
+            if (QQfit==0)//photon*a+bg(1-a)
+            {
+                    DoReparametrisation(0, param_et, param_err_et, i);
+                    DoReparametrisationforQQ(0, param_et_PhotonsFitforQQ, param_err_et_PhotonsFitforQQ, i);
+            }
+            else if(QQfit != 0)
+                DoReparametrisationQQfit(0, param_et, param_err_et, i);
+            
+            DoComplicatedScale(hist.h_deltaz_et_norad_sum[i], 1 - param_et[i], param_err_et[i]);
+            DoComplicatedScale(hist.h_deltaz_et_prph_sum[i], param_et[i], param_err_et[i]);
+            hist.h_deltaz_et_res[i]->Add(hist.h_deltaz_et_norad_sum[i]);
+            hist.h_deltaz_et_res[i]->Add(hist.h_deltaz_et_prph_sum[i]);
+        }
+
+       
         if (nodebugmode) dout("After fit in Et bins: n_data = ", hist_data[0]->GetSum() ,\
             ", n_photon =", hist_mc_photon[0]->GetSum() * param_et[i], 
             ", n_bg = " , hist_mc_norad[0]->GetSum() * (1-param_et[i]) \
@@ -467,7 +570,7 @@ int main(int argc, char *argv[])
             , ", h.n_rad = " , hist.h_deltaz_et_rad_sum[i]->GetSum() \
             , ", h.n_prph = " , hist.h_deltaz_et_prph_sum[i]->GetSum() \
             , ", n_res = " , hist.h_deltaz_et_res[i]->GetSum());
-        if (nodebugmode) dout(  "par in bin et ", i, ": ", param_et[i], " +- ", param_err_et[i], ", chi2/dof = ", chi2_et[i] );
+        if (i==0 && !nodebugmode) dout(  "par in bin et ", i, ": ", param_et[i], " +- ", param_err_et[i], ", chi2/dof = ", chi2_et[i] );
 
     }
 
@@ -478,26 +581,49 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_etabins; i++)
     {      
+        MakeCorrection(hist.h_deltaz_eta_data_sum[i], hist.h_deltaz_eta_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_data_sum[i]->Clone(); 
-        hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_prph_sum[i]->Clone(); 
-        hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_eta_rad_sum[i]->Clone(); 
-        hist_mc_rad[0]->SetName("rad");
         hist_mc_norad[0] = (TH1D*)hist.h_deltaz_eta_norad_sum[i]->Clone(); 
-        hist_mc_norad[0]->SetName("norad");
         hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); 
-        hist_mc_photon[0]->SetName("photon");// LL
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);//LL + QQ.Scale(total_luminosity_data/lumi_mc_prph)
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());//Photon = [LL + QQ.Scale()].scale(DATA/Photon)
 
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
-        //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
-        
-        //for the CS further calc...
-        hist.h_deltaz_eta_prph_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_prph_sum[i]->GetSum());
-        hist.h_deltaz_eta_norad_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_norad_sum[i]->GetSum());
+        hist_data[0]->SetName("data");
+        hist_mc[0]->SetName("prph");
+        hist_mc_rad[0]->SetName("rad");
+        hist_mc_norad[0]->SetName("norad");
+        hist_mc_photon[0]->SetName("photon");// LL
+
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_eta_prph_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_prph_sum[i]->GetSum());
+            hist.h_deltaz_eta_norad_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_eta_prph_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_eta_norad_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_eta_prph_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_eta_norad_sum[i]->Scale((hist.h_deltaz_eta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_eta_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_norad_sum[i]->GetSum()); 
+        }
         
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
@@ -506,7 +632,8 @@ int main(int argc, char *argv[])
         minimizer->ExecuteCommand("MINOS",0,0);   
         param_eta[i] = minimizer->GetParameter(0);
         param_err_eta[i] = minimizer->GetParError(0);
-        Double_t par[1]; par[0] = param_eta[i];
+        Double_t par[1]; 
+        par[0] = param_eta[i];
         chi2_eta[i] = chi2(par, dof_eta[i], left_eta[i], right_eta[i], chi_method) / dof_eta[i];
         //chi squared per bin
         Double_t total_chi2 = 0;
@@ -540,20 +667,26 @@ int main(int argc, char *argv[])
         hist.h_chi2_perbin_eta[i]->Draw("HIST TEXT");
         c->Print(sc + ".eps");
         delete c;
-        //if (nodebugmode) cout << "total chi2 = " << total_chi2 << endl;
-        //if (nodebugmode) cout << "... per dof = " << total_chi2 / Double_t(dof-2) << endl;
-        // ----------- end chi2 per bin
+
+
+        param_eta_PhotonsFit[i] = param_eta[i];
+        param_err_eta_PhotonsFit[i] = param_err_eta[i];
+        param_eta_PhotonsFitforQQ[i] = param_eta[i];
+        param_err_eta_PhotonsFitforQQ[i] = param_err_eta[i];
+        //DOIT
+        if (QQfit==0)
+        {
+                DoReparametrisation(0, param_eta, param_err_eta, i);
+                DoReparametrisationforQQ(0, param_eta_PhotonsFitforQQ, param_err_eta_PhotonsFitforQQ, i);
+        }
+        else if(QQfit != 0)
+            DoReparametrisationQQfit(0, param_eta, param_err_eta, i);
         
-        //lefteta[i]++;
-        //hist.h_deltaz_eta_norad_sum[i]->Scale(1-param_eta[i]);
-        //hist.h_deltaz_eta_prph_sum[i]->Scale(param_eta[i]);
-
-
-        DoComplicatedScale(hist.h_deltaz_eta_norad_sum[i], 1 - param_deta[i], param_err_deta[i]);
-        DoComplicatedScale(hist.h_deltaz_eta_prph_sum[i], param_deta[i], param_err_deta[i]);
+        DoComplicatedScale(hist.h_deltaz_eta_norad_sum[i], 1 - param_eta[i], param_err_eta[i]);
+        DoComplicatedScale(hist.h_deltaz_eta_prph_sum[i], param_eta[i], param_err_eta[i]);
         hist.h_deltaz_eta_res[i]->Add(hist.h_deltaz_eta_norad_sum[i]);
         hist.h_deltaz_eta_res[i]->Add(hist.h_deltaz_eta_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin eta " << i << ": " << param_eta[i] << " +- " << param_err_eta[i] << ", chi2/dof = " << chi2_eta[i]  << endl;
+        
     }
 
     ///////////////////////////////////////////////////////
@@ -562,7 +695,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_Q2bins; i++)
-    {      
+    { 
+        MakeCorrection(hist.h_deltaz_q2_data_sum[i], hist.h_deltaz_q2_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_q2_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_q2_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_q2_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -571,12 +706,34 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
 
-        hist.h_deltaz_q2_prph_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_prph_sum[i]->GetSum());
-        hist.h_deltaz_q2_norad_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_norad_sum[i]->GetSum());
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_q2_prph_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_prph_sum[i]->GetSum());
+            hist.h_deltaz_q2_norad_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_q2_prph_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_q2_norad_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_q2_prph_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_q2_norad_sum[i]->Scale((hist.h_deltaz_q2_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_q2_rad_sum[i]->GetSum()) / hist.h_deltaz_q2_norad_sum[i]->GetSum()); 
+        }
         
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
@@ -618,17 +775,24 @@ int main(int argc, char *argv[])
         hist.h_chi2_perbin_Q2[i]->Draw("HIST TEXT");
         c->Print(sc + ".eps");
         delete c;
-        //if (nodebugmode) cout << "total chi2 = " << total_chi2 << endl;
-        //if (nodebugmode) cout << "... per dof = " << total_chi2 / Double_t(dof-2) << endl;
-        // ----------- end chi2 per bin
-        //leftq2[i]++;
-        //hist.h_deltaz_q2_norad_sum[i]->Scale(1-param_q2[i]);
-        //hist.h_deltaz_q2_prph_sum[i]->Scale(param_q2[i]);
+
+        param_q2_PhotonsFit[i] = param_q2[i];
+        param_err_q2_PhotonsFit[i] = param_err_q2[i];
+        param_q2_PhotonsFitforQQ[i] = param_q2[i];
+        param_err_q2_PhotonsFitforQQ[i] = param_err_q2[i];
+        //DOIT
+        if (QQfit==0)
+        {
+                //DoReparametrisation(0, param_q2, param_err_q2, i);
+                DoReparametrisationforQQ(0, param_q2_PhotonsFitforQQ, param_err_q2_PhotonsFitforQQ, i);
+        }
+        else if(QQfit != 0)
+            DoReparametrisationQQfit(0, param_q2, param_err_q2, i);
+        
         DoComplicatedScale(hist.h_deltaz_q2_norad_sum[i], 1 - param_q2[i], param_err_q2[i]);
         DoComplicatedScale(hist.h_deltaz_q2_prph_sum[i], param_q2[i], param_err_q2[i]);
         hist.h_deltaz_q2_res[i]->Add(hist.h_deltaz_q2_norad_sum[i]);
         hist.h_deltaz_q2_res[i]->Add(hist.h_deltaz_q2_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin q2 " << i << ": " << param_q2[i] << " +- " << param_err_q2[i] << ", chi2/dof = " << chi2_q2[i] << endl;
     }
 
     ///////////////////////////////////////////////////////
@@ -637,7 +801,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xbins; i++)
-    {      
+    { 
+        MakeCorrection(hist.h_deltaz_x_data_sum[i], hist.h_deltaz_x_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_x_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_x_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_x_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -646,13 +812,34 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_x_prph_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_prph_sum[i]->GetSum());
+            hist.h_deltaz_x_norad_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_x_prph_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_prph_sum[i]->GetSum());
 
-        hist.h_deltaz_x_prph_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - hist.h_deltaz_x_rad_sum[i]->GetSum())/hist.h_deltaz_x_prph_sum[i]->GetSum());
-        hist.h_deltaz_x_norad_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_norad_sum[i]->GetSum());
-        
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_x_norad_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_x_prph_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_x_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_x_norad_sum[i]->Scale((hist.h_deltaz_x_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_x_rad_sum[i]->GetSum()) / hist.h_deltaz_eta_norad_sum[i]->GetSum()); 
+        }
+
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -693,18 +880,24 @@ int main(int argc, char *argv[])
         hist.h_chi2_perbin_x[i]->Draw("HIST TEXT");
         c->Print(sc + ".eps");
         delete c;
-        //if (nodebugmode) cout << "total chi2 = " << total_chi2 << endl;
-        //if (nodebugmode) cout << "... per dof = " << total_chi2 / Double_t(dof-2) << endl;
-        // ----------- end chi2 per bin
         
-        //leftx[i]++;
-        //hist.h_deltaz_x_norad_sum[i]->Scale(1-param_x[i]);
-        //hist.h_deltaz_x_prph_sum[i]->Scale(param_x[i]);
+        param_x_PhotonsFit[i] = param_x[i];
+        param_err_x_PhotonsFit[i] = param_err_x[i];
+        param_x_PhotonsFitforQQ[i] = param_x[i];
+        param_err_x_PhotonsFitforQQ[i] = param_err_x[i];
+        //DOIT
+        if (QQfit==0)
+        {
+                //DoReparametrisation(0, param_x, param_err_x, i);
+                DoReparametrisationforQQ(0, param_x_PhotonsFitforQQ, param_err_x_PhotonsFitforQQ, i);
+        }
+        else if(QQfit != 0)
+            DoReparametrisationQQfit(0, param_x, param_err_x, i);
+        
         DoComplicatedScale(hist.h_deltaz_x_norad_sum[i], 1 - param_x[i], param_err_x[i]);
         DoComplicatedScale(hist.h_deltaz_x_prph_sum[i], param_x[i], param_err_x[i]);
         hist.h_deltaz_x_res[i]->Add(hist.h_deltaz_x_norad_sum[i]);
         hist.h_deltaz_x_res[i]->Add(hist.h_deltaz_x_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin x " << i << ": " << param_x[i] << " +- " << param_err_x[i] << ", chi2/dof = " << chi2_x[i]  << endl;
     }
 
     ///////////////////////////////////////////////////////
@@ -713,7 +906,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_et_jetbins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_et_jet_data_sum[i], hist.h_deltaz_et_jet_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_et_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_et_jet_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -722,12 +917,33 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        
-        hist.h_deltaz_et_jet_prph_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_prph_sum[i]->GetSum());
-        hist.h_deltaz_et_jet_norad_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_norad_sum[i]->GetSum());
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_et_jet_prph_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_prph_sum[i]->GetSum());
+            hist.h_deltaz_et_jet_norad_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_et_jet_prph_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_et_jet_norad_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_et_jet_prph_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_et_jet_norad_sum[i]->Scale((hist.h_deltaz_et_jet_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_et_jet_rad_sum[i]->GetSum()) / hist.h_deltaz_et_jet_norad_sum[i]->GetSum()); 
+        }
         
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
@@ -769,18 +985,24 @@ int main(int argc, char *argv[])
         hist.h_chi2_perbin_et_jet[i]->Draw("HIST TEXT");
         c->Print(sc + ".eps");
         delete c;
-        //if (nodebugmode) cout << "total chi2 = " << total_chi2 << endl;
-        //if (nodebugmode) cout << "... per dof = " << total_chi2 / Double_t(dof-2) << endl;
-        // ----------- end chi2 per bin
         
-        //leftet_jet[i]++;
-        //hist.h_deltaz_et_jet_norad_sum[i]->Scale(1-param_et_jet[i]);
-        //hist.h_deltaz_et_jet_prph_sum[i]->Scale(param_et_jet[i]);
+        param_et_jet_PhotonsFit[i] = param_et_jet[i];
+        param_err_et_jet_PhotonsFit[i] = param_err_et_jet[i];
+        param_et_jet_PhotonsFitforQQ[i] = param_et_jet[i];
+        param_err_et_jet_PhotonsFitforQQ[i] = param_err_et_jet[i];
+        //DOIT
+        if (QQfit==0)
+        {
+                //DoReparametrisation(0, param_et_jet, param_err_et_jet, i);
+                DoReparametrisationforQQ(0, param_et_jet_PhotonsFitforQQ, param_err_et_jet_PhotonsFitforQQ, i);
+        }
+        else if(QQfit != 0)
+            DoReparametrisationQQfit(0, param_et_jet, param_err_et_jet, i);
+        
         DoComplicatedScale(hist.h_deltaz_et_jet_norad_sum[i], 1 - param_et_jet[i], param_err_et_jet[i]);
         DoComplicatedScale(hist.h_deltaz_et_jet_prph_sum[i], param_et_jet[i], param_err_et_jet[i]);
         hist.h_deltaz_et_jet_res[i]->Add(hist.h_deltaz_et_jet_norad_sum[i]);
         hist.h_deltaz_et_jet_res[i]->Add(hist.h_deltaz_et_jet_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin et_jet " << i << ": " << param_et_jet[i] << " +- " << param_err_et_jet[i] << ", chi2/dof = " << chi2_et_jet[i]  << endl;
     }
 
     ///////////////////////////////////////////////////////
@@ -789,7 +1011,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_eta_jetbins; i++)
-    {      
+    { 
+        MakeCorrection(hist.h_deltaz_eta_jet_data_sum[i], hist.h_deltaz_eta_jet_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_eta_jet_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -845,18 +1069,23 @@ int main(int argc, char *argv[])
         hist.h_chi2_perbin_eta_jet[i]->Draw("HIST TEXT");
         c->Print(sc + ".eps");
         delete c;
-        //if (nodebugmode) cout << "total chi2 = " << total_chi2 << endl;
-        //if (nodebugmode) cout << "... per dof = " << total_chi2 / Double_t(dof-2) << endl;
-        // ----------- end chi2 per bin
+        param_eta_jet_PhotonsFit[i] = param_eta_jet[i];
+        param_err_eta_jet_PhotonsFit[i] = param_err_eta_jet[i];
+        param_eta_jet_PhotonsFitforQQ[i] = param_eta_jet[i];
+        param_err_eta_jet_PhotonsFitforQQ[i] = param_err_eta_jet[i];
+        //DOIT
+        if (QQfit==0)
+        {
+                //DoReparametrisation(0, param_eta_jet, param_err_eta_jet, i);
+                DoReparametrisationforQQ(0, param_eta_jet_PhotonsFitforQQ, param_err_eta_jet_PhotonsFitforQQ, i);
+        }
+        else if(QQfit != 0)
+            DoReparametrisationQQfit(0, param_eta_jet, param_err_eta_jet, i);
         
-        //lefteta_jet[i]++;
-        //hist.h_deltaz_eta_jet_norad_sum[i]->Scale(1-param_eta_jet[i]);
-        //hist.h_deltaz_eta_jet_prph_sum[i]->Scale(param_eta_jet[i]);
         DoComplicatedScale(hist.h_deltaz_eta_jet_norad_sum[i], 1 - param_eta_jet[i], param_err_eta_jet[i]);
         DoComplicatedScale(hist.h_deltaz_eta_jet_prph_sum[i], param_eta_jet[i], param_err_eta_jet[i]);
         hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_norad_sum[i]);
-        hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin eta_jet " << i << ": " << param_eta_jet[i] << " +- " << param_err_eta_jet[i] << ", chi2/dof = " << chi2_eta_jet[i]  << endl;
+        hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_prph_sum[i]);//if (nodebugmode) cout << "par in bin eta_jet " << i << ": " << param_eta_jet[i] << " +- " << param_err_eta_jet[i] << ", chi2/dof = " << chi2_eta_jet[i]  << endl;
     }
 
     ///////////////////////////////////////////////////////
@@ -864,19 +1093,23 @@ int main(int argc, char *argv[])
     //          Fit in bins of xgamma
     //
     ///////////////////////////////////////////////////////
-    for (Int_t i = 0; i< hist.hist_data_sum[1]->GetNbinsX();i++)
-    {
-        if (nodebugmode) dout("hist.hist_data_sum[1]->GetBinContent(",i+1,")", \
-            hist.hist_data_sum[1]->GetBinContent(i+1)*hist.hist_data_sum[1]->GetBinWidth(i+1));
-    }
-    for (Int_t i = 0; i< hist.hist_data_sum[1]->GetNbinsX();i++)
-    {
-        if (nodebugmode) dout("hist.h_deltaz_xgamma_data_sum[i]->GetSum()", \
-            TMath::Sqrt(hist.h_deltaz_xgamma_data_sum[i]->Integral(0, hist.h_deltaz_xgamma_data_sum[i]->GetNbinsX() +1)));
-            //hist.h_deltaz_xgamma_data_sum[i]->Integral(0, hist.h_deltaz_xgamma_data_sum[i]->GetNbinsX() +1));
-    }
+    /*
+        for (Int_t i = 0; i< hist.hist_data_sum[1]->GetNbinsX();i++)
+        {
+            if (nodebugmode) dout("hist.hist_data_sum[1]->GetBinContent(",i+1,")", \
+                hist.hist_data_sum[1]->GetBinContent(i+1)*hist.hist_data_sum[1]->GetBinWidth(i+1));
+        }
+        for (Int_t i = 0; i< hist.hist_data_sum[1]->GetNbinsX();i++)
+        {
+            if (nodebugmode) dout("hist.h_deltaz_xgamma_data_sum[i]->GetSum()", \
+                TMath::Sqrt(hist.h_deltaz_xgamma_data_sum[i]->Integral(0, hist.h_deltaz_xgamma_data_sum[i]->GetNbinsX() +1)));
+                //hist.h_deltaz_xgamma_data_sum[i]->Integral(0, hist.h_deltaz_xgamma_data_sum[i]->GetNbinsX() +1));
+        }
+    */
     for(Int_t i=0; i < number_xgamma_bins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_xgamma_data_sum[i], hist.h_deltaz_xgamma_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_xgamma_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_xgamma_prph_sum[i]->Clone(); 
@@ -895,12 +1128,33 @@ int main(int argc, char *argv[])
         if (i+1 == 1 )
             if (nodebugmode) cout <<"qq: " << hist_mc[0]->GetEntries() << " or " << hist_mc[0]->Integral(1, hist_mc[0]->GetNbinsX()) << endl;
 
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-        hist.h_deltaz_xgamma_prph_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_prph_sum[i]->GetSum());
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_xgamma_prph_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_prph_sum[i]->GetSum());
+            hist.h_deltaz_xgamma_norad_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_xgamma_prph_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_prph_sum[i]->GetSum());
 
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        hist.h_deltaz_xgamma_norad_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_norad_sum[i]->GetSum());
-        
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_xgamma_norad_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_xgamma_prph_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_xgamma_norad_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_norad_sum[i]->GetSum()); 
+        }
         //if (i+1 == number_xgamma_bins )
         //    if (nodebugmode) cout <<"qq': " << hist_mc[0]->GetEntries() << " or " << hist_mc[0]->Integral(1, hist_mc[0]->GetNbinsX()) << endl;        
         //hist.h_deltaz_xgamma_prph_sum[i]->Scale((hist.h_deltaz_xgamma_data_sum[i]->GetSum() - hist.h_deltaz_xgamma_rad_sum[i]->GetSum()) / hist.h_deltaz_xgamma_prph_sum[i]->GetSum());
@@ -970,7 +1224,7 @@ int main(int argc, char *argv[])
         param_err_xgamma_PhotonsFit[i] = param_err_xgamma[i];
         param_xgamma_PhotonsFitforQQ[i] = param_xgamma[i];
         param_err_xgamma_PhotonsFitforQQ[i] = param_err_xgamma[i];
-        if (!nodebugmode) cout<< "param xgamma after fit " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
+        if (nodebugmode) cout<< "param xgamma after fit " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
         if (QQfit == 0)
         {
             DoReparametrisation(1, param_xgamma, param_err_xgamma, i);
@@ -989,7 +1243,7 @@ int main(int argc, char *argv[])
             //if (!nodebugmode) dout("a",i,":",param_xgamma[i], (param_xgamma[i]*hist_mc_photon[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_data[0]->GetSum());
             //param_xgamma[i] = (param_xgamma[i]*hist_mc_photon[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_data[0]->GetSum();
         }
-        if (!nodebugmode) cout<< "param xgamma after reparam " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
+        if (nodebugmode) cout<< "param xgamma after reparam " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
         DoComplicatedScale(hist.h_deltaz_xgamma_norad_sum[i], 1 - param_xgamma_PhotonsFit[i], param_err_xgamma_PhotonsFit[i]);
         DoComplicatedScale(hist.h_deltaz_xgamma_prph_sum[i], param_xgamma[i], param_err_xgamma[i]);
         hist.h_deltaz_xgamma_res[i]->Add(hist.h_deltaz_xgamma_norad_sum[i]);// LL + bg'
@@ -1019,7 +1273,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xp_bins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_xp_data_sum[i], hist.h_deltaz_xp_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_xp_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_xp_prph_sum[i]->Clone(); 
         hist_mc[0]->SetName("prph");
@@ -1032,18 +1288,48 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
+        /*was:
+            if (QQfit == 0)
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+            else
+            hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
+            //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
+            if (QQfit == 0)
+                hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
+            else
+                hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() ) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
+            hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum());
+        */
         if (QQfit == 0)
-        hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-        else
-        hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
             hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
-        else
-            hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() ) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
-        hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum());
-        
+            hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum()); 
+        }
+
+
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -1092,10 +1378,10 @@ int main(int argc, char *argv[])
         //hist.h_deltaz_xp_norad_sum[i]->Scale(1-param_xp[i]);
         //hist.h_deltaz_xp_prph_sum[i]->Scale(param_xp[i]);
 
-            param_xp_PhotonsFit[i] = param_xp[i];
-            param_err_xp_PhotonsFit[i] = param_err_xp[i];
-            param_xp_PhotonsFitforQQ[i] = param_xp[i];
-            param_err_xp_PhotonsFitforQQ[i] = param_err_xp[i];
+        param_xp_PhotonsFit[i] = param_xp[i];
+        param_err_xp_PhotonsFit[i] = param_err_xp[i];
+        param_xp_PhotonsFitforQQ[i] = param_xp[i];
+        param_err_xp_PhotonsFitforQQ[i] = param_err_xp[i];
         if (QQfit == 0)
         {
             //std::copy(param_xp, param_xp + number_xp_bins, param_xp_PhotonsFit);
@@ -1119,7 +1405,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_dphi_bins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_dphi_data_sum[i], hist.h_deltaz_dphi_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_dphi_prph_sum[i]->Clone(); 
@@ -1136,20 +1424,49 @@ int main(int argc, char *argv[])
 
         
         //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        
+        /*was
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
+            
+            if (QQfit == 0)
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+                hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
+            }
+            else{
+                hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() ) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
+            
+                hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
+            }
+            hist.h_deltaz_dphi_norad_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_norad_sum[i]->GetSum());
+        */
         if (QQfit == 0)
         {
-            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
             hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
+            hist.h_deltaz_dphi_norad_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_norad_sum[i]->GetSum()); 
         }
-        else{
-            hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() ) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
-        
-            hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_dphi_norad_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_norad_sum[i]->GetSum()); 
         }
-        hist.h_deltaz_dphi_norad_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_norad_sum[i]->GetSum());
-        
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_xp_prph_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_xp_norad_sum[i]->Scale((hist.h_deltaz_xp_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_xp_rad_sum[i]->GetSum()) / hist.h_deltaz_xp_norad_sum[i]->GetSum()); 
+        }
+
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -1228,7 +1545,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_bins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_deta_data_sum[i], hist.h_deltaz_deta_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_deta_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_deta_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_deta_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -1239,19 +1558,47 @@ int main(int argc, char *argv[])
 
         //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
         hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        
+        /*was
+            if (QQfit == 0)
+            {
+                hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+            }
+            else
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
+                hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() ) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
+            }
+            hist.h_deltaz_deta_norad_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_norad_sum[i]->GetSum());
+        */
+
         if (QQfit == 0)
         {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
             hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
-            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+            hist.h_deltaz_deta_norad_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_norad_sum[i]->GetSum()); 
         }
-        else
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
         {
-            hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
-            hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() ) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_deta_norad_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_norad_sum[i]->GetSum()); 
         }
-        hist.h_deltaz_deta_norad_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_norad_sum[i]->GetSum());
-        
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_deta_prph_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_deta_norad_sum[i]->Scale((hist.h_deltaz_deta_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_norad_sum[i]->GetSum()); 
+        }
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -1328,7 +1675,9 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_dphi_e_ph_bins; i++)
-    {     
+    { 
+        MakeCorrection(hist.h_deltaz_dphi_e_ph_data_sum[i], hist.h_deltaz_dphi_e_ph_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
@@ -1337,22 +1686,49 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        
-
-         if (QQfit == 0)
-         {
+        /*was
+            //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
+            
+            if (QQfit == 0)
+            {
             hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
             hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_prph_sum[i]->GetSum());
-         }
-        else
-        {
+            }
+            else
+            {
             hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
             hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() ) / hist.h_deltaz_dphi_e_ph_prph_sum[i]->GetSum());
+            }
+            hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_norad_sum[i]->GetSum());
+        */
+        if (QQfit == 0)
+        {
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
+            hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_prph_sum[i]->GetSum());
+            hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_norad_sum[i]->GetSum()); 
         }
-        hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_norad_sum[i]->GetSum());
-        
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_norad_sum[i]->GetSum()); 
+        }
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale((hist.h_deltaz_dphi_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_dphi_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_e_ph_norad_sum[i]->GetSum()); 
+        }
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -1400,10 +1776,10 @@ int main(int argc, char *argv[])
         //leftdphi_e_ph[i]++;
         //hist.h_deltaz_dphi_e_ph_norad_sum[i]->Scale(1-param_dphi_e_ph[i]);
         //hist.h_deltaz_dphi_e_ph_prph_sum[i]->Scale(param_dphi_e_ph[i]);
-            param_dphi_e_ph_PhotonsFit[i] = param_dphi_e_ph[i];
-            param_err_dphi_e_ph_PhotonsFit[i] = param_err_dphi_e_ph[i];
-            param_dphi_e_ph_PhotonsFitforQQ[i] = param_dphi_e_ph[i];
-            param_err_dphi_e_ph_PhotonsFitforQQ[i] = param_err_dphi_e_ph[i];
+        param_dphi_e_ph_PhotonsFit[i] = param_dphi_e_ph[i];
+        param_err_dphi_e_ph_PhotonsFit[i] = param_err_dphi_e_ph[i];
+        param_dphi_e_ph_PhotonsFitforQQ[i] = param_dphi_e_ph[i];
+        param_err_dphi_e_ph_PhotonsFitforQQ[i] = param_err_dphi_e_ph[i];
         if (QQfit == 0)
         {
             //std::copy(param_dphi_e_ph, param_dphi_e_ph + number_dphi_e_ph_bins,  param_dphi_e_ph_PhotonsFit);
@@ -1427,31 +1803,66 @@ int main(int argc, char *argv[])
     //
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_e_ph_bins; i++)
-    {     
-        hist_data[0] = (TH1D*)hist.h_deltaz_deta_e_ph_data_sum[i]->Clone(); hist_data[0]->SetName("data");
-        hist_mc[0] = (TH1D*)hist.h_deltaz_deta_e_ph_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
-        hist_mc_rad[0] = (TH1D*)hist.h_deltaz_deta_e_ph_rad_sum[i]->Clone(); hist_mc_rad[0]->SetName("rad");
-        hist_mc_norad[0] = (TH1D*)hist.h_deltaz_deta_e_ph_norad_sum[i]->Clone(); hist_mc_norad[0]->SetName("norad");
-        hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); hist_mc_photon[0]->SetName("photon");
+    { 
+        MakeCorrection(hist.h_deltaz_deta_e_ph_data_sum[i], hist.h_deltaz_deta_e_ph_norad_sum[i]);
+
+        hist_data[0] = (TH1D*)hist.h_deltaz_deta_e_ph_data_sum[i]->Clone(); 
+        hist_mc[0] = (TH1D*)hist.h_deltaz_deta_e_ph_prph_sum[i]->Clone(); 
+        hist_mc_rad[0] = (TH1D*)hist.h_deltaz_deta_e_ph_rad_sum[i]->Clone(); 
+        hist_mc_norad[0] = (TH1D*)hist.h_deltaz_deta_e_ph_norad_sum[i]->Clone(); 
+        hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); 
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
+        hist_data[0]->SetName("data");
+        hist_mc[0]->SetName("prph");
+        hist_mc_rad[0]->SetName("rad");
+        hist_mc_norad[0]->SetName("norad");
+        hist_mc_photon[0]->SetName("photon");
         
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-        
+        /*was
+            //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
+            if (QQfit == 0)
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+                hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+            }
+            else
+            {
+                hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
+                hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() ) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+            }
+
+            hist.h_deltaz_deta_e_ph_norad_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_norad_sum[i]->GetSum());//?
+        */
         if (QQfit == 0)
         {
-            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
+            //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            //hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
+            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            
+            //for the CS further painting...
             hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+            hist.h_deltaz_deta_e_ph_norad_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_norad_sum[i]->GetSum()); 
         }
-        else
+        else if (fitWithLLinBg == 0)//data =LL’ +  QQ’ * a + bg’ * (1- a) //data = QQ’ * a + bg’ * (1 - a)
         {
-            hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
-            hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() ) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - QQfit * fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_deta_e_ph_norad_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_norad_sum[i]->GetSum()); 
         }
-        hist.h_deltaz_deta_e_ph_norad_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_norad_sum[i]->GetSum());//?
-        
+        else if (fitWithLL == 0 && fitWithLLinBg == 1)//data = QQ’ * a + bg’’ * (1 - a)
+        {
+            hist_mc[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum()); // QQ' = QQ.scale([Data - LL]/QQ)
+            hist.h_deltaz_deta_e_ph_prph_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - fitWithLL * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_prph_sum[i]->GetSum());
+
+            hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - fitWithLL * hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum()); // bg' = bg.scale(Data / bg)
+            hist.h_deltaz_deta_e_ph_norad_sum[i]->Scale((hist.h_deltaz_deta_e_ph_data_sum[i]->GetSum() - QQfit * fitWithLL * hist.h_deltaz_deta_e_ph_rad_sum[i]->GetSum()) / hist.h_deltaz_deta_e_ph_norad_sum[i]->GetSum()); 
+        }
         minimizer->SetParameter(0, "ALPHA", 0.3, 0.05, 0., 1.);
         minimizer->ExecuteCommand("SIMPLEX", 0, 0);
         minimizer->ExecuteCommand("MIGRAD",0,0);
@@ -1515,6 +1926,7 @@ int main(int argc, char *argv[])
             DoReparametrisationQQfit(5, param_deta_e_ph, param_err_deta_e_ph, i);
         DoComplicatedScale(hist.h_deltaz_deta_e_ph_norad_sum[i], 1 - param_deta_e_ph[i], param_err_deta_e_ph[i]);
         DoComplicatedScale(hist.h_deltaz_deta_e_ph_prph_sum[i], param_deta_e_ph[i], param_err_deta_e_ph[i]);
+        //dout(" hist.h_deltaz_deta_e_ph_res[i]->",  hist.h_deltaz_deta_e_ph_res[i]->GetBinContent(1));
         hist.h_deltaz_deta_e_ph_res[i]->Add(hist.h_deltaz_deta_e_ph_norad_sum[i]);
         hist.h_deltaz_deta_e_ph_res[i]->Add(hist.h_deltaz_deta_e_ph_prph_sum[i]);
         ///if (nodebugmode) cout << "par in bin deta_e_ph " << i << ": " << param_deta_e_ph[i] << " +- " << param_err_deta_e_ph[i] << ", chi2/dof = " << chi2_deta_e_ph[i]  << endl;
@@ -1645,7 +2057,6 @@ int main(int argc, char *argv[])
             DoComplicatedScale(hist_mc[0], param[0], param_err[0]);//QQ*a
             if (QQfit == 1 && fitWithLL == 0)
                 hist_res[0] = (TH1D*)hist_mc[0]->Clone(); //QQ
-
             else if (QQfit == 0)
             {
                 DoComplicatedScale(hist_mc_photon[0], param[0], param_err[0]);
@@ -1673,7 +2084,8 @@ int main(int argc, char *argv[])
             TCanvas* c  = new TCanvas("c_"+tempstr, tempstr, 800, 600); 
             Double_t y_max = 1.2 * hist_data[0]->GetMaximum();
             TH2D *h_window_control = new TH2D(tempstr + "_win", "title", hist_data[0]->GetNbinsX(), 0, \
-            hist_data[0]->GetBinCenter(hist_data[0]->GetNbinsX()) + hist_data[0]->GetBinWidth(hist_data[0]->GetNbinsX())/2, 10, 0., y_max);//array_bin[0], array_bin[number_bins - 1]
+                                     hist_data[0]->GetBinCenter(hist_data[0]->GetNbinsX()) + hist_data[0]->GetBinWidth(hist_data[0]->GetNbinsX())/2, \
+                                     10, 0., y_max);//array_bin[0], array_bin[number_bins - 1]
 
 
             c->GetPad(0)->SetTicks(1,1);
@@ -1761,7 +2173,7 @@ int main(int argc, char *argv[])
             hist_data[0]->SetLineColor(kBlack);
             hist_data[0]->DrawClone("P E1 SAME");  
             
-                leg->DrawClone();
+            leg->DrawClone();
 
             {
                     inform->Draw();
