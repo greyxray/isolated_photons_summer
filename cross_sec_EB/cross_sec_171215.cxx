@@ -1,15 +1,15 @@
 #include "cross_sec.h"
 
-TString whichCorrection("IanSgCorr");//"NoCorrection"
+TString whichCorrection("NoCorrection");//"NoCorrection"
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//"IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//"PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//"PeterBgCorr"
 unsigned int NoScalingForBinsTest = 0;
-unsigned int ProduceDZoverollPlot = 1;
+unsigned int ProduceDZoverollPlot = 0;
 Bool_t nodebugmode = kFALSE;
 Bool_t once = kTRUE;
 
-unsigned int QQfit = 0; 
+unsigned int QQfit = 1; 
 //0 : data = photons * a + bg' * (1 - a);
     //QQ' = QQ.scale([Data - LL] / QQ)
     //bg' = bg.scale([Data - LL] / bg)
