@@ -1,6 +1,6 @@
 #include "cross_sec.h"
 
-TString whichCorrection("NoCorrection");//"IanSgCorr" NoCorrection
+TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
@@ -9,14 +9,14 @@ unsigned int ProduceDZoverollPlot = 0;
 Bool_t nodebugmode = kFALSE;
 Bool_t once = kTRUE;
 
-unsigned int QQfit = 1; 
+unsigned int QQfit = 0; 
 //0 : data = photons * a + bg' * (1 - a);
     //QQ' = QQ.scale([Data - LL] / QQ)
     //bg' = bg.scale([Data - LL] / bg)
 //1 : data = LL + QQ' * a + bg' * (1 - a);
     //QQ' = QQ.scale([Data - LL] / QQ) if fitWithLL==1 and fitWithLLinBg=0
     //bg' = bg.scale([Data] / bg)
-unsigned int fitWithLL = 1; 
+unsigned int fitWithLL = 0; 
 unsigned int fitWithLLinBg = 0; 
 //data =LL’ +  QQ’ * a + bg’ * (1- a)
     //unsigned int QQfit = 1;
@@ -343,7 +343,7 @@ int main(int argc, char *argv[])
 
     for(Int_t i = 0; i < number_etbins; i++)// процедура фитирования выполняется на каждый бин по Et
     {
-        MakeCorrection(hist.h_deltaz_et_data_sum[i], hist.h_deltaz_et_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_et_prph_sum[i], hist.h_deltaz_et_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_et_data_sum[i]->Clone(); 
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone();
@@ -532,7 +532,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_etabins; i++)
     {      
-        MakeCorrection(hist.h_deltaz_eta_data_sum[i], hist.h_deltaz_eta_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_eta_prph_sum[i], hist.h_deltaz_eta_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_data_sum[i]->Clone(); 
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_prph_sum[i]->Clone(); 
@@ -649,7 +649,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_Q2bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_q2_data_sum[i], hist.h_deltaz_q2_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_q2_prph_sum[i], hist.h_deltaz_q2_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_q2_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_q2_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -757,7 +757,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_x_data_sum[i], hist.h_deltaz_x_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_x_prph_sum[i], hist.h_deltaz_x_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_x_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_x_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -864,7 +864,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_et_jetbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_et_jet_data_sum[i], hist.h_deltaz_et_jet_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_et_jet_prph_sum[i], hist.h_deltaz_et_jet_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_et_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -971,7 +971,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_eta_jetbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_eta_jet_data_sum[i], hist.h_deltaz_eta_jet_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_eta_jet_prph_sum[i], hist.h_deltaz_eta_jet_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1091,7 +1091,7 @@ int main(int argc, char *argv[])
     */
     for(Int_t i=0; i < number_xgamma_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_xgamma_data_sum[i], hist.h_deltaz_xgamma_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_xgamma_prph_sum[i], hist.h_deltaz_xgamma_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_xgamma_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
@@ -1258,7 +1258,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xp_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_xp_data_sum[i], hist.h_deltaz_xp_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_xp_prph_sum[i], hist.h_deltaz_xp_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_xp_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_xp_prph_sum[i]->Clone(); 
@@ -1392,7 +1392,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_dphi_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_dphi_data_sum[i], hist.h_deltaz_dphi_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_dphi_prph_sum[i], hist.h_deltaz_dphi_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
@@ -1532,7 +1532,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_deta_data_sum[i], hist.h_deltaz_deta_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_deta_prph_sum[i], hist.h_deltaz_deta_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_deta_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_deta_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1662,7 +1662,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i = 0; i < number_dphi_e_ph_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_dphi_e_ph_data_sum[i], hist.h_deltaz_dphi_e_ph_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_dphi_e_ph_prph_sum[i], hist.h_deltaz_dphi_e_ph_norad_sum[i]);
       
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1797,7 +1797,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_e_ph_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_deta_e_ph_data_sum[i], hist.h_deltaz_deta_e_ph_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_deta_e_ph_prph_sum[i], hist.h_deltaz_deta_e_ph_norad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_deta_e_ph_data_sum[i]->Clone(); 
         hist_mc[0] = (TH1D*)hist.h_deltaz_deta_e_ph_prph_sum[i]->Clone(); 

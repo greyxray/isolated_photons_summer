@@ -398,7 +398,7 @@ void Hist::CalculateCrossSec(TH1D* data,
       */
 
       //      cross_sec          = (           prph           / C_acc + ll_events/C_ll_acc)  / (bin_width * Lumi);
-      Double_t cross_sec         = ( (n_qq ) / C_acc + (C_ll_acc!=0)*ll_events/C_ll_acc ) / (bin_width * Lumi),
+      Double_t cross_sec         = ( (n_qq ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events/C_ll_acc ) / (bin_width * Lumi),
                prph_cross_sec    =   (n_qq )                                / (C_acc * bin_width * Lumi),
                ll_cross_sec      =                                      ll_events            / (C_ll_acc * bin_width * Lumi),
                prph_mc_cross_sec =    prph_had                                               / (bin_width * 3552.40),
@@ -413,12 +413,12 @@ void Hist::CalculateCrossSec(TH1D* data,
       //statistical errors
       err1 = Nqq->GetBinError(i+1) / (bin_width * Lumi * C_acc);
       if (nodebugmode && name.Contains("xgamma")) cout<< i<<") " <<"Nqq = "<< Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
-      err11 = ll_det->GetBinError(i+1) * ( 1 / C_ll_acc) / (bin_width * Lumi);
+      err11 = fitWithLL*ll_det->GetBinError(i+1) * ( 1 / C_ll_acc) / (bin_width * Lumi);
       err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
 
       //acceptance errors
       err2 = (n_qq ) * C_err / (bin_width * Lumi * C_acc * C_acc);
-      err22 = ll_events * C_ll_err / (bin_width * Lumi * C_ll_acc * C_ll_acc);
+      err22 = fitWithLL*ll_events * C_ll_err / (bin_width * Lumi * C_ll_acc * C_ll_acc);
       err2 = TMath::Sqrt(err2*err2 + err22*err22);  
       
       //luminosity errors are negleckted
