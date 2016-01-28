@@ -12,6 +12,7 @@ foo.txt
 *.txt
 *.dat
 *.h~
+cross_values.c
 *.cxx~
 *.c~
 *.root

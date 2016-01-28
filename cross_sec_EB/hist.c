@@ -289,11 +289,22 @@ void Hist::Init()
                 //061215 - do the same as it is in the i == nhist-1
                 for (Int_t j = 0; j < hist_mc_sum[i]->GetNbinsX(); j++)
                 {
+                    //QQ SCALING
                     Double_t mult = 1;
                     if (hist_mc_sum[i]->GetBinContent(j+1) != 0 )
                     {
-                        //if (QQfit == 0)
-                          mult = (hist_data_sum[i]->GetBinContent(j+1) - hist_mc_rad_sum[i]->GetBinContent(j+1)) / hist_mc_sum[i]->GetBinContent(j+1);
+                        //IN MORE CORRECT WAY I SHOULD ESTIMATE THE CHANGE IN QQ IF I USE IAN'S CORRECTION
+                        if (QQfit==1)
+                        {
+                            if (fitWithLL == 1 )
+                                mult = (hist_data_sum[i]->GetBinContent(j+1) - hist_mc_rad_sum[i]->GetBinContent(j+1)) / hist_mc_sum[i]->GetBinContent(j+1);
+                            else if (fitWithLL == 0 || fitWithLLinBg == 1 )
+                                mult = (hist_data_sum[i]->GetBinContent(j+1) ) / hist_mc_sum[i]->GetBinContent(j+1);
+                        }
+                        else if (QQfit == 0)
+                        {
+                             mult = (hist_data_sum[i]->GetBinContent(j+1) - hist_mc_rad_sum[i]->GetBinContent(j+1)) / hist_mc_sum[i]->GetBinContent(j+1);
+                        }
                     }
                     else
                         mult = 0;
@@ -304,12 +315,19 @@ void Hist::Init()
                     hist_mc_sum[i]->SetBinContent(j+1, hist_mc_sum[i]->GetBinContent(j+1) * mult);
                     hist_mc_sum[i]->SetBinError(j+1, hist_mc_sum[i]->GetBinError(j+1) * mult);
 
-
+                    //BG SCALING
                     if (hist_mc_norad_sum[i]->GetBinContent(j+1) != 0 )
                     {
-                        //mult = (hist_data_sum[i]->GetBinContent(j+1) - hist_mc_rad_sum[i]->GetBinContent(j+1)) / hist_mc_norad_sum[i]->GetBinContent(j+1);
-                        //mult = (hist_data_sum[i]->GetBinContent(j+1)  - QQfit * hist_mc_rad_sum[i]->GetBinContent(j+1) )/ hist_mc_norad_sum[i]->GetBinContent(j+1);
-                        mult = (hist_data_sum[i]->GetBinContent(j+1)  ) / hist_mc_norad_sum[i]->GetBinContent(j+1);
+                        if (QQfit==1)
+                        {
+                            mult = (hist_data_sum[i]->GetBinContent(j+1) - fitWithLL*QQfit*hist_mc_rad_sum[i]->GetBinContent(j+1) ) / hist_mc_norad_sum[i]->GetBinContent(j+1);          
+                            if (fitWithLLinBg==1)//what is it for the case of QQfit=0?
+                                mult = 1;
+                        }
+                        else if (QQfit == 0)
+                        {
+                            mult = hist_data_sum[i]->GetBinContent(j+1) / hist_mc_norad_sum[i]->GetBinContent(j+1);//Bg'
+                        }
                     }
                     else 
                         mult = 0;
@@ -2971,6 +2989,12 @@ void Hist::PlotFitInBinsOfCrossSec()
         make_clean_pads(c_dz_et, 4, 0, 0);
         for(Int_t i = 0; i < number_etbins; i++) 
         {
+            if (i==0 && nodebugmode)
+            {
+                dout("qq error, bin 3:",h_deltaz_et_prph_sum[i]->GetBinError(3));
+                dout("rad error, bin 3:",h_deltaz_et_rad_sum[i]->GetBinError(3));
+                dout("bg error, bin 3:",h_deltaz_et_norad_sum[i]->GetBinError(3));
+            }
             sign_window(c_dz_et->GetPad(i+1), h_window_fit_et[i], "#delta z", "Events", "", "middle");
             c_dz_et->GetPad(i+1)->cd();
             /*if (nodebugmode) cout << "draw " << i << endl;
@@ -2978,14 +3002,16 @@ void Hist::PlotFitInBinsOfCrossSec()
                 << h_deltaz_et_prph_sum[i]->Integral() << " " 
                 << h_deltaz_et_rad_sum[i]->Integral() << " " << h_deltaz_et_norad_sum[i]->Integral() << endl;   */ 
             h_window_fit_et[i]->Draw();
-            h_deltaz_et_res[i]->Draw("HIST SAME");
+            h_deltaz_et_res[i]->Draw("HIST SAME");//yellow filled black line
             h_deltaz_et_res[i]->Draw("E X0 F SAME");
-            h_deltaz_et_rad_sum[i]->Draw("HIST SAME");
+            h_deltaz_et_rad_sum[i]->Draw("HIST SAME");//red
             h_deltaz_et_rad_sum[i]->Draw("E X0 F SAME");
             h_deltaz_et_norad_sum[i]->Draw("HIST SAME");
             h_deltaz_et_norad_sum[i]->Draw("E X0 F SAME");
-            h_deltaz_et_prph_sum[i]->Draw("HIST SAME");
+            h_deltaz_et_prph_sum[i]->Draw("HIST SAME");//blue
             h_deltaz_et_prph_sum[i]->Draw("E X0 F SAME");
+             
+       
             //    h_deltaz_et_photon_sum[i]->Draw("HIST SAME");
             /*if (nodebugmode) cout << "dz before shift: " << h_deltaz_et_data_sum[i]->GetXaxis()->GetXmin() 
                 << " " << h_deltaz_et_data_sum[i]->GetXaxis()->GetXmax() 
@@ -2997,7 +3023,7 @@ void Hist::PlotFitInBinsOfCrossSec()
             /*if (nodebugmode) cout << "dz after shift: " << h_deltaz_et_data_sum[i]->GetXaxis()->GetXmin() << " " 
                 << h_deltaz_et_data_sum[i]->GetXaxis()->GetXmax() 
                 << " first bin center: " << h_deltaz_et_data_sum[i]->GetBinCenter(1) <<endl;*/
-            h_deltaz_et_data_sum[i]->Draw("P E X0 SAME");//https://root.cern.ch/root/html/THistPainter.html
+            h_deltaz_et_data_sum[i]->Draw("P E X0 SAME");// blue dashes https://root.cern.ch/root/html/THistPainter.html
             c_dz_et->GetPad(i+1)->RedrawAxis();
             pave_et[i]->Draw();
         }
@@ -3929,7 +3955,7 @@ void Hist::DoParamScale(TH1D* h, Double_t *a, Double_t *a_err, Int_t nbins, bool
         Double_t dy = a_err[i-1];
         //if (nodebugmode) cout << "x = " << x << " +- " << dx << "  y = " << y <<" +- " <<dy;
         h->SetBinContent(i, x * y);
-        if (x == 0 && y == 0)
+        if (x == 0 || y == 0)
         {
             h->SetBinError(i, 0);   
             //if (nodebugmode) cout << "  z = " << x * y << "  +- " << 0 <<endl;
@@ -3954,6 +3980,29 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     //*******************
     //if (nodebugmode) cout << "Integrals: mc QQ: " << hist_mc_sum[index]->Integral() << " mc LL: " << hist_mc_rad_sum[index]->Integral() \
     //<< " mc bg: " << hist_mc_norad_sum[index]->Integral() << " data: " << hist_data_sum [index]->Integral()<<endl;    
+     if (nodebugmode && variable.EqualTo("deta_e_ph"))
+    {
+        dout("data:");
+        for(Int_t i = 1; i < hist_data_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_data_sum[index]->GetBinContent(i)<< "  " <<hist_data_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("QQ:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_sum[index]->GetBinContent(i)<< "  " <<hist_mc_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("LL:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_rad_sum[index]->GetBinContent(i)<< "  " <<hist_mc_rad_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("bg:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_norad_sum[index]->GetBinContent(i)<< "  " <<hist_mc_norad_sum[index]->GetBinError(i)  <<endl;
+        }
+    }
     hist_res[index] = (TH1D*)hist_mc_rad_sum[index]->Clone();
     if (QQfit == 1 && fitWithLL== 0) hist_res[index]->Scale(0);//230116
     /*
@@ -3970,48 +4019,105 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             if (nodebugmode) cout << ">> >> " << hist_mc_sum[index]->GetBinContent(i)<< "  " <<hist_mc_sum[index]->GetBinError(i)  <<endl;
         }
     */
+       if (nodebugmode && variable.EqualTo("xgamma"))
+        {
+            Int_t bin = 1;
+            /*
+             TH1D* h_data = hist_data_sum[index];
+                TH1D* h_res = hist_res[index];
+                TH1D* h_qq = hist_mc_sum[index];
+                TH1D* h_ll = hist_mc_rad_sum[index];
+                TH1D* h_bg = hist_mc_norad_sum[index];
+            */
+             cout << "void Hist::PlotControlPlot bin" << bin<< endl;
+             //cout << "   param: " <<  param_xgamma[bin] <<" +/- " << param_err_xgamma[bin] << endl;
+             cout << "   data: " << hist_data_sum[index]->GetBinContent(bin) * hist_data_sum[index]->GetBinWidth(bin)<<endl;
+             // cout << "   res: " << h_res->GetBinContent(bin) * h_res->GetBinWidth(bin)<<endl;
+             // cout << "       res': " << h_qq->GetBinContent(bin) * h_qq->GetBinWidth(bin) * a[bin]  + \
+             //                            h_bg->GetBinContent(bin) * h_bg->GetBinWidth(bin) * (1 - a[bin]) + \
+             //                            h_ll->GetBinContent(bin) * h_ll->GetBinWidth(bin)<< endl;
+             cout << "   QQ': " <<  hist_mc_sum[index]->GetBinContent(bin) * hist_data_sum[index]->GetBinWidth(bin) <<endl;
+                 cout << "   hist.QQ[bin]: " << h_deltaz_xgamma_prph_sum[bin]->GetEntries() << endl;
+             cout << "   LL: " <<   hist_mc_rad_sum[index]->GetBinContent(bin) * hist_data_sum[index]->GetBinWidth(bin)<<endl;
+             cout << "   bg': " <<  hist_mc_norad_sum[index]->GetBinContent(bin) * hist_data_sum[index]->GetBinWidth(bin) <<endl;
+                 cout << "   hist.bg[bin]: " << h_deltaz_xgamma_norad_sum[bin]->Integral(1, h_deltaz_xgamma_norad_sum[bin]->GetNbinsX())<< endl;
+             //cout << "   photons: " << hist_mc_photon[0]->Integral(1, hist_mc_photon[0]->GetNbinsX())<<endl;
+
+        }
     hist_res[index]->Sumw2();
     hist_res[index]->SetName(s_hist[index]+"_res");//LL
     if (variable.EqualTo("xgamma"))
     {
-        if (nodebugmode) cout <<"bin by bin xgamma"<<endl;
-        TH1D * h = hist_data_sum[index];//hist_mc_sum[index];
-        for(Int_t i = 1; i < h->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
-            {       
-                if (nodebugmode) cout << h->GetBinContent(i) * h->GetBinWidth(i)<< " ";//24268
-            }
-            if (nodebugmode) cout<<endl;
+        if (nodebugmode) 
+        {
+            cout <<"bin by bin xgamma"<<endl;
+            TH1D * h = hist_data_sum[index];//hist_mc_sum[index];
+            //dout("void Hist::PlotControlPlot");
+            for(Int_t i = 1; i < h->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+                {       
+                    dout(i, ")", h->GetBinContent(i) * h->GetBinWidth(i));
+                    if (nodebugmode) cout << h->GetBinContent(i) * h->GetBinWidth(i)<< " ";//24268
+                    if (nodebugmode) cout<< "param param_xgamma after reparam " << i-1 << ") " << a[i-1] <<"+/-"<< a_err[i-1]<< endl;
+                    if (nodebugmode) cout<< "param param_xgamma_PhotonsFit after reparam " << i-1 << ") " << param_xgamma_PhotonsFit[i-1] <<"+/-"<< param_err_xgamma_PhotonsFit[i-1]<< endl;
+                    if (nodebugmode) cout<< "param param_xgamma_PhotonsFitforQQ after reparam " << i-1 << ") " << param_xgamma_PhotonsFitforQQ[i-1] <<"+/-"<< param_err_xgamma_PhotonsFitforQQ[i-1]<< endl;
+
+                }
+                if (nodebugmode) cout<<endl;
+        }  
     }
     
     //DoParamScale(hist_mc_sum[index], a, a_err, number_bins, true);//here a' - is the frac of photons in data 180116
     //DoParamScale(hist_mc_sum[index],  PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);//here x' - is the frac of QQ in data
     //DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
     //DoParamScale(hist_mc_norad_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, false); // 180116
-/*230116
-    if (QQfit == 0)//Photon fit
+    /*230116
+        if (QQfit == 0)//Photon fit
+        {
+            //DoParamScale(hist_mc_sum[index], a, a_err, number_bins, true);//here a' - is the frac of photons in data; QQ*a'
+            //DoParamScale(hist_mc_norad_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, false);//180116; bg*
+            ////DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
+
+            //190116
+            DoParamScale(hist_mc_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);//here a' - is the frac of photons in data; QQ*a'
+            DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);//180116; bg*
+        }
+        else if (QQfit == 1)
+        {
+            dout("this case");
+            //DoParamScale(hist_mc_sum[index],  PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);
+            //DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
+
+            DoParamScale(hist_mc_sum[index], a, a_err, number_bins, true);
+            DoParamScale(hist_mc_norad_sum[index], a, a_err, number_bins, false);
+        }
+    */
+
+        DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
+        DoParamScale(hist_mc_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);
+
+     if (!nodebugmode && variable.EqualTo("deta_e_ph"))
     {
-        //DoParamScale(hist_mc_sum[index], a, a_err, number_bins, true);//here a' - is the frac of photons in data; QQ*a'
-        //DoParamScale(hist_mc_norad_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, false);//180116; bg*
-        ////DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
-
-        //190116
-        DoParamScale(hist_mc_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);//here a' - is the frac of photons in data; QQ*a'
-        DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);//180116; bg*
+        dout("data:");
+        for(Int_t i = 1; i < hist_data_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_data_sum[index]->GetBinContent(i)<< "  " <<hist_data_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("QQ:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_sum[index]->GetBinContent(i)<< "  " <<hist_mc_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("LL:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_rad_sum[index]->GetBinContent(i)<< "  " <<hist_mc_rad_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("bg:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << hist_mc_norad_sum[index]->GetBinContent(i)<< "  " <<hist_mc_norad_sum[index]->GetBinError(i)  <<endl;
+        }
     }
-    else if (QQfit == 1)
-    {
-        dout("this case");
-        //DoParamScale(hist_mc_sum[index],  PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);
-        //DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
-
-        DoParamScale(hist_mc_sum[index], a, a_err, number_bins, true);
-        DoParamScale(hist_mc_norad_sum[index], a, a_err, number_bins, false);
-    }
-*/
-    DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
-    DoParamScale(hist_mc_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);
-
-
 
     //DoParamScale(hist_mc_norad_sum[index], a, a_err, number_bins, false);
     /*if (QQfit == 1)
@@ -4055,20 +4161,52 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     TH1D* h_data_nobg = (TH1D*)h_data->Clone();
     h_data_nobg->Sumw2();
     h_data_nobg->Add(h_bg, -1);
+    //DoParamScale(h_data_qq, a, a_err, number_bins, true);//this what it was before i forgit what i've done, 270116
     DoParamScale(h_data_qq, a, a_err, number_bins, true);
     /*if (nodebugmode) cout<<"h_data: "<<h_data->GetBinContent(1)<< " "<<" "<<h_data->GetBinError(1) <<" h_data_qq: " << h_data_qq->GetBinContent(1)<<" "<<h_data_qq->GetBinError(1)<<endl;
     if (nodebugmode) cout << TMath::Sqrt( pow(h_data->GetBinError(1), 2) + pow(a_err[0], 2) +  pow(h_ll->GetBinError(1), 2)  )<<endl;*/
+
+    if (nodebugmode && variable.EqualTo("xgamma"))
+        {
+            Int_t bin = 1;
+            /*
+            h_data
+            h_res
+            h_qq
+            h_ll
+            h_bg
+            */
+             cout << "void Hist::PlotControlPlot bin" << bin<< endl;
+             //cout << "   param: " <<  param_xgamma[bin] <<" +/- " << param_err_xgamma[bin] << endl;
+             cout << "   data: " << hist_data_sum[index]->GetBinContent(bin) * hist_data_sum[index]->GetBinWidth(bin)<<endl;
+             cout << "   res: " << h_res->GetBinContent(bin) * h_res->GetBinWidth(bin)<<endl;
+             cout << "       res': " << h_qq->GetBinContent(bin) * h_qq->GetBinWidth(bin) * a[bin]  + \
+                                        h_bg->GetBinContent(bin) * h_bg->GetBinWidth(bin) * (1 - a[bin]) + \
+                                        h_ll->GetBinContent(bin) * h_ll->GetBinWidth(bin)<< endl;
+             cout << "   QQ': " << h_qq->GetBinContent(bin) * h_qq->GetBinWidth(bin) * a[bin] <<endl;
+                 cout << "   hist.QQ[bin]: " << h_deltaz_xgamma_prph_sum[bin]->GetEntries() << endl;
+             cout << "   LL: " <<  h_ll->GetBinContent(bin) * h_ll->GetBinWidth(bin)<<endl;
+             cout << "   bg': " << h_bg->GetBinContent(bin) * h_bg->GetBinWidth(bin) * (1 - a[bin]) <<endl;
+                 cout << "   hist.bg[bin]: " << h_deltaz_xgamma_norad_sum[bin]->Integral(1, h_deltaz_xgamma_norad_sum[bin]->GetNbinsX())<< endl;
+             //cout << "   photons: " << hist_mc_photon[0]->Integral(1, hist_mc_photon[0]->GetNbinsX())<<endl;
+
+        }
+
     h_data_qq->SetLineColor(kBlack);
     h_data_qq->SetLineWidth(2);
-
-    /*for(Int_t i = 1; i < h_res->GetNbinsX() + 1 ; i++)// Barlow-Beeston param used//nbins
+    if (nodebugmode && variable.EqualTo("xgamma"))
+    {
+        for(Int_t i = 1; i < h_res->GetNbinsX() + 1 ; i++)// Barlow-Beeston param used//nbins
         {
-            if (nodebugmode) cout << ">>" << h_res->GetBinContent(i) << "  " << h_res->GetBinError(i)*1000  <<endl;
+        if (!nodebugmode) cout << "res "<<i<<">>" << h_res->GetBinContent(i) << "  " << h_res->GetBinError(i)  <<endl;
         }
         for(Int_t i = 1; i < h_data->GetNbinsX() + 1 ; i++)// Barlow-Beeston param used//nbins
         {       
-            if (nodebugmode) cout << h_data->GetBinError(i) << "   " << h_res->GetBinError(i) << "   " << h_qq->GetBinError(i) << "   "  << h_ll->GetBinError(i) << "   "  << h_bg->GetBinError(i) << endl;
-    }*/
+        if (nodebugmode) cout << h_data->GetBinError(i) << "   " << h_res->GetBinError(i) << "   " << h_qq->GetBinError(i) << "   "  << h_ll->GetBinError(i) << "   "  << h_bg->GetBinError(i) << endl;
+        }
+    }
+   
+
     //SetVioletStyle(h_data, h_res, h_qq, h_ll, h_bg);
     Double_t ymax;
     if  (h_data->GetMaximum() > h_res->GetMaximum())
@@ -4147,6 +4285,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             canvas_name += ".png";
             c_control->Print(canvas_name);
     }
+    //FIG 3 TYPE - no sence for QQfit=1 withLL=0 res=QQ*a+bg*(1-a)
     {
         if (h_data_nobg->GetMaximum() > h_qq_ll->GetMaximum())
             ymax =  1.2 * h_data_nobg->GetMaximum();

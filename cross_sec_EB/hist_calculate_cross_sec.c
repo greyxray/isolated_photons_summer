@@ -244,7 +244,7 @@ void Hist::CalculateCrossSec(TH1D* data,
         sigma_tot_err += err * err * bin_width * bin_width;
          
         //if (!nodebugmode && name.Contains("et") && !name.Contains("eta") && !name.Contains("jet"))
-        if (!nodebugmode && name.Contains("eta") && !name.Contains("deta") && !name.Contains("e_ph") && !name.Contains("jet")) cout<< name << " cros sec in bin " << i << ": " << cross_sec 
+        if (nodebugmode && name.Contains("eta") && !name.Contains("deta") && !name.Contains("e_ph") && !name.Contains("jet")) cout<< name << " cros sec in bin " << i << ": " << cross_sec 
                 << " +- " << err << ", acc_Prompt = " << C_acc << ", nentries = " << prph << endl;
         //      if (nodebugmode) cout << "bin " << i+1 << " from " << low_edge << " to " << bott;
         selectedoutput << name << " cros sec in bin " << i << ": " << cross_sec 
@@ -458,7 +458,7 @@ void Hist::CalculateCrossSec(TH1D* data,
         sigma_tot_err += err * err * bin_width * bin_width;
          
         //if (!nodebugmode && name.Contains("et") && !name.Contains("eta") && !name.Contains("jet"))
-        if (!nodebugmode && name.Contains("eta") && !name.Contains("deta") && !name.Contains("e_ph") && !name.Contains("jet")) cout<< name << " cros sec in bin " << i << ": " << cross_sec 
+        if (nodebugmode && name.Contains("eta") && !name.Contains("deta") && !name.Contains("e_ph") && !name.Contains("jet")) cout<< name << " cros sec in bin " << i << ": " << cross_sec 
                 << " +- " << err << ", acc_Prompt = " << C_acc << ", nentries = " << prph << endl;
         //      if (nodebugmode) cout << "bin " << i+1 << " from " << low_edge << " to " << bott;
         selectedoutput << name << " cros sec in bin " << i << ": " << cross_sec 

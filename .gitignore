@@ -17,5 +17,6 @@
 *.zip
 exe
 EXE
+/cross_sec_EB-temp
 /calib
 /input

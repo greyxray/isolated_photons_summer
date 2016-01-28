@@ -1,6 +1,6 @@
 #include "cross_sec.h"
 
-TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection
+TString whichCorrection("NoCorrection");//"IanSgCorr" NoCorrection
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
@@ -229,7 +229,7 @@ void DoReparametrisationQQfit(Double_t* param, Double_t* param_err, Int_t index)
     param_err[index] = dg;   
 }
 
-void DoComplicatedScale(TH1D* h, Double_t a, Double_t a_err)
+void DoComplicatedScale(TH1D* h, Double_t a, Double_t a_err, bool out = false)
 {
         h->Scale(a);// Scaled THE VALUE of QQ
         for(Int_t j = 0; j < h->GetNbinsX(); j++)
@@ -238,6 +238,7 @@ void DoComplicatedScale(TH1D* h, Double_t a, Double_t a_err)
             Double_t add_err1 = pow( (a_err * h->GetBinContent(j+1) / a), 2);
             Double_t add_err2 = pow(err * a, 2);
             h->SetBinError(j+1, TMath::Sqrt(add_err1 + add_err2));
+            if(out) dout("***",j,add_err1, add_err2,TMath::Sqrt(add_err1 + add_err2));
         }
 }
 
@@ -365,7 +366,7 @@ int main(int argc, char *argv[])
         hist_mc_norad[0]->SetName("norad");
         hist_mc_photon[0]->SetName("photon");
 
-        bool oldway = false;
+        bool oldway = false;//oldway is wrong because the integrating function is wrong.
         if (QQfit == 0)
         {
             if (oldway)
@@ -395,7 +396,7 @@ int main(int argc, char *argv[])
                 //for the CS further painting...
                 hist.h_deltaz_et_prph_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_prph_sum[i]->GetSum());
                 hist.h_deltaz_et_norad_sum[i]->Scale((hist.h_deltaz_et_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_et_rad_sum[i]->GetSum()) / hist.h_deltaz_et_norad_sum[i]->GetSum()); 
-           
+    
             }
         }
         else 
@@ -506,7 +507,22 @@ int main(int argc, char *argv[])
                 DoReparametrisationQQfit(param_et, param_err_et, i);
             
             DoComplicatedScale(hist.h_deltaz_et_norad_sum[i], 1 - param_et_PhotonsFit[i], param_err_et_PhotonsFit[i]);
-            DoComplicatedScale(hist.h_deltaz_et_prph_sum[i], param_et_PhotonsFitforQQ[i], param_et_PhotonsFitforQQ[i]);
+                       if (i==0 && !nodebugmode)
+                {
+                    dout("qq error, bin 3:",hist.h_deltaz_et_prph_sum[i]->GetBinError(3));
+                    dout("rad error, bin 3:",hist.h_deltaz_et_rad_sum[i]->GetBinError(3));
+                    dout("bg error, bin 3:",hist.h_deltaz_et_norad_sum[i]->GetBinError(3));
+                    dout("param_et_PhotonsFitforQQ[i], param_et_PhotonsFitforQQ[i]:",param_et_PhotonsFitforQQ[i], param_et_PhotonsFitforQQ[i]);
+                }
+            bool temp = false;
+            if (i==0) temp = true;
+            DoComplicatedScale(hist.h_deltaz_et_prph_sum[i], param_et_PhotonsFitforQQ[i], param_err_et_PhotonsFit[i],temp);
+                       if (i==0 && !nodebugmode)
+                {
+                    dout("qq error, bin 3:",hist.h_deltaz_et_prph_sum[i]->GetBinError(3));
+                    dout("rad error, bin 3:",hist.h_deltaz_et_rad_sum[i]->GetBinError(3));
+                    dout("bg error, bin 3:",hist.h_deltaz_et_norad_sum[i]->GetBinError(3));
+                }
 
             if (QQfit == 1 && fitWithLL== 0) hist.h_deltaz_et_res[i]->Scale(0);
             hist.h_deltaz_et_res[i]->Add(hist.h_deltaz_et_norad_sum[i]);
@@ -1202,6 +1218,7 @@ int main(int argc, char *argv[])
         param_err_xgamma_PhotonsFit[i] = param_err_xgamma[i];
         param_xgamma_PhotonsFitforQQ[i] = param_xgamma[i];
         param_err_xgamma_PhotonsFitforQQ[i] = param_err_xgamma[i];
+        dout("xgamma found parameter:",param_xgamma[i],"+/-",param_err_xgamma[i]);
         if (nodebugmode) cout<< "param xgamma after fit " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
         if (QQfit == 0)
         {
@@ -1223,7 +1240,11 @@ int main(int argc, char *argv[])
         }
         else if(QQfit != 0)
             DoReparametrisationQQfit(0, param_xgamma, param_err_xgamma, i);
-        if (nodebugmode) cout<< "param xgamma after reparam " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
+        if (nodebugmode) cout<< "param param_xgamma after reparam " << i << ") " << param_xgamma[i] <<"+/-"<< param_err_xgamma[i]<< endl;
+
+        if (nodebugmode) cout<< "param param_xgamma_PhotonsFit after reparam " << i << ") " << param_xgamma_PhotonsFit[i] <<"+/-"<< param_err_xgamma_PhotonsFit[i]<< endl;
+
+        if (nodebugmode) cout<< "param param_xgamma_PhotonsFitforQQ after reparam " << i << ") " << param_xgamma_PhotonsFitforQQ[i] <<"+/-"<< param_err_xgamma_PhotonsFitforQQ[i]<< endl;
 
         DoComplicatedScale(hist.h_deltaz_xgamma_norad_sum[i], 1 - param_xgamma_PhotonsFit[i], param_err_xgamma_PhotonsFit[i]);
         DoComplicatedScale(hist.h_deltaz_xgamma_prph_sum[i], param_xgamma_PhotonsFitforQQ[i], param_err_xgamma_PhotonsFitforQQ[i]);
@@ -1233,7 +1254,7 @@ int main(int argc, char *argv[])
         hist.h_deltaz_xgamma_res[i]->Add(hist.h_deltaz_xgamma_prph_sum[i]);//LL +  QQ' + bg'
         //if (nodebugmode) cout << "par in bin xgamma " << i << ": " << param_xgamma[i] << " +- " << param_err_xgamma[i] << ", chi2/dof = " << chi2_xgamma[i]  << endl;
 
-        if (i+1 == number_xgamma_bins && nodebugmode)
+        if (i+1 == 1 && !nodebugmode)//if (i+1 == number_xgamma_bins && nodebugmode)
         {
              cout << "Problem bin" << endl;
              cout << "   param: " <<  param_xgamma[i] <<" +/- " << param_err_xgamma[i] << endl;
@@ -1749,7 +1770,7 @@ int main(int argc, char *argv[])
             //if (nodebugmode) cout << "bin " << bin << ", chi2 = " << chi2_bin << endl;
             hist.h_chi2_perbin_dphi_e_ph[i]->SetBinContent(dof, chi2_bin);
         }
-        if (!nodebugmode && i == 0)
+        if (nodebugmode && i == 0)
         {
            dout("==> param: ", param_dphi_e_ph[i]);
         }
@@ -1936,7 +1957,7 @@ int main(int argc, char *argv[])
         hist.h_deltaz_deta_e_ph_res[i]->Add(hist.h_deltaz_deta_e_ph_norad_sum[i]);
         hist.h_deltaz_deta_e_ph_res[i]->Add(hist.h_deltaz_deta_e_ph_prph_sum[i]);
         dout("i:",i);
-        if (!nodebugmode && i == 6)
+        if (nodebugmode && i == 6)
         {
             for(Int_t j = 1; j <= hist.h_deltaz_deta_e_ph_data_sum[i]->GetNbinsX(); j++)
                 {
