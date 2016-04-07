@@ -4,10 +4,8 @@
 void Hist::PlotCrossSec() 
 {
     //  TGaxis::SetMaxDigits(3);
-    //
-    // et
-    //
     if (nodebugmode) cout << "========== calculate and plot cross sections ==============" << endl;
+    int m = 1; //1 or 2 or 4 or 6 histogams per canvas
     //0 - cross section value; 
     //1 - stat. & fit parameter uncertainty;         //4 - ratio (1); //5 - relative 1; 
     //2 - acceptance uncertainty                     //6 - relative 2; 
@@ -21,9 +19,20 @@ void Hist::PlotCrossSec()
     //12 - 8+9+10+11 (in quadr); - total systematics    //17 - relative 12
     //18 - syst+stat;                                   //19 - relative 18
     TH1D *h_cross[n_cross][8]; //why 8
+    TH1D *h_cross_copy[n_cross][10]; //
     TGraphAsymmErrors *gr_cross[n_cross][40]; //why 40
     TH1D *h_1st_cross[n_cross][8];
     TH2D *h_window_cross[n_cross][2];
+
+    TH1D * h_var[n_cross];
+    TH2D * h_var_win[n_cross]; 
+
+     TH1 * data_for_CrossectionDrawer[n_cross];// erors are stat uncertainties
+     TH1 * data_for_CrossectionDrawer_tot_err[n_cross];// erors are stat uncertainties
+     TH1 * sum_for_CrossectionDrawer[n_cross];
+     TH1 * qq_for_CrossectionDrawer[n_cross];
+     TH1 * ll_for_CrossectionDrawer[n_cross];
+
     
     TGraphAsymmErrors *h_Spiesberger_pos_lo[n_cross];
     TGraphAsymmErrors *h_Spiesberger_pos_nlo[n_cross];
@@ -56,7 +65,7 @@ void Hist::PlotCrossSec()
     Double_t x_dphi_e_ph_bin[MAX_CROSS_SEC_BINS] = {0.};
     Double_t x_deta_e_ph_bin[MAX_CROSS_SEC_BINS] = {0.};
     
-    /*//? середины бинов*/
+    /* середины бинов*/
     for(Int_t i = 0; i < number_etbins; i++)
         x_et_bin[i] = 0.5 * (et_bin[i] + et_bin[i+1]);
     for(Int_t i=0; i<number_etabins; i++)
@@ -69,14 +78,6 @@ void Hist::PlotCrossSec()
         x_et_jet_bin[i] = 0.5 * (et_jet_bin[i] + et_jet_bin[i+1]);
     for(Int_t i=0; i<number_eta_jetbins; i++)
         x_eta_jet_bin[i] = 0.5 * (eta_jet_bin[i] + eta_jet_bin[i+1]);
-    /*
-    static Double_t xgamma_bin[number_xgamma_bins + 1] = {0, 0.4, 0.6, 0.7, 0.8, 0.9, 1};
-    static Double_t xp_bin[number_xp_bins + 1] = {0, 0.002, 0.004, 0.006, 0.008, 0.01, 0.03};
-    static Double_t dphi_bin[number_dphi_bins + 1] = {0., 45., 85., 120., 145., 180.};
-    static Double_t deta_bin[number_deta_bins + 1] = {-2.2, -1.5, -0.8, -0.1, 0.6, 1.3, 2., 2.7};
-    static Double_t dphi_e_ph_bin[number_dphi_e_ph_bins + 1] = {0., 30., 60., 90., 120., 150., 180.};
-    static Double_t deta_e_ph_bin[number_deta_e_ph_bins + 1] = {-4.5, -3.75, -3.0, -2.25, -1.5, -0.75, 0.};
-    */
     for(Int_t i = 0; i < number_xgamma_bins; i++)
         x_xgamma_bin[i] = 0.5 * (xgamma_bin[i] + xgamma_bin[i+1]);
     for(Int_t i = 0; i < number_xp_bins; i++)
@@ -239,7 +240,8 @@ void Hist::PlotCrossSec()
         selectedoutput << "==================================================================================================" <<endl;
         selectedoutput << "processing variable " << s_var[i] << endl;
         if (nodebugmode) cout << "==================================================================================================" <<endl;
-        if (nodebugmode) cout << "processing variable " << s_var[i] << endl;
+        if (!nodebugmode) cout << "processing variable " << s_var[i] << endl;
+        if (!nodebugmode) cout << "AND IT IS " << cs_x_names[i] << endl;
         //    this->h_det_prph_sum[i]->Scale((this->h_det_data_sum[i]->Integral()-this->h_det_rad_sum[i]->Integral())/this->h_det_prph_sum[i]->Integral());
         //    this->h_had_prph_sum[i]->Scale((this->h_det_data_sum[i]->Integral()-this->h_det_rad_sum[i]->Integral())/this->h_det_prph_sum[i]->Integral());
         //    this->h_hd_prph_sum[i]->Scale((this->h_det_data_sum[i]->Integral()-this->h_det_rad_sum[i]->Integral())/this->h_det_prph_sum[i]->Integral());
@@ -256,6 +258,7 @@ void Hist::PlotCrossSec()
             Double_t err1 = this->h_det_rad_sum[i]->GetBinError(j+1);
             int_ll_err += err1 * err1;
         }
+        
         int_data_err = TMath::Sqrt(int_data_err);
         int_ll_err = TMath::Sqrt(int_ll_err);
         
@@ -331,6 +334,11 @@ void Hist::PlotCrossSec()
                 param_err = param_err_deta_e_ph_PhotonsFit;//param_err_deta_e_ph;
             }
         }
+
+        
+        h_det_rad_sum_copy[i] = (TH1D*)h_det_rad_sum[i]->Clone();
+        h_det_prph_sum_copy[i] = (TH1D*)h_det_prph_sum[i]->Clone();
+
         CalculateCrossSec(h_det_data_sum[i],
                         h_det_rad_sum[i],
                         h_had_rad_sum[i],
@@ -344,7 +352,11 @@ void Hist::PlotCrossSec()
                         h_cross[i],
                         s,
                         param,
-                        param_err);
+                        param_err,
+                        h_cross_copy[i],
+                        h_det_rad_sum_copy[i],
+                        h_det_prph_sum_copy[i]);
+        if (i==4) dout("here");
          if(s_var[i] == "Q2")
         {
           for(Int_t bb = 0; bb < h_cross[i][7]->GetNbinsX(); bb++)
@@ -355,35 +367,327 @@ void Hist::PlotCrossSec()
         if (nodebugmode) cout << "going into SetSystematicErrors" << endl;
         //!SetSystematicErrors(i, h_1st_cross[i], h_cross[i], gr_cross[i]); НАдо дописать для остальных гистограмм
         if (nodebugmode) cout << "returned from SetSystematicErrors" << endl;
+        dout("Done:", i);
+
         h_cross[i][0]->SetLineColor(kBlack);
         h_cross[i][1]->SetLineColor(kBlue);
         h_cross[i][2]->SetLineColor(kRed);
         h_cross[i][3]->SetLineColor(kGreen);
         /*Setting style*/
-        /*
-        {
+        /*      {
             h_cross[i][0]->SetFillColor(41);
             h_cross[i][0]->SetMarkerStyle(20);
             h_cross[i][0]->SetMarkerSize(1. );
-            h_1st_cross[i][0]->SetMarkerStyle(24);
-            h_1st_cross[i][0]->SetMarkerSize(1.);
-            h_1st_cross[i][0]->SetMarkerColor(kBlue);
-            h_1st_cross[i][0]->SetLineColor(kBlue);
+            //h_1st_cross[i][0]->SetMarkerStyle(24);
+            //h_1st_cross[i][0]->SetMarkerSize(1.);
+            //h_1st_cross[i][0]->SetMarkerColor(kBlue);
+            //h_1st_cross[i][0]->SetLineColor(kBlue);
             h_cross[i][1]->SetFillColor(43);
             h_cross[i][2]->SetFillColor(46);
             h_cross[i][3]->SetFillColor(49);
             h_cross[i][4]->SetFillColor(41);
             h_cross[i][4]->SetMarkerStyle(20);
             h_cross[i][4]->SetMarkerSize(0.6);
-            h_1st_cross[i][4]->SetMarkerStyle(24);
-            h_1st_cross[i][4]->SetMarkerSize(1.);
-            h_1st_cross[i][4]->SetMarkerColor(kBlue);
+            //h_1st_cross[i][4]->SetMarkerStyle(24);
+            //h_1st_cross[i][4]->SetMarkerSize(1.);
+            //h_1st_cross[i][4]->SetMarkerColor(kBlue);
             //    h_1st_cross[i][4]->SetLineColor(kBlue);
             h_cross[i][5]->SetFillColor(43);
             h_cross[i][6]->SetFillColor(46);
             h_cross[i][7]->SetFillColor(49);
-        }
+
+            h_cross_copy[i][0]->SetFillColor(41);
+            h_cross_copy[i][0]->SetMarkerStyle(20);
+            h_cross_copy[i][0]->SetMarkerSize(1. );
+            h_cross_copy[i][1]->SetFillColor(43);
+            h_cross_copy[i][2]->SetFillColor(46);
+            h_cross_copy[i][3]->SetFillColor(49);
+            h_cross_copy[i][4]->SetFillColor(41);
+            h_cross_copy[i][4]->SetMarkerStyle(20);
+            h_cross_copy[i][4]->SetMarkerSize(0.6);
+            h_cross_copy[i][5]->SetFillColor(43);
+            h_cross_copy[i][6]->SetFillColor(46);
+            h_cross_copy[i][7]->SetFillColor(49);
+            }
         */
+
+        data_for_CrossectionDrawer[i] = h_cross[i][1];
+        data_for_CrossectionDrawer_tot_err[i] = h_cross[i][0];
+        sum_for_CrossectionDrawer[i]  = h_cross_copy[i][0];
+        qq_for_CrossectionDrawer[i]   = h_cross_copy[i][8];
+        ll_for_CrossectionDrawer[i]   = h_cross_copy[i][9];
+        //FIG 3 TYPE - no sence for QQfit=1 withLL=0 res=QQ*a+bg*(1-a)
+        if (false && QQfit != 0)
+        {
+            dout("making single fig3");
+            TString legend_possition = "left up";
+            TString canvas_name("cs_fig3_" + s_var[i]);
+            TString variable(s_var[i]);
+            if (variable.Contains("xp") )   legend_possition= "right up";
+            
+            TString title("cs, " + variable);
+            Double_t ymax;
+            Double_t number_bins = h_cross[i][0]->GetNbinsX();
+            gStyle->SetOptStat(0);
+
+            dout("settiong x2");
+            Double_t x1, x2, y1, y2;
+            {
+                if(legend_possition.Contains("left"))
+                {
+                    x1 = 0.2;//0.15
+                    x2 = 0.6;
+                }
+                else
+                {
+                    x1 = 0.45;
+                    x2 = 0.86;
+                }
+                if(legend_possition.Contains("up"))
+                {
+                    y1 = 0.6;//0.5
+                    y2 = 0.91;//0.88
+                }
+                else
+                {
+                    y1 = 0.1;
+                    y2 = 0.45;
+                }
+            }
+            if (variable.Contains("deta")) 
+            {
+                x2 = 0.5;
+            }
+
+            dout("settiong ymax begin");
+            dout(h_cross[i][0]->GetMaximum());
+            dout(h_cross_copy[i][0]->GetMaximum());
+            if (h_cross[i][0]->GetMaximum() > h_cross_copy[i][0]->GetMaximum())
+                ymax =  1.2 * h_cross[i][0]->GetMaximum();
+            else
+                ymax =  1.2 * h_cross_copy[i][0]->GetMaximum();
+            if (variable.Contains("xgamma") ) ymax = ymax*5;
+            if (variable.Contains("xp")) ymax = ymax*2;
+            if (variable.Contains("deta")) ymax = ymax*1.5;
+            dout("settiong ymax ended");
+            if (i==9) dout(ymax);
+            TLegend *leg = new TLegend(x1, y1, x2, y2);
+            leg->SetBorderSize(0);
+            leg->SetFillStyle(0);
+            
+            SetFigure3Style(h_cross[i][0], h_cross_copy[i][0], h_cross_copy[i][8], h_cross_copy[i][9], 0);
+
+            TString binsof("bins of "+ s_var[i]);
+            TCanvas *c_control = new TCanvas(canvas_name, binsof, 800, 600);
+            TH2D *h_window_control;
+            if (!variable.Contains("xgamma")) h_window_control = new TH2D("h_window_fig3_"+variable, "title", number_bins, all_bins[i][0], \
+                                                all_bins[i][(Int_t)number_bins ], 1000, -0.0001, ymax);//array_bin[0], array_bin[number_bins - 1]
+            else h_window_control = new TH2D("h_window_fig3_"+variable, "title", number_bins, all_bins[i][0], \
+                                                all_bins[i][(Int_t)number_bins ], 10000, -0.0001, ymax);
+            if (true && variable.Contains("xp") || variable.Contains("gamma") ) c_control->GetPad(0)->SetLogy();
+            
+            c_control->GetPad(0)->SetTicks(1,1);
+            c_control->GetPad(0)->SetFrameBorderMode(0);
+            c_control->GetPad(0)->SetBorderMode(0);
+            c_control->GetPad(0)->SetFillColor(kWhite);
+            c_control->GetPad(0)->SetGrid(0, 0);
+            sign_window(c_control->GetPad(0), h_window_control, cs_x_names[i] , cs_y_names[i], "", "large");
+      
+            c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin() + 0.08 , \
+                                            c_control->GetPad(0)->GetRightMargin() - 0.03 ,\
+                                            c_control->GetPad(0)->GetBottomMargin()  + 0.08, \
+                                            c_control->GetPad(0)->GetTopMargin() - 0.03);
+            
+            h_window_control->GetYaxis()->SetRangeUser(-0.0001, ymax);
+            c_control->GetPad(0)->Update();
+            h_window_control->Draw();
+            //h_res->GetYaxis()->SetRange(0, h_res->GetMaximum());
+
+            
+          
+            const Int_t n = all_nbins[i];
+               Double_t x[n];
+               Double_t y[n];
+               Double_t exl[n] ;
+               Double_t exh[n] ;
+               Double_t eyl[n];
+               Double_t eyh[n];
+               //h_cross[i][0]->GetXaxis()->GetCenter(x)
+               for(int j = 0; j < h_cross[i][0]->GetNbinsX(); j++)
+               {
+                x[j] = h_cross[i][0]->GetBinCenter(j+1) ;//+ 0.2 * h_cross[i][0]->GetBinWidth(j+1);
+                y[j] = h_cross[i][0]->GetBinContent(j+1);
+                exl[j] = 0;
+                exh[j] = 0;
+                eyl[j] = h_cross[i][1]->GetBinError(j+1);//statistical - not statistical and acceptance
+                eyh[j] = TMath::Sqrt(pow(all_syst[i][j],2) + pow(h_cross[i][1]->GetBinError(j+1),2));
+               }
+                
+               TGraphAsymmErrors* gr = new TGraphAsymmErrors(n,x,y,exl,exh,eyl,eyh);
+               gr->SetMarkerColor(1);
+               gr->SetMarkerSize(1.1);
+               gr->SetMarkerStyle(20);
+               gr->SetLineWidth(3);
+               //gr->SetMarkerSize(5);
+
+
+               h_cross_copy[i][8]->SetLineWidth(3);
+               h_cross_copy[i][9]->SetLineWidth(3);
+               h_cross_copy[i][0]->SetLineWidth(3);
+            
+                //h_cross[i][0]->GetYaxis()->SetRangeUser(0, 100);
+                /*h_cross[i][0]->SetMarkerSize(1);
+                h_cross[i][0]->SetMarkerColor(1);
+                h_cross[i][0]->SetMarkerStyle(20);
+                h_cross[i][0]->Draw("P X0 E1 SAME");*/  
+                //P X0 - Cross section
+                //"E1"  Draw error bars with perpendicular lines at the edges.; 
+                //"X0"   When used with one of the "E" option, it suppress the error bar along X as gStyle->SetErrorX(0) would do.
+                //"P"   Draw current marker at each bin except empty bins.
+                //option = "F" draw the bins as filled areas.
+                //"HIST"    When an histogram has errors it is visualized by default with error bars. To visualize it without errors use the option "HIST" together with the required option (eg "hist same c"). The "HIST" option can also be used to plot only the histogram and not the associated function(s).
+                h_cross_copy[i][8]->Draw("HIST F E1 SAME");
+                h_cross_copy[i][9]->Draw("HIST F E1 SAME");
+                //h_cross_copy[i][0]->GetYaxis()->SetRange(0, ymax);
+                h_cross_copy[i][0]->Draw("HIST F  SAME");
+               gr->Draw("SAME P E");
+
+                leg->AddEntry(gr, "ZEUS (prel.)", "pe"); //black " 326 pb^{-1}"
+                //leg->AddEntry(h_cross[i][0], "ZEUS, 326 pb^{-1}", "pe"); //black
+            leg->AddEntry(h_cross_copy[i][8], "QQ*1.6, MC", "f"); //blue
+            leg->AddEntry(h_cross_copy[i][9], "LL, MC", "f");// red dots
+            leg->AddEntry(h_cross_copy[i][0], "LL + QQ*1.6, MC", "f");// red
+                if ( variable.Contains("xgamma") )    //
+                    leg->Draw();
+                c_control->GetPad(0)->RedrawAxis();
+                TPaveText *t = new TPaveText(0.4, 0.93, 0.6, 1.0, "NDC"); // left-up
+                t->AddText("ZEUS");
+                t->SetFillColor(0);
+                t->SetBorderSize(0);
+                //t->Draw();
+                //canvas_name += ".eps";
+                c_control->Print(canvas_name+ ".eps");
+                c_control->Print(canvas_name+ ".png");
+        }
+
+        if (false && i>5 && i<11)//comparison with theory
+        {
+            TString legend_possition = "right up";
+            TString canvas_name("cs_theory_" + s_var[i]);
+            TString variable(s_var[i]);
+            if (variable.Contains("xgamma") || variable.Contains("dphi"))   legend_possition= "left up";
+            
+            TString title("cs, " + variable);
+            Double_t ymax;
+            Double_t number_bins = h_cross[i][0]->GetNbinsX();
+            gStyle->SetOptStat(0);
+            Double_t x1, x2, y1, y2;
+            {
+                if(legend_possition.Contains("left"))
+                {
+                    x1 = 0.15;
+                    x2 = 0.6;
+                }
+                else
+                {
+                    x1 = 0.45;
+                    x2 = 0.86;
+                }
+                if(legend_possition.Contains("up"))
+                {
+                    y1 = 0.5;
+                    y2 = 0.88;
+                }
+                else
+                {
+                    y1 = 0.1;
+                    y2 = 0.45;
+                }
+            }
+
+            TH1D * h_theory = new TH1D("h_theory_" + variable, "theory for " + variable, all_nbins[i], all_bins[i]);
+            for(int j = 0; j < h_cross[i][0]->GetNbinsX(); j++)
+            {
+                h_theory->SetBinContent(j+1, all_theory[i][j]);
+                h_theory->SetBinError(j+1, 0); //We do not have this information
+            }
+
+            if (h_cross[i][0]->GetMaximum() > h_theory->GetMaximum())
+                ymax =  1.2 * h_cross[i][0]->GetMaximum();
+            else
+                ymax =  1.2 * h_theory->GetMaximum();
+            
+            h_theory->SetLineColor(kBlue);
+            h_theory->SetFillColor(kBlue);//kYellow
+            h_theory->SetFillStyle(3004);//     h_deltaz_xgamma_prph_sum[i]->Sumw2();
+
+            TLegend *leg = new TLegend(x1, y1, x2, y2);
+            leg->SetBorderSize(0);
+            leg->SetFillStyle(0);
+            leg->AddEntry(h_cross[i][0], "ZEUS, 386 pb^{-1}", "f"); //black
+            leg->AddEntry(h_theory, "Theory predicted", "l"); //blue
+
+            TString binsof("bins of "+ s_var[i]);
+            TCanvas *c_control = new TCanvas(canvas_name, binsof, 800, 600);
+            TH2D *h_window_control;
+            if (!variable.Contains("xgamma")) h_window_control = new TH2D("h_window_fig3_"+variable, "title", number_bins, all_bins[i][0], \
+                                                all_bins[i][(Int_t)number_bins ], 1000, -0.0001, ymax);//array_bin[0], array_bin[number_bins - 1]
+            else h_window_control = new TH2D("h_window_fig3_"+variable, "title", number_bins, all_bins[i][0], \
+                                                all_bins[i][(Int_t)number_bins ], 10000, -0.0001, ymax);
+            if (true && variable.Contains("xp") || variable.Contains("gamma") ) c_control->GetPad(0)->SetLogy();
+            
+            c_control->GetPad(0)->SetTicks(1,1);
+            c_control->GetPad(0)->SetFrameBorderMode(0);
+            c_control->GetPad(0)->SetBorderMode(0);
+            c_control->GetPad(0)->SetFillColor(kWhite);
+            c_control->GetPad(0)->SetGrid(0, 0);
+            sign_window(c_control->GetPad(0), h_window_control, cs_x_names[i] , cs_y_names[i], "", "large");
+      
+            c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin() + 0.03 , \
+                                            c_control->GetPad(0)->GetRightMargin() - 0.03 ,\
+                                            c_control->GetPad(0)->GetBottomMargin()  + 0.03, \
+                                            c_control->GetPad(0)->GetTopMargin() - 0.03);
+            
+            h_window_control->GetYaxis()->SetRangeUser(-0.0001, ymax);
+            c_control->GetPad(0)->Update();
+            h_window_control->Draw();
+
+           
+            
+                //h_cross[i][0]->GetYaxis()->SetRangeUser(0, 100);
+                h_cross[i][0]->SetMarkerSize(1);
+                h_cross[i][0]->SetMarkerColor(1);
+                h_cross[i][0]->SetMarkerStyle(20);
+                h_cross[i][0]->Draw("P X0 E1 SAME"); 
+                //P X0 - Cross section
+                //"E1"  Draw error bars with perpendicular lines at the edges.; 
+                //"X0"   When used with one of the "E" option, it suppress the error bar along X as gStyle->SetErrorX(0) would do.
+                //"P"   Draw current marker at each bin except empty bins.
+                //option = "F" draw the bins as filled areas.
+                //"HIST"    When an histogram has errors it is visualized by default with error bars. To visualize it without errors use the option "HIST" together with the required option (eg "hist same c"). The "HIST" option can also be used to plot only the histogram and not the associated function(s).
+                h_theory->Draw("HIST SAME");
+                if (!(variable.Contains("eta") || variable.Contains("xp") ||  variable.Contains("gamma") ))    
+                    leg->Draw();
+                c_control->GetPad(0)->RedrawAxis();
+                TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
+                t->AddText("ZEUS");
+                //t->Draw();
+                canvas_name += ".eps";
+                c_control->Print(canvas_name);
+        }
+
+    }
+
+    if (true && QQfit != 0)
+    {  
+        CrossectionDrawer::m = 1;
+        CrossectionDrawer::n = 1;
+        CrossectionDrawer::for_paper = true;
+        CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                        sum_for_CrossectionDrawer, \
+                                     qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                     all_bins, s_var, n_cross, \
+                                     true, all_theory_cs, all_theory_pos, all_theory_neg);
     }
 
     /*

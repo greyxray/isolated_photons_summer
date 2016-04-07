@@ -8,6 +8,14 @@
 class Hist
 {
  public:
+Double_t ScaleX(Double_t x, Double_t tot_width);
+Double_t ScaleY(Double_t y, Double_t tot_width);
+Double_t ScaleZ(Double_t z, Double_t tot_width);
+void ScaleAxis(TAxis *a, Double_t (*Scale)(Double_t, Double_t));
+void ScaleXaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t));
+void ScaleYaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t));
+void ScaleZaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t));
+
   void Init();
   void SetFigure3Style(TH1D* h_data, TH1D* h_qq_ll, TH1D* h_qq, TH1D* h_ll, TH1D* h_bg);
   void PlotControlPlot(Double_t * a, Double_t * a_err, Double_t number_bins, Double_t * array_bin, Int_t index, TString variable, TString canvas_name,\
@@ -20,7 +28,8 @@ class Hist
   void PlotFitInBinsOfCrossSec();
   void PlotCrossSec();
   void CalculateCrossSec(TH1D* data, TH1D* ll_det, TH1D* ll_had, TH1D* ll_hd, TH1D *det, TH1D* had, TH1D* hd, TH1D *ll_acc, TH1D *acc, Double_t Lumi, TH1D **res, TString name, Double_t* param,
-			 Double_t* param_err/*, Double_t integral_data, Double_t integral_ll, Double_t integral_data_err, Double_t integral_ll_err*/);
+			 Double_t* param_err, TH1D **res_copy ,TH1D* ll_det_copy , TH1D* det_copy
+       /*, Double_t integral_data, Double_t integral_ll, Double_t integral_data_err, Double_t integral_ll_err*/);
   void CalculateCrossSec(TH1D *h_Data, TH1D *h_Lepto_det,
 			       TH1D *h_Lepto_had, TH1D *h_Lepto_hd,
 			       Double_t Lumi, Int_t Linecolor, TH1D **h_Cross_Sec);
@@ -278,6 +287,9 @@ TProfile* prof_hd_prph_sum[n_cross];
  TH1D* h_had_rad_sum[n_cross];
  TH1D* h_hd_prph_sum[n_cross];
  TH1D* h_hd_rad_sum[n_cross];
+
+ TH1D* h_det_rad_sum_copy[n_cross];  
+ TH1D* h_det_prph_sum_copy[n_cross]; 
 
 enum {n_hist = 7};//take care 7 - if dZ is already implemented
 

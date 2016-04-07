@@ -1,7 +1,7 @@
 #!/bin/sh
 FAIL=0
 #zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
-for i in systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
+for i in zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
 do
     ./start_photonssys $i &
     echo "starting ($i)"    

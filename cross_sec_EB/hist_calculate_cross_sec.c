@@ -23,7 +23,9 @@ void Hist::CalculateCrossSec(TH1D* data,
                              TH1D *det, TH1D* had, TH1D* hd, 
                              TH1D* ll_acc, TH1D *acc, Double_t Lumi, 
                              TH1D **res, TString name, 
-                             Double_t* param, Double_t* param_err
+                             Double_t* param, Double_t* param_err, 
+                             TH1D **res_copy,
+                             TH1D* ll_det_copy = 0, TH1D* det_copy = 0
 /*, Double_t integral_data, Double_t integral_ll, Double_t integral_data_err, Double_t integral_ll_err*/) 
 {
   if (nodebugmode) cout << "in CalculateCrossSec: calculate " << name << ", lumi = " << Lumi << " pb^{-1}" << endl;
@@ -37,10 +39,14 @@ void Hist::CalculateCrossSec(TH1D* data,
            scale_err3 = 0.,//(integral_data - integral_ll)*integral_prph_err/(integral_prph**2);
            scale_data_err = 0.,//scale_err1*scale_err1 + scale_err2*scale_err2 + scale_err3*scale_err3;
            sigma_tot = 0, 
-           sigma_tot_err = 0.;
+           sigma_tot_err = 0.,
+           sigma_tot_err_2 = 0.,
+           fig3_scale = 1.6,
+           sigma_tot_copy = 0, 
+           sigma_tot_err_copy = 0.;
   Int_t    nbins = 0;
 
-
+  if (ll_det_copy == 0) dout("something went wrong");
   if (QQfit == 0)
   {
     TH1D* LLplusQQ = (TH1D*)ll_det->Clone(); //h_det_rad_sum LLdet
@@ -188,29 +194,39 @@ void Hist::CalculateCrossSec(TH1D* data,
           cout<<q1<<endl;
 
          }
-          
-        //statistic errors
-          //qwe err1 = LLplusQQ->GetBinError(i+1) / (bin_width * Lumi * C_acc);
-          //qwe err11 = ll_det->GetBinError(i+1) * (1 / C_acc + 1 / C_ll_acc) / (bin_width * Lumi);
-          //qwe err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
-        err1 = LLplusQQ->GetBinError(i+1) / (bin_width * Lumi * C_acc);
-        if (name.Contains("xgamma"))
-        {
-        if (nodebugmode) cout<< i<<") " <<"LLplusQQ = "<<LLplusQQ->GetBinContent(i+1) <<" +/- "<< LLplusQQ->GetBinError(i+1)<<endl;
-        }
-        err11 = ll_det->GetBinError(i+1) * (1 / C_acc - 1 / C_ll_acc) / (bin_width * Lumi);
-
-        err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
-
-        //acceptance errors
-        err2 = (ll_plus_qq - ll_events) * C_err / (bin_width * Lumi * C_acc * C_acc);
-        err22 = ll_events * C_ll_err / (bin_width * Lumi * C_acc * C_ll_acc);
-        err2 = TMath::Sqrt(err2*err2 + err22*err22);  
         
-        //luminosity errors are negleckted
-        err3 = 0.;//0.026*cross_sec;    
-        //      err3 *= err3;
-        err = TMath::Sqrt(err1*err1 + err2*err2 + err3*err3);//full
+        //error propagation for LLplusQQ cs
+          //statistic errors
+            /* how it was for Oleg
+              err1 = LLplusQQ->GetBinError(i+1) / (bin_width * Lumi * C_acc);
+              err11 = ll_det->GetBinError(i+1) * (1 / C_acc + 1 / C_ll_acc) / (bin_width * Lumi);
+              err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
+            */
+          err1 = LLplusQQ->GetBinError(i+1) / (bin_width * Lumi * C_acc);
+            if (nodebugmode &&name.Contains("xgamma")) cout<< i<<") " <<"LLplusQQ = "<<LLplusQQ->GetBinContent(i+1) <<" +/- "<< LLplusQQ->GetBinError(i+1)<<endl;
+          err11 = ll_det->GetBinError(i+1) * (1 / C_acc - 1 / C_ll_acc) / (bin_width * Lumi);
+          err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
+
+          //acceptance errors
+          err2 = (ll_plus_qq - ll_events) * C_err / (bin_width * Lumi * C_acc * C_acc);
+          err22 = ll_events * C_ll_err / (bin_width * Lumi * C_acc * C_ll_acc);
+          err2 = TMath::Sqrt(err2*err2 + err22*err22);  
+          
+          //luminosity errors are negleckted
+          err3 = 0.;//0.026*cross_sec;    
+          err = TMath::Sqrt(err1*err1 + err2*err2 + err3*err3);//full
+
+        
+        //error propagation for LL cs
+          //statistic errors
+          Double_t err1_ll = TMath::Sqrt( pow(ll_det->GetBinError(i+1) * ( - 1 / C_ll_acc) / (bin_width * Lumi), 2));
+          //acceptance errors
+          Double_t err2_ll = TMath::Sqrt(pow(ll_events * C_ll_err / (bin_width * Lumi * C_acc * C_ll_acc), 2));  
+          //luminosity errors are negleckted
+          Double_t err3_ll = 0.;   
+          Double_t err_ll = TMath::Sqrt(err1_ll*err1_ll + err2_ll*err2_ll + err3_ll*err3_ll);//full
+        
+
         if (nodebugmode && name.Contains("deta_e_ph") && i == 0) //s_var[i]=="deta_e_ph"
         {
           dout("bin_width: ",bin_width,"\n",
@@ -255,6 +271,8 @@ void Hist::CalculateCrossSec(TH1D* data,
              << err2/cross_sec << ", " << err3 / cross_sec << ", " << err / cross_sec << endl;
         selectedoutput << "prph data: " << prph_cross_sec << ", prph mc: " << prph_mc_cross_sec << ", prph_had = " << prph_had <<  endl;
         selectedoutput << "ll data: " << ll_cross_sec << ", ll mc: " << ll_mc_cross_sec << endl;
+        selectedoutput << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
+             << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
         
         if (nodebugmode && name.Contains("xp")) cout << name << " cros sec in bin " << i << ": " << cross_sec 
                 << " +- " << err << ", lumi = " << Lumi << ", acc_Prompt = " 
@@ -279,12 +297,13 @@ void Hist::CalculateCrossSec(TH1D* data,
   }
   else// is not sueted for fitWithLLinBg
   {
-    
-
+  
     det->Scale(total_luminosity_data / lumi_mc_prph);//h_det_prph_sum QQ
+    det_copy->Scale(total_luminosity_data / lumi_mc_prph);//h_det_prph_sum QQ
     had->Scale(total_luminosity_data / lumi_mc_prph);//h_had_prph_sum QQ
     hd->Scale(total_luminosity_data / lumi_mc_prph);//h_hd_prph_sum QQ
     
+    //  ll_det_copy->Scale(total_luminosity_data / (lumi_mc_bg[0]+lumi_mc_bg[1]+lumi_mc_bg[2]));
     TH1D* Nqq = (TH1D*)det->Clone(); //h_det_rad_sum LLdet
     Nqq->SetName("N_qq");
     
@@ -314,6 +333,7 @@ void Hist::CalculateCrossSec(TH1D* data,
     }
 
     //scale Nqq by parameter
+
     if (nodebugmode) cout << "--> scaling by fit param" << endl;
     for(Int_t i = 0; i < Nqq->GetNbinsX(); i++) 
     {
@@ -335,8 +355,17 @@ void Hist::CalculateCrossSec(TH1D* data,
         Nqq->SetBinContent(i+1, new_cont);
         Nqq->SetBinError(i+1, new_err);
         if (nodebugmode && name.Contains("deta_e_ph")) cout<< "After" << i<<") " <<" Nqq = "<< Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
+        
+        // Scaling the copy of QQ on det lev  by the tested parameter found by Oleg
+        cont = det_copy->GetBinContent(i+1);
+        err  = det_copy->GetBinError(i+1);
+        new_err = TMath::Sqrt(cont*cont*0*0 + err*err*fig3_scale*fig3_scale);
+        new_cont = cont * fig3_scale;
+        det_copy->SetBinContent(i+1, new_cont);
+        det_copy->SetBinError(i+1, new_err);
     }
 
+    
     res[0] = (TH1D*)det->Clone();
     res[0]->SetName(name);
     //statistic, acceptance, luminosity, full
@@ -356,12 +385,48 @@ void Hist::CalculateCrossSec(TH1D* data,
     res[6]->SetName(name + "_acc_err_ratio");
     res[7] = (TH1D*)det->Clone();
     res[7]->SetName(name + "_lumi_err_ratio");
+
+
+    //if (nodebugmode && name.Contains("et_jet")  ) dout("here!");
+    res_copy[0] = (TH1D*)det_copy->Clone();
+    res_copy[0]->SetName(name + "_fig3");
+    //statistic, acceptance, luminosity, full
+    res_copy[1] = (TH1D*)det_copy->Clone();
+    res_copy[1]->SetName(name + "_stat_fit_err" + "_fig3");
+    res_copy[2] = (TH1D*)det_copy->Clone();
+    res_copy[2]->SetName(name + "_acc_err" + "_fig3");
+    res_copy[3] = (TH1D*)det_copy->Clone();
+    res_copy[3]->SetName(name + "_lumi_err" + "_fig3");
+    res_copy[8] = (TH1D*)det_copy->Clone();
+    res_copy[8]->SetName(name + "_qq" + "_fig3");
+    res_copy[9] = (TH1D*)ll_det_copy->Clone();
+    res_copy[9]->SetName(name + "_ll" + "_fig3");
+
+    //if (nodebugmode && name.Contains("et_jet")  ) dout("here");
+    //ratios
+    res_copy[4] = (TH1D*)det_copy->Clone();
+    res_copy[4]->SetName(name + "_ratio" + "_fig3");
+    //statistic, acceptance, luminosity, full
+    res_copy[5] = (TH1D*)det_copy->Clone();
+    res_copy[5]->SetName(name + "_stat_fit_err_ratio" + "_fig3");
+    res_copy[6] = (TH1D*)det_copy->Clone();
+    res_copy[6]->SetName(name + "_acc_err_ratio" + "_fig3");
+    res_copy[7] = (TH1D*)det_copy->Clone();
+    res_copy[7]->SetName(name + "_lumi_err_ratio" + "_fig3");
     
     //  TH1D *h_Acc = (TH1D*)h_Data->Clone(); //histo with acceptance. Here is to have right binning!
     nbins  = res[0]->GetNbinsX();
     if (nodebugmode) cout << "in plot_cross_section: nbins = " << nbins << endl;
     for(Int_t i = 0; i < nbins; i++)
     {
+      /*if (name.Contains("deta") && !name.Contains("e_ph") && i == 0 ) 
+        {
+          dout("BEFORE:", ll_det_copy->GetBinContent(1), ll_det->GetBinContent(1));
+          ll_det_copy->SetBinContent(1, 0);
+          ll_det->SetBinContent(1, 0);
+          ll_det_copy->SetBinError(1, 0);
+          ll_det->SetBinError(1, 0);
+        }*/
       Double_t prph          = det->GetBinContent(i+1),//QQ 
                prph_had      = had->GetBinContent(i+1),//QQ
                prph_hd       = hd->GetBinContent(i+1),//QQ
@@ -374,6 +439,11 @@ void Hist::CalculateCrossSec(TH1D* data,
                C_err         = acc->GetBinError(i+1),
                C_ll_acc      = ll_acc->GetBinContent(i+1),
                C_ll_err      = ll_acc->GetBinError(i+1);
+
+
+      Double_t ll_events_copy     = ll_det_copy->GetBinContent(i+1),//LL      
+               n_qq_copy          = det_copy->GetBinContent(i+1),//QQLL
+               err1_copy = 0., err2_copy = 0., err3_copy = 0., err_copy = 0.; //statistic, acceptance, luminosity, full
         
       /*      
         if(prph != 0.)
@@ -398,11 +468,32 @@ void Hist::CalculateCrossSec(TH1D* data,
       */
 
       //      cross_sec          = (           prph           / C_acc + ll_events/C_ll_acc)  / (bin_width * Lumi);
+
       Double_t cross_sec         = ( (n_qq ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events/C_ll_acc ) / (bin_width * Lumi),
                prph_cross_sec    =   (n_qq )                                / (C_acc * bin_width * Lumi),
                ll_cross_sec      =                                      ll_events            / (C_ll_acc * bin_width * Lumi),
                prph_mc_cross_sec =    prph_had                                               / (bin_width * 3552.40),
                ll_mc_cross_sec   =                                      ll_had_events        / (bin_width * (lumi_mc_bg[0] + lumi_mc_bg[1] + lumi_mc_bg[2]));
+      
+
+      Double_t cross_sec_copy         = ( (n_qq_copy ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events_copy/C_ll_acc ) / (bin_width * Lumi),
+               prph_cross_sec_copy    =   (n_qq_copy )                                / (C_acc * bin_width * Lumi);
+      //dout(ll_events_copy, "=", ll_events);
+      
+      if (name.Contains("deta") && !name.Contains("e_ph") && (C_ll_acc==0)) 
+      {
+        ll_det_copy->SetBinContent(i+1, 0);
+        ll_det->SetBinContent(i+1, 0);
+        ll_det_copy->SetBinError(i+1, 0);
+        ll_det->SetBinError(i+1, 0);
+
+        cross_sec         = ( (n_qq ) / C_acc ) / (bin_width * Lumi);
+        ll_cross_sec      = 0;
+        cross_sec_copy    = ( (n_qq_copy ) / C_acc ) / (bin_width * Lumi);
+      }
+      if (nodebugmode && name.Contains("deta") && !name.Contains("e_ph") ) dout(name, i, "cross_sec", cross_sec, "cross_sec_copy", cross_sec_copy);
+      if (nodebugmode && name.Contains("deta") && !name.Contains("e_ph") ) dout("     qq:", (n_qq ) / C_acc ,"ll:", (C_ll_acc!=0)*fitWithLL*ll_events/C_ll_acc );
+      if (nodebugmode && name.Contains("deta") && !name.Contains("e_ph") ) dout("fig3 qq:", (n_qq_copy ) / C_acc ,"ll:", (C_ll_acc!=0)*fitWithLL*ll_events_copy/C_ll_acc );
       if (nodebugmode && name.Contains("deta") && !name.Contains("deta_e_ph") && i == 0) 
       {
         dout(C_acc, C_ll_acc );
@@ -410,21 +501,47 @@ void Hist::CalculateCrossSec(TH1D* data,
         cout<<q1<<endl;
       }
           
+
       //statistical errors
       err1 = Nqq->GetBinError(i+1) / (bin_width * Lumi * C_acc);
-      if (nodebugmode && name.Contains("xgamma")) cout<< i<<") " <<"Nqq = "<< Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
+        if (nodebugmode && name.Contains("xgamma")) cout<< i<<") " <<"Nqq = "<< Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
       err11 = fitWithLL*ll_det->GetBinError(i+1) * ( 1 / C_ll_acc) / (bin_width * Lumi);
+      if (C_ll_acc == 0) err11 = 0;
       err1 = TMath::Sqrt(err1 * err1 + err11 * err11);
+
+      err1_copy = det_copy->GetBinError(i+1) / (bin_width * Lumi * C_acc);
+      if (nodebugmode && name.Contains("xgamma")) cout<< i<<") " <<"det_copy = "<< det_copy->GetBinContent(i+1) <<" +/- "<< det_copy->GetBinError(i+1)<<endl;
+      err11 = fitWithLL * ll_det_copy->GetBinError(i+1) * ( 1 / C_ll_acc) / (bin_width * Lumi);
+      if (C_ll_acc == 0) err11 = 0;
+      err1_copy = TMath::Sqrt(err1_copy * err1_copy + err11 * err11);
 
       //acceptance errors
       err2 = (n_qq ) * C_err / (bin_width * Lumi * C_acc * C_acc);
       err22 = fitWithLL*ll_events * C_ll_err / (bin_width * Lumi * C_ll_acc * C_ll_acc);
-      err2 = TMath::Sqrt(err2*err2 + err22*err22);  
-      
+      if (C_ll_acc == 0) err22 = 0;
+      err2 = TMath::Sqrt(err2*err2 + err22*err22); 
+
+      err2_copy = (n_qq ) * C_err / (bin_width * Lumi * C_acc * C_acc);
+      err22 = fitWithLL*ll_events_copy * C_ll_err / (bin_width * Lumi * C_ll_acc * C_ll_acc);
+      if (C_ll_acc == 0) err22 = 0;
+      err2_copy = TMath::Sqrt(err2_copy * err2_copy + err22*err22);        
       //luminosity errors are negleckted
       err3 = 0.;//0.026*cross_sec;    
       //      err3 *= err3;
       err = TMath::Sqrt(err1*err1 + err2*err2 + err3*err3);//full
+      err_copy = TMath::Sqrt(err1_copy*err1_copy + err2_copy*err2_copy + err3_copy*err3_copy);//full
+
+      //error propagation for LL cs
+          Double_t err1_ll, err2_ll, err3_ll, err_ll;
+          //statistic errors
+          //if (C_ll_acc == 0) err1_ll = 0;
+          err1_ll = TMath::Sqrt( pow(ll_det->GetBinError(i+1) * ( - 1 / C_ll_acc) / (bin_width * Lumi), 2));
+          //acceptance errors
+          err2_ll = TMath::Sqrt(pow(ll_events * C_ll_err / (bin_width * Lumi * C_acc * C_ll_acc), 2));  
+          //luminosity errors are negleckted
+          err3_ll = 0.;   
+          err_ll = TMath::Sqrt(err1_ll*err1_ll + err2_ll*err2_ll + err3_ll*err3_ll);//full
+
         if (nodebugmode && name.Contains("deta_e_ph") && i == 0) //s_var[i]=="deta_e_ph"
         {
           dout("bin_width: ",bin_width,"\n",
@@ -433,6 +550,9 @@ void Hist::CalculateCrossSec(TH1D* data,
            "(n_qq - ll_events) / C_acc: ", (n_qq - ll_events) / C_acc ,"\n",
            "(C_ll_acc!=0)*ll_events/C_ll_acc: ", (C_ll_acc!=0)*ll_events/C_ll_acc );
         }
+
+
+        //cross sections set-up
         res[0]->SetBinContent(i+1, cross_sec);
         res[0]->SetBinError(i+1, err);//full
         res[1]->SetBinContent(i+1, cross_sec);
@@ -441,7 +561,23 @@ void Hist::CalculateCrossSec(TH1D* data,
         res[2]->SetBinError(i+1, err2);// acceptance
         res[3]->SetBinContent(i+1, cross_sec);
         res[3]->SetBinError(i+1, err3);//luminosity
+
+        res_copy[0]->SetBinContent(i+1, cross_sec_copy);
+        res_copy[0]->SetBinError(i+1, err_copy);//full
+        res_copy[1]->SetBinContent(i+1, cross_sec_copy);
+        res_copy[1]->SetBinError(i+1, err1_copy);//statistic
+        res_copy[2]->SetBinContent(i+1, cross_sec_copy);
+        res_copy[2]->SetBinError(i+1, err2_copy);// acceptance
+        res_copy[3]->SetBinContent(i+1, cross_sec_copy);
+        res_copy[3]->SetBinError(i+1, err3_copy);//luminosity
+
+    
+        res_copy[8]->SetBinContent(i+1, prph_cross_sec_copy);
+        res_copy[8]->SetBinError(i+1, 0);
+        res_copy[9]->SetBinContent(i+1, ll_cross_sec);
+        res_copy[9]->SetBinError(i+1, 0);
         
+
         //ratios
         res[4]->SetBinContent(i+1, 0);
         res[4]->SetBinError(i+1, err/cross_sec);
@@ -451,10 +587,25 @@ void Hist::CalculateCrossSec(TH1D* data,
         res[6]->SetBinError(i+1, err2/cross_sec);
         res[7]->SetBinContent(i+1, 0);
         res[7]->SetBinError(i+1, err3/cross_sec);
+
+        res_copy[4]->SetBinContent(i+1, 0);
+        res_copy[4]->SetBinError(i+1, err_copy/cross_sec_copy);
+        res_copy[5]->SetBinContent(i+1, 0);
+        res_copy[5]->SetBinError(i+1, err1_copy/cross_sec_copy);
+        res_copy[6]->SetBinContent(i+1, 0);
+        res_copy[6]->SetBinError(i+1, err2_copy/cross_sec_copy);
+        res_copy[7]->SetBinContent(i+1, 0);
+        res_copy[7]->SetBinError(i+1, err3_copy/cross_sec_copy);
+
         //      h_Acc->SetBinContent(i+1, 1./C_acc);
         //      h_Acc->SetBinError(i+1, C_err/(C_acc*C_acc));
         
         sigma_tot += cross_sec * bin_width;
+        sigma_tot_err += err * err * bin_width * bin_width;
+
+        sigma_tot_copy += cross_sec_copy * bin_width;
+        sigma_tot_err_copy += TMath::Sqrt(err_copy * err_copy * bin_width * bin_width);
+
         sigma_tot_err += err * err * bin_width * bin_width;
          
         //if (!nodebugmode && name.Contains("et") && !name.Contains("eta") && !name.Contains("jet"))
@@ -468,7 +619,9 @@ void Hist::CalculateCrossSec(TH1D* data,
         selectedoutput << "errors (stat. and fit, acc., lumi., total), %: " << err1 / cross_sec << ", " 
              << err2/cross_sec << ", " << err3 / cross_sec << ", " << err / cross_sec << endl;
         selectedoutput << "prph data: " << prph_cross_sec << ", prph mc: " << prph_mc_cross_sec << ", prph_had = " << prph_had <<  endl;
-        selectedoutput << "ll data: " << ll_cross_sec << ", ll mc: " << ll_mc_cross_sec << endl;
+        selectedoutput << "ll data: " << ll_cross_sec  << " +- " << err_ll << ", acc_LL = " << C_ll_acc << ", ll mc: " << ll_mc_cross_sec << endl;
+        selectedoutput << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
+             << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
         
         if (nodebugmode && name.Contains("xp")) cout << name << " cros sec in bin " << i << ": " << cross_sec 
                 << " +- " << err << ", lumi = " << Lumi << ", acc_Prompt = " 
@@ -486,8 +639,9 @@ void Hist::CalculateCrossSec(TH1D* data,
         fout << "h_1st[0]->SetBinError(" << i+1 << ", " << err << ");" << endl;
     }//for i over bins
     fout << endl;
-    if (nodebugmode) cout << "sigma_tot = " << sigma_tot << " +- " << TMath::Sqrt(sigma_tot_err) << " pb" << endl;
-    selectedoutput << "sigma_tot = " << sigma_tot << " +- " << TMath::Sqrt(sigma_tot_err) << " pb" << endl;
+    if (!nodebugmode) cout << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
+    if (nodebugmode) cout << "sigma_tot_fig3 = " << sigma_tot_copy << " +- " << sigma_tot_err_copy << " pb" << endl;
+    selectedoutput << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
 
     //TCanvas* c_acc  = new TCanvas("c_cs_" + name, "CS", 800, 600);
   }
@@ -495,8 +649,8 @@ void Hist::CalculateCrossSec(TH1D* data,
 }
 
 void Hist::CalculateCrossSec(TH1D *h_Data, TH1D *h_Lepto_det,
-			     TH1D *h_Lepto_had, TH1D *h_Lepto_hd, 
-			     Double_t Lumi, Int_t Linecolor, TH1D **h_Cross_Sec)
+           TH1D *h_Lepto_had, TH1D *h_Lepto_hd, 
+           Double_t Lumi, Int_t Linecolor, TH1D **h_Cross_Sec)
 {
   Int_t nbins = 0;
   TH1D *h_Cross = (TH1D*)h_Data->Clone();
@@ -519,12 +673,12 @@ void Hist::CalculateCrossSec(TH1D *h_Data, TH1D *h_Lepto_det,
       Double_t bin_width;
       bin_width = bottom_edge - low_edge;
       if(lepto != 0.)
-	C_acc = lepto_had / lepto;
+  C_acc = lepto_had / lepto;
       else 
-	{
-	  if (nodebugmode) cout << "lepto det bin content is 0! Can't calculate acceptance." <<endl;
-	  exit(1);
-	}
+  {
+    if (nodebugmode) cout << "lepto det bin content is 0! Can't calculate acceptance." <<endl;
+    exit(1);
+  }
       cross_sec = data * C_acc;
       cross_sec /= bin_width;
       cross_sec /= Lumi;

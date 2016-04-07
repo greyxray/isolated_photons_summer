@@ -34,14 +34,9 @@ unsigned int fitWithLLinBg = 0;
     //unsigned int QQfit = 0;
     //unsigned int fitWithLL = 0; - пока что нигде не влияет; оставлю 0 так как не входит в виде отдельного члена
     //unsigned int fitWithLLinBg = 0; - пока что нигде не влияет;
-
-#include "CrossectionDrawer.h"
 #include "hist.c"
 Hist hist;
 
-//0.05 - 0.8 - our new
-//0 - 0.8 - paper
-//0 - 0.95 - actual dz paper
 Double_t leftRange = 0.05;//0.00;//0.05
 Double_t sys_fit = 0.8;//0.95;//0.8
 Int_t GetFitRange( TH1D* h, bool f=true)
@@ -345,13 +340,13 @@ int main(int argc, char *argv[])
     //          Fit in bins of et
     //
     ///////////////////////////////////////////////////////
-    dout("number of events:", hist.hist_data_sum[hist.n_hist - 1]->GetEntries());
-    Double_t checksum = 0;
+    dout("hist.h_deltaz_eta_data_sum[0]->GetNbinsX():",hist.h_deltaz_eta_data_sum[0]->GetNbinsX());
+
     for(Int_t i = 0; i < number_etbins; i++)// процедура фитирования выполняется на каждый бин по Et
     {
         MakeCorrection(hist.h_deltaz_et_prph_sum[i], hist.h_deltaz_et_norad_sum[i]);
+
         hist_data[0] = (TH1D*)hist.h_deltaz_et_data_sum[i]->Clone(); 
-        checksum += hist_data[0]->GetEntries();
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone();
         hist_mc[0]->Scale(hist.total_luminosity_data / hist.lumi_mc_prph);
         hist_mc_rad[0] = (TH1D*)hist.h_deltaz_et_rad_sum[i]->Clone(); 
@@ -545,7 +540,7 @@ int main(int argc, char *argv[])
         if (i==0 && !nodebugmode) dout(  "par in bin et ", i, ": ", param_et[i], " +- ", param_err_et[i], ", chi2/dof = ", chi2_et[i] );
 
     }
-    dout("checksum = ", checksum);
+
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of eta
@@ -1980,13 +1975,10 @@ int main(int argc, char *argv[])
 
 
     hist.PlotFitInBinsOfCrossSec();
-    dout("PlotCrossSec");
     hist.PlotCrossSec(); 
     
     if (ProduceDZoverollPlot == 1)
     {
-        dout("ProduceDZoverollPlot");
-        bool detailed = false;
             Int_t i = hist.n_hist - 1;
             hist_data[0] = (TH1D*)hist.hist_data_sum[i]->Clone();             hist_data[0]->SetName("data");
             hist_mc[0] = (TH1D*)hist.hist_mc_sum[i]->Clone();             hist_mc[0]->SetName("prph");//QQ
@@ -2074,10 +2066,10 @@ int main(int argc, char *argv[])
                 aErr = param_err[0];
             }
             dout("a, sumSgAll, sumRd, sumSg", a, sumSgAll, sumRd, sumSg);
-            Double_t N = a * sumRd * (sumSgAll / sumSg);                
+            Double_t N = a * sumSgAll * sumRd / sumSg;                
             Double_t dS = sumSgAll - sumSg;
             Double_t Nerr = TMath::Sqrt( pow((1 + dS/sumSg), 2) * ( pow(sumRd, 2) * pow(aErr, 2) + pow(a, 2) * sumRd ) \
-                                        + pow(a, 2) * pow(sumRd, 2) * ( dS + pow(dS, 2) / sumSg ) / pow(sumSg, 2) );
+            + pow(a, 2) * pow(sumRd, 2) * ( dS + pow(dS, 2) / sumSg ) / pow(sumSg, 2) );
             Double_t NLL =  hist_mc_rad[0]->Integral(), NLLerr(0);
             if (QQfit == 1 && fitWithLL==1 && fitWithLLinBg==0)
             {
@@ -2086,25 +2078,11 @@ int main(int argc, char *argv[])
                 Double_t total = hist_mc_rad[0]->IntegralAndError(1, hist_mc_rad[0]->GetNbinsX(), hist_mc_noradIntegrated_error,"");
                 NLLerr = hist_mc_noradIntegrated_error;
                 Nerr = TMath::Sqrt( Nerr*Nerr + hist_mc_noradIntegrated_error*hist_mc_noradIntegrated_error);
-                dout(total, "=", hist_mc_rad[0]->GetSumOfWeights());
-                //dout(hist_mc_rad[0]->GetSumw2()->GetSum());
-                float err(0.);
-                int bins = hist_mc_rad[0]->GetNbinsX();
-                double tem=0;
-                for(int ii=1; false && ii<=5; ++ii)
-                {
-                        dout(hist_mc_rad[0]->GetBinContent(ii), \
-                            hist_mc_rad[0]->GetBinError(ii), "=", sqrt(hist_mc_rad[0]->GetSumw2()->GetAt(ii)), "!=", \
-                            sqrt(hist_mc_rad[0]->GetBinContent(ii)), hist_mc_rad[0]->GetBinContent(ii));
-                        tem+=hist_mc_rad[0]->GetSumw2()->GetAt(ii);
-                        err += hist_mc_rad[0]->GetBinError(ii)*hist_mc_rad[0]->GetBinError(ii)*0.05*0.05;
-                }
-                dout("tem", tem);
-                dout(sqrt(err));
-
             }
             dout("N +/- dN =", N, Nerr);
             
+             for(Int_t j = 0;j<10;j++)//GetNbinsX()
+                  dout("csj=",j,")",hist_mc[0]->GetBinContent(j+1) );
             //dout("param[0]", param[0], param_err[0], param_err[0]);
             if (QQfit == 0)
             {
@@ -2137,9 +2115,9 @@ int main(int argc, char *argv[])
 
             TString tempstr, vartex;
             tempstr.Form( "deltaz_fit");
-            vartex.Form("#LT #delta Z #GT");
+            vartex.Form("#Delta Z");
             gStyle->SetOptStat(0);
-            TCanvas* c  = new TCanvas("c_"+tempstr, tempstr, 800, 700); 
+            TCanvas* c  = new TCanvas("c_"+tempstr, tempstr, 800, 600); 
             Double_t y_max = 1.2 * hist_data[0]->GetMaximum();
             TH2D *h_window_control = new TH2D(tempstr + "_win", "title", hist_data[0]->GetNbinsX(), 0, \
                                      hist_data[0]->GetBinCenter(hist_data[0]->GetNbinsX()) + hist_data[0]->GetBinWidth(hist_data[0]->GetNbinsX())/2, \
@@ -2151,24 +2129,11 @@ int main(int argc, char *argv[])
             c->GetPad(0)->SetBorderMode(0);
             c->GetPad(0)->SetFillColor(kWhite);
             c->GetPad(0)->SetGrid(0, 0);
-            //TVirtualPad * pad = test->cd(i % m + 1);
-            //c->GetPad(0)->SetBottomMargin(0.05);
-            dout("t GetTopMargin() const: ", c->GetPad(0)->GetTopMargin() );
-            c->GetPad(0)->SetTopMargin(2* c->GetPad(0)->GetTopMargin());
-
-
-            sign_window(c->GetPad(0), h_window_control, vartex , "Entries", "", "middle");
-            h_window_control->GetXaxis()->SetTitleOffset(1.0);
-            h_window_control->GetYaxis()->SetTitleOffset(1.1);
-            c->GetPad(0)->SetMargin(c->GetPad(0)->GetLeftMargin() + 0.03 , \
-                                            c->GetPad(0)->GetRightMargin() - 0.03 ,\
-                                            c->GetPad(0)->GetBottomMargin()  + 0.03, \
-                                            c->GetPad(0)->GetTopMargin() - 0.03);
+            sign_window(c->GetPad(0), h_window_control, vartex , "entries", vartex, "middle");
             //h_window_control->GetYaxis()->SetRange(0, h_det_rad_sum[i]->GetMaximum()*1.3);
             h_window_control->Draw();
 
-            TLegend *leg = new TLegend(0.5, 0.4, 0.9, 0.79);//(0.5, 0.5, 0.9, 0.89);//TLegend(0.55, 0.6, 0.95, 0.91);//
-            if (detailed) leg = new TLegend(0.55, 0.65, 0.9, 0.91);
+            TLegend *leg = new TLegend(0.45, 0.6, 0.86, 0.91);
             leg->SetBorderSize(0);
             leg->SetFillColor(0);
             hist_res[0]->SetLineColor(kRed);
@@ -2196,14 +2161,14 @@ int main(int argc, char *argv[])
             hist_mc_norad[0]->Sumw2();
 
             hist_data[0]->SetMarkerStyle(21);
-            hist_data[0]->SetMarkerSize(1);//0.7
+            hist_data[0]->SetMarkerSize(0.5);
             hist_data[0]->Sumw2();
                 TPaveText* inform;// = new TPaveText(0.6, 0.61, 0.94, 0.92, "NDC");
         
-                //leg->SetX1(0.5);
-                //leg->SetY1(0.5);
-                //leg->SetX2(0.9);
-                //leg->SetY2(0.89);
+                leg->SetX1(0.5);
+                leg->SetY1(0.65);
+                leg->SetX2(0.85);
+                leg->SetY2(0.89);
                 inform = new TPaveText(0.45,0.45,0.85,0.64, "NDC");
                 TText *t1, *t2, *t3, *t4;
                 TString s1, s2, s3, s4; 
@@ -2220,23 +2185,17 @@ int main(int argc, char *argv[])
                 }
                 inform->SetFillColor(0);
                 inform->SetBorderSize(0);
-            TH1D datamarker_h;
-            datamarker_h.SetMarkerColor(hist_data[0]->GetMarkerColor()); 
-            datamarker_h.SetMarkerSize(2); 
-            datamarker_h.SetMarkerStyle(hist_data[0]->GetMarkerStyle()); 
-
-
-            leg->AddEntry(&datamarker_h, "ZEUS (prel.)", "p"); 
+            leg->AddEntry(hist_data[0], "data", "pe"); 
             if(QQfit == 1)
-                leg->AddEntry(hist_mc[0], "QQ", "f"); //blue
+                leg->AddEntry(hist_mc[0], "QQ", "l"); //blue
             else
-                leg->AddEntry(hist_mc_photon[0], "Sg.(LL+QQ)", "f"); //blue
+                leg->AddEntry(hist_mc_photon[0], "Sg.(LL+QQ)", "l"); //blue
             if (fitWithLL==1)
-                leg->AddEntry(hist_mc_rad[0], "LL", "f");// red dots
-            leg->AddEntry(hist_mc_norad[0], "Hadronic BG", "f");// small dots
+                leg->AddEntry(hist_mc_rad[0], "LL", "l");// red dots
+            leg->AddEntry(hist_mc_norad[0], "Hadronic BG", "l");// small dots
             leg->AddEntry(hist_res[0], "Fit result", "f");//yellow area
 
-            hist_res[0]->DrawClone("HIST SAME"); //E1 - with errors
+            hist_res[0]->DrawClone("HIST E1 SAME"); 
             if(QQfit == 1)
                 hist_mc[0]->DrawClone("HIST SAME");    //к нему рисуем синий QQ. без ошибок
             else
@@ -2248,12 +2207,10 @@ int main(int argc, char *argv[])
         
             hist_data[0]->SetMarkerColor(kBlack);//kRed
             hist_data[0]->SetLineColor(kBlack);
-            hist_data[0]->SetLineWidth(2);
-            hist_data[0]->Draw("P X0 E SAME");//DrawClone("P E1 SAME");  
+            hist_data[0]->DrawClone("P E1 SAME");  
             
             leg->DrawClone();
 
-            if (detailed)
             {
                     inform->Draw();
                     TLine *lineLeft = new TLine(), *lineRight = new TLine();
@@ -2278,14 +2235,6 @@ int main(int argc, char *argv[])
                 str_temp2 += "_LLinBg";
             else
                 str_temp2 += "_noLLinBg";
-
-            TPaveText *t = new TPaveText(0.27, 0.83, 0.8, 1.0, "NDC"); // left-up
-                t->AddText("ZEUS preliminary");
-                t->SetFillColor(0);
-                t->SetBorderSize(0);
-                t->SetFillStyle(0);
-                t->Draw();
-
             dout(tempstr + "_" + str_temp2  + ".png");
             c->Print(tempstr + "_" + str_temp2  + ".png");
          

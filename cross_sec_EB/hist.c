@@ -11,6 +11,74 @@
 
 Hist::~Hist(){}
 
+
+Double_t Hist::ScaleX(Double_t x, Double_t tot_width)
+{
+  Double_t v;
+  v = tot_width * 0.02 +  x; // "linear scaling" function example
+  return v;
+}
+
+Double_t Hist::ScaleY(Double_t y, Double_t tot_width)
+{
+  Double_t v;
+  v = tot_width * 0.02 + y;//20 * y + 200; // "linear scaling" function example
+  return v;
+}
+
+Double_t Hist::ScaleZ(Double_t z, Double_t tot_width)
+{
+  Double_t v;
+  v = tot_width * 0.02 + z;//30 * z + 300; // "linear scaling" function example
+  return v;
+}
+
+void Hist::ScaleAxis(TAxis *a, Double_t (*Scale)(Double_t, Double_t))
+{
+  if (!a) return; // just a precaution
+  if (a->GetXbins()->GetSize())
+    {
+      // an axis with variable bins
+      // note: bins must remain in increasing order, hence the "Scale"
+      // function must be strictly (monotonically) increasing
+      TArrayD X(*(a->GetXbins()));
+      
+      for(Int_t i = 0; i < X.GetSize(); i++) X[i] = Scale(X[i], X[X.GetSize() - 1] - X[0]);
+      a->Set((X.GetSize() - 1), X.GetArray()); // new Xbins
+    }
+  else
+    {
+      // an axis with fix bins
+      // note: we modify Xmin and Xmax only, hence the "Scale" function
+      // must be linear (and Xmax must remain greater than Xmin)
+      a->Set( a->GetNbins(),
+              Scale(a->GetXmin(), a->GetXmax() - a->GetXmin()), // new Xmin
+              Scale(a->GetXmax(), a->GetXmax() - a->GetXmin()) ); // new Xmax
+    }
+  return;
+}
+
+void Hist::ScaleXaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t))
+{
+  if (!h) return; // just a precaution
+  ScaleAxis(h->GetXaxis(), Scale);
+  return;
+}
+
+void Hist::ScaleYaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t))
+{
+  if (!h) return; // just a precaution
+  ScaleAxis(h->GetYaxis(), Scale);
+  return;
+}
+
+void Hist::ScaleZaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t))
+{
+  if (!h) return; // just a precaution
+  ScaleAxis(h->GetZaxis(), Scale);
+  return;
+}
+
 void Hist::SetFigure3Style(TH1D* h_data, TH1D* h_qq_ll, TH1D* h_qq, TH1D* h_ll, TH1D* h_bg)
 {
     h_data->SetLineColor(kBlack);
@@ -171,7 +239,7 @@ void Hist::Init()
                 hist_mc_rad_control[p][i] = (TH1D*)file[p][2]->Get(s_hist[i])->Clone();
                 hist_mc_rad_control[p][i]->SetName(s_hist[i]+"_mc_rad" + s_period[p]);
                 if (i == n_hist-1 && nodebugmode) dout(p,"period, LL",hist_mc_rad_control[p][i]->GetBinContent(1));
-
+                
                 file[p][1]->cd();
                 hist_mc_norad_control[p][i] = (TH1D*)file[p][1]->Get(s_hist[i])->Clone();
                 hist_mc_norad_control[p][i]->SetName(s_hist[i]+"_mc_norad" + s_period[p]);
@@ -227,6 +295,7 @@ void Hist::Init()
             hist_mc_rad_sum[i]->Sumw2();
             if (NoScalingForBinsTest == 0)
                 hist_mc_rad_sum[i]->Scale(lumi_data[0] / lumi_mc_bg[0]);// LL
+                
 
             hist_mc_norad_sum[i] = (TH1D*) hist_mc_norad_control[0][i]->Clone();    //bg
             hist_mc_norad_sum[i]->SetName(s_hist[i]+"_mc_norad");
@@ -234,6 +303,8 @@ void Hist::Init()
             hist_mc_norad_sum[i]->SetFillColor(kOrange+7);//kYellow
             hist_mc_norad_sum[i]->SetFillStyle(3005);
             hist_mc_norad_sum[i]->Sumw2();
+                  //n_hist - 1
+
             if (NoScalingForBinsTest == 0)
                 hist_mc_norad_sum[i]->Scale(lumi_data[0] / lumi_mc_bg[0]);// bg
 
@@ -246,14 +317,19 @@ void Hist::Init()
         }
 
 
+  
+
+
         //***********************
         //    SUM HISTOGR FOR ALL PERIODS 
         //***********************
         //cout<<n_hist<<endl;
         for(Int_t i = 0; i < n_hist; i++)
         {
+            if (i== 0) dout("hist_data_control[p][i]",0,"=",hist_data_control[0][i]->GetEntries());
             for(Int_t p = 1; p < n_periods; p++) //0 - already cloned
             {
+                if (i== 0) dout("hist_data_control[p][i]",p,"=",hist_data_control[p][i]->GetEntries());
                 cerr << i << " " << p << " adding :" << hist_data_control[p][i]->GetName() << endl;
                 hist_data_sum[i]->Add(hist_data_control[p][i]);
                 cerr << hist_data_control[p][i]->GetNbinsX() << endl;
@@ -1954,7 +2030,10 @@ void Hist::Init()
         }// for j over cross section variables
 
     }// for i over periods
-
+     for(int ii=1; ii<=h_det_rad_sum[9]->GetNbinsX();ii++)
+                {
+                    if (nodebugmode) dout("-->deta ", ii, ")", h_det_rad_sum[9]->GetBinContent(ii));
+                }
     //////////////////////////////////////////////////
     //
     //             Draw attributes  //! styling
@@ -2540,8 +2619,12 @@ void Hist::PlotAcceptance()
         h_acceptance_prph[i] = (TH1D*)h_det_prph_sum[i]->Clone();//     h_acceptance_prph[i]->Sumw2();
         h_acceptance_prph[i]->SetName(TString("h_acceptance_prph_") + s_var[i]);    // QQ_det / QQ_had
         h_acceptance_prph[i]->Divide(h_had_prph_sum[i]);
-        h_acceptance_prph[i]->SetMarkerStyle(24);
+        h_acceptance_prph[i]->SetMarkerStyle(20);
+        h_acceptance_prph[i]->SetMarkerColor(kRed);
         h_acceptance_prph[i]->SetMarkerSize(0.7);
+
+        h_acceptance_rad[i]->SetLineColor(kBlack);
+        h_acceptance_prph[i]->SetLineColor(kRed);
 
         if (h_had_rad_sum[i]->GetBinContent(1)==0)
         {
@@ -2550,7 +2633,7 @@ void Hist::PlotAcceptance()
             h_acceptance_rad[i]->SetBinError(1, h_acceptance_prph[i]->GetBinError(1));
             dout(s_var[i] ,"redorad to " ,h_acceptance_rad[i]->GetBinContent(1),h_acceptance_rad[i]->GetBinError(1));
         }
-        if (nodebugmode) cout << "acceptance " << h_acceptance_rad[i]->GetName() << endl;
+        
         if (s_var[i].EqualTo("xp") || s_var[i].EqualTo("deta") || s_var[i].EqualTo("deta_e_ph"))
         {
             if (nodebugmode) dout(s_var[i], "haccLL=", h_det_rad_sum[i]->GetBinContent(1),"/", h_had_rad_sum[i]->GetBinContent(1) );
@@ -2634,108 +2717,11 @@ void Hist::PlotAcceptance()
             c->Print(tempstr + ".png");
 
             if (nodebugmode) cout << "LL:   det = " << h_det_rad_sum[i]->GetSum() <<" had = "<<  h_had_rad_sum[i]->GetSum() << " hd = "<<   h_hd_rad_sum[i]->GetSum() <<endl
-                << "QQ:   det = " << h_det_prph_sum[i]->GetSum() <<" had = "<<  h_had_prph_sum[i]->GetSum() << " hd = "<<   h_hd_prph_sum[i]->GetSum() <<endl;
+                                  << "QQ:   det = " << h_det_prph_sum[i]->GetSum() <<" had = "<<  h_had_prph_sum[i]->GetSum() << " hd = "<<   h_hd_prph_sum[i]->GetSum() <<endl;
             if (nodebugmode) cout << "LL[1]:   det = " << h_det_rad_sum[i]->GetBinContent(1) <<" had = "<<  h_had_rad_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_rad_sum[i]->GetBinContent(1) <<endl
-                << "QQ[1]:   det = " << h_det_prph_sum[i]->GetBinContent(1) <<" had = "<<  h_had_prph_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_prph_sum[i]->GetBinContent(1) <<endl;
+                                  << "QQ[1]:   det = " << h_det_prph_sum[i]->GetBinContent(1) <<" had = "<<  h_had_prph_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_prph_sum[i]->GetBinContent(1) <<endl;
         }
-        /*
-        if (s_var[i].EqualTo("xgamma"))
-        { 
-            gStyle->SetOptStat(0);
-            TCanvas* c  = new TCanvas("c_xgamma_levels_LL", "x_gamma_levels_LL", 800, 600); 
-            //c->GetPad(0)->SetTitlePS("c_xgamma_levels_LL");
-
-            TH2D *h_window_control = new TH2D("x_gamma_levels_LL_win", "title", h_had_rad_sum[i]->GetNbinsX(), h_had_rad_sum[i]->GetBinCenter(1)- h_had_rad_sum[i]->GetBinWidth(1)/2, \
-            h_had_prph_sum[i]->GetBinCenter(h_had_rad_sum[i]->GetNbinsX()) + h_had_rad_sum[i]->GetBinWidth(h_had_rad_sum[i]->GetNbinsX())/2, 10, 0., h_had_rad_sum[i]->GetMaximum()*1.3);//array_bin[0], array_bin[number_bins - 1]
-            c->GetPad(0)->SetTicks(1,1);
-            c->GetPad(0)->SetFrameBorderMode(0);
-            c->GetPad(0)->SetBorderMode(0);
-            c->GetPad(0)->SetFillColor(kWhite);
-            c->GetPad(0)->SetGrid(0, 0);
-            sign_window(c->GetPad(0), h_window_control, "x_{#gamma}" , "entries", "LL MC, x_{#gamma}", "middle");
-            h_window_control->GetYaxis()->SetRange(0, h_det_rad_sum[i]->GetMaximum()*1.3);
-            h_window_control->Draw();
-
-
-
-            h_det_rad_sum[i]->SetLineColor(kBlue);
-            h_had_rad_sum[i]->SetLineColor(kRed);
-            h_hd_rad_sum[i]->SetLineColor(kMagenta);
-
-            TLegend *leg_acc = new TLegend(0.2, 0.5, 0.6, 0.75);
-            leg_acc->SetFillColor(0);
-            leg_acc->SetBorderSize(0);
-            TString detstring, hadstring, hdstring;
-                detstring.Form("det.level (%5.0f events)", h_det_rad_sum[i]->GetSum());
-                hadstring.Form("had.level (%5.0f events)", h_had_rad_sum[i]->GetSum());
-                hdstring.Form("hd.level (%5.0f events)", h_hd_rad_sum[i]->GetSum());
-            leg_acc->AddEntry(h_det_rad_sum[i], detstring, "l");// P: draw polymarker associated with TAttMarker if obj inherits from TAttMarker
-            leg_acc->AddEntry(h_had_rad_sum[i], hadstring, "l"); 
-            leg_acc->AddEntry(h_hd_rad_sum[i], hdstring, "l"); 
-
-            h_det_rad_sum[i]->Draw("same");
-            h_had_rad_sum[i]->Draw("same");
-            h_hd_rad_sum[i]->Draw("same");
-            leg_acc->Draw("same");
-            c->Print("x_gamma_levels_LL.png");
-
-
-            c  = new TCanvas("c_xgamma_levels_QQ", "x_gamma_levels_QQ", 800, 600); 
-            h_window_control = new TH2D("x_gamma_levels_QQ_win", "title", h_had_prph_sum[i]->GetNbinsX(), h_had_prph_sum[i]->GetBinCenter(1)- h_had_prph_sum[i]->GetBinWidth(1)/2, \
-            h_had_prph_sum[i]->GetBinCenter(h_had_prph_sum[i]->GetNbinsX()) + h_had_prph_sum[i]->GetBinWidth(h_had_prph_sum[i]->GetNbinsX())/2, 10, 0., h_had_prph_sum[i]->GetMaximum()*1.3);//array_bin[0], array_bin[number_bins - 1]
-            c->GetPad(0)->SetTicks(1,1);
-            c->GetPad(0)->SetFrameBorderMode(0);
-            c->GetPad(0)->SetBorderMode(0);
-            c->GetPad(0)->SetFillColor(kWhite);
-            c->GetPad(0)->SetGrid(0, 0);
-            sign_window(c->GetPad(0), h_window_control, "x_{#gamma}" , "entries", "QQ MC, x_{#gamma}", "middle");
-            h_window_control->GetYaxis()->SetRange(0, h_det_rad_sum[i]->GetMaximum() * 1.3);
-            h_window_control->Draw();
-            h_det_prph_sum[i]->SetLineColor(kBlue);
-            h_det_prph_sum[i]->Draw("same");
-            h_had_prph_sum[i]->SetLineColor(kRed);
-            h_had_prph_sum[i]->Draw("same");
-            h_hd_prph_sum[i]->SetLineColor(kMagenta);
-            h_hd_prph_sum[i]->Draw("same");
-            leg_acc = new TLegend(0.2, 0.5, 0.6, 0.75);
-            leg_acc->SetFillColor(0);
-            leg_acc->SetBorderSize(0);
-                detstring.Form("det.level (%5.0f events)", h_det_prph_sum[i]->GetSum());
-                hadstring.Form("had.level (%5.0f events)", h_had_prph_sum[i]->GetSum());
-                hdstring.Form("hd.level (%5.0f events)", h_hd_rad_sum[i]->GetSum());
-            leg_acc->AddEntry(h_det_prph_sum[i], detstring, "l");// P: draw polymarker associated with TAttMarker if obj inherits from TAttMarker
-            leg_acc->AddEntry(h_had_prph_sum[i], hadstring, "l"); 
-            leg_acc->AddEntry(h_hd_prph_sum[i], hdstring, "l"); 
-            leg_acc->Draw("same");
-            c->Print("x_gamma_levels_QQ.png");
-            if (nodebugmode) cout << "LL:   det = " << h_det_rad_sum[i]->GetSum() <<" had = "<<  h_had_rad_sum[i]->GetSum() << " hd = "<<   h_hd_rad_sum[i]->GetSum() <<endl
-                << "QQ:   det = " << h_det_prph_sum[i]->GetSum() <<" had = "<<  h_had_prph_sum[i]->GetSum() << " hd = "<<   h_hd_prph_sum[i]->GetSum() <<endl;
-        }
-        */
-        if (s_var[i].EqualTo("xp"))
-            for(Int_t j = 0; j < h_acceptance_rad[i]->GetNbinsX(); j++) //Побиновый вывод на экран
-                if (nodebugmode) cout << "bin " << j << ": " << h_acceptance_rad[i]->GetBinContent(j+1) << " = "
-                    << h_det_rad_sum[i]->GetBinContent(j+1) << " / "
-                    << h_had_rad_sum[i]->GetBinContent(j+1) << endl;
-
-        if (s_var[i].EqualTo("xp"))
-            for(Int_t j = 0; j < h_acceptance_rad[i]->GetNbinsX(); j++) //Побиновый вывод на экран
-                if (nodebugmode) cout << "bin " << j << ": " << h_acceptance_rad[i]->GetBinContent(j+1) << " "
-                    << h_acceptance_prph[i]->GetBinContent(j+1) << endl;
-        /*
-            h_acceptance_prph[i] = (TH1D*)h_det_prph_sum[i]->Clone();//     h_acceptance_prph[i]->Sumw2();
-            h_acceptance_prph[i]->SetName(TString("h_acceptance_prph_") + s_var[i]);    // QQ_det / QQ_had
-            h_acceptance_prph[i]->Divide(h_had_prph_sum[i]);
-            h_acceptance_prph[i]->SetMarkerStyle(24);
-            h_acceptance_prph[i]->SetMarkerSize(0.7);
-        */
-        if (s_var[i].EqualTo("xgamma"))
-            for(Int_t j=0; j<h_acceptance_prph[i]->GetNbinsX(); j++)
-                if (nodebugmode) cout << "acceptance " << s_var[i] << " bin " << j << ": " << h_acceptance_prph[i]->GetBinContent(j+1) 
-                    << ", det = " << h_det_prph_sum[i]->GetBinContent(j+1) << ", had = " << h_had_prph_sum[i]->GetBinContent(j+1) << endl
-                    << "acceptance correction: " << 1./h_acceptance_prph[i]->GetBinContent(j+1) << endl;
-
-
+        
     }
 
     TH2D* h_window_acc[n_cross];
@@ -2746,8 +2732,8 @@ void Hist::PlotAcceptance()
     h_window_acc[4] = new TH2D("h_window_acc_et_jet", "", 10, 2.5, 35., 10, 0., 1.4);
     h_window_acc[5] = new TH2D("h_window_acc_eta_jet", "", 10, -1.5, 1.8, 10, 0., 1.4);
     h_window_acc[6] = new TH2D("h_window_acc_xgamma", "", 10, 0., 1., 10, 0., 1.2*max(h_acceptance_prph[6]->GetMaximum() + h_acceptance_prph[6]->GetBinError(h_acceptance_prph[6]->GetMaximumBin()), h_acceptance_rad[6]->GetMaximum() + h_acceptance_prph[6]->GetBinError(h_acceptance_prph[6]->GetMaximumBin())));
-    h_window_acc[7] = new TH2D("h_window_acc_xp", "", 10, 0., 0.03, 10, 0., 1.2*max(h_acceptance_prph[7]->GetMaximum() + h_acceptance_prph[7]->GetBinError(h_acceptance_prph[7]->GetMaximumBin()), h_acceptance_rad[7]->GetMaximum() + h_acceptance_prph[7]->GetBinError(h_acceptance_prph[7]->GetMaximumBin())));
-    h_window_acc[8] = new TH2D("h_window_acc_dphi", "", 10, 0., 180., 10, 0., 1.2*max(h_acceptance_prph[8]->GetMaximum() + h_acceptance_prph[8]->GetBinError(h_acceptance_prph[8]->GetMaximumBin()), h_acceptance_rad[8]->GetMaximum() + h_acceptance_prph[8]->GetBinError(h_acceptance_prph[8]->GetMaximumBin())));
+    h_window_acc[7] = new TH2D("h_window_acc_xp", "", 10, 0., 0.07, 10, 0., 1.2*max(h_acceptance_prph[7]->GetMaximum() + h_acceptance_prph[7]->GetBinError(h_acceptance_prph[7]->GetMaximumBin()), h_acceptance_rad[7]->GetMaximum() + h_acceptance_prph[7]->GetBinError(h_acceptance_prph[7]->GetMaximumBin())));
+    h_window_acc[8] = new TH2D("h_window_acc_dphi", "", 10, 0., 190., 10, 0., 1.2*max(h_acceptance_prph[8]->GetMaximum() + h_acceptance_prph[8]->GetBinError(h_acceptance_prph[8]->GetMaximumBin()), h_acceptance_rad[8]->GetMaximum() + h_acceptance_prph[8]->GetBinError(h_acceptance_prph[8]->GetMaximumBin())));
     h_window_acc[9] = new TH2D("h_window_acc_deta", "", 10, -2.2, 2.7, 10, 0., 1.2*max(h_acceptance_prph[9]->GetMaximum() + h_acceptance_prph[9]->GetBinError(h_acceptance_prph[9]->GetMaximumBin()), h_acceptance_rad[9]->GetMaximum() + h_acceptance_prph[9]->GetBinError(h_acceptance_prph[9]->GetMaximumBin())));
     h_window_acc[10] = new TH2D("h_window_acc_dphi_e_ph", "", 10, 0., 180., 10, 0., 1.2*max(h_acceptance_prph[10]->GetMaximum() + h_acceptance_prph[10]->GetBinError(h_acceptance_prph[10]->GetMaximumBin()), h_acceptance_rad[10]->GetMaximum() + h_acceptance_prph[10]->GetBinError(h_acceptance_prph[10]->GetMaximumBin())));
     h_window_acc[11] = new TH2D("h_window_acc_deta_e_ph", "", 10, -4.5, 0., 10, 0., 1.2*max(h_acceptance_prph[11]->GetMaximum() + h_acceptance_prph[11]->GetBinError(h_acceptance_prph[11]->GetMaximumBin()), h_acceptance_rad[11]->GetMaximum() + h_acceptance_prph[11]->GetBinError(h_acceptance_prph[11]->GetMaximumBin())));
@@ -2773,8 +2759,8 @@ void Hist::PlotAcceptance()
     sign_window(c_acc_2->GetPad(5), h_window_acc[10], "", "Acceptance", "", "middle");
     sign_window(c_acc_2->GetPad(6), h_window_acc[11], "", "Acceptance", "", "middle");
 
-    TLegend *leg_acc = new TLegend(0.3, 0.2, 0.6, 0.4);
-    leg_acc->SetFillColor(0);
+    TLegend *leg_acc = new TLegend(0.15, 0.25, 0.9, 0.6);//TLegend(0.3, 0.2, 0.95, 0.6);
+    leg_acc->SetFillStyle(0);
     leg_acc->SetBorderSize(0);
     leg_acc->AddEntry(h_acceptance_rad[0], "LL photons", "p");// P: draw polymarker associated with TAttMarker if obj inherits from TAttMarker
     leg_acc->AddEntry(h_acceptance_prph[0], "QQ photons", "p");  
@@ -2791,7 +2777,7 @@ void Hist::PlotAcceptance()
         if (i==2 || i==3 || i==4) c_acc->GetPad(i+1)->SetLogx();
         h_window_acc[i]->DrawClone();
 
-        h_acceptance_rad[i]->DrawClone("P E1 X0 SAME");
+        h_acceptance_rad[i]->DrawClone("P E X0 SAME");
         /*P  : Draw current marker at each bin except empty bins.
         //E1 : Draw error bars with perpendicular lines at the edges.
         //X0 : When used with one of the "E" option, it suppress the error bar along X as gStyle->SetErrorX(0) would do.
@@ -2813,9 +2799,17 @@ void Hist::PlotAcceptance()
         if (nodebugmode) cout << "after shift: " << h_acceptance_prph[i]->GetXaxis()->GetXmin() << " " 
             << h_acceptance_prph[i]->GetXaxis()->GetXmax() << " first bin center: " 
             << h_acceptance_prph[i]->GetBinCenter(1)<< endl;
+        if (!nodebugmode) cout << "ACC i:"<< i <<" " << 1/h_acceptance_prph[i]->GetMaximum() << " " 
+            << 1/h_acceptance_prph[i]->GetMinimum() << endl;
+        ScaleXaxis( (TH1*)h_acceptance_prph[i], (Double_t (*)(Double_t, Double_t))(&Hist::ScaleX));
+        //Note also that, after you "scale" the axes of your histogram, you should also "reset its statistics":  hist1->ResetStats();
         h_acceptance_prph[i]->DrawClone("P E X0 SAME");
-
-        if (i==3 || i==9) leg_acc->Draw();
+        
+        for(int j =1; j<=h_acceptance_prph[i]->GetNbinsX();j++)
+        {
+            dout(j,h_acceptance_prph[i]->GetBinCenter(j));
+        }
+        if (i%6==4) leg_acc->Draw();
         TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
         t->AddText(s_title[i]);
         t->Draw();
@@ -2836,8 +2830,8 @@ void Hist::PlotPurity()
     h_window_pur[4] = new TH2D("h_window_pur_et_jet", "", 10, 2.5, 35., 10, 0., 1.4);
     h_window_pur[5] = new TH2D("h_window_pur_eta_jet", "", 10, -1.5, 1.8, 10, 0., 1.4);
     h_window_pur[6] = new TH2D("h_window_pur_xgamma", "", 10, 0., 1., 10, 0., 1.4);
-    h_window_pur[7] = new TH2D("h_window_pur_xp", "", 10, 0., 0.03, 10, 0., 1.4);
-    h_window_pur[8] = new TH2D("h_window_pur_dphi", "", 10, 0., 180., 10, 0., 1.4);
+    h_window_pur[7] = new TH2D("h_window_pur_xp", "", 10, 0., 0.07, 10, 0., 1.4);
+    h_window_pur[8] = new TH2D("h_window_pur_dphi", "", 10, 0., 190., 10, 0., 1.4);
     h_window_pur[9] = new TH2D("h_window_pur_deta", "", 10, -2.2, 2.7, 10, 0., 1.4);
     h_window_pur[10] = new TH2D("h_window_pur_dphi_e_ph", "", 10, 0., 180., 10, 0., 1.4);
     h_window_pur[11] = new TH2D("h_window_pur_deta_e_ph", "", 10, -4.5, 0., 10, 0., 1.4);
@@ -2879,17 +2873,20 @@ void Hist::PlotPurity()
         h_purity_prph[i] = (TH1D*)h_hd_prph_sum[i]->Clone();//     h_purity_prph[i]->Sumw2();
         h_purity_prph[i]->SetName(TString("h_purity_prph_") + s_var[i]);
         h_purity_prph[i]->Divide(h_det_prph_sum[i]);
-        h_purity_prph[i]->SetMarkerStyle(24);
+        h_purity_prph[i]->SetMarkerStyle(20);
+        h_purity_prph[i]->SetMarkerColor(kRed);
         h_purity_prph[i]->SetMarkerSize(0.7);
+
+        h_purity_rad[i]->SetLineColor(kBlack);
+        h_purity_prph[i]->SetLineColor(kRed);
 
         for(Int_t j = 0; j < h_purity_prph[i]->GetNbinsX(); j++)
             if (nodebugmode) cout << "purity " << s_var[i] << " bin " << j << ": " << h_purity_prph[i]->GetBinContent(j+1) 
                 << ", det = " << h_det_prph_sum[i]->GetBinContent(j+1) << ", had = " << h_had_prph_sum[i]->GetBinContent(j+1) << endl
                 << "purity correction: " << 1./h_purity_prph[i]->GetBinContent(j+1) << endl;
     }
-
-    TLegend *leg_pur = new TLegend(0.2, 0.2, 0.6, 0.4);
-    leg_pur->SetFillColor(0);
+    TLegend *leg_pur = new TLegend(0.15, 0.25, 0.9, 0.6);
+    leg_pur->SetFillStyle(0);
     leg_pur->SetBorderSize(0);
     leg_pur->AddEntry(h_purity_rad[0], "LL photons", "p");
     leg_pur->AddEntry(h_purity_prph[0], "QQ photons", "p");  
@@ -2905,21 +2902,23 @@ void Hist::PlotPurity()
         c_pur->GetPad(i%6+1)->cd();
         
         if(i==2 || i==3 || i==4) c_pur->GetPad(i+1)->SetLogx();
-        
         h_window_pur[i]->DrawClone();
+        //Note also that, after you "scale" the axes of your histogram, you should also "reset its statistics":  hist1->ResetStats();
         
-        h_purity_rad[i]->DrawClone("P E1 X0 SAME");
+        h_purity_rad[i]->DrawClone("P E X0 SAME");
         
         // Shift for h_purity_prph
         if (nodebugmode) cout << "before shift: " << h_purity_prph[i]->GetXaxis()->GetXmin() << " " << h_purity_prph[i]->GetXaxis()->GetXmax() << " first bin center: " << h_purity_prph[i]->GetBinCenter(1) <<endl;
         Double_t xmin = h_purity_prph[i]->GetXaxis()->GetXmin(),
-             xmax = h_purity_prph[i]->GetXaxis()->GetXmax();
+                 xmax = h_purity_prph[i]->GetXaxis()->GetXmax();
         Double_t deltax = xmax - xmin;
         h_purity_prph[i]->GetXaxis()->SetLimits(xmin + 0.9*deltax, xmax+0.9*deltax);
-        if (nodebugmode) cout << "after shift: " << h_purity_prph[i]->GetXaxis()->GetXmin() << " " << h_purity_prph[i]->GetXaxis()->GetXmax() << " first bin center: " << h_purity_prph[i]->GetBinCenter(1)<< endl;
+           if (nodebugmode) cout << "after shift: " << h_purity_prph[i]->GetXaxis()->GetXmin() << " " << h_purity_prph[i]->GetXaxis()->GetXmax() << " first bin center: " << h_purity_prph[i]->GetBinCenter(1)<< endl;
+
+        ScaleXaxis( (TH1*)h_purity_prph[i], (Double_t (*)(Double_t, Double_t))(&Hist::ScaleX));
         h_purity_prph[i]->DrawClone("P E X0 SAME");
-        if (nodebugmode) cout << "after drawing: " << h_purity_prph[i]->GetXaxis()->GetXmin() << " " << h_purity_prph[i]->GetXaxis()->GetXmax() << " first bin center: " << h_purity_prph[i]->GetBinCenter(1)<< endl;
-        if(i%6==3) leg_pur->Draw();
+           if (nodebugmode) cout << "after drawing: " << h_purity_prph[i]->GetXaxis()->GetXmin() << " " << h_purity_prph[i]->GetXaxis()->GetXmax() << " first bin center: " << h_purity_prph[i]->GetBinCenter(1)<< endl;
+        if(i%6==4) leg_pur->Draw();
         TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
         t->AddText(s_title[i]);
         t->Draw();
@@ -3591,7 +3590,7 @@ void Hist::PlotFitInBinsOfCrossSec()
                 c_control_dphi->GetPad(0)->RedrawAxis();
                 c_control_dphi->Print("c_control_dphi.png");
         }*/
-        PlotControlPlot(param_dphi, param_err_dphi, number_dphi_bins, dphi_bin, 3, "dhi", "c_control_dphi", "#Delta#phi", "bins of dhi", "Events", "leftup");
+        PlotControlPlot(param_dphi, param_err_dphi, number_dphi_bins, dphi_bin, 3, "dphi", "c_control_dphi", "#Delta#phi", "bins of dhi", "Events", "leftup");
 
         TH2D* h_window_fit_dphi[number_dphi_bins];
         Double_t ymax_dphi[number_dphi_bins] ;
@@ -3629,8 +3628,24 @@ void Hist::PlotFitInBinsOfCrossSec()
         TCanvas *c_dz_dphi = new TCanvas("c_dz_dphi", "deltaZ in bins of dphi", 800, 600);
         c_dz_dphi->Divide(3, 2);
         make_clean_pads(c_dz_dphi, 6, 0, 0);
-        for(Int_t i = 0; i < number_dphi_bins; i++) 
+
+        TCanvas *c_dz_dphi_2 = new TCanvas("c_dz_dphi_2", "deltaZ in bins of dphi", 800, 600);
+        c_dz_dphi_2->Divide(3, 2);
+        make_clean_pads(c_dz_dphi_2, 6, 0, 0);
+
+        for(Int_t j = 0; j < number_dphi_bins; j++) 
         {
+            Int_t i = j;
+            if(j == number_dphi_bins - 1)
+            {
+                TCanvas *temp  = c_dz_dphi;
+                //c_dz_deta->Print("c_dz_deta.eps");  
+                c_dz_dphi->Print("c_dz_dphi.png");  
+                c_dz_dphi = c_dz_dphi_2;
+                i = 0;
+                delete temp;   
+            }
+
             sign_window(c_dz_dphi->GetPad(i+1), h_window_fit_dphi[i], "", "Events", "", "middle");
             c_dz_dphi->GetPad(i+1)->cd();
             h_window_fit_dphi[i]->GetYaxis()->SetRangeUser(0., 1.2*h_deltaz_dphi_data_sum[i]->GetMaximum());
@@ -3674,7 +3689,7 @@ void Hist::PlotFitInBinsOfCrossSec()
             t->Draw();
         }
         //c_dz_dphi->Print("c_dz_dphi.eps");  
-        c_dz_dphi->Print("c_dz_dphi.png");  
+        c_dz_dphi->Print("c_dz_dphi_2.png");  
     }
     ///////////////////////////////////////////////////////
     //
@@ -3968,7 +3983,10 @@ void Hist::DoParamScale(TH1D* h, Double_t *a, Double_t *a_err, Int_t nbins, bool
     }
 }
 
-//PlotControlPlot(param_dphi, param_err_dphi, number_dphi_bins, 3, "dhi", "c_control_dphi", "#Delta#Phi", "bins of dhi", "Events");
+//PlotControlPlot(param_deta_e_ph, param_err_deta_e_ph, 
+//number_deta_e_ph_bins, deta_e_ph_bin, 5, 
+//"deta_e_ph", "c_control_deta_e_ph", "#Delta#eta_{e, #gamma}", 
+//"bins of deta_e_ph", "Events", "leftup");
 void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
                             Double_t number_bins, Double_t array_bin[], Int_t index, \
                             TString variable, TString canvas_name, TString title, \
@@ -3979,7 +3997,8 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     //QQ and bg are scaled with found param
     //*******************
     //if (nodebugmode) cout << "Integrals: mc QQ: " << hist_mc_sum[index]->Integral() << " mc LL: " << hist_mc_rad_sum[index]->Integral() \
-    //<< " mc bg: " << hist_mc_norad_sum[index]->Integral() << " data: " << hist_data_sum [index]->Integral()<<endl;    
+    //<< " mc bg: " << hist_mc_norad_sum[index]->Integral() << " data: " << hist_data_sum [index]->Integral()<<endl;  
+    dout("PlotControlPlot",variable);  
      if (nodebugmode && variable.EqualTo("deta_e_ph"))
     {
         dout("data:");
@@ -4095,7 +4114,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
         DoParamScale(hist_mc_norad_sum[index], PhotonsFits[index], PhotonsFits_err[index], number_bins, false);
         DoParamScale(hist_mc_sum[index], PhotonsFitsforQQ[index], PhotonsFitsforQQ_err[index], number_bins, true);
 
-     if (!nodebugmode && variable.EqualTo("deta_e_ph"))
+     if (!nodebugmode && variable.EqualTo("dphi"))
     {
         dout("data:");
         for(Int_t i = 1; i < hist_data_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
@@ -4116,6 +4135,11 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
         for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
         {
             if (!nodebugmode) cout << ">> >> " << hist_mc_norad_sum[index]->GetBinContent(i)<< "  " <<hist_mc_norad_sum[index]->GetBinError(i)  <<endl;
+        }
+        dout("a:");
+        for(Int_t i = 1; i < hist_mc_sum[index]->GetNbinsX() + 1; i++)// Barlow-Beeston param used//nbins
+        {
+            if (!nodebugmode) cout << ">> >> " << a[i-1]<< "  " <<a_err[i-1]  <<endl;
         }
     }
 
@@ -4152,7 +4176,6 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     h_qq->SetLineWidth(2);
     h_ll->SetLineWidth(2);
     h_bg->SetLineWidth(2);
-
     TH1D* h_data_qq = (TH1D*)h_data->Clone();
 
     TH1D* h_qq_ll = (TH1D*)h_qq->Clone();
@@ -4162,6 +4185,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     h_data_nobg->Sumw2();
     h_data_nobg->Add(h_bg, -1);
     //DoParamScale(h_data_qq, a, a_err, number_bins, true);//this what it was before i forgit what i've done, 270116
+
     DoParamScale(h_data_qq, a, a_err, number_bins, true);
     /*if (nodebugmode) cout<<"h_data: "<<h_data->GetBinContent(1)<< " "<<" "<<h_data->GetBinError(1) <<" h_data_qq: " << h_data_qq->GetBinContent(1)<<" "<<h_data_qq->GetBinError(1)<<endl;
     if (nodebugmode) cout << TMath::Sqrt( pow(h_data->GetBinError(1), 2) + pow(a_err[0], 2) +  pow(h_ll->GetBinError(1), 2)  )<<endl;*/
@@ -4194,7 +4218,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
 
     h_data_qq->SetLineColor(kBlack);
     h_data_qq->SetLineWidth(2);
-    if (nodebugmode && variable.EqualTo("xgamma"))
+    if (!nodebugmode && variable.EqualTo("dphi"))
     {
         for(Int_t i = 1; i < h_res->GetNbinsX() + 1 ; i++)// Barlow-Beeston param used//nbins
         {
@@ -4266,6 +4290,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
         h_window_control->GetYaxis()->SetRange(0, ymax);
         h_window_control->Draw();
         h_res->GetYaxis()->SetRange(0, h_res->GetMaximum());
+
             h_res->Draw("HIST SAME");
             h_res->Draw("E1 X0 SAME");
             h_ll->Draw("HIST F E1 SAME");
@@ -4331,4 +4356,5 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             canvas_name += ".png";
             c_control->Print(canvas_name);
     }
+ 
 }

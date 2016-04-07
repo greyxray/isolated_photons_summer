@@ -1,5 +1,6 @@
 	const Int_t numberOfRootFiles04p = 132;//4566; //mc - 2262
-	TString str_location04p = "/data/zenith234b/zhmak/Topic/orange/nat_out/data/VCGET_off/04p/";
+	//TString str_location04p = "/data/zenith234b/zhmak/Topic/orange/nat_out/data/VCGET_off/04p/"; //this was commented on later stage
+    TString str_location04p = "/nfs/dust/zeus/group/kuprash/orange/nat_out/data/VCGET_off/04p/";
 	TString rootFile04p[numberOfRootFiles04p] = {
 	  "data04p_1.root",
 "data04p_2.root",

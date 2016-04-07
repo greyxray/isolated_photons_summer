@@ -534,7 +534,7 @@ Bool_t selector::Process()
 			//  		take_event = kFALSE;
 			if(check_cuts) if (nodebugmode) cout << "here_is_prph = " << here_is_prph << ", take_event = " << take_event << endl;
 
-		cout<<"here 3 " << "getting entry " << entry <<endl;			
+					
 			if(take_event)
 			{
 				vector<KtLorentzVector> input_vec;
@@ -562,16 +562,13 @@ Bool_t selector::Process()
 				int type  = 3; // pe
 				int angle = 2; // deltaR
 				int recom = 1; // e
-				double rparameter = 1.0;
-cout<<"here 3.1 " << "getting entry " << entry <<endl;		
+				double rparameter = 1.0;	
 				// Construct the KtEvent object 
 				KtEvent ev(input_vec,type,angle,recom,rparameter);
-cout<<"here 3.2 " << "getting entry " << entry <<endl;		
 				// Retrieve the final state jets from KtEvent sorted by Et
 				vector<KtLorentzVector> jets = ev.getJetsEt();
 				// Retrieve the final state jets from KtEvent sorted by Et
 				vector<KtLorentzVector> jets_copy = ev.getJetsEt();
-cout<<"here 3.3 " << "getting entry " << entry <<endl;		
 				Int_t n_jets = 0;
 				Bool_t take_jet_temp = kTRUE;
 				for(Int_t jloop=0; jloop<jets.size(); jloop++) 
@@ -587,13 +584,11 @@ cout<<"here 3.3 " << "getting entry " << entry <<endl;
 				}
 				//if (nodebugmode) cout<<"!    njets = "<< njets <<endl;
 				//    if (nodebugmode) cout << "Eventnr = " << Eventnr << ", n_jets = " << n_jets << endl;
-				cout<<"here 3.4 " << "getting entry " << entry <<endl;		
-				cout<<"wtx = "<< wtx<< endl;
-				cout<<"n_jets = "<< n_jets<< endl;				
+									
 				if(!hist.ijet_njets) cout << "This pointer is nonzero" << endl;
 
 				hist.ijet_njets->Fill(n_jets, wtx);
-				cout<<"here 3.4.1 " << "getting entry " << entry <<endl;	
+				
 
 				/*
 					if (nodebugmode) cout << "======================================================" << endl;
@@ -627,7 +622,6 @@ cout<<"here 3.3 " << "getting entry " << entry <<endl;
 				*/
 				if (systJetE_lt10 != 1. || systJetE_gt10 != 1.)
 				{
-cout<<"here 3.4.2 " << "getting entry " << entry <<endl;	
 					cout<<"Starting upplying jet correction for systematic" <<endl;
                     for(Int_t jloop=0; jloop < jets.size(); jloop++) 
                     { 
@@ -652,8 +646,7 @@ cout<<"here 3.4.2 " << "getting entry " << entry <<endl;
                         KtLorentzVector vec(px, py, pz, e); 
                         jets[jloop] = vec;
                     }
-                }
-cout<<"here 3.5 " << "getting entry " << entry <<endl;		                
+                }	                
 				//
 				// find jet containing prompt photon from HepForge
 				//
@@ -692,7 +685,6 @@ cout<<"here 3.5 " << "getting entry " << entry <<endl;
 					*/
 						candidate_jet_number = candidate_jet_copy_number;
 				}
-cout<<"here 3.6 " << "getting entry " << entry <<endl;		
 				if (candidate_jet_number==-1)
 					if (nodebugmode) cout<< "###############################candidate_jet_number not found###############################"<<endl;
 				//
@@ -917,6 +909,12 @@ cout<<"here 3.6 " << "getting entry " << entry <<endl;
 						//  -> Fill photon with jets
 						hist.fmax->Fill(glob_fmax, wtx);
 						hist.deltaz->Fill(glob_deltaz, wtx);
+						//cout << hist.deltaz->GetBinContent(1)<< endl;
+						/*hist_mc_rad[0]->GetBinContent(ii), \
+                            hist_mc_rad[0]->GetBinError(ii), "=", sqrt(hist_mc_rad[0]->GetSumw2()->GetAt(ii)), "!=", \
+                            sqrt(hist_mc_rad[0]->GetBinContent(ii)), hist_mc_rad[0]->GetBinContent(ii)*/
+						//if (entry > 10000) debugcontinue = kFALSE;
+						
 						hist.fmax_deltaz->Fill(glob_fmax, glob_deltaz, wtx);
 						hist.prph_energy->Fill(v_corr_prompt_photon->Et(), wtx);
 						hist.prph_eta->Fill(v_corr_prompt_photon->Eta(), wtx);
@@ -1260,7 +1258,6 @@ cout<<"here 3.6 " << "getting entry " << entry <<endl;
 				}
 			}//if take_event for jet searching
 
-		cout<<"here 4 " << "getting entry " << entry <<endl;
 			if(!Data && SelectHadronLevel(take_event && here_is_jet && here_is_prph && take_event_trig)) 
 			{
 				if(take_event && here_is_jet && here_is_prph && take_event_trig) 

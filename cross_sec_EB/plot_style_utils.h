@@ -37,8 +37,8 @@ void sign_window(TVirtualPad *p, TH2D* h, TString xaxis, TString yaxis, TString 
 
 void sign_window(TVirtualPad *p, TH2D* h, TString xaxis, TString yaxis, TString title, TString title_size)
 {
-  Double_t height = 1-p->GetTopMargin()-p->GetBottomMargin();
-  Double_t width = 1-p->GetLeftMargin()-p->GetRightMargin();
+  Double_t height = 1 - p->GetTopMargin()  - p->GetBottomMargin();
+  Double_t width  = 1 - p->GetLeftMargin() - p->GetRightMargin();
   //cout << "pad width is: " << width << endl;
   //cout << "pad height is: " << height << endl;
   //cout << "pad width (NDC) is: " << p->GetWNDC() << endl;
@@ -59,28 +59,33 @@ void sign_window(TVirtualPad *p, TH2D* h, TString xaxis, TString yaxis, TString 
     }
   if(title_size == "middle")
     {
-      fontsizex *= 1.1;
-      fontsizey *= 1.1;
+      fontsizex *= 1.1;//1.1//C
+      fontsizey *= 1.1;//1.1//1.5
       fontsizex = fontsizey;
     }
   if(title_size == "large")
     {
-      fontsizex *= 2.5;
-      fontsizey *= 2.;
+      fontsizex *= 1.5;//2.5
+      fontsizey *= 1.5;//2
     }
 
   h->SetStats(kFALSE);
   h->SetTitle(title);
+  //h->SetTitleOffset(0.8);
+  h->SetTitleSize( 0.08, "X" ); h->SetTitleOffset(0.05, "X");
+  h->SetTitleSize( 0.08, "Y" ); h->SetTitleOffset(0.01, "Y");
+
   h->GetXaxis()->SetTitle(xaxis);
   //  h->GetXaxis()->CenterTitle();
   h->GetXaxis()->SetTitleSize(fontsizex);
   h->GetXaxis()->SetTitleFont(22);
   h->GetXaxis()->SetLabelSize(0.9*fontsizex);
   h->GetXaxis()->SetLabelFont(22);
-  if(p->GetLogx())
+  h->GetXaxis()->SetTitleOffset(1.1);
+  /*if(p->GetLogx())
     h->GetXaxis()->SetTitleOffset(1.1);
   else
-    h->GetXaxis()->SetTitleOffset(0.50);
+    h->GetXaxis()->SetTitleOffset(0.50);*/
   h->GetXaxis()->SetNdivisions(507, kTRUE);
 
   h->GetYaxis()->SetTitle(yaxis);
@@ -90,14 +95,14 @@ void sign_window(TVirtualPad *p, TH2D* h, TString xaxis, TString yaxis, TString 
   h->GetYaxis()->SetLabelSize(0.9*fontsizey);
   h->GetYaxis()->SetLabelFont(22);
   if(p->GetLogy())
-    h->GetYaxis()->SetTitleOffset(1.2);
+    h->GetYaxis()->SetTitleOffset(1.1);
   else
-    h->GetYaxis()->SetTitleOffset(0.94);
+    h->GetYaxis()->SetTitleOffset(1.1);//0.94
   h->GetYaxis()->SetNdivisions(507, kTRUE);
 
   h->GetYaxis()->SetLabelOffset(0.016);
 
-  if(title_size == "large")
+  if(title_size == "large" && false)
     {
       h->GetXaxis()->SetTitleOffset(0.8);
       h->GetXaxis()->SetTickLength(0.07);
