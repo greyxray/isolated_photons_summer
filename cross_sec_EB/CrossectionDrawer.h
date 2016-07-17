@@ -19,7 +19,7 @@ class CrossectionDrawer
 {
 public:
     CrossectionDrawer(int i, TVirtualPad * p, TH1 * data, TH1 * data_tot_err, TH1 * sum, TH1 * qq, TH1 * ll, TCanvas * canvas, TString name, Double_t * a);
-    void DrawLegend(bool t, bool nottheory) const;
+    void DrawLegend(bool t, bool nottheory, TGraphAsymmErrors * fTGraphTheoryFont, TString FontName) const;
     void DrawHist(bool nottheory) const;
     void SaveCanvas(bool t, bool nottheory) const;
     void SetPad(TCanvas * c, TVirtualPad * pad);
@@ -27,7 +27,7 @@ public:
     // ~CrossectionDrawer();
     static void DrawAll(TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, Double_t * all_bins[12], TString s_var[12], int nplots,\
                                  bool maketheory, Double_t * all_theory_cs[12], \
-                                 Double_t * all_theory_cs_pos[12], Double_t * all_theory_cs_neg[12]);
+                                 Double_t * all_theory_cs_pos[12], Double_t * all_theory_cs_neg[12], TString);
     static int m;//how many pic per plot
     static int n;//how many columns
     static bool for_paper;//to insert in latex
@@ -58,6 +58,7 @@ private:
 
     Double_t * all_bins;
     // Double_t x1, x2, y1, y2;
+    TString theory_name;
 };
 
 int CrossectionDrawer::m = 1;
@@ -97,7 +98,8 @@ fCanvas(canvas),
 fWindowControl(0),
 fAsymmError(0),
 fTGraphTheory(0),
-all_bins(al_bins)
+all_bins(al_bins),
+theory_name("BLZ")
 {
     SetFigure3Style(fCSdata, fMCsum, fMCqq, fMCll, 0);
 
@@ -134,7 +136,7 @@ Double_t CrossectionDrawer::GetYmax(bool nottheory = true) const
     return ymax;
 }
 
-void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true) const
+void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmErrors * fTGraphTheoryFont = 0, TString FontName="Fontannaz") const
 {
     if( !draw )  return;
     LegendPosition current_position = kRightUp;
@@ -173,7 +175,7 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true) const
     else
     {
         leg->AddEntry(fAsymmError, "ZEUS (prel.)", "p"); 
-        leg->AddEntry(fTGraphTheory, "BLZ", "f"); 
+        leg->AddEntry(fTGraphTheory, theory_name, "f"); // BLZ
 
         if (fVariableName.Contains("xgamma"))
         {
@@ -183,7 +185,11 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true) const
             }
         }
     }
-
+    if (fTGraphTheoryFont != 0)
+    {
+        dout(FontName);
+        leg->AddEntry(fTGraphTheoryFont, FontName, "f");
+    }
     if (!(m==1 && fVariableName.Contains("deta"))) leg->Draw();
 
 }
@@ -237,7 +243,7 @@ void CrossectionDrawer::DrawHist(bool nottheory = true) const
         fTGraphTheory->Draw("SAME 5");// box 
 
         //fAsymmError->Draw("SAME P E");
-        fTGraphTheory->Draw("SAME P ");
+        //fTGraphTheory->Draw("SAME P ");
     }
 
     fCSdata_tot_err->SetLineWidth(2);
@@ -317,7 +323,7 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         t.SetFillColor(0);
         t.SetBorderSize(0);
         if (!for_paper) t.Draw();
-        fCanvas->Print(outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + TString(".eps") );// here we can simply name with variablename
+        fCanvas->Print(outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + TString(".png") );// here we can simply name with variablename
         dout("saved canvas: ", fCanvas);
     }
 
@@ -409,10 +415,24 @@ void CrossectionDrawer::AdjustPad()
  
 
     //for m = 2
-    if(fPad->GetLogy() || fVariableName.Contains("deta"))
+    if (!for_paper)
+    {
+        if(fPad->GetLogy() || fVariableName.Contains("deta"))
             fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+        else
+                fWindowControl->GetYaxis()->SetTitleOffset(1.4);
+    }
     else
-            fWindowControl->GetYaxis()->SetTitleOffset(1.4);
+    {
+        if(fPad->GetLogy())
+            fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+        else
+            fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+        if (fVariableName.Contains("deta")) fWindowControl->GetYaxis()->SetTitleOffset(0.8);
+        if (fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(0.9);
+    }
+
+      
 
     if (!for_paper)fPad->SetMargin(fPad->GetLeftMargin()  + 0.1,/*left border |+ n| to the right*/
                    fPad->GetRightMargin()  - 0.06,/*right border |- n| to the right*/
@@ -432,13 +452,18 @@ void CrossectionDrawer::AdjustPad()
 void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
                                  Double_t * all_bins[12], TString s_var[12], int nplots,\
                                  bool maketheory = false, Double_t * all_theory_cs[12] = 0, \
-                                 Double_t * all_theory_cs_pos[12] = 0, Double_t * all_theory_cs_neg[12] = 0)//TString s_var[n_cross];
+                                 Double_t * all_theory_cs_pos[12] = 0, Double_t * all_theory_cs_neg[12] = 0, TString theory_name = "BLZ")//TString s_var[n_cross];
 {
     dout("CrossectionDrawer::DrawAll m,n ============>", m, n);
     if ( (m==1 || m==2 || m== 3) && !(n == m || n == 1)) n = m;
     else if (m == 4) n = 2;
-        else if(m==6 && !(n == 3 || n == 2)) n = 2;
-            else  if (m == 5 || m > 6) {dout("m forced to 6, n forced to 2"); m = 6; n = 2;}
+    else if(m==6 && !(n == 3 || n == 2)) n = 2;
+    else if (m == 5 || m > 6) 
+    {
+        dout("m forced to 6, n forced to 2"); 
+        m = 6; 
+        n = 2;
+    }
 
     TCanvas * test;// = new TCanvas('c1', 'c', 899, 900);
     CrossectionDrawer * drawers[12] = {};
@@ -507,6 +532,7 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             }
             TVirtualPad * pad = test_theor->cd(i % m + 1);
             drawers[i]->SetPad(test_theor, pad);
+            drawers[i]->theory_name = theory_name;
             if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
             {
                 dout("t GetBottomMargin() const: ", pad->GetBottomMargin() );
@@ -527,9 +553,52 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             drawers[i]->AssighnTheory(all_theory_cs[i], all_theory_cs_pos[i], all_theory_cs_neg[i], i);
             drawers[i]->AdjustPad();
             drawers[i]->DrawHist(false);
-            if (!for_paper || (for_paper && (i == 0 || i == 6) )) drawers[i]->DrawLegend( (i ) % m == 0 , false);
+           
             //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
+
+            if (all_theory_cs_font[i] == 0) 
+            {
+                dout(i, "appered to be ", all_theory_cs_font[0]);
+                if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                    drawers[i]->DrawLegend( (i ) % m == 0 , false);
+            }
+            else
+            {
+                const Int_t nn = drawers[i]->fCSdata->GetNbinsX();
+                Double_t x[nn];
+                Double_t y[nn];
+                Double_t exl[nn] ;
+                Double_t exh[nn] ;
+                Double_t eyl[nn];
+                Double_t eyh[nn];
+                Double_t temp =0;
+                for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
+                {
+                    x[j] = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
+                    y[j] = all_theory_cs_font[i][j];
+                    exl[j] = 0.5*drawers[i]->fCSdata->GetBinWidth(j+1);
+                    exh[j] = 0.5*drawers[i]->fCSdata->GetBinWidth(j+1);
+                    eyl[j] = all_theory_cs_font_neg[i][j];//statistical - not statistical and acceptance
+                    eyh[j] = all_theory_cs_font_pos[i][j];
+                    temp += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
+                }
+                dout("Fontannaz theory sum_sigma = ", temp);
+                TGraphAsymmErrors * fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
+                fTGraphTheoryFont->SetMarkerColor(kRed);
+                fTGraphTheoryFont->SetMarkerSize(1.1);
+                fTGraphTheoryFont->SetMarkerStyle(20);
+                fTGraphTheoryFont->SetLineColor(1);
+                fTGraphTheoryFont->SetLineWidth(1);
+                fTGraphTheoryFont->SetFillStyle(3002);
+                fTGraphTheoryFont->SetFillColor(kRed);
+                //fTGraphTheoryFont->SetMarkerStyle(1);
+                fTGraphTheoryFont->Draw("SAME 5");
+                //ADD LEGEND HERE
+                if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                    drawers[i]->DrawLegend( (i ) % m == 0 , false, fTGraphTheoryFont, "#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}");
+            }
             drawers[i]->SaveCanvas( (i + 1) % m == 0 , false);
+
         }    
     }
 }
@@ -554,6 +623,8 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     Double_t exh[nn] ;
     Double_t eyl[nn];
     Double_t eyh[nn];
+    dout("theory sum for", fVariableName);
+    Double_t temp =0;
     for(int j = 0; j < fCSdata->GetNbinsX(); ++j)
     {
         x[j] = fCSdata->GetBinCenter(j + 1) ;
@@ -562,26 +633,19 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
         exh[j] = 0.5*fCSdata->GetBinWidth(j+1);
         eyl[j] = cs_neg[j];//statistical - not statistical and acceptance
         eyh[j] = cs_pos[j];
+        temp += cs[j] * fCSdata->GetBinWidth(j+1);
     }
-
+    dout("theory sum_sigma = ", temp);
     fTGraphTheory = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
     fTGraphTheory->SetMarkerColor(31);
     fTGraphTheory->SetMarkerSize(1.1);
     fTGraphTheory->SetMarkerStyle(20);
     fTGraphTheory->SetLineWidth(3);
-    dout("fTGraphTheory adress", fTGraphTheory);
     
     Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 10000;
-    //dummy_variable = fVariableName.Contains("xp") ? 1000000 : dummy_variable;
-    dout("here1", GetYmax(false));
-
-    dout("inputs:", fCSdata->GetNbinsX());
-    dout("inputs:", dummy_variable, -0.0001, GetYmax(false));
     fWindowControl = new TH2D("h_window_new_" + fVariableName, "title", fCSdata->GetNbinsX(), all_bins[0], all_bins[fCSdata->GetNbinsX()], dummy_variable, -0.0001, GetYmax(false));
     
-    dout("here2");
     fWindowControl->GetYaxis()->SetRangeUser(-0.0001, GetYmax(false));
-    dout("here3");
     fWindowControl->Draw();
        //graph->SetMarkerSize(5);
     

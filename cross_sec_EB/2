@@ -1,0 +1,1228 @@
+compiling exe
+g++ -std=gnu++0x -o exe cross_sec.cxx -pthread -m64 -I/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.00/x86_64-slc5-gcc43-opt/root/include -L/afs/cern.ch/sw/lcg/app/releases/ROOT/5.34.00/x86_64-slc5-gcc43-opt/root/lib -lCore -lCint -lRIO -lNet -lHist -lGraf -lGraf3d -lGpad -lTree -lRint -lPostscript -lMatrix -lPhysics -lMathCore -lThread -pthread -lm -ldl -rdynamic -I/usr/include -lgsl -lgslcblas -lm -lMinuit -lMathMore
+In file included from cross_sec.cxx:1:
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+cross_sec.h:211: warning: deprecated conversion from string constant to ‘char*’
+In file included from cross_sec.cxx:39:
+hist.c: In member function ‘void Hist::PlotAcceptance()’:
+hist.c:2804: warning: converting from ‘Double_t (Hist::*)(Double_t, Double_t)’ to ‘Double_t (*)(Double_t, Double_t)’
+hist.c: In member function ‘void Hist::PlotPurity()’:
+hist.c:2918: warning: converting from ‘Double_t (Hist::*)(Double_t, Double_t)’ to ‘Double_t (*)(Double_t, Double_t)’
+starting (zero)
+15149
+GO! zero 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+hist_data_control[p][i] 0 = 2655 
+hist_data_control[p][i] 1 = 1003 
+0 1 adding :Photon_with_jet/h_x_pomeron_data06e
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+6
+mc_prph - ok
+hist_data_control[p][i] 2 = 2509 
+0 2 adding :Photon_with_jet/h_x_pomeron_data0607p
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+1 1 adding :Photon_with_jet/h_x_gamma_data06e
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+6
+mc_prph - ok
+1 2 adding :Photon_with_jet/h_x_gamma_data0607p
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+2 1 adding :Photon_with_jet/h_phjet_deta_data06e
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+6
+mc_prph - ok
+2 2 adding :Photon_with_jet/h_phjet_deta_data0607p
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+3 1 adding :Photon_with_jet/h_phjet_dphi_data06e
+7
+data scaled - ok
+7
+mc_rad scaled - ok
+7
+mc_norad scaled - ok
+7
+mc_prph - ok
+3 2 adding :Photon_with_jet/h_phjet_dphi_data0607p
+7
+data scaled - ok
+7
+mc_rad scaled - ok
+7
+mc_norad scaled - ok
+4 1 adding :Photon_with_jet/h_phjet_dphi_el_ph_true_data06e
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+6
+mc_prph - ok
+4 2 adding :Photon_with_jet/h_phjet_dphi_el_ph_true_data0607p
+6
+data scaled - ok
+6
+mc_rad scaled - ok
+6
+mc_norad scaled - ok
+5 1 adding :Photon_with_jet/h_phjet_deta_el_ph_true_data06e
+5
+data scaled - ok
+5
+mc_rad scaled - ok
+5
+mc_norad scaled - ok
+5
+mc_prph - ok
+5 2 adding :Photon_with_jet/h_phjet_deta_el_ph_true_data0607p
+5
+data scaled - ok
+5
+mc_rad scaled - ok
+5
+mc_norad scaled - ok
+6 1 adding :Photon_with_jet/h_deltaz_data06e
+300
+data scaled - ok
+300
+mc_rad scaled - ok
+300
+mc_norad scaled - ok
+300
+mc_prph - ok
+6 2 adding :Photon_with_jet/h_deltaz_data0607p
+300
+data scaled - ok
+300
+mc_rad scaled - ok
+300
+mc_norad scaled - ok
+correctio:  IanSgCorr 
+ADDING : OK
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <Sumw2>: Sum of squares of profile bin weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file xp_levels_LL.png has been created
+Info in <TCanvas::Print>: png file xp_levels_QQ.png has been created
+Info in <TCanvas::Print>: png file deta_levels_LL.png has been created
+Info in <TCanvas::Print>: png file deta_levels_QQ.png has been created
+Info in <TCanvas::Print>: png file deta_e_ph_levels_LL.png has been created
+Info in <TCanvas::Print>: png file deta_e_ph_levels_QQ.png has been created
+ACC i:0 1.20467 1.30584
+1 5.2178 
+2 7.2156 
+3 9.2156 
+4 12.7156 
+ACC i:1 1.22687 1.33812
+1 -0.46832 
+2 -0.06864 
+3 0.33136 
+4 0.73136 
+ACC i:2 1.22719 1.33693
+1 21.732 
+2 36.664 
+3 66.664 
+4 121.664 
+5 256.664 
+ACC i:3 1.0323 1.31246
+1 0.00099204 
+2 0.00238808 
+3 0.00688808 
+4 0.0153881 
+ACC i:4 1.17436 1.46271
+1 3.8935 
+2 5.637 
+3 7.637 
+4 9.637 
+5 13.137 
+6 25.637 
+ACC i:5 1.15011 1.33187
+1 -1.03466 
+2 -0.23532 
+3 0.56468 
+4 1.41468 
+Info in <TCanvas::Print>: eps file acceptance.eps has been created
+Info in <TCanvas::Print>: png file acceptance.png has been created
+ACC i:6 0.915901 1.59576
+1 0.2198 
+2 0.5196 
+3 0.6696 
+4 0.7696 
+5 0.8696 
+6 0.9696 
+ACC i:7 1.18697 2.28026
+1 0.003886 
+2 0.008872 
+3 0.013872 
+4 0.021372 
+5 0.033872 
+6 0.056372 
+ACC i:8 1.19341 1.36109
+1 48.564 
+2 113.528 
+3 138.528 
+4 148.528 
+5 158.528 
+6 168.528 
+7 178.528 
+ACC i:9 1.09388 1.33833
+1 -1.76684 
+2 -1.06768 
+3 -0.36768 
+4 0.33232 
+5 1.03232 
+6 1.73232 
+ACC i:10 1.15185 1.3325
+1 26.064 
+2 66.028 
+3 98.528 
+4 126.028 
+5 148.528 
+6 171.028 
+ACC i:11 1.22983 1.41525
+1 -3.2406 
+2 -2.6412 
+3 -2.0412 
+4 -1.4412 
+5 -0.8412 
+Info in <TCanvas::Print>: eps file acceptance_2.eps has been created
+Info in <TCanvas::Print>: png file acceptance_2.png has been created
+Info in <TCanvas::Print>: eps file purity.eps has been created
+Info in <TCanvas::Print>: png file purity.png has been created
+Info in <TCanvas::Print>: eps file purity_2.eps has been created
+Info in <TCanvas::Print>: png file purity_2.png has been created
+number of events: 6167 
+0)hist_data[0]->GetSum()  3743 
+0)hist_mc[0]->GetSum()  744.284 
+0)hist_mc_rad[0]->GetSum()  233.249 
+0)hist_mc_norad[0]->GetSum()  2256.8 
+0)hist_mc_photon[0]->GetSum()  977.533 
+right  17 sys_fit= 0.8 
+Info in <TCanvas::Print>: eps file chi2_et_0.eps has been created
+qq error, bin 3: 22.6387 
+rad error, bin 3: 4.52766 
+bg error, bin 3: 10.97 
+param_et_PhotonsFitforQQ[i], param_et_PhotonsFitforQQ[i]: 0.272284 0.272284 
+*** 0 7.39443 4.51391 3.45085 
+*** 1 301.707 33.6648 18.3131 
+*** 2 375.529 37.9968 20.3353 
+*** 3 200.518 31.9101 15.2456 
+*** 4 57.8234 11.7259 8.33963 
+*** 5 31.621 8.79864 6.35765 
+*** 6 19.9804 7.19653 5.21315 
+*** 7 10.1931 4.99539 3.89724 
+*** 8 12.7244 5.55675 4.27565 
+*** 9 20.8184 6.88094 5.26302 
+*** 10 7.9531 4.08829 3.47007 
+*** 11 0.329606 0.754685 1.04129 
+*** 12 0.0321086 0.270193 0.54982 
+*** 13 0.00536589 0.0902426 0.309206 
+*** 14 8.11287e-05 0.00603728 0.0782203 
+*** 15 0.000210603 0.0258009 0.161281 
+*** 16 0.000183812 0.0152292 0.124149 
+*** 17 3.07456e-05 0.00376663 0.0616228 
+*** 18 1.0511e-05 0.00128769 0.0360306 
+*** 19 0 0 0 
+*** 20 0 0 0 
+*** 21 0 0 0 
+*** 22 0 0 0 
+*** 23 0 0 0 
+*** 24 0 0 0 
+*** 25 0 0 0 
+*** 26 0 0 0 
+*** 27 0 0 0 
+*** 28 0 0 0 
+*** 29 0 0 0 
+qq error, bin 3: 20.3353 
+rad error, bin 3: 4.52766 
+bg error, bin 3: 10.97 
+par in bin et  0 :  0.255317  +-  0.0236817 , chi2/dof =  1.29427 
+Info in <TCanvas::Print>: eps file chi2_et_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_3.eps has been created
+checksum =  6167 
+et: 
+mean =  0.970979 , with max = 1.30901 in bin = 4 and min = 0.496363 in bin = 3 
+Info in <TCanvas::Print>: eps file chi2_eta_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_3.eps has been created
+eta: 
+mean =  0.861618 , with max = 1.19838 in bin = 1 and min = 0.589363 in bin = 2 
+Info in <TCanvas::Print>: eps file chi2_q2_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_q2_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_q2_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_q2_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_q2_4.eps has been created
+q2: 
+mean =  1.11326 , with max = 1.46848 in bin = 2 and min = 0.648646 in bin = 5 
+Info in <TCanvas::Print>: eps file chi2_x_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_x_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_x_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_x_3.eps has been created
+x: 
+mean =  0.869845 , with max = 1.2732 in bin = 3 and min = 0.708713 in bin = 1 
+Info in <TCanvas::Print>: eps file chi2_et_jet_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_jet_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_jet_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_jet_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_jet_4.eps has been created
+Info in <TCanvas::Print>: eps file chi2_et_jet_5.eps has been created
+et_jet: 
+mean =  0.64732 , with max = 1.30901 in bin = 4 and min = 2.75859e-313 in bin = 5 
+Info in <TCanvas::Print>: eps file chi2_eta_jet_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_jet_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_jet_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_eta_jet_3.eps has been created
+eta_jet: 
+mean =  0.927573 , with max = 1.19069 in bin = 3 and min = 0.801517 in bin = 4 
+Info in <TCanvas::Print>: eps file chi2_xgamma_0.eps has been created
+xgamma found parameter: 0.278913 +/- 0.0763835 
+Problem bin
+   param: 0.266315 +/- 0.0735045
+   data: 365
+   res: 366.69
+       res': 366.667
+   QQ': 96.8319
+   hist.QQ[i]: 323
+   LL: 4.4011
+   bg': 265.434
+   hist.bg[i]: 260.877
+   photons: 368
+Info in <TCanvas::Print>: eps file chi2_xgamma_1.eps has been created
+xgamma found parameter: 0.275542 +/- 0.0554977 
+Info in <TCanvas::Print>: eps file chi2_xgamma_2.eps has been created
+xgamma found parameter: 0.267804 +/- 0.0522419 
+Info in <TCanvas::Print>: eps file chi2_xgamma_3.eps has been created
+xgamma found parameter: 0.226949 +/- 0.0405902 
+Info in <TCanvas::Print>: eps file chi2_xgamma_4.eps has been created
+xgamma found parameter: 0.349323 +/- 0.0350855 
+Info in <TCanvas::Print>: eps file chi2_xgamma_5.eps has been created
+xgamma found parameter: 0.635122 +/- 0.0479715 
+xgamma: 
+mean =  0.94217 , with max = 1.35425 in bin = 6 and min = 0.616572 in bin = 1 
+Info in <TCanvas::Print>: eps file chi2_xp_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_xp_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_xp_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_xp_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_xp_4.eps has been created
+ MINUIT WARNING IN MINOs     
+ ============== VARIABLE1 IS AT ITS LOWER ALLOWED LIMIT.
+Info in <TCanvas::Print>: eps file chi2_xp_5.eps has been created
+xp: 
+mean =  1.18826 , with max = 1.62536 in bin = 6 and min = 0.552027 in bin = 5 
+Info in <TCanvas::Print>: eps file chi2_dphi_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_4.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_5.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_6.eps has been created
+dphi: 
+mean =  1.3561 , with max = 1.73053 in bin = 7 and min = 0.879673 in bin = 6 
+Info in <TCanvas::Print>: eps file chi2_deta_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_deta_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_deta_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_deta_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_deta_4.eps has been created
+Info in <TCanvas::Print>: eps file chi2_deta_5.eps has been created
+deta: 
+mean =  0.94684 , with max = 1.22396 in bin = 3 and min = 0.669261 in bin = 5 
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_0.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_1.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_2.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_3.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_4.eps has been created
+Info in <TCanvas::Print>: eps file chi2_dphi_e_ph_5.eps has been created
+dphi_e_ph: 
+mean =  0.902539 , with max = 1.61137 in bin = 4 and min = 0.578576 in bin = 5 
+Info in <TCanvas::Print>: eps file chi2_deta_e_ph_0.eps has been created
+i: 0 
+Info in <TCanvas::Print>: eps file chi2_deta_e_ph_1.eps has been created
+i: 1 
+Info in <TCanvas::Print>: eps file chi2_deta_e_ph_2.eps has been created
+i: 2 
+Info in <TCanvas::Print>: eps file chi2_deta_e_ph_3.eps has been created
+i: 3 
+Info in <TCanvas::Print>: eps file chi2_deta_e_ph_4.eps has been created
+i: 4 
+deta_e_ph: 
+mean =  0.800907 , with max = 1.13614 in bin = 3 and min = 0.613103 in bin = 5 
+Info in <TCanvas::Print>: eps file c_dz_et.eps has been created
+Info in <TCanvas::Print>: png file c_dz_et.png has been created
+Info in <TCanvas::Print>: png file c_dz_eta.png has been created
+Info in <TCanvas::Print>: eps file c_dz_q2.eps has been created
+Info in <TCanvas::Print>: png file c_dz_q2.png has been created
+Info in <TCanvas::Print>: eps file c_dz_x.eps has been created
+Info in <TCanvas::Print>: png file c_dz_x.png has been created
+Info in <TCanvas::Print>: eps file c_dz_et_jet.eps has been created
+Info in <TCanvas::Print>: png file c_dz_et_jet.png has been created
+Info in <TCanvas::Print>: eps file c_dz_eta_jet.eps has been created
+Info in <TCanvas::Print>: png file c_dz_eta_jet.png has been created
+PlotControlPlot xgamma 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file c_control_xgamma.png has been created
+Info in <TCanvas::Print>: png file c_control_xgamma.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_xgamma.png has been created
+PlotControlPlot xp 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file c_control_xp.png has been created
+Info in <TCanvas::Print>: png file c_control_xp.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_xp.png has been created
+PlotControlPlot dphi 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+data: 
+>> >> 20.9111  0.482022
+>> >> 34.825  0.933073
+>> >> 49.7  2.22935
+>> >> 55.8  2.3622
+>> >> 61.9  2.48797
+>> >> 61.5  2.47992
+>> >> 60.3  2.45561
+QQ: 
+>> >> 4.73943  0.701002
+>> >> 12.3481  1.34041
+>> >> 18.6944  3.32494
+>> >> 18.3453  3.45672
+>> >> 21.9406  3.5887
+>> >> 27.9415  3.30611
+>> >> 23.6671  3.46849
+LL: 
+>> >> 1.31374  0.0779611
+>> >> 3.06848  0.179547
+>> >> 3.84077  0.399536
+>> >> 5.11972  0.458787
+>> >> 5.68461  0.485711
+>> >> 7.30447  0.556938
+>> >> 6.55081  0.524188
+bg: 
+>> >> 14.8579  0.762021
+>> >> 19.4084  1.40566
+>> >> 27.1649  3.43817
+>> >> 32.335  3.6071
+>> >> 34.2748  3.71579
+>> >> 26.254  3.24525
+>> >> 30.0821  3.54178
+a: 
+>> >> 0.226646  0.0339276
+>> >> 0.354577  0.0396451
+>> >> 0.376144  0.068995
+>> >> 0.328769  0.0634926
+>> >> 0.354452  0.0597005
+>> >> 0.454334  0.0567939
+>> >> 0.392489  0.0597
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+res 1>>20.9111  1.03834
+res 2>>34.825  1.95059
+res 3>>49.7  4.79957
+res 4>>55.8  5.01703
+res 5>>61.9  5.18862
+res 6>>61.5  4.66606
+res 7>>60.3  4.98492
+Info in <TCanvas::Print>: png file c_control_dphi.png has been created
+Info in <TCanvas::Print>: png file c_control_dphi.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_dphi.png has been created
+Info in <TCanvas::Print>: png file c_dz_dphi_2.png has been created
+PlotControlPlot deta 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file c_control_deta.png has been created
+Info in <TCanvas::Print>: png file c_control_deta.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_deta.png has been created
+Info in <TCanvas::Print>: png file c_dz_deta_2.png has been created
+PlotControlPlot dphi_e_ph 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file c_control_dphi_e_ph.png has been created
+Info in <TCanvas::Print>: png file c_control_dphi_e_ph.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_dphi_e_ph.png has been created
+PlotControlPlot deta_e_ph 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Info in <TCanvas::Print>: png file c_control_deta_e_ph.png has been created
+Info in <TCanvas::Print>: png file c_control_deta_e_ph.png_fig3.png has been created
+Info in <TCanvas::Print>: png file c_dz_deta_e_ph_2.png has been created
+PlotCrossSec 
+processing variable et
+AND IT IS E_{T}^{#gamma} (GeV)
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.72833 - 1.98182 / 4.68595 = 1.65314 
+sigma_tot = 9.72833 +- 0.415206 pb
+Done: 0 
+processing variable eta
+AND IT IS #eta^{#gamma}
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.84094 - 1.98182 / 4.68595 = 1.67717 
+sigma_tot = 9.84094 +- 0.411581 pb
+Done: 1 
+processing variable Q2
+AND IT IS Q^{2} (GeV^{2})
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.68468 - 1.98182 / 4.68595 = 1.64382 
+sigma_tot = 9.68468 +- 0.411113 pb
+Done: 2 
+processing variable x
+AND IT IS x
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.51553 - 1.97822 / 4.65719 = 1.61842 
+sigma_tot = 9.51108 +- 0.415857 pb
+Done: 3 
+processing variable et_jet
+AND IT IS E_{T}^{jet} (GeV)
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 10.0189 - 1.98066 / 4.68595 = 1.7154 
+sigma_tot = 10.0189 +- 0.407521 pb
+here 
+Done: 4 
+processing variable eta_jet
+AND IT IS #eta^{jet}
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.71037 - 1.98182 / 4.68595 = 1.6493 
+sigma_tot = 9.71037 +- 0.389135 pb
+Done: 5 
+processing variable xgamma
+AND IT IS x_{#gamma}
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.29195 - 1.9641 / 4.68544 = 1.56396 
+sigma_tot = 9.29195 +- 0.331309 pb
+Done: 6 
+processing variable xp
+AND IT IS x_{p}
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.98807 - 1.97485 / 4.68553 = 1.71021 
+sigma_tot = 9.98807 +- 0.417831 pb
+Done: 7 
+processing variable dphi
+AND IT IS #Delta#phi (deg.)
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.89287 - 1.98182 / 4.68595 = 1.68825 
+sigma_tot = 9.89287 +- 0.40829 pb
+Done: 8 
+processing variable deta
+AND IT IS #Delta#eta
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.77273 - 1.74944 / 4.84533 = 1.65588 
+sigma_tot = 9.55389 +- 0.371788 pb
+Done: 9 
+processing variable dphi_e_ph
+AND IT IS #Delta#phi_{e,#gamma} (deg.)
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 9.85318 - 1.98182 / 4.68595 = 1.67978 
+sigma_tot = 9.85318 +- 0.391102 pb
+Done: 10 
+processing variable deta_e_ph
+AND IT IS #Delta#eta_{e,#gamma}
+0 res[0]->GetBinContent(i+1) 1.27032 
+0 * res[0]->GetBinWidth(i+1) 0.6 
+0 += test_deleteme 0.762195 
+1 res[0]->GetBinContent(i+1) 3.43102 
+1 * res[0]->GetBinWidth(i+1) 0.6 
+1 += test_deleteme 2.05861 
+2 res[0]->GetBinContent(i+1) 5.37895 
+2 * res[0]->GetBinWidth(i+1) 0.6 
+2 += test_deleteme 3.22737 
+3 res[0]->GetBinContent(i+1) 3.93241 
+3 * res[0]->GetBinWidth(i+1) 0.6 
+3 += test_deleteme 2.35944 
+4 res[0]->GetBinContent(i+1) 1.94032 
+4 * res[0]->GetBinWidth(i+1) 0.6 
+4 += test_deleteme 1.16419 
+THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!! 10.3677 - 1.8711 / 5.44966 = 1.55911 
+test_deleteme 9.57181 
+sigma_tot = 9.57181 +- 0.402304 pb
+Done: 11 
+CrossectionDrawer::DrawAll m,n ============> 1 1 
+===> 0 
+pad: 0 
+Pad value 1
+0x2d90f00
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_et.png has been created
+saved canvas:  0x2d90ae0 
+===> 1 
+pad: 0 
+Pad value 1
+0x2d8c8c0
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_eta.png has been created
+saved canvas:  0x2da9010 
+===> 2 
+pad: 0 
+Pad value 1
+0x2db5ba0
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_Q2.png has been created
+saved canvas:  0x2dbf130 
+===> 3 
+pad: 0 
+Pad value 1
+0x2dbd800
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_x.png has been created
+saved canvas:  0x2dbd4a0 
+===> 4 
+pad: 0 
+Pad value 1
+0x2db94e0
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_et_jet.png has been created
+saved canvas:  0x2db9180 
+===> 5 
+pad: 0 
+Pad value 1
+0x2dba2d0
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_eta_jet.png has been created
+saved canvas:  0x2df1b60 
+===> 6 
+pad: 0 
+Pad value 1
+0x2dba8f0
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_xgamma (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_xgamma.png has been created
+saved canvas:  0x2df6410 
+===> 7 
+pad: 0 
+Pad value 1
+0x2df3dc0
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_xp (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_xp.png has been created
+saved canvas:  0x2e139b0 
+===> 8 
+pad: 0 
+Pad value 1
+0x2df40c0
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_dphi (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_dphi.png has been created
+saved canvas:  0x2df5420 
+===> 9 
+pad: 0 
+Pad value 1
+0x2b92630
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_deta (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_deta.png has been created
+saved canvas:  0x2b922d0 
+===> 10 
+pad: 0 
+Pad value 1
+0x2db8170
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_dphi_e_ph (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_dphi_e_ph.png has been created
+saved canvas:  0x2db7240 
+===> 11 
+pad: 0 
+Pad value 1
+0x2db8530
+Warning in <TFile::Append>: Replacing existing TH1: h_window_fig3_deta_e_ph (Potential memory leak).
+Constructor reached  here 1
+Constructor reached  here 2
+Info in <TCanvas::Print>: png file separate_per_1_plot_1_width_deta_e_ph.png has been created
+saved canvas:  0x2f5a390 
+DONE CALCULATING THE SEPARATE PLOTS!!!!!!!!!!!!!!!!!! 
+0 appered to be  0 
+1 appered to be  0 
+2 appered to be  0 
+3 appered to be  0 
+4 appered to be  0 
+5 appered to be  0 
+processing 6 
+theory sum for xgamma 
+theory sum_sigma =  12.9848 
+Fontannaz theory sum_sigma =  9.23647 
+cs plotted  1 : 0.895582 theory: 0.156473 
+cs plotted  2 : 2.75334 theory: 0.582975 
+cs plotted  3 : 7.05355 theory: 0.710077 
+cs plotted  4 : 9.08197 theory: 0.737146 
+cs plotted  5 : 23.4708 theory: 0.815901 
+cs plotted  6 : 44.2241 theory: 125.793 
+#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)} 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_xgamma.png has been created
+saved canvas:  0x2f96a50 
+processing 7 
+theory sum for xp 
+theory sum_sigma =  12.9795 
+Fontannaz theory sum_sigma =  9.45194 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_xp.png has been created
+saved canvas:  0x2f36520 
+processing 8 
+theory sum for dphi 
+theory sum_sigma =  12.9846 
+8 appered to be  0 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_dphi.png has been created
+saved canvas:  0x30444a0 
+processing 9 
+theory sum for deta 
+theory sum_sigma =  12.7575 
+Fontannaz theory sum_sigma =  9.39548 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_deta.png has been created
+saved canvas:  0x2f90a80 
+processing 10 
+theory sum for dphi_e_ph 
+theory sum_sigma =  12.9846 
+Fontannaz theory sum_sigma =  8.61083 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_dphi_e_ph.png has been created
+saved canvas:  0x2f7c600 
+processing 11 
+theory sum for deta_e_ph 
+theory sum_sigma =  12.7168 
+11 appered to be  0 
+Info in <TCanvas::Print>: png file theory_per_1_plot_1_width_deta_e_ph.png has been created
+saved canvas:  0x3146d30 
+ProduceDZoverollPlot 
+AFTER  SCALING: mc QQ: 5623.02 mc LL: 525.979 mc bg: 5623.02 data: 6149
+Error second scale: 1 
+Error second scale: 1.09354 
+param[0] 0.347456 
+a, sumSgAll, sumRd, sumSg 0.347456 5623.02 6149 5440.91 
+525.979 = 525.979 
+tem 0 
+0 
+N +/- dN = 2734 127.936 
+hist_res[0][3] =  119.43 
+hist_data[0][3] =  815 
+t GetTopMargin() const:  0.1 
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+Warning in <TH1D::Sumw2>: Sum of squares of weights structure already created
+deltaz_fit_IanSgCorr_QQfit_withLL_noLLinBg.png 
+Info in <TCanvas::Print>: png file deltaz_fit_IanSgCorr_QQfit_withLL_noLLinBg.png has been created
+Finish
+0
+YAY!
+end (zero)

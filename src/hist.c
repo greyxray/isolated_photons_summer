@@ -81,6 +81,7 @@ void Hist::Init(TDirectory** dir)
   // for fit fmax and deltaz in different bins and cross sections
   //
   dir[4]->cd();
+  det_Q2 = new TH1D("h_det_Q2", "det_Q2", 1000, 0, 350);
   //detector leverl
   det_cross_et = new TH1D("h_det_cross_et", "det_cross_et", number_etbins, et_bin);
   det_cross_eta = new TH1D("h_det_cross_eta", "det_cross_eta", number_etabins, eta_bin_crosssec);

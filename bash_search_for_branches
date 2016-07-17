@@ -1,0 +1,13 @@
+#!/bin/bash
+#поиск упомянутых веток в проэкте
+rm bash_output.txt
+touch bash_output.txt
+#branches that are not presented anymore in the ntuples
+for i in 'Npart_my' 'Part_motherprt' 'E5cellptr' 'Trk_id2' 'E5imbmod' 'Kpjets' 'Kzufotype' 'Ktrjetntrac' 'Kpjeteta' 'Knzufos' 'Kzufofmax' 'Kpjetet' 'Photmothprt' 'Part_motherid' 'Knjets' 'Kzufopt' 'E5fcell' 'Kzufophi' 'E5calprobrank' 'Ktrjeteta' 'Kzufodeltaz' 'Photid' 'Kzufoeta' 'Fmce5partlist' 'E5fmodu' 'Kpjetnzu' 'E5ncell' 'Ktrjetchar' 'Ktrnjets' 'Part_charge' 'Kzufoemcfrac' 'Kpjetpt' 'E5subprob' 'E5dphi' 'Kpjetemcfrac' 'Part_jetid' 'Ktrjetpt' 'Filter' 'Part_isthep' 'Fmce5npart' 'Photprphjetindex' 'Fmce5enelist' 'Ktrjets' 'Ktrjetet' 'Kzufos' 'Kzufoet' 'Photn' 'Fmce5true' 'E5dtheta' 'Kpjetdeltaz' 'Ktrjetphi' 'Kpjetfmax' 'Photmothid' 'Kzufoncells' 'Photp' 'Photisthep' 'Zufopos' 'Bpchn' 'Kzufoidjet'
+do
+        echo "$i :" >> bash_output.txt
+	grep --binary-files=without-match --exclude={"*selectorc_till140915*","*\.h~","*\.c\#","*\.txt","*\.c\~","*\.o",bash_output.txt,bash_search_for_branches} -rn "$i" . >> bash_output.txt
+	echo "" >> bash_output.txt
+	echo "" >> bash_output.txt
+	echo "" >> bash_output.txt
+done

@@ -209,12 +209,9 @@ void CrossectionDrawer::DrawAll(TH1 ** data, TH1 ** fit, TH1 ** qq, TH1 ** ll, D
             cout << "Divided " << 1  +  1 * (m > 1) <<  " and " << m / 2 + m % 2 << endl;
         }
 
-        cout << "reached  here " << endl;
         TVirtualPad * pad = test->GetPad(i % m);
-        cout << pad <<endl;
-        cout << "reached  here " << endl;
+        //cout << "pad" << pad <<endl;
         drawers[i] = new CrossectionDrawer(i, pad, data[i], fit[i], qq[i], ll[i], test, "some", all_bins[i]); 
-        cout << "end  here " << endl;
         drawers[i]->DrawLegend( (i ) % m == 0 );
         drawers[i]->DrawHist();
         drawers[i]->SaveCanvas( (i + 1) % m == 0 );

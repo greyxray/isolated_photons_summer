@@ -593,60 +593,67 @@ Bool_t selector::Process()
 				/*
 					if (nodebugmode) cout << "======================================================" << endl;
 					if (nodebugmode) cout << "before systematic shift:" << endl;
-				    for(Int_t jloop=0; jloop < jets.size(); jloop++)
-				      if (nodebugmode) cout << jets[jloop].px() << " " << jets[jloop].py() << " " << jets[jloop].pz() << " " << jets[jloop].e() << " " << jets[jloop].et() <<endl;
+					for(Int_t jloop=0; jloop < jets.size(); jloop++)
+					  if (nodebugmode) cout << jets[jloop].px() << " " << jets[jloop].py() << " " << jets[jloop].pz() << " " << jets[jloop].e() << " " << jets[jloop].et() <<endl;
 				*/
 				//warning: systematic errors due to jet energy uncertainty
 				/*    
 					for(Int_t jloop=0; jloop < jets.size(); jloop++) 
-				      { 
-				        Double_t px = jets[jloop].px(); 
-				        Double_t py = jets[jloop].py(); 
-				        Double_t pz = jets[jloop].pz(); 
-				        Double_t e = jets[jloop].e(); 
-				        Double_t et = jets[jloop].et(); 
-				        if(et < 10.) { 
-				    px *= 0.9; 
-				    py *= 0.9; 
-				    pz *= 0.9; 
-				    e *= 0.9; 
-				        } else { 
-				    px *= 0.97; 
-				    py *= 0.97; 
-				    pz *= 0.97; 
-				    e *= 0.97; 
-				        } 
-				        KtLorentzVector vec(px, py, pz, e); 
-				        jets[jloop] = vec; 
-				      } 
+					  { 
+						Double_t px = jets[jloop].px(); 
+						Double_t py = jets[jloop].py(); 
+						Double_t pz = jets[jloop].pz(); 
+						Double_t e = jets[jloop].e(); 
+						Double_t et = jets[jloop].et(); 
+						if(et < 10.) { 
+					px *= 0.9; 
+					py *= 0.9; 
+					pz *= 0.9; 
+					e *= 0.9; 
+						} else { 
+					px *= 0.97; 
+					py *= 0.97; 
+					pz *= 0.97; 
+					e *= 0.97; 
+						} 
+						KtLorentzVector vec(px, py, pz, e); 
+						jets[jloop] = vec; 
+					  } 
 				*/
-				if (systJetE_lt10 != 1. || systJetE_gt10 != 1.)
+				if (systJetE_lt10 != 1. || systJetE_gt10 != 1. || systJetE_lt6 != 1.)
 				{
 					cout<<"Starting upplying jet correction for systematic" <<endl;
-                    for(Int_t jloop=0; jloop < jets.size(); jloop++) 
-                    { 
-                        Double_t px = jets[jloop].px(); 
-                        Double_t py = jets[jloop].py(); 
-                        Double_t pz = jets[jloop].pz(); 
-                        Double_t e = jets[jloop].e(); 
-                        Double_t et = jets[jloop].et(); 
-                        if(et < 10.) 
-                        { 
-                            px *= systJetE_lt10; 
-                            py *= systJetE_lt10; 
-                            pz *= systJetE_lt10; 
-                            e *= systJetE_lt10; 
-                        } else 
-                        { 
-                            px *= systJetE_gt10; 
-                            py *= systJetE_gt10; 
-                            pz *= systJetE_gt10; 
-                            e *= systJetE_gt10; 
-                        }
-                        KtLorentzVector vec(px, py, pz, e); 
-                        jets[jloop] = vec;
-                    }
-                }	                
+					for(Int_t jloop=0; jloop < jets.size(); jloop++) 
+					{ 
+						Double_t px = jets[jloop].px(); 
+						Double_t py = jets[jloop].py(); 
+						Double_t pz = jets[jloop].pz(); 
+						Double_t e = jets[jloop].e(); 
+						Double_t et = jets[jloop].et(); 
+						if (et>=10)
+						{
+							px *= systJetE_gt10; 
+							py *= systJetE_gt10; 
+							pz *= systJetE_gt10; 
+							e *= systJetE_gt10; 
+						}
+						if(et < 10. && et>=6) 
+						{ 
+							px *= systJetE_lt10; 
+							py *= systJetE_lt10; 
+							pz *= systJetE_lt10; 
+							e *= systJetE_lt10; 
+						} else 
+						{ 
+							px *= systJetE_lt6; 
+							py *= systJetE_lt6; 
+							pz *= systJetE_lt6; 
+							e *= systJetE_lt6; 
+						} 
+						KtLorentzVector vec(px, py, pz, e); 
+						jets[jloop] = vec;
+					}
+				}	                
 				//
 				// find jet containing prompt photon from HepForge
 				//
@@ -911,8 +918,8 @@ Bool_t selector::Process()
 						hist.deltaz->Fill(glob_deltaz, wtx);
 						//cout << hist.deltaz->GetBinContent(1)<< endl;
 						/*hist_mc_rad[0]->GetBinContent(ii), \
-                            hist_mc_rad[0]->GetBinError(ii), "=", sqrt(hist_mc_rad[0]->GetSumw2()->GetAt(ii)), "!=", \
-                            sqrt(hist_mc_rad[0]->GetBinContent(ii)), hist_mc_rad[0]->GetBinContent(ii)*/
+							hist_mc_rad[0]->GetBinError(ii), "=", sqrt(hist_mc_rad[0]->GetSumw2()->GetAt(ii)), "!=", \
+							sqrt(hist_mc_rad[0]->GetBinContent(ii)), hist_mc_rad[0]->GetBinContent(ii)*/
 						//if (entry > 10000) debugcontinue = kFALSE;
 						
 						hist.fmax_deltaz->Fill(glob_fmax, glob_deltaz, wtx);
@@ -923,6 +930,7 @@ Bool_t selector::Process()
 						hist.prph_cell_energy_frac->Fill(cell_energy_frac, wtx);
 
 						//  -> Fill Cross_section_histograms
+						hist.det_Q2->Fill(Siq2el[0], wtx);
 						hist.det_cross_et->Fill(v_corr_prompt_photon->Et(), wtx);
 						hist.det_cross_eta->Fill(v_corr_prompt_photon->Eta(), wtx);
 						hist.det_cross_Q2->Fill(Siq2el[0], wtx);
@@ -1294,7 +1302,7 @@ void selector::SlaveTerminate()
 
 /*
 	void sortEt(TObjArray *arrayNotSorted, TObjArray *arraySorted)
-  	{
+	{
 	//  Double_t maxEt = 0.;// (static_cast<TLorentzVector*> (arrayNotSorted->At(0)))->Et();
 	Double_t et[100];
 

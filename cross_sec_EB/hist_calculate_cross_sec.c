@@ -333,7 +333,6 @@ void Hist::CalculateCrossSec(TH1D* data,
     }
 
     //scale Nqq by parameter
-
     if (nodebugmode) cout << "--> scaling by fit param" << endl;
     for(Int_t i = 0; i < Nqq->GetNbinsX(); i++) 
     {
@@ -417,6 +416,8 @@ void Hist::CalculateCrossSec(TH1D* data,
     //  TH1D *h_Acc = (TH1D*)h_Data->Clone(); //histo with acceptance. Here is to have right binning!
     nbins  = res[0]->GetNbinsX();
     if (nodebugmode) cout << "in plot_cross_section: nbins = " << nbins << endl;
+    TH1D * test_forest = (TH1D*)det->Clone();
+    Double_t test_deleteme = 0;
     for(Int_t i = 0; i < nbins; i++)
     {
       /*if (name.Contains("deta") && !name.Contains("e_ph") && i == 0 ) 
@@ -444,7 +445,8 @@ void Hist::CalculateCrossSec(TH1D* data,
       Double_t ll_events_copy     = ll_det_copy->GetBinContent(i+1),//LL      
                n_qq_copy          = det_copy->GetBinContent(i+1),//QQLL
                err1_copy = 0., err2_copy = 0., err3_copy = 0., err_copy = 0.; //statistic, acceptance, luminosity, full
-        
+      
+
       /*      
         if(prph != 0.)
         //  C_acc = prph_had / prph;
@@ -479,7 +481,9 @@ void Hist::CalculateCrossSec(TH1D* data,
       Double_t cross_sec_copy         = ( (n_qq_copy ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events_copy/C_ll_acc ) / (bin_width * Lumi),
                prph_cross_sec_copy    =   (n_qq_copy )                                / (C_acc * bin_width * Lumi);
       //dout(ll_events_copy, "=", ll_events);
-      
+      test_forest->SetBinContent( i+1, prph / (C_acc*bin_width * Lumi));
+      test_forest->SetBinError( i+1, TMath::Sqrt(pow(det->GetBinError(i+1) / (bin_width * Lumi * C_acc), 2) +
+                                      pow(prph * C_err / (bin_width * Lumi * C_acc * C_acc), 2)) );
       if (name.Contains("deta") && !name.Contains("e_ph") && (C_ll_acc==0)) 
       {
         ll_det_copy->SetBinContent(i+1, 0);
@@ -623,22 +627,26 @@ void Hist::CalculateCrossSec(TH1D* data,
         selectedoutput << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
              << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
         
-        if (nodebugmode && name.Contains("xp")) cout << name << " cros sec in bin " << i << ": " << cross_sec 
-                << " +- " << err << ", lumi = " << Lumi << ", acc_Prompt = " 
-                << C_acc << ", binWidth = " << bin_width << ", nentries = " << prph << endl;
-
-        if (nodebugmode) cout << name << " cros sec in bin " << i << ": " << cross_sec 
-                << " +- " << err << ", lumi = " << Lumi << ", acc_Prompt = " 
-                << C_acc << ", binWidth = " << bin_width << ", nentries = " << prph << endl;
-        //      if (nodebugmode) cout << "bin " << i+1 << " from " << low_edge << " to " << bottom_edge << " : sigma = " << cross_sec  << " +- " << err << endl;
-        if (nodebugmode) cout << "errors (stat. and fit, acc., lumi., total), %: " << err1 / cross_sec << ", " 
-             << err2/cross_sec << ", " << err3 / cross_sec << ", " << err / cross_sec << endl;
-        if (nodebugmode) cout << "prph data: " << prph_cross_sec << ", prph mc: " << prph_mc_cross_sec << ", prph_had = " << prph_had <<  endl;
-        if (nodebugmode) cout << "ll data: " << ll_cross_sec << ", ll mc: " << ll_mc_cross_sec << endl;
+        if (name.Contains("deta_e_ph"))
+        {
+          dout(i, "res[0]->GetBinContent(i+1)", res[0]->GetBinContent(i+1));
+          dout(i, "* res[0]->GetBinWidth(i+1)", res[0]->GetBinWidth(i+1));
+          dout(i, "+= test_deleteme", res[0]->GetBinContent(i+1) * res[0]->GetBinWidth(i+1));
+            test_deleteme += res[0]->GetBinContent(i+1) * res[0]->GetBinWidth(i+1);
+        }
         fout << "h_1st[0]->SetBinContent(" << i+1 << ", " << cross_sec << ");" << endl;
         fout << "h_1st[0]->SetBinError(" << i+1 << ", " << err << ");" << endl;
     }//for i over bins
     fout << endl;
+    dout("THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!!",\
+     res[0]->Integral(0, res[0]->GetNbinsX(), "width"), "-", 
+     res_copy[9]->Integral(0, res_copy[9]->GetNbinsX(), "width"), "/", 
+     test_forest->Integral(0, test_forest->GetNbinsX(), "width"),"=",\
+   (res[0]->Integral(0, res[0]->GetNbinsX(), "width") - res_copy[9]->Integral(0, res_copy[9]->GetNbinsX(), "width"))/ test_forest->Integral(0, test_forest->GetNbinsX(), "width"));
+    if (name.Contains("deta_e_ph"))
+        {
+            dout("test_deleteme",test_deleteme);
+        }
     if (!nodebugmode) cout << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
     if (nodebugmode) cout << "sigma_tot_fig3 = " << sigma_tot_copy << " +- " << sigma_tot_err_copy << " pb" << endl;
     selectedoutput << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;

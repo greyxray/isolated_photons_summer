@@ -411,11 +411,11 @@ void Hist::PlotCrossSec()
             }
         */
 
-        data_for_CrossectionDrawer[i] = h_cross[i][1];
-        data_for_CrossectionDrawer_tot_err[i] = h_cross[i][0];
+        data_for_CrossectionDrawer[i] = h_cross[i][1];//stat
+        data_for_CrossectionDrawer_tot_err[i] = h_cross[i][0];// full error = stat+acc+lum
         sum_for_CrossectionDrawer[i]  = h_cross_copy[i][0];
-        qq_for_CrossectionDrawer[i]   = h_cross_copy[i][8];
-        ll_for_CrossectionDrawer[i]   = h_cross_copy[i][9];
+        qq_for_CrossectionDrawer[i]   = h_cross_copy[i][8];//error =0
+        ll_for_CrossectionDrawer[i]   = h_cross_copy[i][9];//error =0
         //FIG 3 TYPE - no sence for QQfit=1 withLL=0 res=QQ*a+bg*(1-a)
         if (false && QQfit != 0)
         {
@@ -680,14 +680,28 @@ void Hist::PlotCrossSec()
 
     if (true && QQfit != 0)
     {  
+        //m - on one page n - width
+        //usual m=6 n=2
         CrossectionDrawer::m = 1;
         CrossectionDrawer::n = 1;
         CrossectionDrawer::for_paper = true;
+        /*
         CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
                                         sum_for_CrossectionDrawer, \
                                      qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
                                      all_bins, s_var, n_cross, \
-                                     true, all_theory_cs, all_theory_pos, all_theory_neg);
+                                     true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz");
+        */
+        CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                        sum_for_CrossectionDrawer, \
+                                     qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                     all_bins, s_var, n_cross, \
+                                     true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
+        
+
+        
+
+
     }
 
     /*

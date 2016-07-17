@@ -1,7 +1,5 @@
 const Int_t numberOfRootFiles0405e_bg = 1497;
 TString str_location0405e_bg = "/nfs/dust/zeus/group/kuprash/orange/nat_out/mc_bg/more_MC_2010aug/mc_bg_04-05e/";
-
-
 //TString str_location0405e_bg = "/data/zenith234b/kuprash/prompt_photons/orange/oran_kt_parton/run/";
 	TString rootFile0405e_bg[numberOfRootFiles0405e_bg] = 
 {

@@ -137,13 +137,15 @@ int main(int argc, char *argv[])
     PromptPhotonPlusJetDIS.systematics_sufix = (TString)argv[6];
     if(PromptPhotonPlusJetDIS.systematics_sufix=="systJetE+") 
     {
+      PromptPhotonPlusJetDIS.systJetE_gt10 = 1.015;//0.975 1. 1.025
       PromptPhotonPlusJetDIS.systJetE_lt10 = 1.025;
-      PromptPhotonPlusJetDIS.systJetE_gt10 = 1.025;//0.975 1. 1.025
+      PromptPhotonPlusJetDIS.systJetE_lt6 = 1.04;
     } 
     else if(PromptPhotonPlusJetDIS.systematics_sufix=="systJetE-") 
     {
+      PromptPhotonPlusJetDIS.systJetE_gt10 = 0.985;
       PromptPhotonPlusJetDIS.systJetE_lt10 = 0.975;
-      PromptPhotonPlusJetDIS.systJetE_gt10 = 0.975;
+      PromptPhotonPlusJetDIS.systJetE_lt6 = 0.96;
     } 
     else if(PromptPhotonPlusJetDIS.systematics_sufix=="systPhE+")
 	   PromptPhotonPlusJetDIS.systPhE = 1.02;//0.98 1. 1.2 

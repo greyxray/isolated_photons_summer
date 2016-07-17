@@ -277,6 +277,29 @@ void minuitFunction(int& nDim, double* gout, double& result, double par[], int f
 //void minuitFunctionBarlowBeeston(int& nDim, double* gout, double& result, double par[], int flg);
 //void minuitFunctionGauss(int& nDim, double* gout, double& result, double par[], int flg);
 Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_method);
+
+void Chi2StatisticsCheck(Double_t* array, Int_t number_of_bins)
+{
+    Double_t    mean(0), hmax(0), hmaxbin(-1), hminbin(-1),
+                hmin = std::numeric_limits<double>::infinity();
+    for(int i = 0; i < number_of_bins; i++)
+    {
+        mean += array[i];
+        if (array[i] < hmin) 
+        {
+            hmin = array[i];
+            hminbin = i+1;
+        }
+        if (array[i] > hmax) 
+        {
+            hmax = array[i];
+            hmaxbin = i+1;
+        }
+    }
+    mean = mean / number_of_bins;
+    dout("mean = ", mean, ", with max =", hmax, "in bin =", hmaxbin, "and min =", hmin, "in bin =", hminbin);
+}
+
   
 int main(int argc, char *argv[])
 {  
@@ -546,6 +569,9 @@ int main(int argc, char *argv[])
 
     }
     dout("checksum = ", checksum);
+    dout("et:");
+    Chi2StatisticsCheck(chi2_et, number_etbins);
+
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of eta
@@ -662,6 +688,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_eta_res[i]->Add(hist.h_deltaz_eta_prph_sum[i]);
 
     }
+    dout("eta:");
+    Chi2StatisticsCheck(chi2_eta, number_etabins);
 
     ///////////////////////////////////////////////////////
     //
@@ -771,6 +799,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_q2_res[i]->Add(hist.h_deltaz_q2_prph_sum[i]);
     }
 
+    dout("q2:");
+    Chi2StatisticsCheck(chi2_q2, number_Q2bins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of x
@@ -878,6 +908,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_x_res[i]->Add(hist.h_deltaz_x_prph_sum[i]);
     }
 
+    dout("x:");
+    Chi2StatisticsCheck(chi2_x, number_xbins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of et_jet
@@ -985,6 +1017,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_et_jet_res[i]->Add(hist.h_deltaz_et_jet_prph_sum[i]);
     }
 
+    dout("et_jet:");
+    Chi2StatisticsCheck(chi2_et, number_et_jetbins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of eta_jet
@@ -1092,6 +1126,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_prph_sum[i]);//if (nodebugmode) cout << "par in bin eta_jet " << i << ": " << param_eta_jet[i] << " +- " << param_err_eta_jet[i] << ", chi2/dof = " << chi2_eta_jet[i]  << endl;
     }
 
+    dout("eta_jet:");
+    Chi2StatisticsCheck(chi2_eta_jet, number_eta_jetbins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of xgamma
@@ -1277,6 +1313,8 @@ int main(int argc, char *argv[])
         }
     }
 
+    dout("xgamma:");
+    Chi2StatisticsCheck(chi2_xgamma, number_xgamma_bins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of xp
@@ -1411,6 +1449,8 @@ int main(int argc, char *argv[])
     }
 
 
+    dout("xp:");
+    Chi2StatisticsCheck(chi2_xp, number_xp_bins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of dphi
@@ -1551,6 +1591,8 @@ int main(int argc, char *argv[])
      std::copy(param_dphi, param_dphi + number_dphi_bins,  hist.param_dphi);//?
      std::copy(param_err_dphi, param_err_dphi + number_dphi_bins,  hist.param_err_dphi);
 
+    dout("dphi:");
+    Chi2StatisticsCheck(chi2_dphi, number_dphi_bins);
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of deta
@@ -1680,6 +1722,8 @@ int main(int argc, char *argv[])
         //if (nodebugmode) cout << "par in bin deta " << i << ": " << param_deta[i] << " +- " << param_err_deta[i] << ", chi2/dof = " << chi2_deta[i]  << endl;
     }
 
+    dout("deta:");
+    Chi2StatisticsCheck(chi2_deta, number_deta_bins);
 
     ///////////////////////////////////////////////////////
     //
@@ -1815,6 +1859,8 @@ int main(int argc, char *argv[])
         //if (nodebugmode) cout << "par in bin dphi_e_ph " << i << ": " << param_dphi_e_ph[i] << " +- " << param_err_dphi_e_ph[i] << ", chi2/dof = " << chi2_dphi_e_ph[i]  << endl;
     }
 
+    dout("dphi_e_ph:");
+    Chi2StatisticsCheck(chi2_dphi_e_ph, number_dphi_e_ph_bins);
 
     ///////////////////////////////////////////////////////
     //
@@ -1978,6 +2024,8 @@ int main(int argc, char *argv[])
      //hist.param_deta_e_ph[0] = 0;
      //hist.param_err_deta_e_ph[0] = 0;
 
+    dout("deta_e_ph:");
+    Chi2StatisticsCheck(chi2_deta_e_ph, number_deta_e_ph_bins);
 
     hist.PlotFitInBinsOfCrossSec();
     dout("PlotCrossSec");

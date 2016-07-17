@@ -23,17 +23,20 @@ void fill_chain(TChain* chain, TString run_period, Bool_t data, TString mc_type,
 {
   if(mc_type == "mc_prph")
     {
-      if(run_period == "0405e") {
-	if(!use_clustered)
-	  fill(chain, str_location_prph0405e, rootFile_prph0405e, numberOfRootFiles_prph0405e);
-	else
-	  fill(chain, str_location_prph0405eprivate, rootFile_prph0405eprivate, numberOfRootFiles_prph0405eprivate);      
-      } else if(run_period == "06e") {
-	if(!use_clustered)
-	  fill(chain, str_location_prph06e, rootFile_prph06e, numberOfRootFiles_prph06e);
-	else
-	  fill(chain, str_location_prph06eprivate, rootFile_prph06eprivate, numberOfRootFiles_prph06eprivate);      
-      } else {cerr << "mc_prph: unknown period: " << run_period << endl; exit(-1);}
+      if(run_period == "0405e") 
+      {
+		if(!use_clustered)
+		  fill(chain, str_location_prph0405e, rootFile_prph0405e, numberOfRootFiles_prph0405e);
+		else
+		  fill(chain, str_location_prph0405eprivate, rootFile_prph0405eprivate, numberOfRootFiles_prph0405eprivate);      
+	  } 
+	  else if(run_period == "06e") 
+	  {
+		if(!use_clustered)
+		  fill(chain, str_location_prph06e, rootFile_prph06e, numberOfRootFiles_prph06e);
+		else
+		  fill(chain, str_location_prph06eprivate, rootFile_prph06eprivate, numberOfRootFiles_prph06eprivate);      
+	  } else {cerr << "mc_prph: unknown period: " << run_period << endl; exit(-1);}
       
     }
   else
@@ -43,9 +46,9 @@ void fill_chain(TChain* chain, TString run_period, Bool_t data, TString mc_type,
 	  if(data)
 	    {
 	      if(!use_clustered)
-		fill(chain, str_location0405e, rootFile0405e, numberOfRootFiles0405e);
+			fill(chain, str_location0405e, rootFile0405e, numberOfRootFiles0405e);
 	      else
-		fill(chain, str_location0405eprivate, rootFile0405eprivate, numberOfRootFiles0405eprivate);
+			fill(chain, str_location0405eprivate, rootFile0405eprivate, numberOfRootFiles0405eprivate);
 	    } 
 	  else
 	    {
@@ -70,9 +73,9 @@ void fill_chain(TChain* chain, TString run_period, Bool_t data, TString mc_type,
 	  if(data)
 	    {
 	      if(!use_clustered)
-		fill(chain, str_location06e, rootFile06e, numberOfRootFiles06e);
+			fill(chain, str_location06e, rootFile06e, numberOfRootFiles06e);
 	      else
-		fill(chain, str_location06eprivate, rootFile06eprivate, numberOfRootFiles06eprivate);
+			fill(chain, str_location06eprivate, rootFile06eprivate, numberOfRootFiles06eprivate);
 	    } 
 	  else
 	    {
@@ -97,9 +100,9 @@ void fill_chain(TChain* chain, TString run_period, Bool_t data, TString mc_type,
 	  if(data)
 	    {
 	      if(!use_clustered)
-		fill(chain, str_location0607p, rootFile0607p, numberOfRootFiles0607p);
+			fill(chain, str_location0607p, rootFile0607p, numberOfRootFiles0607p);
 	      else
-		fill(chain, str_location0607pprivate, rootFile0607pprivate, numberOfRootFiles0607pprivate);
+			fill(chain, str_location0607pprivate, rootFile0607pprivate, numberOfRootFiles0607pprivate);
 	    } 
 	  else
 	    {

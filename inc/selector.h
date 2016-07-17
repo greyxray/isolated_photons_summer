@@ -1101,7 +1101,7 @@ class selector
     virtual void    Terminate();
      
     //   ClassDef(selector,0);
-    Double_t systJetE_lt10, systJetE_gt10, systPhE, systElE, systdZfit, systAcc;
+    Double_t systJetE_lt10, systJetE_lt6, systJetE_gt10, systPhE, systElE, systdZfit, systAcc;
     TString systematics_sufix;
 };
 
@@ -1115,11 +1115,11 @@ void selector::Init(TTree *tree, TString run_period, Bool_t b_Data, TString s_mc
 
   nodebugmode = kFALSE;
   systematics_sufix = "zero";
-  systJetE_lt10 = systJetE_gt10 = 1.;//0.975 1. 1.025
+  systJetE_lt10 = systJetE_gt10 = systJetE_lt6 = 1.;//0.975 1. 1.025
   systPhE = 1.;//0.98 1. 1.02 
   systElE = 1.;//0.98 1. 1.02 
   systdZfit = 1.;//
-  systAcc = 1.;//
+  systAcc = 1.;//0 - if the systematics is calculated. 1 -usual mode
   event_list = new TEventList;
   period = run_period;
   Data = b_Data;
@@ -1423,14 +1423,14 @@ void selector::Init(TTree *tree, TString run_period, Bool_t b_Data, TString s_mc
      fChain->SetBranchAddress("Photn", &Photn, &b_photN);
      fChain->SetBranchAddress("Photid", Photid, &b_Photid);
      fChain->SetBranchAddress("Photp", Photp, &b_Photp);
-     fChain->SetBranchAddress("Npart", &Npart, &b_nPart);
+     fChain->SetBranchAddress("Npart", &Npart, &b_nPart);   //hadron level
      fChain->SetBranchAddress("Part_prt", Part_prt, &b_Part_prt);
      fChain->SetBranchAddress("Part_motherprt", Part_motherprt, &b_Part_motherprt);
      fChain->SetBranchAddress("Part_motherid", Part_motherid, &b_Part_motherid);
      fChain->SetBranchAddress("Part_isthep", Part_isthep, &b_Part_isthep);
      fChain->SetBranchAddress("Part_charge", Part_charge, &b_Part_charge);
      fChain->SetBranchAddress("Part_id", Part_id, &b_Part_id);
-     fChain->SetBranchAddress("Part_p", Part_p, &b_Part_p);
+     fChain->SetBranchAddress("Part_p", Part_p, &b_Part_p); //hadron level
      fChain->SetBranchAddress("Mc_q2", &Mc_q2, &b_MC_Q2);
      fChain->SetBranchAddress("Mc_pfsl", Mc_pfsl, &b_MC_PFSL);
      fChain->SetBranchAddress("Part_jetid", Part_jetid, &b_Part_jetid);

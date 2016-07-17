@@ -3,6 +3,7 @@
 #include <fstream>
 #include <initializer_list>
 #include <vector>
+#include <limits>
 using namespace std;
 #include <TH1D.h>
 #include <TFitter.h>
@@ -239,6 +240,7 @@ TFile *f;// = new TFile("cross_sec_histos.root", "recreate", "root file with his
  Double_t dphi_e_ph_sys[number_dphi_e_ph_bins] = {0.002090808909848051, 0.002802851481081365, 0.002977835379936241, 0.006207801137077444, 0.007782115100183242, 0.007070914151826479};
  Double_t deta_e_ph_sys[number_deta_e_ph_bins] = {0.1582997804799489, 0.2923727336380736, 0.4238569239436818, 0.26605835872980965, 0.09077920604411563};
 */
+ /* 070416
 Double_t et_sys[number_etbins] = { 0.184748088962 , 0.0747882871846 , 0.0393969631127 , 0.0189854576321 };
 Double_t eta_sys[number_etabins] = { 0.423800275071 , 0.487878132196 , 0.443901265232 , 0.50381661763 };
 Double_t Q2_sys[number_Q2bins] = { 0.0224260999674 , 0.00858689466571 , 0.00546653392059 , 0.00153660969264 , 0.000131106853558 };
@@ -251,7 +253,20 @@ Double_t dphi_sys[number_dphi_bins] = { 0.00315450409811 , 0.00418652170602 , 0.
 Double_t deta_sys[number_deta_bins] = { 0.06389627191 , 0.155134712589 , 0.257191703161 , 0.13611338619 , 0.251034054562 , 0.103070566725 };
 Double_t dphi_e_ph_sys[number_dphi_e_ph_bins] = { 0.00209223921194 , 0.00280451047912 , 0.00306385384116 , 0.00620919694324 , 0.00778832094581 , 0.00740004707434 };
 Double_t deta_e_ph_sys[number_deta_e_ph_bins] = { 0.161600574024 , 0.292377084259 , 0.424532749031 , 0.266773829067 , 0.0907841245758 };
- 
+*/
+Double_t et_sys[number_etbins] = { 0.184748088962 , 0.0747882871846 , 0.0393969631127 , 0.0189854576321 };
+Double_t eta_sys[number_etabins] = { 0.423800275071 , 0.487878132196 , 0.443901265232 , 0.50381661763 };
+Double_t Q2_sys[number_Q2bins] = { 0.0224260999674 , 0.00858689466571 , 0.00546653392059 , 0.00153660969264 , 0.000131106853558 };
+Double_t x_sys[number_xbins] = { 360.382971365 , 122.067943478 , 18.6493130436 , 2.25300333056 };
+Double_t et_jet_sys[number_et_jetbins] = { 0.108318547235 , 0.100885556201 , 0.0714368538361 , 0.0487568174771 , 0.0138301869655 , 0.00597986020342 };
+Double_t eta_jet_sys[number_eta_jetbins] = { 0.192704209412 , 0.263347347765 , 0.20624684943 , 0.231590873849 };
+Double_t xgamma_sys[number_xgamma_bins] = { 0.0958724424535 , 0.348822002567 , 0.513479401899 , 0.684521871729 , 3.26698095112 , 6.57912883747 };
+Double_t xp_sys[number_xp_bins] = { 28.6815313617 , 54.3743682607 , 38.2238214305 , 14.2267986121 , 2.72588289092 , 1.63156 };
+Double_t dphi_sys[number_dphi_bins] = { 0.00315450409811 , 0.00418652170602 , 0.00643482151112 , 0.00715958301003 , 0.00367540256299 , 0.00406340294581 , 0.00708797555724 };
+Double_t deta_sys[number_deta_bins] = { 0.06389627191 , 0.155134712589 , 0.257191703161 , 0.13611338619 , 0.251034054562 , 0.103070566725 };
+Double_t dphi_e_ph_sys[number_dphi_e_ph_bins] = { 0.00209223921194 , 0.00280451047912 , 0.00306385384116 , 0.00620919694324 , 0.00778832094581 , 0.00740004707434 };
+Double_t deta_e_ph_sys[number_deta_e_ph_bins] = { 0.161600574024 , 0.292377084259 , 0.424532749031 , 0.266773829067 , 0.0907841245758 };
+
  Double_t * all_syst[12] = {et_sys, eta_sys, Q2_sys, x_sys, et_jet_sys, eta_jet_sys, xgamma_sys, xp_sys, dphi_sys, deta_sys, dphi_e_ph_sys, deta_e_ph_sys};
 
 
@@ -263,18 +278,21 @@ Double_t dphi_e_ph_theor[number_dphi_e_ph_bins] = {2.387177 / 100, 3.478839 / 10
 
 Double_t * all_theory[12] = {0, 0, 0, 0, 0, 0, xgamma_theor, xp_theor, dphi_theor, deta_theor, dphi_e_ph_theor, 0};
 
+//BLZ
 Double_t theor_xgamma[number_xgamma_bins] = { 0.1564726 , 0.5829751 , 0.7100769 , 0.7371457 , 0.8159014 , 125.7932 };
 Double_t theor_xp[number_xp_bins] = { 608.9192 , 971.959 , 483.1771 , 177.8382 , 46.68674 , 6.017276 };
 Double_t theor_dphi[number_dphi_bins] = { 0.03686592 , 0.07791403 , 0.1249631 , 0.1433854 , 0.1480789 , 0.13057 , 0.1080152 };
 Double_t theor_deta[number_deta_bins] = { 1.715301 , 3.166015 , 4.144682 , 4.433577 , 3.577533 , 1.187959 };
 Double_t theor_dphi_e_gamma[number_dphi_e_ph_bins] = { 0.02387177 , 0.03478839 , 0.05966719 , 0.1021914 , 0.145871 , 0.1372228 };
 Double_t theor_deta_e_gamma[number_deta_e_ph_bins] = { 1.45014 , 4.229818 , 6.370512 , 5.772007 , 3.372212 };
+
 Double_t theor_xgamma_pos_error[number_xgamma_bins] = { 0.099934 , 0.5553299 , 0.7494451 , 0.9207533 , 1.0267256 , 10.9787 };
 Double_t theor_xp_pos_error[number_xp_bins] = { 92.9838 , 104.714 , 73.7316 , 35.4135 , 7.20303 , 1.56039 };
 Double_t theor_dphi_pos_error[number_dphi_bins] = { 0.00640039 , 0.01550074 , 0.016768 , 0.0153724 , 0.0136855 , 0.0163622 , 0.0100834 };
 Double_t theor_deta_pos_error[number_deta_bins] = { 0.255486 , 0.378529 , 0.343385 , 0.466079 , 0.458352 , 0.213107 };
 Double_t theor_dphi_e_gamma_pos_error[number_dphi_e_ph_bins] = { 0.00827339 , 0.0093863 , 0.01062202 , 0.0081597 , 0.0130729 , 0.0123545 };
 Double_t theor_deta_e_gamma_pos_error[number_deta_e_ph_bins] = { 0.54098 , 0.961131 , 0.898709 , 0.524189 , 0.304116 };
+
 Double_t theor_xgamma_neg_error[number_xgamma_bins] = { 0.10682828 , 0.4435552 , 0.5474051 , 0.560472 , 0.6077246 , 17.0 };
 Double_t theor_xp_neg_error[number_xp_bins] = { 119.1916 , 157.8043 , 67.6632 , 18.823 , 4.73124 , 0.579717 };
 Double_t theor_dphi_neg_error[number_dphi_bins] = { 0.00535148 , 0.012263 , 0.0185595 , 0.0192699 , 0.0200292 , 0.0217651 , 0.02344284 };
@@ -285,6 +303,43 @@ Double_t theor_deta_e_gamma_neg_error[number_deta_e_ph_bins] = { 0.323534 , 0.83
 Double_t * all_theory_cs[12] = {0, 0, 0, 0, 0, 0, theor_xgamma, theor_xp, theor_dphi, theor_deta, theor_dphi_e_gamma, theor_deta_e_gamma};
 Double_t * all_theory_pos[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_pos_error, theor_xp_pos_error, theor_dphi_pos_error, theor_deta_pos_error, theor_dphi_e_gamma_pos_error, theor_deta_e_gamma_pos_error};
 Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor_xp_neg_error, theor_dphi_neg_error, theor_deta_neg_error, theor_dphi_e_gamma_neg_error, theor_deta_e_gamma_neg_error};
+
+//Fontannaz
+/*
+Double_t font_xgamma[number_xgamma_bins] = {1.7294306, 2.832685, 4.934913, 7.821229, 15.333007, 45.400156};
+Double_t font_xp[number_xp_bins] = {344.73588, 633.82886, 368.86532, 135.94088, 27.95856, 3.03148333};
+Double_t font_deta[number_deta_bins] = {0.63377, 2.25852, 3.34801, 3.24973, 2.16528, 0.46162};
+Double_t font_dphi_e_gamma[number_dphi_e_ph_bins] = {0.019395463, 0.025020163, 0.037863148, 0.064914172, 0.098684485, 0.085195744};
+
+Double_t font_xgamma_pos[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_xp_pos[number_xp_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_deta_pos[number_deta_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_dphi_e_gamma_pos[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+
+Double_t font_xgamma_neg[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_xp_neg[number_xp_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_deta_neg[number_deta_bins] = {0, 0, 0, 0, 0, 0};
+Double_t font_dphi_e_gamma_neg[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+*/
+//For the meanwhile mean variables are just center between predictions of pt 2.5 and pt 0.5 so the errors would be semmetric - boundaries
+Double_t font_xgamma[number_xgamma_bins] = {1.77864105, 2.9388162475, 5.29177594, 8.597595365, 17.44771155, 48.0353915};
+Double_t font_xp[number_xp_bins] = {372.92281, 699.69313, 417.862304, 146.5044075, 29.5121153335, 3.060679665};
+Double_t font_deta[number_deta_bins] = {0.8041835715, 2.9169913569999997, 3.6937328569999996, 3.336542057, 2.2211529715, 0.4495153855};
+Double_t font_dphi_e_gamma[number_dphi_e_ph_bins] = {0.019395463, 0.025020163, 0.037863148, 0.064914172, 0.098684485, 0.085195744};
+
+Double_t font_xgamma_pos[number_xgamma_bins] = {0.049210449999999906, 0.10613124750000003, 0.3568629400000001, 0.7763663649999994, 2.114704549999999, 2.6352355000000003};
+Double_t font_xp_pos[number_xp_bins] = {28.18692999999996, 65.86427000000003, 48.996984, 10.563527499999992, 1.5535553335000003, 0.029196334999999962};
+Double_t font_deta_pos[number_deta_bins] = {0.17041357150000003, 0.6584713570000003, 0.34572285700000016, 0.08681205699999994, 0.055872971499999924, -0.0121046145};
+Double_t font_dphi_e_gamma_pos[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+
+Double_t font_xgamma_neg[number_xgamma_bins] = {0.04921045000000013, 0.10613124750000003, 0.3568629400000001, 0.7763663650000003, 2.114704550000001, 2.6352355000000003};
+Double_t font_xp_neg[number_xp_bins] = {28.186930000000018, 65.86427000000003, 48.996984, 10.56352750000002, 1.5535553335000003, 0.029196334999999962};
+Double_t font_deta_neg[number_deta_bins] = {0.17041357150000003, 0.6584713569999998, 0.3457228569999997, 0.08681205699999994, 0.055872971499999924, -0.0121046145};
+Double_t font_dphi_e_gamma_neg[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+
+Double_t * all_theory_cs_font[12] = {0, 0, 0, 0, 0, 0, font_xgamma, font_xp, 0, font_deta, font_dphi_e_gamma, 0};
+Double_t * all_theory_cs_font_pos[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos, font_xp_pos, 0, font_deta_pos, font_dphi_e_gamma_pos, 0};
+Double_t * all_theory_cs_font_neg[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg, font_xp_neg, 0, font_deta_neg, font_dphi_e_gamma_neg, 0};
  
 void dout() 
 {
