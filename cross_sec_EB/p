@@ -12,19 +12,18 @@ echo compiling $EXE
 rm -f $EXE *.o
 
 echo "g++ -std=gnu++0x -o $EXE $SOURCE `root-config --cflags` `root-config --libs` `gsl-config --cflags` `gsl-config --libs` -lMinuit -lMathMore"
-g++ -o $EXE $SOURCE -I/diskmnt/b/huettmaa/CodeTim/lib/GSL/include  -std=gnu++0x `root-config --cflags` `root-config --libs` `gsl-config --libs` -lMinuit -L/diskmnt/b/huettmaa/CodeTim/lib/GSL/lib 
+g++ -o $EXE $SOURCE -I/diskmnt/b/huettmaa/CodeTim/lib/GSL/include  -std=gnu++0x `root-config --cflags` `root-config --libs` `gsl-config --libs` -lMinuit -L/diskmnt/b/huettmaa/CodeTim/lib/GSL/lib  
 
 rm -f log_$EXE err_log_$EXE
 #systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE-
 # zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- fit+ fit- systAcc
 FAIL=0
-for i in zero 
+for i in zero
 do
     #FAIL=0€€
     echo "starting ($i)"
     ./$EXE $i $2 &
-    #./main 06e data 0 0 0 $i > /dev/null 2> /dev/null &
-    
+    #$2 - to be able to pass argument `> /dev/null 2> /dev/null &`
 done
 
 

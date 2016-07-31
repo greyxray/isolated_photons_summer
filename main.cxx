@@ -163,10 +163,20 @@ int main(int argc, char *argv[])
     	  exit(-1);
     	}
   }
+  if (argc>7)
+  {
+    PromptPhotonPlusJetDIS.q2_sufix =(TString)argv[7];//Form
+
+    if  (PromptPhotonPlusJetDIS.q2_sufix.Contains("q2_"))  PromptPhotonPlusJetDIS.q2_sufix  = "_" + PromptPhotonPlusJetDIS.q2_sufix;
+
+    if (PromptPhotonPlusJetDIS.q2_sufix.Contains("q2_lt_30"))       PromptPhotonPlusJetDIS.q2_cut_high  = 30;
+    else if  (PromptPhotonPlusJetDIS.q2_sufix.Contains("q2_gt_30")) PromptPhotonPlusJetDIS.q2_cut_low  = 30;
+  }
   if (!nodebugmode) cout << "systJetE_lt10 " << PromptPhotonPlusJetDIS.systJetE_lt10 << endl <<
-"systJetE_gt10 " << PromptPhotonPlusJetDIS.systJetE_gt10 << endl <<
-"systPhE " << PromptPhotonPlusJetDIS.systPhE << endl <<
-"systElE " << PromptPhotonPlusJetDIS.systElE << endl;
+                            "systJetE_gt10 " << PromptPhotonPlusJetDIS.systJetE_gt10 << endl <<
+                            "systPhE " << PromptPhotonPlusJetDIS.systPhE << endl <<
+                            "systElE " << PromptPhotonPlusJetDIS.systElE << endl << 
+                            "q2_sufix " << PromptPhotonPlusJetDIS.q2_sufix << endl;
   //systdZfit = 1;//
   //systAcc = 1.;//
   PromptPhotonPlusJetDIS.Begin();

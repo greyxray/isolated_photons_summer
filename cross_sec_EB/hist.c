@@ -186,8 +186,6 @@ void Hist::Init()
     f_unity->SetLineWidth(1);
     f_unity->SetLineColor(32);
 
-    TString s_path2 = "../my_";
-    TString s_method = "_test_zero";
     //TString s_method = "_test_systElE-";//"_q2etapheph_rew_n.root"; //? 010715
     //TString s_method = "_test_systElE+";
     //TString s_method = "_test_systJetE+";// touch output_systJetE+.txt; ./p cross_sec >  output_systJetE+.txt
@@ -206,24 +204,28 @@ void Hist::Init()
     set_hist_atributes(5,  "h_phjet_deta_el_ph_true", "Photon_with_jet", "#Delta#eta_{e,#gamma}",  -4.5, 0., 0.0, kFALSE, 1);
     set_hist_atributes(6,  "h_deltaz", "Photon_with_jet", "<#delta z>", 0, 1.5, 0.1, kFALSE, 10);//g_index_deltaz
     
-    TString s_process = "_test_zero.root"; 
-    s_process.Form("_test_" + correctiontype + ".root");
+    TString s_process;// = "zero"; 
+    TString s_path = "../my_";
+    s_process.Form(correctiontype );
     {
         TString s_period[n_periods] = {"0405e", "06e", "0607p"};
         TFile *file[n_periods][4];
 
-        TString s_path = "../my_";//"../my_"    ../../isolated_photons/
         selectedoutput << str_selectedoutput <<endl;
         //***********************
         //    READING FROM DATA
         //***********************
         for(Int_t p = 0; p < n_periods; p++) 
         {
-            file[p][0] =  new TFile(s_path + "data" + s_period[p] + "_test_zero.root", "READ");//s_path2 + "data" + s_periods[i] + "_test.root"
-            file[p][1] =  new TFile(s_path + "mc_bg_norad" + s_period[p] + s_process, "READ");
-            file[p][2] =  new TFile(s_path + "mc_bg_rad" + s_period[p] + s_process, "READ");
+            file[p][0] =  new TFile(s_path + "data"         + s_period[p] + "_test_" + "zero"    + q2_cut + ".root", "READ");
+            file[p][1] =  new TFile(s_path + "mc_bg_norad"  + s_period[p] + "_test_" + s_process + q2_cut + ".root", "READ");
+            file[p][2] =  new TFile(s_path + "mc_bg_rad"    + s_period[p] + "_test_" + s_process + q2_cut + ".root", "READ");
             if(s_period[p] != "0607p") 
-                file[p][3] =  new TFile(s_path + "mc_prph" + s_period[p] + s_process, "READ");
+                file[p][3] =  new TFile(s_path + "mc_prph"  + s_period[p] + "_test_" + s_process + q2_cut + ".root", "READ");
+            dout("READING THE FILES: ", s_path + "data"         + s_period[p] + "_test_" + "zero"    + q2_cut + ".root", "\n\t",  
+                                        s_path + "mc_bg_norad"  + s_period[p] + "_test_" + s_process + q2_cut + ".root", "\n\t", 
+                                        s_path + "mc_bg_rad"    + s_period[p] + "_test_" + s_process + q2_cut + ".root", "\n\t", 
+                                        s_path + "mc_prph"      + s_period[p] + "_test_" + s_process + q2_cut + ".root");
 
             for(Int_t i = 0; i < n_hist; i++)
             {
@@ -265,7 +267,8 @@ void Hist::Init()
                 }
             }
         }
-
+        dout("Controled exit");
+        //exit(0);
         //***********************
         //    CREATING HISTOGRAMS FOR SUMMING OVER PERIODS *_sum
         //***********************
@@ -315,10 +318,6 @@ void Hist::Init()
             hist_data_sum[i]->SetMarkerSize(0.5);
             hist_data_sum[i]->Sumw2();
         }
-
-
-  
-
 
         //***********************
         //    SUM HISTOGR FOR ALL PERIODS 
@@ -505,10 +504,10 @@ void Hist::Init()
         //if (nodebugmode) cout << "AFTER  SCALING: mc QQ: " << hist_mc_sum[g_index_deltaz]->Integral() << " mc LL: " << hist_mc_rad_sum[g_index_deltaz]->Integral() << " mc bg: " << hist_mc_norad_sum[g_index_deltaz]->Integral() << " data: " << hist_data_sum [g_index_deltaz]->Integral()<<endl;
            // for(Int_t j = 0;j<10;j++)//GetNbinsX()
            //               dout("hsj=",j,")",hist_mc_sum[n_hist-1]->GetBinContent(j+1) );
+        
         //
         //rebinings as in the head
-        //
-        
+        // 
         for(Int_t i = 0; i < n_hist - 1; i++)
         {
             hist_data_sum[i] -> Rebin(hist_rebin[i]);
@@ -518,13 +517,10 @@ void Hist::Init()
             hist_mc_photon_sum[i] -> Rebin(hist_rebin[i]);
             hist_ratio[i] -> Rebin(hist_rebin[i]);
         }
-        
 
- 
         //
         //set "per bin" histograms
         //
-
         for(Int_t i = 0; i < n_hist-1; i++) 
         {
             for(Int_t l = 0; l < hist_data_sum[i]->GetNbinsX(); l++)
@@ -556,7 +552,7 @@ void Hist::Init()
     }
     //////////////////////////////////////////////////
     //
-    //             Connect Input Files
+    //             Connect Input Files Reading Data II - for the fit
     //
     //////////////////////////////////////////////////  
 
@@ -564,17 +560,12 @@ void Hist::Init()
     for(Int_t i = 0; i < n_periods; i++) 
     {
         TString s; 
-        s.Form(s_path2 + "data" + s_periods[i] + "_test_zero.root");//../data
-        //if (nodebugmode) cout<<s<<endl;
-        file_data[i] = new TFile(s, "READ");
-        s.Form(s_path2 + "mc_bg_norad" + s_periods[i] + s_process);
-        file_norad[i] = new TFile(s, "READ");
-        s.Form(s_path2 + "mc_bg_rad" + s_periods[i] + s_process);
-        file_rad[i] = new TFile(s, "READ");
-        if (s_periods[i] != "0607p") //нету такой симуляции
+        s.Form(s_path + "data"         + s_periods[i] + "_test_" + "zero"    + q2_cut + ".root");    file_data[i]    = new TFile(s, "READ");
+        s.Form(s_path + "mc_bg_norad"  + s_periods[i] + "_test_" + s_process + q2_cut + ".root");    file_norad[i]   = new TFile(s, "READ");
+        s.Form(s_path + "mc_bg_rad"    + s_periods[i] + "_test_" + s_process + q2_cut + ".root");    file_rad[i]     = new TFile(s, "READ");
+        if (s_periods[i] != "0607p") //no MC for this period
         { 
-            s.Form(s_path2 + "mc_prph" + s_periods[i] + s_process);
-            file_prph[i] = new TFile(s, "READ");
+            s.Form(s_path + "mc_prph"  + s_periods[i] + "_test_" + s_process + q2_cut + ".root");    file_prph[i]    = new TFile(s, "READ");
         }
         total_luminosity_data += lumi_data[i];
 
@@ -2030,10 +2021,6 @@ void Hist::Init()
         }// for j over cross section variables
 
     }// for i over periods
-     for(int ii=1; ii<=h_det_rad_sum[9]->GetNbinsX();ii++)
-                {
-                    if (nodebugmode) dout("-->deta ", ii, ")", h_det_rad_sum[9]->GetBinContent(ii));
-                }
     //////////////////////////////////////////////////
     //
     //             Draw attributes  //! styling

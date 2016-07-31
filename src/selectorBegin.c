@@ -71,7 +71,8 @@ void selector::Begin(/*TTree * /*tree*/)
   if(use_clustered)
     root_file_name += "_uc";
 
-  root_file_name += "_test_" + systematics_sufix + ".root"; //warning  
+  root_file_name += "_test_" + systematics_sufix + q2_sufix + ".root"; //warning  
+  cout << "Output file will be: " << root_file_name << endl;
   //  root_file_name += "_rew_q2_ybbb_eph.root"; //warning
   //  root_file_name += "_inclusive_prph_Matt_trig_thetacut_norew.root";
   //root_file_name = "test_php_signal.root";

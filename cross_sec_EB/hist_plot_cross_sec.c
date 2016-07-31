@@ -373,43 +373,6 @@ void Hist::PlotCrossSec()
         h_cross[i][1]->SetLineColor(kBlue);
         h_cross[i][2]->SetLineColor(kRed);
         h_cross[i][3]->SetLineColor(kGreen);
-        /*Setting style*/
-        /*      {
-            h_cross[i][0]->SetFillColor(41);
-            h_cross[i][0]->SetMarkerStyle(20);
-            h_cross[i][0]->SetMarkerSize(1. );
-            //h_1st_cross[i][0]->SetMarkerStyle(24);
-            //h_1st_cross[i][0]->SetMarkerSize(1.);
-            //h_1st_cross[i][0]->SetMarkerColor(kBlue);
-            //h_1st_cross[i][0]->SetLineColor(kBlue);
-            h_cross[i][1]->SetFillColor(43);
-            h_cross[i][2]->SetFillColor(46);
-            h_cross[i][3]->SetFillColor(49);
-            h_cross[i][4]->SetFillColor(41);
-            h_cross[i][4]->SetMarkerStyle(20);
-            h_cross[i][4]->SetMarkerSize(0.6);
-            //h_1st_cross[i][4]->SetMarkerStyle(24);
-            //h_1st_cross[i][4]->SetMarkerSize(1.);
-            //h_1st_cross[i][4]->SetMarkerColor(kBlue);
-            //    h_1st_cross[i][4]->SetLineColor(kBlue);
-            h_cross[i][5]->SetFillColor(43);
-            h_cross[i][6]->SetFillColor(46);
-            h_cross[i][7]->SetFillColor(49);
-
-            h_cross_copy[i][0]->SetFillColor(41);
-            h_cross_copy[i][0]->SetMarkerStyle(20);
-            h_cross_copy[i][0]->SetMarkerSize(1. );
-            h_cross_copy[i][1]->SetFillColor(43);
-            h_cross_copy[i][2]->SetFillColor(46);
-            h_cross_copy[i][3]->SetFillColor(49);
-            h_cross_copy[i][4]->SetFillColor(41);
-            h_cross_copy[i][4]->SetMarkerStyle(20);
-            h_cross_copy[i][4]->SetMarkerSize(0.6);
-            h_cross_copy[i][5]->SetFillColor(43);
-            h_cross_copy[i][6]->SetFillColor(46);
-            h_cross_copy[i][7]->SetFillColor(49);
-            }
-        */
 
         data_for_CrossectionDrawer[i] = h_cross[i][1];//stat
         data_for_CrossectionDrawer_tot_err[i] = h_cross[i][0];// full error = stat+acc+lum

@@ -1103,6 +1103,9 @@ class selector
     //   ClassDef(selector,0);
     Double_t systJetE_lt10, systJetE_lt6, systJetE_gt10, systPhE, systElE, systdZfit, systAcc;
     TString systematics_sufix;
+
+    Double_t q2_cut_low, q2_cut_high;
+    TString q2_sufix;
 };
 
 #endif
@@ -1115,6 +1118,9 @@ void selector::Init(TTree *tree, TString run_period, Bool_t b_Data, TString s_mc
 
   nodebugmode = kFALSE;
   systematics_sufix = "zero";
+  q2_sufix = "";
+  q2_cut_low =  10; 
+  q2_cut_high = 350;
   systJetE_lt10 = systJetE_gt10 = systJetE_lt6 = 1.;//0.975 1. 1.025
   systPhE = 1.;//0.98 1. 1.02 
   systElE = 1.;//0.98 1. 1.02 

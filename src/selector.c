@@ -107,7 +107,7 @@ Bool_t selector::Process()
 	Int_t Runnr_prev = 0;
 	Bool_t debugcontinue = kTRUE;
 	Int_t missed = 0;
-
+	cout<< "q2_cut_low = " << q2_cut_low << "q2_cut_high = " << q2_cut_high << endl;
 	for(Long64_t entry=0; entry<nentries && debugcontinue; entry++)
 	{
 		//      if (nodebugmode) cout << "Eventnr = " << Eventnr << ", Npart = " << Npart << endl;
@@ -156,16 +156,17 @@ Bool_t selector::Process()
 			wtx *= q2_reweighting(Mc_q2, mc_type) * systAcc - (systAcc - 1);// * y_reweighting_binbybin(Mc_y, mc_type) * eph_reweighting(mc_type); //warning
 			if (nodebugmode) cout << "q2 = " << Mc_q2 << ", wtx_q2 = " << q2_reweighting(Mc_q2, mc_type) << endl;
 		}
-		//        wtx = q2_reweighting_separately(Mc_q2, mc_type, period); //warning
-		//      if (nodebugmode) cout << "Mc_q2= " << 73.2351 << " res= " << q2_reweighting(73.2351,  mc_type, period);
-		//      if (nodebugmode) cout << "Mc_q2= " << 21.6847 << " res= " << q2_reweighting(21.6847,  mc_type, period);
-		//      if(Runnr == 56708 && Eventnr == 136113)
+		/*
+			wtx = q2_reweighting_separately(Mc_q2, mc_type, period); //warning
+			if (nodebugmode) cout << "Mc_q2= " << 73.2351 << " res= " << q2_reweighting(73.2351,  mc_type, period);
+			if (nodebugmode) cout << "Mc_q2= " << 21.6847 << " res= " << q2_reweighting(21.6847,  mc_type, period);
+			if(Runnr == 56708 && Eventnr == 136113)
+		*/
 		{   
 			//    if(Eventnr == 21334) check_cuts = kTRUE;//52258 22172
 			//    else
 			check_cuts = kFALSE;
-			//    check_cuts = kTRUE;
-			if(check_cuts) if (nodebugmode) cout << "going into " << Runnr << " " << Eventnr << endl;      
+			if(check_cuts && nodebugmode) cout << "going into " << Runnr << " " << Eventnr << endl;      
 			take_event = kTRUE;
 			take_event_trig = kTRUE;
 			here_is_prph = kFALSE;
@@ -184,9 +185,9 @@ Bool_t selector::Process()
 			det_cross_sec_bin_dphi_e_ph = -1;
 			det_cross_sec_bin_deta_e_ph = -1;
 			deltaRtrack = 999.;      
+
 			//      if(period == "all")
 			//  {
-
 			if(Runnr>=47010 && Runnr<=51245)
 				period = "04p";
 			if(Runnr>=52258 && Runnr <=57123)
@@ -195,39 +196,42 @@ Bool_t selector::Process()
 				period = "06e";
 			if(Runnr>=60005 && Runnr <= 62639)
 				period = "0607p";
-
 			//  }
 
 			if(Sincand < 1)
 			{
 				take_event = kFALSE;
-				if(check_cuts)
-					if (nodebugmode) cout << "rejected by Sincand = " << Sincand << endl;
+				if (check_cuts && nodebugmode) cout << "rejected by Sincand = " << Sincand << endl;
 			}
 			if(check_cuts)
 			{
-				for(Int_t i=0; i<Sincand; i++)
+				for(Int_t i = 0; i < Sincand; i++)
 					if (nodebugmode) cout << "electron cand " << i << ": E = " << Siecorr[i][2] * systElE << " " << Sith[i] << " " << Siq2el[i] << endl;
 			}
+
 			//
 			//electron selection
 			//
 			Int_t sinistra_electron_number = -1;//
-			Bool_t take_electron_event = kTRUE;
-			for(Int_t i=0; i<1; i++) 
+			Bool_t take_electron_event = kTRUE, continue_by_q2 = kFALSE;
+			for(Int_t i = 0; i < 1; i++) 
 			{
 				take_electron_event = kTRUE;
-				if(Siq2el[i] < 10. || Siq2el[i] > 350.)
-					take_electron_event = kFALSE;
-
-				if(Siecorr[i][2] * systElE < 10.)
+				if (Siq2el[i] < 10. || Siq2el[i] > 350.) take_electron_event = kFALSE;
+				if (Siq2el[i] < q2_cut_low || Siq2el[i] > q2_cut_high) 
 				{
 					take_electron_event = kFALSE;
-					if(check_cuts)
-						if (nodebugmode) cout << "rejected by Siecorr[0][2] = " << Siecorr[i][2] * systElE << endl;
+					continue_by_q2 = kTRUE;
+					break;
+				}
+
+				if (Siecorr[i][2] * systElE < 10.)
+				{
+					take_electron_event = kFALSE;
+					if(check_cuts && nodebugmode) cout << "rejected by Siecorr[0][2] = " << Siecorr[i][2] * systElE << endl;
 				}
 				//  
-				if(Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 180.0) //if(Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 171.9)
+				if (Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 180.0) //if(Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 171.9)
 				{
 					take_electron_event = kFALSE;
 					if(check_cuts)
@@ -248,6 +252,8 @@ Bool_t selector::Process()
 					break;
 				}
 			}
+			if (continue_by_q2) continue;
+
 			if(!take_electron_event)
 				take_event = kFALSE;
 			if(Zvtx < -40. || Zvtx > 40.) 

@@ -55,6 +55,7 @@ void ScaleZaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t));
   ofstream fout;
 
   Double_t sys_acc, sys_fit;
+  TString q2_cut;
 
   TString correctiontype, str_selectedoutput;
   ofstream selectedoutput;//Stream class to write on files

@@ -305,25 +305,39 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         t.SetFillColor(0);
         t.SetBorderSize(0);
         t.Draw();
-        fCanvas->Print(outname + "per_2_plots_of_" + Form("%d",n) + "_width_" + fCanvas->GetName() + TString(".png") );
+        fCanvas->Print(outname + "per_2_plots_of_" + Form("%d",n) + "_width_" + fCanvas->GetName() + q2_cut_global + TString(".png") );
         dout("saved canvas: ", fCanvas);
     }
     
     if(m == 1)
     {
-        TPaveText t(0.4, 0.9, 0.6, 1.0, "NDC"); // left-up
-        t.SetTextSize(0.1);
-        t.SetFillStyle(0);
+
+        TString the_title = q2_cut_global.Contains("lt_30") ? "Q^{2}<30 GeV^{2}" : "ZEUS preliminary";
+        the_title = q2_cut_global.Contains("gt_30") ? "Q^{2}>30 GeV^{2}" : the_title;
+        Double_t x1(0), y1(0), x2(1), y2(1), t_size(0.1);
+        if (q2_cut_global.Contains("30"))
+        {
+            x1 = 0.4; y1 = 0.93; x2 = 0.6; y2 = 1.0; t_size = 0.07;
+        }
+        else
+        {
+            x1 = 0.4; y1 = 0.9; x2 = 0.6; y2 = 1.0;
+        }
+        TPaveText t(x1, y1, x2, y2, "NDC"); // left-up
+        t.SetTextSize(t_size);
+        t.SetFillStyle(0);//0 - transparent 3001 - dashed
         t.SetTextAlign(22);//center bottom
-        /*t.SetX1(0.4);
-        t.SetX2(0.6);
-        t.SetY1(0.90);
-        t.SetY2(1.03);*/
-        t.AddText("ZEUS preliminary");
+            //t.SetX1(0.4);
+            //t.SetX2(0.6);
+            //t.SetY1(0.90);
+            //t.SetY2(1.03);
+        t.AddText(the_title);
         t.SetFillColor(0);
         t.SetBorderSize(0);
-        if (!for_paper) t.Draw();
-        fCanvas->Print(outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + TString(".png") );// here we can simply name with variablename
+        //if (!for_paper) 
+        
+        t.Draw();
+        fCanvas->Print(outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + q2_cut_global + TString(".png") );// here we can simply name with variablename
         dout("saved canvas: ", fCanvas);
     }
 
@@ -357,7 +371,7 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         dout("text size:", textsize);
         //void SetTextSize(Float_t tsize = 1)
         t.Draw();
-        fCanvas->Print(outname + "per_6_plots_" + Form("%d",n) + "_width_"  + fCanvas->GetName() + TString(".png") );
+        fCanvas->Print(outname + "per_6_plots_" + Form("%d",n) + "_width_"  + fCanvas->GetName() + q2_cut_global + TString(".png") );
         dout("saved canvas: ", fCanvas);
     }
     
@@ -411,16 +425,33 @@ void CrossectionDrawer::AdjustPad()
     fPad->SetBorderMode(0);
     fPad->SetFillColor(kWhite);
     fPad->SetGrid(0, 0);
-    sign_window(fPad, fWindowControl, cs_x_names[fIndex] , cs_y_names[fIndex], "", "large");
+    sign_window(fPad, fWindowControl, cs_x_names[fIndex] , cs_y_names[fIndex],  "", "large");
  
 
     //for m = 2
     if (!for_paper)
     {
-        if(fPad->GetLogy() || fVariableName.Contains("deta"))
-            fWindowControl->GetYaxis()->SetTitleOffset(1.1);
-        else
-                fWindowControl->GetYaxis()->SetTitleOffset(1.4);
+        if (!(m == 1 && n == 1))
+        {
+            if(fPad->GetLogy() || fVariableName.Contains("deta"))
+                fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+            else
+                    fWindowControl->GetYaxis()->SetTitleOffset(1.4);
+        }
+        else 
+        {
+            if(fPad->GetLogy() || fVariableName.Contains("deta"))
+                fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+            else
+            {
+                //fWindowControl->GetYaxis()->SetTitleOffset(1.5);
+                debug << "xaxis:"<< fWindowControl->GetXaxis()->GetTitleOffset() << endl;
+                fWindowControl->GetXaxis()->SetTitleOffset(1.5);
+            }
+        }
+        
+
+
     }
     else
     {

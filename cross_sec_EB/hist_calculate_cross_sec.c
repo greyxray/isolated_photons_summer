@@ -308,6 +308,7 @@ void Hist::CalculateCrossSec(TH1D* data,
     Nqq->SetName("N_qq");
     
     //scale Nqq to data
+    if ( name.Contains("Q2") ) debug << "hist_calculate_cs:" << "\n\tdata->GetBinContent\tll_det->GetBinContent:" << endl;
     for(Int_t i = 0; i < Nqq->GetNbinsX(); i++) 
     {
         integral_data = data->GetBinContent(i+1) - fitWithLL * ll_det->GetBinContent(i+1);
@@ -327,11 +328,22 @@ void Hist::CalculateCrossSec(TH1D* data,
                  new_cont = scale_data * cont;
         if (nodebugmode) cout << "scaling: old content: " << i << " " << cont << " +- " << err << endl;
         if (nodebugmode) cout << "scaling: new content: " << i << " " << new_cont << " +- " << new_err << endl;
+
+
+        new_cont = isnan(new_cont) ? 0 : new_cont;
+        new_err = isnan(new_err) ? 0 : new_err;
+
+        //if ( name.Contains("Q2") )  debug << "\t\t" << i << ")" << data->GetBinContent(i+1) << "\t" << ll_det->GetBinContent(i+1) << cont << " +- " << err << isnan(new_cont) << " +- " << isnan(new_err) << endl;
+        
         Nqq->SetBinContent(i+1, new_cont);
         Nqq->SetBinError(i+1, err);
         if (name.Contains("xgamma") && nodebugmode) cout<< i<<") " <<"Nqq = "<<Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
     }
-
+    if ( false && name.Contains("Q2") ) 
+    {
+    dout("Controled exit");
+    exit(0);
+    }
     //scale Nqq by parameter
     if (nodebugmode) cout << "--> scaling by fit param" << endl;
     for(Int_t i = 0; i < Nqq->GetNbinsX(); i++) 
@@ -339,18 +351,14 @@ void Hist::CalculateCrossSec(TH1D* data,
         Double_t cont = Nqq->GetBinContent(i+1);
         Double_t err  = Nqq->GetBinError(i+1);
         if (nodebugmode) cout << "scaling: old content: " << i << " " << cont << " +- " << err << ", param = " << param[i] << " +- " << param_err[i] << endl;
-        //if (name.Contains("deta_e_ph"))
+       
         Double_t new_err = TMath::Sqrt(cont*cont*param_err[i]*param_err[i] + err*err*param[i]*param[i]);
         Double_t new_cont = cont * param[i];
         if (nodebugmode) cout << "scaling: old content: " << i << " " << new_cont << " +- " << new_err << endl;
-        /*if (!nodebugmode && name.Contains("deta_e_ph") && i == 0) //s_var[i]=="deta_e_ph"
-        {
-          dout("bin_width: ",bin_width,"\n",
-           "ll_plus_qq: ", ll_plus_qq,"\n",
-           "ll_events: ", ll_events,"\n",
-           "(ll_plus_qq - ll_events) / C_acc: ", (ll_plus_qq - ll_events) / C_acc ,"\n",
-           "(C_ll_acc!=0)*ll_events/C_ll_acc: ", (C_ll_acc!=0)*ll_events/C_ll_acc );
-        }*/
+
+        new_cont = isnan(new_cont) ? 0 : new_cont;
+        new_err = isnan(new_err) ? 0 : new_err;
+
         Nqq->SetBinContent(i+1, new_cont);
         Nqq->SetBinError(i+1, new_err);
         if (nodebugmode && name.Contains("deta_e_ph")) cout<< "After" << i<<") " <<" Nqq = "<< Nqq->GetBinContent(i+1) <<" +/- "<< Nqq->GetBinError(i+1)<<endl;
@@ -504,6 +512,16 @@ void Hist::CalculateCrossSec(TH1D* data,
         int q1 = 1 + ((1<0)*1);
         cout<<q1<<endl;
       }
+
+
+      //No nan objects! Forced to zero
+      cross_sec = isnan(cross_sec) ? 0 : cross_sec;
+      prph_cross_sec = isnan(prph_cross_sec) ? 0 : prph_cross_sec;
+      ll_cross_sec = isnan(ll_cross_sec) ? 0 : ll_cross_sec;
+      prph_mc_cross_sec = isnan(prph_mc_cross_sec) ? 0 : prph_mc_cross_sec;
+      ll_mc_cross_sec = isnan(ll_mc_cross_sec) ? 0 : ll_mc_cross_sec;
+      cross_sec_copy = isnan(cross_sec_copy) ? 0 : cross_sec_copy;
+      prph_cross_sec_copy = isnan(prph_cross_sec_copy) ? 0 : prph_cross_sec_copy;
           
 
       //statistical errors
@@ -535,6 +553,14 @@ void Hist::CalculateCrossSec(TH1D* data,
       err = TMath::Sqrt(err1*err1 + err2*err2 + err3*err3);//full
       err_copy = TMath::Sqrt(err1_copy*err1_copy + err2_copy*err2_copy + err3_copy*err3_copy);//full
 
+      //No nan objects! Forced to zero
+      err1 = isnan(err1) ? 0 : err1;
+      err1_copy = isnan(err1_copy) ? 0 : err1_copy;
+      err2 = isnan(err2) ? 0 : err2;
+      err2_copy = isnan(err2_copy) ? 0 : err2_copy;
+      err = isnan(err) ? 0 : err;
+      err_copy = isnan(err_copy) ? 0 : err_copy;
+
       //error propagation for LL cs
           Double_t err1_ll, err2_ll, err3_ll, err_ll;
           //statistic errors
@@ -546,6 +572,10 @@ void Hist::CalculateCrossSec(TH1D* data,
           err3_ll = 0.;   
           err_ll = TMath::Sqrt(err1_ll*err1_ll + err2_ll*err2_ll + err3_ll*err3_ll);//full
 
+          err1_ll = isnan(err1_ll) ? 0 : err1_ll;
+          err2_ll = isnan(err2_ll) ? 0 : err2_ll;
+          err_ll = isnan(err_ll) ? 0 : err_ll;
+
         if (nodebugmode && name.Contains("deta_e_ph") && i == 0) //s_var[i]=="deta_e_ph"
         {
           dout("bin_width: ",bin_width,"\n",
@@ -554,6 +584,7 @@ void Hist::CalculateCrossSec(TH1D* data,
            "(n_qq - ll_events) / C_acc: ", (n_qq - ll_events) / C_acc ,"\n",
            "(C_ll_acc!=0)*ll_events/C_ll_acc: ", (C_ll_acc!=0)*ll_events/C_ll_acc );
         }
+
 
 
         //cross sections set-up
@@ -584,22 +615,22 @@ void Hist::CalculateCrossSec(TH1D* data,
 
         //ratios
         res[4]->SetBinContent(i+1, 0);
-        res[4]->SetBinError(i+1, err/cross_sec);
+        res[4]->SetBinError(i+1, isnan(err/cross_sec) ? 0 : err/cross_sec);
         res[5]->SetBinContent(i+1, 0);
-        res[5]->SetBinError(i+1, err1/cross_sec);
+        res[5]->SetBinError(i+1, isnan(err1/cross_sec) ? 0 : err1/cross_sec);
         res[6]->SetBinContent(i+1, 0);
-        res[6]->SetBinError(i+1, err2/cross_sec);
+        res[6]->SetBinError(i+1, isnan(err2/cross_sec) ? 0 : err2/cross_sec);
         res[7]->SetBinContent(i+1, 0);
-        res[7]->SetBinError(i+1, err3/cross_sec);
+        res[7]->SetBinError(i+1, isnan(err3/cross_sec) ? 0 : err3/cross_sec);
 
         res_copy[4]->SetBinContent(i+1, 0);
-        res_copy[4]->SetBinError(i+1, err_copy/cross_sec_copy);
+        res_copy[4]->SetBinError(i+1, isnan(err_copy/cross_sec_copy) ? 0 : err_copy/cross_sec_copy);
         res_copy[5]->SetBinContent(i+1, 0);
-        res_copy[5]->SetBinError(i+1, err1_copy/cross_sec_copy);
+        res_copy[5]->SetBinError(i+1, isnan(err1_copy/cross_sec_copy) ? 0 : err1_copy/cross_sec_copy);
         res_copy[6]->SetBinContent(i+1, 0);
-        res_copy[6]->SetBinError(i+1, err2_copy/cross_sec_copy);
+        res_copy[6]->SetBinError(i+1, isnan(err2_copy/cross_sec_copy) ? 0 : err2_copy/cross_sec_copy);
         res_copy[7]->SetBinContent(i+1, 0);
-        res_copy[7]->SetBinError(i+1, err3_copy/cross_sec_copy);
+        res_copy[7]->SetBinError(i+1, isnan(err3_copy/cross_sec_copy) ? 0 : err3_copy/cross_sec_copy);
 
         //      h_Acc->SetBinContent(i+1, 1./C_acc);
         //      h_Acc->SetBinError(i+1, C_err/(C_acc*C_acc));

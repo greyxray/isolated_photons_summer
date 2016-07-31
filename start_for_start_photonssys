@@ -1,10 +1,14 @@
 #!/bin/sh
 FAIL=0
 #zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
-for i in zero
+for i in zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
 do
-    ./start_photonssys $i &
-    echo "starting ($i)"    
+	for j in q2_lt_30 q2_gt_30 
+	do 
+	    ./start_photonssys $i $j &
+	    echo "starting ($i)"  
+	    wait || echo "an error occured"
+	done
 done
 
 for job in `jobs -p`

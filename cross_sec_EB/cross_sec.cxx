@@ -1,5 +1,6 @@
 #include "cross_sec.h"
 
+TString q2_cut_global = "_q2_lt_30";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
 TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
@@ -34,6 +35,7 @@ unsigned int fitWithLLinBg = 0;
     //unsigned int QQfit = 0;
     //unsigned int fitWithLL = 0; - пока что нигде не влияет; оставлю 0 так как не входит в виде отдельного члена
     //unsigned int fitWithLLinBg = 0; - пока что нигде не влияет;
+ofstream debug;
 
 #include "CrossectionDrawer.h"
 #include "hist.c"
@@ -302,29 +304,35 @@ void Chi2StatisticsCheck(Double_t* array, Int_t number_of_bins)
 
   
 int main(int argc, char *argv[])
-{  
-
+{ 
+    if (q2_cut_global.Contains("gt")) 
+            all_syst = {et_sys_q2_gt_30, eta_sys_q2_gt_30, Q2_sys_q2_gt_30, x_sys_q2_gt_30, et_jet_sys_q2_gt_30, eta_jet_sys_q2_gt_30, xgamma_sys_q2_gt_30, xp_sys_q2_gt_30, dphi_sys_q2_gt_30, deta_sys_q2_gt_30, dphi_e_ph_sys_q2_gt_30, deta_e_ph_sys_q2_gt_30};
+    else if (q2_cut_global.Contains("lt"))
+            all_syst = {et_sys_q2_lt_30, eta_sys_q2_lt_30, Q2_sys_q2_lt_30, x_sys_q2_lt_30, et_jet_sys_q2_lt_30, eta_jet_sys_q2_lt_30, xgamma_sys_q2_lt_30, xp_sys_q2_lt_30, dphi_sys_q2_lt_30, deta_sys_q2_lt_30, dphi_e_ph_sys_q2_lt_30, deta_e_ph_sys_q2_lt_30};
+    
+    hist.q2_cut.Form(q2_cut_global);
+    debug.open("debug" + q2_cut_global + ".txt");
     if((argc >= 2)) 
     {
         hist.correctiontype.Form((TString)argv[1]);//systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc
-        if((argc == 2) && (TString)argv[1] != "fit+" && (TString)argv[1] != "fit-") hist.str_selectedoutput.Form("output_selected_" + (TString)argv[1] + ".txt");//Stream class to write on files
+        if((argc == 2) && (TString)argv[1] != "fit+" && (TString)argv[1] != "fit-") hist.str_selectedoutput.Form("output_selected_" + (TString)argv[1] + hist.q2_cut + ".txt");//Stream class to write on files
         if((argc == 2) && (TString)argv[1] != "fit+" && (TString)argv[1] != "fit-") hist.selectedoutput.open( hist.str_selectedoutput);
         dout("GO!", (TString)argv[1]);
-        if ((TString)argv[1] == "fit+")
+        if ((TString)argv[1] == "fit+")// change the upper range on delta Z for fit systematics
         {
-            hist.str_selectedoutput.Form("output_selected_zero" + (TString)argv[1] + ".txt");//Stream class to write on files
+            hist.str_selectedoutput.Form("output_selected_zero" + (TString)argv[1] + hist.q2_cut + ".txt");//Stream class to write on files
             hist.selectedoutput.open( hist.str_selectedoutput);
             hist.correctiontype.Form("zero");
-            hist.sys_fit = 1.0;
+            hist.sys_fit = 1.0;// upper range on delta Z
             sys_fit = 1.0;
             dout("herw", (TString)argv[2], hist.sys_fit);
         }
-        else if ((TString)argv[1] == "fit-")
+        else if ((TString)argv[1] == "fit-")// change the upper range on delta Z for fit systematics
         {
-            hist.str_selectedoutput.Form("output_selected_zero" + (TString)argv[1] + ".txt");//Stream class to write on files
+            hist.str_selectedoutput.Form("output_selected_zero" + (TString)argv[1] + hist.q2_cut + ".txt");//Stream class to write on files
             hist.selectedoutput.open( hist.str_selectedoutput);
             hist.correctiontype.Form("zero");
-            sys_fit = 0.6;
+            sys_fit = 0.6;// upper range on delta Z
             hist.sys_fit = 0.6;       
         }
     }
@@ -334,6 +342,7 @@ int main(int argc, char *argv[])
         hist.str_selectedoutput.Form("output_selected_zero.txt");//Stream class to write on files
         hist.selectedoutput.open( hist.str_selectedoutput);
     }
+
     hist.Init();
     gROOT->SetStyle("Plain");
     gStyle->SetTitleBorderSize(0);
@@ -696,6 +705,7 @@ int main(int argc, char *argv[])
     //          Fit in bins of q2
     //
     ///////////////////////////////////////////////////////
+    debug << "Q2 comparison h_deltaz_q2_data_sum[i]" << endl;
     for(Int_t i=0; i<number_Q2bins; i++)
     { 
         MakeCorrection(hist.h_deltaz_q2_prph_sum[i], hist.h_deltaz_q2_norad_sum[i]);
@@ -707,6 +717,8 @@ int main(int argc, char *argv[])
         hist_mc_photon[0] = (TH1D*)hist_mc_rad[0]->Clone(); hist_mc_photon[0]->SetName("photon");
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
+
+        debug << i << ")" << hist_data[0]->GetSum() << endl;
 
 
         if (QQfit == 0)
@@ -1474,23 +1486,6 @@ int main(int argc, char *argv[])
         hist_mc_photon[0]->Add(hist_mc[0], hist.total_luminosity_data/hist.lumi_mc_prph);
         hist_mc_photon[0]->Scale(hist_data[0]->GetSum()/hist_mc_photon[0]->GetSum());
 
-        
-        //      hist_mc_norad[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc_norad[0]->GetSum());
-        /*was
-            hist_mc_norad[0]->Scale(hist_data[0]->GetSum()/hist_mc_norad[0]->GetSum());
-            
-            if (QQfit == 0)
-            {
-                hist_mc[0]->Scale((hist_data[0]->GetSum() - hist_mc_rad[0]->GetSum())/hist_mc[0]->GetSum());
-                hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
-            }
-            else{
-                hist.h_deltaz_dphi_prph_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() ) / hist.h_deltaz_dphi_prph_sum[i]->GetSum());
-            
-                hist_mc[0]->Scale((hist_data[0]->GetSum() )/hist_mc[0]->GetSum());
-            }
-            hist.h_deltaz_dphi_norad_sum[i]->Scale((hist.h_deltaz_dphi_data_sum[i]->GetSum() - QQfit * hist.h_deltaz_dphi_rad_sum[i]->GetSum()) / hist.h_deltaz_dphi_norad_sum[i]->GetSum());
-        */
         if (QQfit == 0)
         {
             //эта переменная все равно в фите не будет учавствовать. но для построения контрольного графика это не верно.
@@ -2343,6 +2338,7 @@ int main(int argc, char *argv[])
     if (nodebugmode) cout << "Finish" << endl;
     f->Write();
     hist.selectedoutput.close();
+    debug.close();
     cerr << "Finish" << endl;
     return 0;
 }
