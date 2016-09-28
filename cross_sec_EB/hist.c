@@ -205,7 +205,7 @@ void Hist::Init()
     set_hist_atributes(6,  "h_deltaz", "Photon_with_jet", "<#delta z>", 0, 1.5, 0.1, kFALSE, 10);//g_index_deltaz
     
     TString s_process;// = "zero"; 
-    TString s_path = "../my_";
+    TString s_path = "../root_files/my_";
     s_process.Form(correctiontype );
     {
         TString s_period[n_periods] = {"0405e", "06e", "0607p"};

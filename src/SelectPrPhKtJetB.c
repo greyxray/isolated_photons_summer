@@ -77,54 +77,45 @@ Bool_t selector::SelectPrPhKtJetB(Int_t i_true_rad_photon)
         if (zu_fmax <= 0.05) 
         {
             take_prph = kFALSE;
-            if(check_cuts)
-                if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because fmax = " << zu_fmax << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because fmax = " << zu_fmax << endl;
         } 
         if (zu_deltaz < 0.0)   
         {
             take_prph = kFALSE;
-            if(check_cuts)
-                if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because deltaz = " << zu_deltaz << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because deltaz = " << zu_deltaz << endl;
         } 
-
         // Phase space cuts
         if (zu_eta < -0.7)     
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because eta = " << zu_eta << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because eta = " << zu_eta << endl;
         }
         if (zu_eta > 0.9)     
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because eta = " << zu_eta << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because eta = " << zu_eta << endl;
         }
         if (zu_et_corr < 4.)  
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because et_corr = " << zu_et_corr << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because et_corr = " << zu_et_corr << endl;
         }
         if (zu_et_corr > 15.)  
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because et_corr = " << zu_et_corr << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because et_corr = " << zu_et_corr << endl;
         }
         //  Photon EMC Energy / Photon Total Energy > 0.90
         if (Kzufoemcfrac[zloop] < 0.9)
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because emcfrac = " << Kzufoemcfrac[zloop] << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because emcfrac = " << Kzufoemcfrac[zloop] << endl;
         }
         // Only trackless zufos:
         if (Kzufotype[zloop] != 31)   
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because zufo type = " << Kzufotype[zloop] << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because zufo type = " << Kzufotype[zloop] << endl;
         }
         // track isolation
         //      Int_t ntrack=Tracks(zu_phi, zu_eta, 2, min_dist);
@@ -132,29 +123,23 @@ Bool_t selector::SelectPrPhKtJetB(Int_t i_true_rad_photon)
         for (Int_t i = 0; i < Trk_ntracks; i++)
         {
             TVector3 tr;	      
-            tr.SetXYZ(Trk_px[i],Trk_py[i],Trk_pz[i]);
-            if (tr.Mag()<0.25) continue;
+            tr.SetXYZ(Trk_px[i], Trk_py[i], Trk_pz[i]);
+            if (tr.Mag() < 0.25) continue;
             // Calculating phi, eta of track
-            Double_t ddr = (tr.PseudoRapidity()-zu_eta)*(tr.PseudoRapidity()-zu_eta);
+            Double_t       ddr = pow(tr.PseudoRapidity() - zu_eta, 2);
             Double_t delta_phi = tr.Phi() - zu_phi;
-            if(delta_phi > TMath::Pi())
-              delta_phi -= 2.*TMath::Pi();
-            if(delta_phi < -TMath::Pi())
-               delta_phi += 2.*TMath::Pi();
-            ddr += delta_phi * delta_phi;
-            ddr = TMath::Sqrt(ddr);
-            if (ddr < 0.2)
-              {
-                ntrack++;
-              }
-            if(check_cuts) if (nodebugmode) cout << "track # " << i << " " << tr.Eta() << " " << tr.PseudoRapidity() <<  " " 
-                             << zu_eta << ", phi: " << tr.Phi() << " " << zu_phi << " " << ddr << " " << ntrack << endl;
+            if (delta_phi > TMath::Pi()) delta_phi -= 2.*TMath::Pi();
+            if (delta_phi < -TMath::Pi()) delta_phi += 2.*TMath::Pi();
+            ddr = TMath::Sqrt(ddr + pow(delta_phi, 2));
+
+            if (ddr < 0.2) ntrack++;
+            if (check_cuts && nodebugmode) cout << "track # " << i << " " << tr.Eta() << " " << tr.PseudoRapidity() <<  " " 
+                                                << zu_eta << ", phi: " << tr.Phi() << " " << zu_phi << " " << ddr << " " << ntrack << endl;
         }
-        if (ntrack>0)  
+        if (ntrack > 0)  
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because ntrack = " << ntrack << endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because ntrack = " << ntrack << endl;
         }
 
         // Fraction of zufo energy to jet energy
@@ -162,8 +147,8 @@ Bool_t selector::SelectPrPhKtJetB(Int_t i_true_rad_photon)
         if ((Kzufos[zloop][3] * systPhE / zu_jetEnergy) < 0.9)
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because e_phot/e_jet_cont_phot = " << (Kzufos[zloop][3] * systPhE/zu_jetEnergy)<< endl;
+            if (check_cuts && nodebugmode) cout << "photon with eta " << zu_eta << " rejected, because e_phot/e_jet_cont_phot = " 
+                                                << (Kzufos[zloop][3] * systPhE/zu_jetEnergy)<< endl;
         }
 
         //dR cut:
@@ -171,34 +156,32 @@ Bool_t selector::SelectPrPhKtJetB(Int_t i_true_rad_photon)
                                     Kpjets[Kzufoidjet[zloop]-1][1],
                                     Kpjets[Kzufoidjet[zloop]-1][2]);
 
-        Double_t  dR_jet = (jet_contained_prph.Eta() - zu_eta) * (jet_contained_prph.Eta() - zu_eta);
+        Double_t   dR_jet = pow(jet_contained_prph.Eta() - zu_eta, 2);
         Double_t dphi_jet = jet_contained_prph.Phi() - zu_phi;
-        if(dphi_jet > TMath::Pi())
-            dphi_jet = dphi_jet - 2.*TMath::Pi();
-        if(dphi_jet < -TMath::Pi())
-            dphi_jet = dphi_jet + 2.*TMath::Pi();
-        dR_jet += dphi_jet*dphi_jet;
-        dR_jet = TMath::Sqrt(dR_jet);
-        if(check_cuts) if (nodebugmode) cout << "cont jet: " << jet_contained_prph.Phi() << " " << jet_contained_prph.Eta() << ", photon: " << zu_phi<< " " << zu_eta  
-                         << " dR = " << dR_jet << endl;
+        if (dphi_jet >  TMath::Pi()) dphi_jet = dphi_jet - 2. * TMath::Pi();
+        if (dphi_jet < -TMath::Pi()) dphi_jet = dphi_jet + 2. * TMath::Pi();
+        dR_jet = TMath::Sqrt(dR_jet + pow(dphi_jet, 2));
+
+        if (check_cuts && nodebugmode) cout << "cont jet: " << jet_contained_prph.Phi() << " " 
+                                            << jet_contained_prph.Eta() << ", photon: " << zu_phi
+                                            << " " << zu_eta << " dR = " << dR_jet << endl;
         if(dR_jet > 0.2)
         {
             take_prph = kFALSE;
-            if(check_cuts)
-              if (nodebugmode) cout << "candidate with eta " << zu_eta << " rejected by dR_jet = " << dR_jet << endl;
+            if (check_cuts && nodebugmode) cout << "candidate with eta " << zu_eta << " rejected by dR_jet = " << dR_jet << endl;
         }
 
         if(take_prph)
         {
             here_is_prph = kTRUE;
             if(zu_et_corr > max_et_candidate)
-              {
+            {
                 jet_energy_frac = Kzufos[zloop][3] * systPhE/zu_jetEnergy;
                 cell_energy_frac = Kzufoemcfrac[zloop];
                 max_et_candidate = zu_et_corr;
                 max_et_candidate_uncorr = zu_et_uncorr;
                 max_et_candidate_number = zloop;
-                //	      candidate_jet_number = jloop;
+
                 v_uncorr_prompt_photon->SetPxPyPzE(Kzufos[zloop][0], 
                                                   Kzufos[zloop][1], 
                                                   Kzufos[zloop][2], 
@@ -216,42 +199,11 @@ Bool_t selector::SelectPrPhKtJetB(Int_t i_true_rad_photon)
                 glob_deltaz = myKzufodeltaz[zloop];
                 glob_fmax = stretch_calib(Kzufofmax[zloop], "zu", "fmax", v_corr_prompt_photon->Eta(), v_corr_prompt_photon->Et());
                 glob_deltaz = stretch_calib(myKzufodeltaz[zloop], "zu", "deltaz", v_corr_prompt_photon->Eta(), v_corr_prompt_photon->Et());
-              }
-            if(check_cuts)
-              if (nodebugmode) cout << "====\n HERE IS PRPH CANDIDATE WITH ETA = " << zu_eta << ", it is zufo # " << max_et_candidate_number << "\n====" << endl;
-            phot_count++;
-        }
-        // To select the most energetic zufo of this event (in case if more than 1 zufo)
-        /*  
-            if (zu_et_corr<zu_et_event){
-              take_prph = kFALSE;
             }
-            zu_et_event=zu_et_corr;
-            index_RECO_phot = i;
-
-            // Filling gamma candidate variables
-            ZuCand.InitNull();
-            ZuCand.SetE(Kzufos[zloop][3]);
-            ZuCand.momentum.SetXYZ(Kzufos[zloop][0],Kzufos[zloop][1],Kzufos[zloop][2]);
-            //    if (nodebugmode) cout<<ZuCand.momentum.Perp()<<"  "<<zu_pt<<endl;
-            ZuCand.SetECorr(zu_e_corr);
-            ZuCand.SetEtCorr(zu_et_corr);
-            ZuCand.SetPt(zu_pt);
-            ZuCand.SetEta(zu_eta);
-            ZuCand.SetTheta(zu_theta);
-            ZuCand.SetFmax(zu_fmax);
-            ZuCand.SetDeltaz(zu_deltaz);
-            ZuCand.SetPhi(zu_phi);
-            ZuCand.SetBPREmips(emip);
-            ZuCand.SetEMCfrac(Kzufoemcfrac[zloop]);
-            ZuCand.SetZufotype(Kzufotype[zloop]);
-            ZuCand.SetJetEnergy(zu_jetEnergy);
-            ZuCand.SetJetFrac(ZuCand.e/ZuCand.jetEnergy);
-            ZuCand.SetTracks(ntrack);
-            ZuCand.SetMinDist(min_dist);
-        */    
+            if (check_cuts && nodebugmode) cout << "====\n HERE IS PRPH CANDIDATE WITH ETA = " << zu_eta << ", it is zufo # " << max_et_candidate_number << "\n====" << endl;
+            phot_count++;
+        }   
         phot_count++;
     }
-    //  if (nodebugmode) cout << "return " << here_is_prph << endl;
     return here_is_prph;
 }

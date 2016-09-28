@@ -340,7 +340,67 @@ Double_t font_dphi_e_gamma_neg[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
 Double_t * all_theory_cs_font[12] = {0, 0, 0, 0, 0, 0, font_xgamma, font_xp, 0, font_deta, font_dphi_e_gamma, 0};
 Double_t * all_theory_cs_font_pos[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos, font_xp_pos, 0, font_deta_pos, font_dphi_e_gamma_pos, 0};
 Double_t * all_theory_cs_font_neg[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg, font_xp_neg, 0, font_deta_neg, font_dphi_e_gamma_neg, 0};
- 
+
+
+// Hadronisation correction
+/*
+Double_t hadcor_et[number_etbins] = {1.09353, 0.972514,  1.32928 ,  0.890454};//{ 1 , 1 , 1 , 1 };
+Double_t hadcor_eta[number_etabins] = {1.38394 , 0.984975, 1.10861 , 0.879561};//{ 1 , 1 , 1 , 1  };
+Double_t hadcor_Q2[number_Q2bins] = {0.89262 , 1.16106 , 1.27336 , 0.94493 , 1.03603 };//{ 1 , 1 , 1 , 1 ,1};
+Double_t hadcor_x[number_xbins] = {1.26476 , 0.940754, 1.02485 , 1.14674 };//{ 1 , 1 , 1 , 1  };
+Double_t hadcor_et_jet[number_et_jetbins] = {1.50534 , 1.51189 , 1.00816 , 1.7186, 0.463681, 0.23273 };//{ 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_eta_jet[number_eta_jetbins] = {1.05113 , 0.814707, 1.01111 , 1.72364 };//{ 1 , 1 , 1 , 1  };
+Double_t hadcor_xgamma[number_xgamma_bins] = {0.244367, 0.817386, 1.38867, 3.71468, 5.09985, 0.714088};
+Double_t hadcor_xp[number_xp_bins] = {1.42, 1.10, 0.97, 0.86, 0.83, 1};//last bin manually set to 1
+Double_t hadcor_dphi[number_dphi_bins] = {0.82 , 0.96 , 1.41 , 1.26 , 1.24 , 1.12 , 1.17 };
+Double_t hadcor_deta[number_deta_bins] = {0.44, 0.91, 0.79, 1.29, 1.35, 1.34};
+Double_t hadcor_dphi_e_gamma[number_dphi_e_ph_bins] = {1.32, 1.66, 1.89, 1.14, 0.95, 0.62};
+Double_t hadcor_deta_e_gamma[number_deta_e_ph_bins] = {0.67, 1.13, 0.97, 1.28, 1.18};
+
+Double_t hadcor_et_err[number_etbins] = { 0.018778, 0.021844, 0.0525522, 0.0316306};
+Double_t hadcor_eta_err[number_etabins] = { 0.0407514, 0.0236017, 0.0245202, 0.0205663};
+Double_t hadcor_Q2_err[number_Q2bins] = { 0.0224073, 0.0290163, 0.0333102, 0.0241916, 0.0337005};
+Double_t hadcor_x_err[number_xbins] = { 0.0312789, 0.0178165, 0.0221452, 0.0547844};
+Double_t hadcor_et_jet_err[number_et_jetbins] = { 0.0408711, 0.0366022, 0.02932, 0.06601, 0.0137695, 0.0138727};
+Double_t hadcor_eta_jet_err[number_eta_jetbins] = { 0.0335423, 0.0169001, 0.0221844, 0.0479706};
+Double_t hadcor_xgamma_err[number_xgamma_bins]  = {	 0.0321156,	 0.0466153,	 0.0989676,	 0.23167,	 0.198082,	 0.0104531};
+Double_t hadcor_xp_err[number_xp_bins] = {	 0.0390587,	 0.0225338,	 0.0240511,	 0.023605,	 0.0462491,	 0.268672 };// the last is nan 
+Double_t hadcor_dphi_err[number_dphi_bins] = {	0.0217377,	0.0214495,	0.0586776,	0.0480916,	0.0453521,	0.039152,	0.0447915};
+Double_t hadcor_deta_err[number_deta_bins] = {	0.031631,	0.0277684,	0.0183488,	0.0290314,	0.0388048,	0.0586741};
+Double_t hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = {	0.0531182,	0.0665587,	0.0667556,	0.0309228,	0.0226042,	0.0155975};
+Double_t hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = {	0.0264578,	0.0256387,	0.0200547,	0.0342287,	0.0479523};
+*/
+
+Double_t hadcor_et[number_etbins] = { 1 , 1 , 1 , 1 };
+Double_t hadcor_eta[number_etabins] = { 1 , 1 , 1 , 1  };
+Double_t hadcor_Q2[number_Q2bins] = { 1 , 1 , 1 , 1 ,1};
+Double_t hadcor_x[number_xbins] = { 1 , 1 , 1 , 1  };
+Double_t hadcor_et_jet[number_et_jetbins] = { 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_eta_jet[number_eta_jetbins] = { 1 , 1 , 1 , 1  };
+Double_t hadcor_xgamma[number_xgamma_bins] = { 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_xp[number_xp_bins] = { 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_dphi[number_dphi_bins] = { 1 , 1 , 1 , 1 ,1 ,1, 1};
+Double_t hadcor_deta[number_deta_bins] = { 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_dphi_e_gamma[number_dphi_e_ph_bins] = { 1 , 1 , 1 , 1 ,1 ,1};
+Double_t hadcor_deta_e_gamma[number_deta_e_ph_bins] = { 1 , 1 , 1 , 1 ,1 };
+
+Double_t hadcor_et_err[number_etbins] = { 0 , 0 , 0 , 0 };
+Double_t hadcor_eta_err[number_etabins] = { 0 , 0 , 0 , 0  };
+Double_t hadcor_Q2_err[number_Q2bins] = { 0 , 0 , 0 , 0 ,0};
+Double_t hadcor_x_err[number_xbins] = { 0 , 0 , 0 , 0  };
+Double_t hadcor_et_jet_err[number_et_jetbins] = { 0 , 0 , 0 , 0 ,0 ,0};
+Double_t hadcor_eta_jet_err[number_eta_jetbins] = { 0 , 0 , 0 , 0  };
+Double_t hadcor_xgamma_err[number_xgamma_bins] = { 0 , 0 , 0 , 0 ,0 ,0};
+Double_t hadcor_xp_err[number_xp_bins] = { 0 , 0 , 0 , 0 ,0 ,0};
+Double_t hadcor_dphi_err[number_dphi_bins] = { 0 , 0 , 0 , 0 ,0 ,0, 0};
+Double_t hadcor_deta_err[number_deta_bins] = { 0 , 0 , 0 , 0 ,0 ,0};
+Double_t hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = { 0 , 0 , 0 , 0 ,0 ,0};
+Double_t hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = { 0 , 0 , 0 , 0 ,0 };
+
+Double_t * all_hadcort[12] = {hadcor_et, hadcor_eta, hadcor_Q2, hadcor_x, hadcor_et_jet, hadcor_eta_jet, hadcor_xgamma, hadcor_xp, hadcor_dphi, hadcor_deta, hadcor_dphi_e_gamma, hadcor_deta_e_gamma};
+Double_t * all_hadcort_err[12] = {hadcor_et_err, hadcor_eta_err, hadcor_Q2_err, hadcor_x_err, hadcor_et_jet_err, hadcor_eta_jet_err, hadcor_xgamma_err, hadcor_xp_err, hadcor_dphi_err, hadcor_deta_err, hadcor_dphi_e_gamma_err, hadcor_deta_e_gamma_err};
+
+
 void dout() 
 {
     cout << endl; 

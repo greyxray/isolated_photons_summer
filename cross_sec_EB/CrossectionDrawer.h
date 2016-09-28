@@ -102,9 +102,14 @@ all_bins(al_bins),
 theory_name("BLZ")
 {
     SetFigure3Style(fCSdata, fMCsum, fMCqq, fMCll, 0);
-
     fCSdata_tot_err = (TH1*)data_tot_err->Clone();
-
+    /* Wrong error propagation & approach
+    for(int j = 1; j <= fCSdata->GetNbinsX(); j++)
+    {
+        fCSdata->SetBinContent(j, fCSdata->GetBinContent(j) * all_hadcort[i][j-1]);
+        fCSdata_tot_err->SetBinContent(j, fCSdata_tot_err->GetBinContent(j) * all_hadcort[i][j-1]);
+    }
+    */
     int number_bins = fCSdata->GetNbinsX();
     Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 10000;
         fWindowControl = new TH2D("h_window_fig3_" + fVariableName, "title", number_bins, all_bins[0], all_bins[number_bins], dummy_variable, -0.0001, GetYmax(true));
@@ -148,8 +153,8 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmEr
     bool is_left = current_position == kLeftUp  || current_position == kLeftDown;
     bool is_down = current_position == kRightDown  || current_position == kLeftDown;
 
-    x1 = is_left ? 0.21 : 0.55 ;//0.15  0.45
-    x2 = is_left ? 0.60 : 0.98 ;//0.60 : 0.86
+    x1 = is_left ? 0.21 : 0.55;//0.15  0.45
+    x2 = is_left ? 0.60 : 0.98;//0.60 : 0.86
     y1 = is_down ? 0.10 : 0.50;//0.5
     y2 = is_down ? 0.45 : 0.88;//0.88
     if ( m == 6 )
@@ -159,7 +164,7 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmEr
     }
     else if (m ==1)
     {
-        y1 = 0.55;
+        y1 = 0.6;// 0.55
         y2 = 0.9;
     }
     TLegend *leg = new TLegend(x1, y1, x2, y2);
@@ -179,7 +184,7 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmEr
 
         if (fVariableName.Contains("xgamma"))
         {
-            for(int i=1; i<= fCSdata->GetNbinsX(); i++)
+            for(int i = 1; i <= fCSdata->GetNbinsX(); i++)
             {
                 dout("cs plotted ", i, ":", fAsymmError->Eval(fCSdata->GetBinCenter(i)), "theory:", fTGraphTheory->Eval(fCSdata->GetBinCenter(i)));
             }
@@ -294,7 +299,15 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
 
     if (m==2)
     {
-        TPaveText t(-0.3, 0.87, 0.3, 1.03, "NDC"); //-0.228, 0.89, 0.2, 1.03,
+        //TPaveText t(-0.3, 0.87, 0.3, 1.03, "NDC"); //-0.228, 0.89, 0.2, 1.03,
+        TPaveText t(-0.228, 0.89, 0.2, 1.03, "NDC"); //
+        if (!q2_cut_global.Contains("gt") && !q2_cut_global.Contains("lt"))
+        {
+            t.SetX1NDC(-0.228);
+            t.SetX2NDC(0.2);
+            t.SetY1NDC(0.89);
+            t.SetY2NDC(1.03);
+        }
         t.SetFillStyle(0);
         t.SetTextAlign(22);//center bottom
         /*t.SetX1(-0.228);
@@ -313,7 +326,7 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
     {
 
         TString the_title = q2_cut_global.Contains("lt_30") ? "Q^{2}<30 GeV^{2}" : "ZEUS preliminary";
-        the_title = q2_cut_global.Contains("gt_30") ? "Q^{2}>30 GeV^{2}" : the_title;
+                the_title = q2_cut_global.Contains("gt_30") ? "Q^{2}>30 GeV^{2}" : the_title;
         Double_t x1(0), y1(0), x2(1), y2(1), t_size(0.1);
         if (q2_cut_global.Contains("30"))
         {
@@ -321,7 +334,7 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         }
         else
         {
-            x1 = 0.4; y1 = 0.9; x2 = 0.6; y2 = 1.0;
+            x1 = 0.4; y1 = 0.93; x2 = 0.6; y2 = 1.0; t_size = 0.07;
         }
         TPaveText t(x1, y1, x2, y2, "NDC"); // left-up
         t.SetTextSize(t_size);
@@ -587,6 +600,7 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
            
             //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
 
+            // Plotting Fontannaz theory 
             if (all_theory_cs_font[i] == 0) 
             {
                 dout(i, "appered to be ", all_theory_cs_font[0]);
@@ -602,16 +616,16 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                 Double_t exh[nn] ;
                 Double_t eyl[nn];
                 Double_t eyh[nn];
-                Double_t temp =0;
+                Double_t temp = 0;
                 for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
                 {
-                    x[j] = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
-                    y[j] = all_theory_cs_font[i][j];
-                    exl[j] = 0.5*drawers[i]->fCSdata->GetBinWidth(j+1);
-                    exh[j] = 0.5*drawers[i]->fCSdata->GetBinWidth(j+1);
-                    eyl[j] = all_theory_cs_font_neg[i][j];//statistical - not statistical and acceptance
-                    eyh[j] = all_theory_cs_font_pos[i][j];
-                    temp += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
+                    x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
+                    y[j]   = all_theory_cs_font[i][j] * all_hadcort[i][j];
+                    exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
+                    exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
+                    eyl[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
+                    eyh[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
+                    temp  += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
                 }
                 dout("Fontannaz theory sum_sigma = ", temp);
                 TGraphAsymmErrors * fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
@@ -636,6 +650,11 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
 
 void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, Double_t * cs_neg = 0, int num = -1)
 {
+    if (num == -1)
+    {
+        dout("in CrossectionDrawer::AssighnTheory num =-1");
+        exit(0);
+    }
     if (cs == 0 || cs_pos == 0 || cs_neg == 0) 
     {
         dout("one of the passed the passed theory arrays is zero");
@@ -659,11 +678,11 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     for(int j = 0; j < fCSdata->GetNbinsX(); ++j)
     {
         x[j] = fCSdata->GetBinCenter(j + 1) ;
-        y[j] = cs[j];
-        exl[j] = 0.5*fCSdata->GetBinWidth(j+1);
-        exh[j] = 0.5*fCSdata->GetBinWidth(j+1);
-        eyl[j] = cs_neg[j];//statistical - not statistical and acceptance
-        eyh[j] = cs_pos[j];
+        y[j] = cs[j] * all_hadcort[num][j]; // The handonisation correction is always applied
+        exl[j] = 0.5 * fCSdata->GetBinWidth(j+1); 
+        exh[j] = 0.5 * fCSdata->GetBinWidth(j+1);
+        eyl[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err[num][j],2) + pow(cs_neg[j], 2) * pow(all_hadcort[num][j], 2) );//cs_neg[j] * all_hadcort[num][j];//statistical - not statistical and acceptance // TODO: propagate the error
+        eyh[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err[num][j],2) + pow(cs_pos[j], 2) * pow(all_hadcort[num][j], 2) );//cs_pos[j] * all_hadcort[num][j];
         temp += cs[j] * fCSdata->GetBinWidth(j+1);
     }
     dout("theory sum_sigma = ", temp);
@@ -673,7 +692,7 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     fTGraphTheory->SetMarkerStyle(20);
     fTGraphTheory->SetLineWidth(3);
     
-    Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 10000;
+    Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 100000;
     fWindowControl = new TH2D("h_window_new_" + fVariableName, "title", fCSdata->GetNbinsX(), all_bins[0], all_bins[fCSdata->GetNbinsX()], dummy_variable, -0.0001, GetYmax(false));
     
     fWindowControl->GetYaxis()->SetRangeUser(-0.0001, GetYmax(false));

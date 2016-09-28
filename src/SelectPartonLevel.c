@@ -45,12 +45,13 @@ Bool_t selector::SelectPartonLevel(Bool_t take_det_event)
 
   if(take_pevent) 
   {
-  /*     hist.dis_Q2_true_part->Fill(Mc_q2, wtx); */
-  /*     hist.dis_electron_e_true_part->Fill(Mc_pfsl[3], wtx); */
-  /*     hist.dis_electron_theta_true_part->Fill(v_true_electron.Theta()*180.0/TMath::Pi(), wtx); */
-  /*     hist.dis_x_true_part->Fill(Mc_x, wtx); */
-  /*     hist.dis_y_true_part->Fill(Mc_y, wtx); */
+    /*     hist.dis_Q2_true_part->Fill(Mc_q2, wtx); */
+    /*     hist.dis_electron_e_true_part->Fill(Mc_pfsl[3], wtx); */
+    /*     hist.dis_electron_theta_true_part->Fill(v_true_electron.Theta()*180.0/TMath::Pi(), wtx); */
+    /*     hist.dis_x_true_part->Fill(Mc_x, wtx); */
+    /*     hist.dis_y_true_part->Fill(Mc_y, wtx); */
   }
+  
   //find true photon
   Int_t index_true_photon = -1;
   Int_t index_jet = -1;//this variable is to compare with Sanja, Nazar, Ian, Natasha
