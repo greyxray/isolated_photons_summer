@@ -529,21 +529,77 @@ void Hist::PlotCrossSec()
         CrossectionDrawer::m = 1;
         CrossectionDrawer::n = 1;
         CrossectionDrawer::for_paper = true;
-        /* //Fontanazz prediction on full range
-        CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
-                                        sum_for_CrossectionDrawer, \
-                                     qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
-                                     all_bins, s_var, n_cross, \
-                                     true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz");
-        */
-        // BLZ prediction
-        CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
-                                        sum_for_CrossectionDrawer, \
-                                     qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
-                                     all_bins, s_var, n_cross, \
-                                     true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
-        
+        /*
+        void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
+                                 Double_t * all_bins[12], TString s_var[12], int nplots,\
+                                 bool with_BLZ = false, \
+                                 Double_t * all_theory_cs[12] = 0, Double_t * all_theory_cs_pos[12] = 0, Double_t * all_theory_cs_neg[12] = 0, TString theory_name = "BLZ",\
+                                 bool with_fontannaz = false,
+                                 Double_t * all_theory_cs_font[12] = 0, Double_t * all_theory_cs_font_pos[12] = 0, Double_t * all_theory_cs_font_neg[12] = 0, TString theory_name_2 = "Fontannaz",
+                                 bool two_fontannaz = false,//frst 0.5 cut second 2.5
+                                 Double_t * all_theory_cs_font_25[12] = 0, Double_t * all_theory_cs_font_pos_25[12] = 0, Double_t * all_theory_cs_font_neg_25[12] = 0, TString theory_name_2_25 = "Fontannaz pt>2.5")//TString s_var[n_cross];
 
+        */
+        //Fontanazz prediction on full range
+            // CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+            //                                 sum_for_CrossectionDrawer, \
+            //                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+            //                              all_bins, s_var, n_cross, \
+            //                              true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz");
+            
+        // BLZ prediction
+            // CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+            //                                 sum_for_CrossectionDrawer, \
+            //                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+            //                              all_bins, s_var, n_cross, \
+            //                              true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
+        //BLZ and Font-combined
+        if (false)
+        {
+            if (!q2_cut_global.Contains("t"))
+                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                sum_for_CrossectionDrawer, \
+                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                             all_bins, s_var, n_cross, \
+                                             true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                             true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz, combined",
+                                             false);
+            else if (q2_cut_global.Contains("lt"))
+                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                sum_for_CrossectionDrawer, \
+                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                             all_bins, s_var, n_cross, \
+                                             false, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                             true, all_theory_cs_font_Q2lt30, all_theory_cs_font_pos_Q2lt30, all_theory_cs_font_neg_Q2lt30, "Fontannaz, combined",
+                                             false);
+            else if (q2_cut_global.Contains("gt"))
+                cout <<"no predictions"<< endl;
+        }                         
+
+        //BLZ and Font-separated
+        if (true)
+        {
+            if (!q2_cut_global.Contains("t")) //0<Q2<350
+                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                sum_for_CrossectionDrawer, \
+                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                             all_bins, s_var, n_cross, \
+                                             true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                             true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "Fontannaz, pt>2.5",
+                                             true, all_theory_cs_font_pt05, all_theory_cs_font_pt05_pos, all_theory_cs_font_pt05_neg, "Fontannaz, pt>0.5");
+            else if (q2_cut_global.Contains("lt"))//Q2<30
+                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                sum_for_CrossectionDrawer, \
+                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                             all_bins, s_var, n_cross, \
+                                             false, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                             true, all_theory_cs_font_pt25_Q2lt30, all_theory_cs_font_pt25_pos_Q2lt30, all_theory_cs_font_pt25_neg_Q2lt30, "Fontannaz, pt>2.5",
+                                             true, all_theory_cs_font_pt05_Q2lt30, all_theory_cs_font_pt05_pos_Q2lt30, all_theory_cs_font_pt05_neg_Q2lt30, "Fontannaz, pt>0.5");
+            else if (q2_cut_global.Contains("gt"))//Q2>30
+                cout <<"no predictions"<< endl;
+        }
+
+            
         
 
 

@@ -19,16 +19,22 @@ class CrossectionDrawer
 {
 public:
     CrossectionDrawer(int i, TVirtualPad * p, TH1 * data, TH1 * data_tot_err, TH1 * sum, TH1 * qq, TH1 * ll, TCanvas * canvas, TString name, Double_t * a);
-    void DrawLegend(bool t, bool nottheory, TGraphAsymmErrors * fTGraphTheoryFont, TString FontName) const;
-    void DrawHist(bool nottheory) const;
+    //void DrawLegend(bool t, bool with_BLZ, TGraphAsymmErrors * fTGraphTheoryFont, TString FontName) const;
+    void DrawLegend(bool t, bool with_BLZ, 
+                            bool with_Font, TGraphAsymmErrors* fTGraphTheoryFont, TString FontName, 
+                            bool with_Font2, TGraphAsymmErrors* fTGraphTheoryFont2, TString FontName2) const;
+    void DrawHist(bool nottheory, bool with_BLZ) const;
     void SaveCanvas(bool t, bool nottheory) const;
     void SetPad(TCanvas * c, TVirtualPad * pad);
     void AssighnTheory(Double_t * cs , Double_t * cs_pos , Double_t * cs_neg , int num);
     // ~CrossectionDrawer();
     static void DrawAll(TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, Double_t * all_bins[12], TString s_var[12], int nplots,\
-                                 bool maketheory, Double_t * all_theory_cs[12], \
-                                 Double_t * all_theory_cs_pos[12], Double_t * all_theory_cs_neg[12], TString,\
-                                 Double_t * all_theory_cs_font[12], Double_t * all_theory_cs_font_pos[12], Double_t * all_theory_cs_font_neg[12], TString theory_name_2);
+                                 bool with_BLZ, 
+                                    Double_t * all_theory_cs_BLZ[12], Double_t * all_theory_cs_BLZ_pos[12], Double_t * all_theory_cs_BLZ_neg[12], TString theory_name_BLZ,\
+                                 bool withFontannaz, 
+                                    Double_t * all_theory_cs_font[12], Double_t * all_theory_cs_font_pos[12], Double_t * all_theory_cs_font_neg[12], TString theory_name_Font1,
+                                 bool two_fontannaz,//frst 0.5 cut second 2.5
+                                    Double_t * all_theory_cs_font_25[12], Double_t * all_theory_cs_font_pos_25[12], Double_t * all_theory_cs_font_neg_25[12], TString theory_name_Font2);
     static int m;//how many pic per plot
     static int n;//how many columns
     static bool for_paper;//to insert in latex
@@ -141,7 +147,9 @@ Double_t CrossectionDrawer::GetYmax(bool nottheory = true) const
     return ymax;
 }
 
-void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmErrors * fTGraphTheoryFont = 0, TString FontName="Fontannaz") const
+void CrossectionDrawer::DrawLegend(bool draw, bool with_BLZ = false, 
+                                              bool with_Font = false, TGraphAsymmErrors* fTGraphTheoryFont = 0, TString FontName="Fontannaz1", 
+                                              bool with_Font2 = false, TGraphAsymmErrors* fTGraphTheoryFont2 = 0, TString FontName2="Fontannaz2" ) const
 {
     if( !draw )  return;
     LegendPosition current_position = kRightUp;
@@ -170,7 +178,7 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmEr
     TLegend *leg = new TLegend(x1, y1, x2, y2);
     leg->SetBorderSize(0);
     leg->SetFillStyle(0);  
-    if (nottheory)           
+    if (!with_BLZ && !with_Font)           
     {
         leg->AddEntry(fAsymmError, "ZEUS (prel.)", "p"); 
         leg->AddEntry(fMCqq,  "QQ*1.6, MC", "f"); 
@@ -180,25 +188,39 @@ void CrossectionDrawer::DrawLegend(bool draw, bool nottheory=true, TGraphAsymmEr
     else
     {
         leg->AddEntry(fAsymmError, "ZEUS (prel.)", "p"); 
-        leg->AddEntry(fTGraphTheory, theory_name, "f"); // BLZ
-
-        if (fVariableName.Contains("xgamma"))
+        if (with_BLZ)
         {
-            for(int i = 1; i <= fCSdata->GetNbinsX(); i++)
-            {
-                dout("cs plotted ", i, ":", fAsymmError->Eval(fCSdata->GetBinCenter(i)), "theory:", fTGraphTheory->Eval(fCSdata->GetBinCenter(i)));
-            }
+            leg->AddEntry(fTGraphTheory, theory_name, "f"); // BLZ
+
+            // if (fVariableName.Contains("xgamma"))
+            // {
+            //     for(int i = 1; i <= fCSdata->GetNbinsX(); i++)
+            //     {
+            //         dout("cs plotted ", i, ":", fAsymmError->Eval(fCSdata->GetBinCenter(i)), "theory:", fTGraphTheory->Eval(fCSdata->GetBinCenter(i)));
+            //     }
+            // }
         }
-    }
-    if (fTGraphTheoryFont != 0)
-    {
-        dout(FontName);
-        leg->AddEntry(fTGraphTheoryFont, FontName, "f");
+        if (with_Font)
+        {
+            if (fTGraphTheoryFont != 0)
+            {
+                dout(FontName);
+                leg->AddEntry(fTGraphTheoryFont, FontName, "f");
+            }
+            if(with_Font2)
+            {
+                if (fTGraphTheoryFont2 != 0)
+                {
+                    dout(FontName2);
+                    leg->AddEntry(fTGraphTheoryFont2, FontName2, "f");
+                }
+            }
+        }  
     }
     if (!(m==1 && fVariableName.Contains("deta"))) leg->Draw();
 }
 
-void CrossectionDrawer::DrawHist(bool nottheory = true) const
+void CrossectionDrawer::DrawHist(bool nottheory = true, bool with_BLZ = false) const
 {
     TString title("cs, " + fVariableName);
     gStyle->SetOptStat(0);
@@ -209,8 +231,9 @@ void CrossectionDrawer::DrawHist(bool nottheory = true) const
         fMCsum->Draw("HIST F  SAME");
         //fAsymmError->Draw("SAME P ");
     }
-    else
+    else if (with_BLZ)
     {
+
         fPad->Update();
         fWindowControl->Draw("");
 
@@ -249,9 +272,14 @@ void CrossectionDrawer::DrawHist(bool nottheory = true) const
         //fAsymmError->Draw("SAME P E");
         //fTGraphTheory->Draw("SAME P ");
     }
-
+    else 
+    {
+        fPad->Update();
+        fWindowControl->Draw("");
+    }
+    dout("drawing data");
     fCSdata_tot_err->SetLineWidth(2);
-    fCSdata_tot_err->Draw("SAME P E X0");
+    fCSdata_tot_err->Draw("SAME P E X0");// Assymetric
     
     fCSdata->SetMarkerSize(1);
     fCSdata->SetMarkerStyle(20);
@@ -491,14 +519,16 @@ void CrossectionDrawer::AdjustPad()
 
 void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
                                  Double_t * all_bins[12], TString s_var[12], int nplots,\
-                                 bool maketheory = false, \
-                                 Double_t * all_theory_cs[12] = 0, Double_t * all_theory_cs_pos[12] = 0, Double_t * all_theory_cs_neg[12] = 0, TString theory_name = "BLZ",\
-                                 Double_t * all_theory_cs_font[12] = 0, Double_t * all_theory_cs_font_pos[12] = 0, Double_t * all_theory_cs_font_neg[12] = 0, TString theory_name_2 = "Fontannaz")//TString s_var[n_cross];
+                                 bool with_BLZ = false, \
+                                 Double_t * all_theory_cs_BLZ[12] = 0, Double_t * all_theory_cs_BLZ_pos[12] = 0, Double_t * all_theory_cs_BLZ_neg[12] = 0, TString theory_name_BLZ = "BLZ",\
+                                 bool withFontannaz = false,
+                                 Double_t * all_theory_cs_font[12] = 0, Double_t * all_theory_cs_font_pos[12] = 0, Double_t * all_theory_cs_font_neg[12] = 0, TString theory_name_Font1 = "Fontannaz",
+                                 bool two_fontannaz = false,//frst 0.5 cut second 2.5
+                                 Double_t * all_theory_cs_font_25[12] = 0, Double_t * all_theory_cs_font_pos_25[12] = 0, Double_t * all_theory_cs_font_neg_25[12] = 0, TString theory_name_Font2 = "Fontannaz pt>2.5")//TString s_var[n_cross];
 {
     dout("CrossectionDrawer::DrawAll: m,n ============>", m, n);
-    if ( (m==1 || m==2 || m== 3) && !(n == m || n == 1)) n = m;
-    else if (m == 4) n = 2;
-    else if(m==6 && !(n == 3 || n == 2)) n = 2;
+    if ( (m == 1 || m == 2 || m== 3) && !(n == m || n == 1)) n = m;
+    else if ((m == 6 && !(n == 3 || n == 2)) || (m == 4)) n = 2;
     else if (m == 5 || m > 6) 
     {
         dout("CrossectionDrawer::DrawAll: m forced to 6, n forced to 2"); 
@@ -508,62 +538,79 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
 
     TCanvas * test;// = new TCanvas('c1', 'c', 899, 900);
     CrossectionDrawer * drawers[12] = {};
-    for(int i = 0; i < nplots; ++i)
-    {
-        dout("CrossectionDrawer::DrawAll: ===>",i);
-        if ( (i ) % m == 0 ) 
-        {   
-            //test  = new TCanvas(Form("c%d", i * 10), "bins of ", (1  +  1 * (m > 1))*800, (m / 2 + m % 2) * 600 + 100);
-            test  = new TCanvas(Form("c%d", i * 10), "bins of ", n*800, (m / n + m % n) * 600 + 100 * (for_paper == false));
-            gStyle->SetLineWidth(2); // width of the border line around plots
-            //test->Divide(1  +  1 * (m > 1), m / 2 + m % 2 );
-            test->Divide(n, m / n + m % n );
-        }
-
-        dout("CrossectionDrawer::DrawAll: pad:", i%m);
-        cout << "CrossectionDrawer::DrawAll: Pad value " << test->GetListOfPrimitives()->GetEntries()  << endl;
-        TVirtualPad * pad = test->cd(i % m + 1);
-        cout << "CrossectionDrawer::DrawAll: " << pad << endl;
-        if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
+    //////////////////////////////////////////////////
+    // Draws separate plots
+    // saves the same data to be plotted with theory
+    //////////////////////////////////////////////////
+        for(int i = 0; i < nplots; ++i)
         {
-            dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
-            pad->SetBottomMargin(0);
-            dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
-            pad->SetTopMargin(2* pad->GetTopMargin());
+            dout("CrossectionDrawer::DrawAll: ===>",i);
+            if ( (i ) % m == 0 ) 
+            {   
+                //test  = new TCanvas(Form("c%d", i * 10), "bins of ", (1  +  1 * (m > 1))*800, (m / 2 + m % 2) * 600 + 100);
+                test  = new TCanvas(Form("c%d", i * 10), "bins of ", n*800, (m / n + m % n) * 600 + 100 * (for_paper == false));
+                gStyle->SetLineWidth(2); // width of the border line around plots
+                //test->Divide(1  +  1 * (m > 1), m / 2 + m % 2 );
+                test->Divide(n, m / n + m % n );
+            }
 
-        }
-        if ( m == 6 && n == 2 && (i==2 || i==3 || i==8 || i==9 ))//if ( m == 6 && ((n == 2 && (i == 2 || i == 3 || i == 8 || i == 9) ) || (n == 3 && ( i == 9 || i == 10 || i == 11))))
-        {
-            dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
-            pad->SetBottomMargin(0.05);
-            dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
-            pad->SetTopMargin(pad->GetTopMargin());
+            dout("CrossectionDrawer::DrawAll: pad:", i%m);
+            cout << "CrossectionDrawer::DrawAll: Pad value " << test->GetListOfPrimitives()->GetEntries()  << endl;
+            TVirtualPad * pad = test->cd(i % m + 1);
+            cout << "CrossectionDrawer::DrawAll: " << pad << endl;
+            if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
+            {
+                dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                pad->SetBottomMargin(0);
+                dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                pad->SetTopMargin(2* pad->GetTopMargin());
 
+            }
+            if ( m == 6 && n == 2 && (i==2 || i==3 || i==8 || i==9 ))//if ( m == 6 && ((n == 2 && (i == 2 || i == 3 || i == 8 || i == 9) ) || (n == 3 && ( i == 9 || i == 10 || i == 11))))
+            {
+                dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                pad->SetBottomMargin(0.05);
+                dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                pad->SetTopMargin(pad->GetTopMargin());
+
+            }
+            pad->SetFillStyle(4000);//transparent TPad
+            drawers[i] = new CrossectionDrawer(i, pad, data[i], data_tot_err[i], fit[i], qq[i], ll[i], test, s_var[i], all_bins[i]); 
+            if (!for_paper || (for_paper && (i == 0 || i == 6) )) drawers[i]->DrawLegend( (i ) % m == 0 );
+            drawers[i]->DrawHist();
+            drawers[i]->SaveCanvas( (i + 1) % m == 0 );
         }
-        pad->SetFillStyle(4000);//transparent TPad
-        drawers[i] = new CrossectionDrawer(i, pad, data[i], data_tot_err[i], fit[i], qq[i], ll[i], test, s_var[i], all_bins[i]); 
-        if (!for_paper || (for_paper && (i == 0 || i == 6) )) drawers[i]->DrawLegend( (i ) % m == 0 );
-        drawers[i]->DrawHist();
-        drawers[i]->SaveCanvas( (i + 1) % m == 0 );
-    }
     dout("CrossectionDrawer::DrawAll: DONE CALCULATING THE SEPARATE PLOTS!!!!!!!!!!!!!!!!!!");
-    if (maketheory)
-    {
 
-        if (all_theory_cs == 0 || all_theory_cs_pos == 0 || all_theory_cs_neg == 0) 
-        {
-            dout("CrossectionDrawer::DrawAll: one of the passed the passed theory arrays is zero");
-            return;
-        }
-    
+
+    //////////////////////////////////////////////////
+    // Draws theory
+    //////////////////////////////////////////////////
+    if (with_BLZ || withFontannaz)
+    {
+        //Check the necessary pointers to arrays 
+            if (with_BLZ)
+            {
+                if (all_theory_cs_BLZ == 0 || all_theory_cs_BLZ_pos == 0 || all_theory_cs_BLZ_neg == 0) 
+                {
+                    dout("CrossectionDrawer::DrawAll: one of the passed BLZ theory arrays is zero");
+                    return;
+                }
+            }
+            
+            if (withFontannaz)
+            {
+                if ( (all_theory_cs_font == 0 || all_theory_cs_font_pos == 0 || all_theory_cs_font_neg == 0) ||
+                    (two_fontannaz && (all_theory_cs_font_25 == 0 || all_theory_cs_font_pos_25 == 0 || all_theory_cs_font_neg_25 == 0)) )
+                {
+                    dout("CrossectionDrawer::DrawAll: one of the passed Font theory arrays is zero");
+                    return;
+                }
+            }
+
         TCanvas * test_theor;// = new TCanvas('c1', 'c', 899, 900);
         for(int i = 0; i < nplots; ++i)
         {
-            if (all_theory_cs[i] == 0) 
-            {
-                dout("CrossectionDrawer::DrawAll:", i, "appered to be ", all_theory_cs[0]);
-                continue;
-            };
             dout("CrossectionDrawer::DrawAll:", "processing", i);
             if ( (i ) % m == 0 ) 
             {   
@@ -573,84 +620,179 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             }
             TVirtualPad * pad = test_theor->cd(i % m + 1);
             drawers[i]->SetPad(test_theor, pad);
-            drawers[i]->theory_name = theory_name;
-            if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
-            {
-                dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
-                pad->SetBottomMargin(0);
-                dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
-                pad->SetTopMargin(2* pad->GetTopMargin());
+            // Adjusting pads
+                    if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
+                    {
+                        dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                        pad->SetBottomMargin(0);
+                        dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                        pad->SetTopMargin(2* pad->GetTopMargin());
+                    }
+                    if ( m == 6 && n == 2 && (i==2 || i==3 || i==8 || i==9 ))
+                    {
+                        dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                        pad->SetBottomMargin(0.05);
+                        dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                        pad->SetTopMargin(pad->GetTopMargin());
+                    }
 
-            }
-            if ( m == 6 && n == 2 && (i==2 || i==3 || i==8 || i==9 ))
-            {
-                dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
-                pad->SetBottomMargin(0.05);
-                dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
-                pad->SetTopMargin(pad->GetTopMargin());
-
-            }
             pad->SetFillStyle(4000);//transparent TPad
-            drawers[i]->AssighnTheory(all_theory_cs[i], all_theory_cs_pos[i], all_theory_cs_neg[i], i);
             drawers[i]->AdjustPad();
-            drawers[i]->DrawHist(false);
-           
-            //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
+            if (with_BLZ)
+            {
+                //Check the pointer
+                    if (all_theory_cs_BLZ[i] == 0) 
+                    {
+                        dout("CrossectionDrawer::DrawAll:", i, "appered to be ", all_theory_cs_BLZ[0]);
+                        continue;
+                    }; 
+                
+                drawers[i]->theory_name = theory_name_BLZ;
+                
+                
+                
+                drawers[i]->AssighnTheory(all_theory_cs_BLZ[i], all_theory_cs_BLZ_pos[i], all_theory_cs_BLZ_neg[i], i);
 
-            // Plotting Fontannaz theory 
-            if (all_theory_cs_font == 0 || all_theory_cs_font_pos == 0 || all_theory_cs_font_neg == 0) 
-            {
-                dout("CrossectionDrawer::DrawAll: Font arrays is zero");
-                continue;
+                drawers[i]->DrawHist(false, true);
             }
-            else
-            {
-                if (all_theory_cs_font[i] == 0) 
+            else  drawers[i]->DrawHist(false, false);
+                //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
+
+            //////////////////////////////////////////////////////////
+            // Plotting Fontannaz theory 
+            TGraphAsymmErrors * fTGraphTheoryFont;
+            TGraphAsymmErrors * fTGraphTheoryFont2;
+            if (withFontannaz)
+            {   
+                //Check the pointer
+                    if ( (all_theory_cs_font[i] == 0 || all_theory_cs_font_pos[i] == 0 || all_theory_cs_font_neg[i] == 0) ||
+                    (two_fontannaz && (all_theory_cs_font_25[i] == 0 || all_theory_cs_font_pos_25[i] == 0 || all_theory_cs_font_neg_25[i] == 0)) )
+                    {
+                        dout("CrossectionDrawer::DrawAll: one of the passed Font[i] theory arrays is zero");
+                        continue;
+                    }
+
+                const Int_t nn = drawers[i]->fCSdata->GetNbinsX();
+                Double_t x[nn];
+                Double_t y[nn];
+                Double_t exl[nn] ;
+                Double_t exh[nn] ;
+                Double_t eyl[nn];
+                Double_t eyh[nn];
+                Double_t temp = 0;
+                for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
                 {
-                    dout("CrossectionDrawer::DrawAll:", i, "for Font appered to be ", all_theory_cs_font[0]);
-                    if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
-                        drawers[i]->DrawLegend( (i ) % m == 0 , false);
+                    x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
+                    y[j]   = all_theory_cs_font[i][j] * all_hadcort[i][j];
+                    exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
+                    exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
+                    eyl[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
+                    eyh[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
+                    temp  += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
                 }
-                else
-                {
-                    const Int_t nn = drawers[i]->fCSdata->GetNbinsX();
-                    Double_t x[nn];
-                    Double_t y[nn];
-                    Double_t exl[nn] ;
-                    Double_t exh[nn] ;
-                    Double_t eyl[nn];
-                    Double_t eyh[nn];
-                    Double_t temp = 0;
+                dout("CrossectionDrawer::DrawAll: Fontannaz(1) theory sum_sigma = ", temp);
+                fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
+                fTGraphTheoryFont->SetMarkerColor(kRed);
+                fTGraphTheoryFont->SetMarkerSize(1.1);
+                fTGraphTheoryFont->SetMarkerStyle(20);
+                fTGraphTheoryFont->SetLineColor(1);
+                fTGraphTheoryFont->SetLineWidth(1);
+                fTGraphTheoryFont->SetFillStyle(3002);
+                fTGraphTheoryFont->SetFillColor(kRed);
+                //fTGraphTheoryFont->SetMarkerStyle(1);
+                fTGraphTheoryFont->Draw("SAME 5 ");
+                
+                if (two_fontannaz) 
+                {   
+                    temp = 0;
                     for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
                     {
                         x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
-                        y[j]   = all_theory_cs_font[i][j] * all_hadcort[i][j];
+                        y[j]   = all_theory_cs_font_25[i][j] * all_hadcort[i][j];
                         exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
                         exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
-                        eyl[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
-                        eyh[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
-                        temp  += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
+                        eyl[j] = sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg_25[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
+                        eyh[j] = sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos_25[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
+                        temp  += all_theory_cs_font_25[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
                     }
-                    dout("CrossectionDrawer::DrawAll: Fontannaz theory sum_sigma = ", temp);
-                    TGraphAsymmErrors * fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
-                    fTGraphTheoryFont->SetMarkerColor(kRed);
-                    fTGraphTheoryFont->SetMarkerSize(1.1);
-                    fTGraphTheoryFont->SetMarkerStyle(20);
-                    fTGraphTheoryFont->SetLineColor(1);
-                    fTGraphTheoryFont->SetLineWidth(1);
-                    fTGraphTheoryFont->SetFillStyle(3002);
-                    fTGraphTheoryFont->SetFillColor(kRed);
-                    //fTGraphTheoryFont->SetMarkerStyle(1);
-                    fTGraphTheoryFont->Draw("SAME 5");
-                    //ADD LEGEND HERE
-                    if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
-                        drawers[i]->DrawLegend( (i ) % m == 0 , false, fTGraphTheoryFont, "#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}");
+                    dout("CrossectionDrawer::DrawAll: Fontannaz(2) theory sum_sigma = ", temp);
+                    fTGraphTheoryFont2 = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
+                    fTGraphTheoryFont2->SetMarkerColor(kBlue);
+                    fTGraphTheoryFont2->SetMarkerSize(1.1);
+                    fTGraphTheoryFont2->SetMarkerStyle(20);
+                    fTGraphTheoryFont2->SetLineColor(1);
+                    fTGraphTheoryFont2->SetLineWidth(1);
+                    fTGraphTheoryFont2->SetFillStyle(3003);
+                    fTGraphTheoryFont2->SetFillColor(kBlue);
+                    fTGraphTheoryFont2->Draw("SAME 5");
                 }
             }
+
+            //Draw Legend
+                //make it wider with respect to q2 cut
+                    // void DrawLegend(bool t, bool with_BLZ, 
+                    //                 bool with_Font, TGraphAsymmErrors* fTGraphTheoryFont, TString FontName, 
+                    //                 bool with_Font2, TGraphAsymmErrors* fTGraphTheoryFont2, TString FontName2) const;
+                if (!(with_BLZ || withFontannaz))
+                {
+                    dout("(!(with_BLZ || withFontannaz))");
+                    if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0);
+                }
+                else if (with_BLZ)
+                {
+                    if (!withFontannaz)
+                    {
+                    dout("with_BLZ && !withFontannaz");
+                        if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0 , true);
+                    }
+                    else if (withFontannaz && ! two_fontannaz)
+                    {
+                    dout("with_BLZ && (withFontannaz && ! two_fontannaz)");
+                        if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0 , true, 
+                                                                true, fTGraphTheoryFont, theory_name_Font1,
+                                                                false );//"#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}"
+                    }
+                    else if (withFontannaz && withFontannaz)
+                    {
+                    dout("with_BLZ && (withFontannaz && withFontannaz)");
+                        if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0 , true, 
+                                                                true, fTGraphTheoryFont,  theory_name_Font1, 
+                                                                true, fTGraphTheoryFont2, theory_name_Font2);
+                    }
+                    else {cerr << "Something strange"<< endl;}
+
+                }
+                else if (withFontannaz)
+                {
+                    if (!two_fontannaz)
+                    {
+                    dout("!with_BLZ && withFontannaz && !two_fontannaz");
+                        if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0 , false, 
+                                                                true, fTGraphTheoryFont, theory_name_Font1,
+                                                                false );//"#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}"
+                    }
+                    else if ( two_fontannaz)
+                    {
+
+                    dout("!with_BLZ && withFontannaz && two_fontannaz");
+                        if (!for_paper || (for_paper && (i == 0 || i == 6) )) 
+                        drawers[i]->DrawLegend( (i ) % m == 0 , false, 
+                                                                true, fTGraphTheoryFont,  theory_name_Font1, 
+                                                                true, fTGraphTheoryFont2, theory_name_Font2);
+                    }
+                    else {cerr << "Something strange"<< endl;}
+                }
+
             drawers[i]->SaveCanvas( (i + 1) % m == 0 , false);
 
         }    
     }
+
 }
 
 void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, Double_t * cs_neg = 0, int num = -1)
