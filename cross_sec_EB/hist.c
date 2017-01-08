@@ -4229,8 +4229,8 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
     {
         if(legend_possition.Contains("left"))
         {
-            x1 = 0.15;
-            x2 = 0.6;
+            x1 = 0.25;
+            x2 = 0.8;
         }
         else
         {
@@ -4248,6 +4248,8 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             y2 = 0.45;
         }
     }
+
+    bool for_paper = false;
     {
         TLegend *leg = new TLegend(x1, y1, x2, y2);//right 0.45, 0.6, 0.86, 0.91  //x1 y1 x2 y2
         leg->SetBorderSize(0);
@@ -4273,6 +4275,14 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
         c_control->GetPad(0)->SetBorderMode(0);
         c_control->GetPad(0)->SetFillColor(kWhite);
         c_control->GetPad(0)->SetGrid(0, 0);
+        if (!for_paper)c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin()  + 0.1,/*left border |+ n| to the right*/
+               c_control->GetPad(0)->GetRightMargin()  - 0.06,/*right border |- n| to the right*/
+               c_control->GetPad(0)->GetBottomMargin() + 0.08,
+               c_control->GetPad(0)->GetTopMargin()    + 0.02);
+        else c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin() + 0.08 , \
+                        c_control->GetPad(0)->GetRightMargin() - 0.03 ,\
+                        c_control->GetPad(0)->GetBottomMargin()  + 0.08, \
+                        c_control->GetPad(0)->GetTopMargin() - 0.03);
         sign_window(c_control->GetPad(0), h_window_control, "" , yaxis_name, "", "middle");
         h_window_control->GetYaxis()->SetRange(0, ymax);
         h_window_control->Draw();
@@ -4291,7 +4301,7 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             c_control->GetPad(0)->RedrawAxis();
             //TPaveLabel * pl = new TPaveLabel(0.0, 0.9, 0.3, 100.0,"New Title","br");
        //pl->Draw("SAME");
-            TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
+            TPaveText *t = new TPaveText(0.5, 0.9, 0.7, 1.0, "brNDC"); // left-up
             t->AddText(title);
             t->Draw();
             canvas_name += ".png";
@@ -4325,6 +4335,14 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
         c_control->GetPad(0)->SetBorderMode(0);
         c_control->GetPad(0)->SetFillColor(kWhite);
         c_control->GetPad(0)->SetGrid(0, 0);
+        if (!for_paper)c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin()  + 0.1,/*left border |+ n| to the right*/
+               c_control->GetPad(0)->GetRightMargin()  - 0.06,/*right border |- n| to the right*/
+               c_control->GetPad(0)->GetBottomMargin() + 0.08,
+               c_control->GetPad(0)->GetTopMargin()    + 0.02);
+        else c_control->GetPad(0)->SetMargin(c_control->GetPad(0)->GetLeftMargin() + 0.08 , \
+                        c_control->GetPad(0)->GetRightMargin() - 0.03 ,\
+                        c_control->GetPad(0)->GetBottomMargin()  + 0.08, \
+                        c_control->GetPad(0)->GetTopMargin() - 0.03);
         sign_window(c_control->GetPad(0), h_window_control, "" , yaxis_name, "", "middle");
         h_window_control->GetYaxis()->SetRange(0, ymax);
         h_window_control->Draw();
@@ -4334,10 +4352,10 @@ void Hist::PlotControlPlot(Double_t * a, Double_t * a_err, \
             h_qq->Draw("HIST F E1 SAME");
             h_ll->Draw("HIST F E1 SAME");
             //if (nodebugmode) cout<<variable<<endl;
-            if (!variable.EqualTo("deta"))
+            if (!variable.EqualTo("deta") && !variable.EqualTo("deta_e_ph"))
                 leg->Draw();
             c_control->GetPad(0)->RedrawAxis();
-            TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
+            TPaveText *t = new TPaveText(0.5, 0.9, 0.7, 1.0, "brNDC"); // left-up
             t->AddText(title);
             t->Draw();
             canvas_name += ".png";

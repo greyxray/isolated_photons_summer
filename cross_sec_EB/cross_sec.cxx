@@ -1,7 +1,7 @@
 #include "cross_sec.h"
 
-TString q2_cut_global = "_q2_lt_30";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
-TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection
+TString q2_cut_global = "";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
+TString whichCorrection("NoCorrection");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
@@ -2307,6 +2307,13 @@ int main(int argc, char *argv[])
                     lineRight->SetLineWidth(2);
                     lineRight->SetLineStyle(2);
                     lineRight->DrawLine(sys_fit, 0., sys_fit, h_window_control->GetYaxis()->GetXmax());
+            }
+            else
+            {
+                cout << "fit range: bins " << int(left_bound)<< ".."  << int(right_bound) << endl;
+                cout << "#chi^{2} /" << ndf+2 << "-2 = " << chi_squared << endl;
+                cout << "N_{fitted photons} = " << N <<  "+-" <<  Nerr << endl;
+                cout << "N_{LL photons} = " << NLL << "+-" << NLLerr << endl;
             }
             TString str_temp2(whichCorrection);
             if (QQfit == 1)

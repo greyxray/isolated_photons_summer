@@ -119,7 +119,8 @@ theory_name("BLZ")
     */
     int number_bins = fCSdata->GetNbinsX();
     Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 10000;
-        fWindowControl = new TH2D("h_window_fig3_" + fVariableName, "title", number_bins, all_bins[0], all_bins[number_bins], dummy_variable, -0.0001, GetYmax(true));
+    TString str_title = "";
+        fWindowControl = new TH2D("h_window_fig3_" + fVariableName, str_title, number_bins, all_bins[0], all_bins[number_bins], dummy_variable, -0.0001, GetYmax(true));
         fAsymmError = GetErrors();
 
     cout << "Constructor reached  here 1" << endl;
@@ -235,6 +236,8 @@ void CrossectionDrawer::DrawHist(bool nottheory = true, bool with_BLZ = false) c
     {
 
         fPad->Update();
+        //fWindowControl->GetXaxis()->SetTitle("vasia");
+        sign_window(fPad, fWindowControl, cs_x_names[fIndex] , cs_y_names[fIndex],  "", "large");
         fWindowControl->Draw("");
 
         /*
@@ -266,7 +269,8 @@ void CrossectionDrawer::DrawHist(bool nottheory = true, bool with_BLZ = false) c
         fAsymmError->SetFillStyle(3002);
         fAsymmError->SetFillColor(2);
 
-        //fAsymmError->Draw("SAME 2");
+        // fAsymmError->Draw("SAME 2");
+        // fTGraphTheory->GetXaxis()->SetTitle("vasia");
         fTGraphTheory->Draw("SAME 5");// box 
 
         //fAsymmError->Draw("SAME P E");
@@ -488,9 +492,6 @@ void CrossectionDrawer::AdjustPad()
                 fWindowControl->GetXaxis()->SetTitleOffset(1.5);
             }
         }
-        
-
-
     }
     else
     {
@@ -502,19 +503,15 @@ void CrossectionDrawer::AdjustPad()
         if (fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(0.9);
     }
 
-      
-
     if (!for_paper)fPad->SetMargin(fPad->GetLeftMargin()  + 0.1,/*left border |+ n| to the right*/
                    fPad->GetRightMargin()  - 0.06,/*right border |- n| to the right*/
                    fPad->GetBottomMargin() + 0.08,
                    fPad->GetTopMargin()    + 0.02);
-    if (for_paper)
-    {
-        fPad->SetMargin(fPad->GetLeftMargin() + 0.08 , \
+    else fPad->SetMargin(fPad->GetLeftMargin() + 0.08 , \
                         fPad->GetRightMargin() - 0.03 ,\
                         fPad->GetBottomMargin()  + 0.08, \
                         fPad->GetTopMargin() - 0.03);
-    }
+    
 }
 
 void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
@@ -648,14 +645,14 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     }; 
                 
                 drawers[i]->theory_name = theory_name_BLZ;
-                
-                
-                
                 drawers[i]->AssighnTheory(all_theory_cs_BLZ[i], all_theory_cs_BLZ_pos[i], all_theory_cs_BLZ_neg[i], i);
-
                 drawers[i]->DrawHist(false, true);
             }
-            else  drawers[i]->DrawHist(false, false);
+            else 
+            {
+                drawers[i]->DrawHist(false, false);
+                cout <<"THATSWHY"<< endl;
+            }
                 //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
 
             //////////////////////////////////////////////////////////
@@ -840,7 +837,8 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     fTGraphTheory->SetLineWidth(3);
     
     Int_t dummy_variable = !fVariableName.Contains("xgamma") ? 1000 : 100000;
-    fWindowControl = new TH2D("h_window_new_" + fVariableName, "title", fCSdata->GetNbinsX(), all_bins[0], all_bins[fCSdata->GetNbinsX()], dummy_variable, -0.0001, GetYmax(false));
+    TString str_title = "";
+    fWindowControl = new TH2D("h_window_new_" + fVariableName, str_title, fCSdata->GetNbinsX(), all_bins[0], all_bins[fCSdata->GetNbinsX()], dummy_variable, -0.0001, GetYmax(false));
     
     fWindowControl->GetYaxis()->SetRangeUser(-0.0001, GetYmax(false));
     fWindowControl->Draw();

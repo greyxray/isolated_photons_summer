@@ -410,7 +410,7 @@ void Hist::PlotCrossSec()
                 t->SetBorderSize(0);
                 //t->Draw();
                 //canvas_name += ".eps";
-                c_control->Print(canvas_name+ ".eps");
+                //c_control->Print(canvas_name+ ".eps");
                 c_control->Print(canvas_name+ ".png");
         }
 
@@ -516,7 +516,7 @@ void Hist::PlotCrossSec()
                 TPaveText *t = new TPaveText(0.4, 0.9, 0.6, 1.0, "brNDC"); // left-up
                 t->AddText("ZEUS");
                 //t->Draw();
-                canvas_name += ".eps";
+                canvas_name += ".eps";//
                 c_control->Print(canvas_name);
         }
 
