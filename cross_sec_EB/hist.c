@@ -205,7 +205,7 @@ void Hist::Init()
     set_hist_atributes(6,  "h_deltaz", "Photon_with_jet", "<#delta z>", 0, 1.5, 0.1, kFALSE, 10);//g_index_deltaz
     
     TString s_process;// = "zero"; 
-    TString s_path = "../root_files/my_";
+    TString s_path = "../my_";//"../root_files/my_" "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     s_process.Form(correctiontype );
     {
         TString s_period[n_periods] = {"0405e", "06e", "0607p"};
@@ -2638,7 +2638,7 @@ void Hist::PlotAcceptance()
             gStyle->SetOptStat(0);
             TCanvas* c  = new TCanvas("c_"+tempstr, tempstr, 800, 600); 
             
-            TH2D *h_window_control = new TH2D(tempstr + "_win", "title", h_had_rad_sum[i]->GetNbinsX(), h_had_rad_sum[i]->GetBinCenter(1)- h_had_rad_sum[i]->GetBinWidth(1)/2, \
+            TH2D *h_window_control = new TH2D(tempstr + "_win", "title", h_had_rad_sum[i]->GetNbinsX(), h_had_rad_sum[i]->GetBinCenter(1) - h_had_rad_sum[i]->GetBinWidth(1)/2, \
             h_had_prph_sum[i]->GetBinCenter(h_had_rad_sum[i]->GetNbinsX()) + h_had_rad_sum[i]->GetBinWidth(h_had_rad_sum[i]->GetNbinsX())/2, 10, 0., h_had_rad_sum[i]->GetMaximum()*1.3);//array_bin[0], array_bin[number_bins - 1]
             c->GetPad(0)->SetTicks(1,1);
             c->GetPad(0)->SetFrameBorderMode(0);
@@ -2671,7 +2671,7 @@ void Hist::PlotAcceptance()
             h_hd_rad_sum[i]->Draw("same");
             leg_acc->Draw("same");
             c->Print(tempstr + ".png");
-
+            
 
             tempstr.Form( s_var[i] + "_levels_QQ");
             c  = new TCanvas("c_" + tempstr, tempstr, 800, 600); 
@@ -2701,14 +2701,16 @@ void Hist::PlotAcceptance()
             leg_acc->AddEntry(h_had_prph_sum[i], hadstring, "l"); 
             leg_acc->AddEntry(h_hd_prph_sum[i], hdstring, "l"); 
             leg_acc->Draw("same");
+            dout( tempstr + ".png");
             c->Print(tempstr + ".png");
-
-            if (nodebugmode) cout << "LL:   det = " << h_det_rad_sum[i]->GetSum() <<" had = "<<  h_had_rad_sum[i]->GetSum() << " hd = "<<   h_hd_rad_sum[i]->GetSum() <<endl
+            dout("LL:   det = ", h_det_rad_sum[i]->GetSum());
+            cout << "LL:   det = " << h_det_rad_sum[i]->GetSum() <<" had = "<<  h_had_rad_sum[i]->GetSum() << " hd = "<<   h_hd_rad_sum[i]->GetSum() <<endl
                                   << "QQ:   det = " << h_det_prph_sum[i]->GetSum() <<" had = "<<  h_had_prph_sum[i]->GetSum() << " hd = "<<   h_hd_prph_sum[i]->GetSum() <<endl;
-            if (nodebugmode) cout << "LL[1]:   det = " << h_det_rad_sum[i]->GetBinContent(1) <<" had = "<<  h_had_rad_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_rad_sum[i]->GetBinContent(1) <<endl
+            cout << "LL[1]:   det = " << h_det_rad_sum[i]->GetBinContent(1) <<" had = "<<  h_had_rad_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_rad_sum[i]->GetBinContent(1) <<endl
                                   << "QQ[1]:   det = " << h_det_prph_sum[i]->GetBinContent(1) <<" had = "<<  h_had_prph_sum[i]->GetBinContent(1) << " hd = "<<   h_hd_prph_sum[i]->GetBinContent(1) <<endl;
+         
         }
-        
+       
     }
 
     TH2D* h_window_acc[n_cross];

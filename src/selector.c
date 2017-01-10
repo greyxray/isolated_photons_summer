@@ -930,13 +930,40 @@ Bool_t selector::Process()
 							hist.det_cross_et->Fill(v_corr_prompt_photon->Et(), wtx);
 							hist.det_cross_eta->Fill(v_corr_prompt_photon->Eta(), wtx);
 							hist.det_cross_Q2->Fill(Siq2el[0], wtx);
+
 							hist.det_cross_x->Fill(Sixel[0], wtx);
 							hist.det_cross_et_jet->Fill(hardest_jet_et_corr, wtx);
 							hist.det_cross_eta_jet->Fill(hardest_jet_eta, wtx);
+
 							Double_t temp_dphi = delta_phi(hardest_jet_phi, v_corr_prompt_photon->Phi()) * 180.0/TMath::Pi();
 							Double_t temp_deta = hardest_jet_eta - v_corr_prompt_photon->Eta();
 							Double_t temp_dphi_e_ph = delta_phi(Siph[sinistra_electron_number], v_corr_prompt_photon->Phi()) * 180.0/TMath::Pi();
 							Double_t temp_deta_e_ph = -TMath::Log(TMath::Tan(Sith[sinistra_electron_number]/2.)) - v_corr_prompt_photon->Eta();
+
+							if (x_gamma >= 1) x_gamma = 0.999;
+
+							// if (temp_deta >= 2) 
+							// {
+							// if (check_cuts) cout <<"==============>temp_deta exceeded upper limit\n";
+							// temp_deta = 1.5;
+							// }
+							// else if (temp_deta < -2.2) 
+							// {
+							// if (check_cuts) cout <<"==============>temp_deta exceeded lower limit\n";
+							// temp_deta = -2.0;
+							// }
+
+							// if (temp_deta_e_ph >= -0.6) 
+							// {
+							// if (check_cuts) cout <<"==============>temp_deta_e_ph exceeded upper limit\n";
+							// temp_deta_e_ph = -1.0;
+							// }
+							// else if (temp_deta_e_ph < -3.6) 
+							// {
+							// if (check_cuts) cout <<"==============>temp_deta_e_ph exceeded lower limit\n";
+							// temp_deta_e_ph = -3.1;
+							// }
+							
 							hist.det_cross_xgamma->Fill(x_gamma, wtx); 
 							hist.det_cross_xp->Fill(x_pomeron, wtx); 
 							hist.det_cross_dphi->Fill( temp_dphi, wtx);
