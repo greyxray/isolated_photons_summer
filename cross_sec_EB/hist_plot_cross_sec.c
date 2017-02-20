@@ -65,7 +65,7 @@ void Hist::PlotCrossSec()
     Double_t x_dphi_e_ph_bin[MAX_CROSS_SEC_BINS] = {0.};
     Double_t x_deta_e_ph_bin[MAX_CROSS_SEC_BINS] = {0.};
     
-    /* середины бинов*/
+    /* Bin centers */
     for(Int_t i = 0; i < number_etbins; i++)
         x_et_bin[i] = 0.5 * (et_bin[i] + et_bin[i+1]);
     for(Int_t i=0; i<number_etabins; i++)
@@ -522,6 +522,11 @@ void Hist::PlotCrossSec()
 
     }
 
+    //////////////////////////////////////////////////
+    //
+    //          Plots producing
+    //
+    //////////////////////////////////////////////////
     if (true && QQfit != 0)
     {  
         //m - on one page n - width
@@ -529,6 +534,28 @@ void Hist::PlotCrossSec()
         CrossectionDrawer::m = 1;
         CrossectionDrawer::n = 1;
         CrossectionDrawer::for_paper = true;
+
+
+        for(int i=0; i < n_cross; i++)
+        {
+            if (all_theory_cs_font_pt25[i] !=0)
+                for (int j=0; j<ll_for_CrossectionDrawer[i]->GetNbinsX();j++)
+                {
+                    if (s_var[i]=="dphi")
+                    {
+                        dout("was ",j,":", all_theory_cs_font_pt25[i][j],"+-", all_theory_cs_font_pt25_pos[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1),"+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
+                    }
+                    all_theory_cs_font_pt25[i][j] = all_theory_cs_font_pt25[i][j] + ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
+                    all_theory_cs_font_pt25_pos[i][j] = sqrt( pow(all_theory_cs_font_pt25_pos[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1),2));
+                    all_theory_cs_font_pt25_neg[i][j] = sqrt( pow(all_theory_cs_font_pt25_neg[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1),2));
+                    
+                    if (s_var[i]=="dphi")
+                    {
+                        dout("now ",j,":", all_theory_cs_font_pt25[i][j],"+-", all_theory_cs_font_pt25_pos[i][j]);
+                    }
+                }
+        }
+
         /*
         void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
                                  Double_t * all_bins[12], TString s_var[12], int nplots,\
@@ -541,18 +568,25 @@ void Hist::PlotCrossSec()
 
         */
         //Fontanazz prediction on full range
+            //combined one
             // CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
             //                                 sum_for_CrossectionDrawer, \
             //                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
             //                              all_bins, s_var, n_cross, \
             //                              true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz");
-            
-        // BLZ prediction
+            //2.5 only
             // CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
             //                                 sum_for_CrossectionDrawer, \
             //                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
             //                              all_bins, s_var, n_cross, \
-            //                              true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
+            //                              true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "AFG, p_{T}>2.5");
+            
+        //BLZ prediction
+            CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                            sum_for_CrossectionDrawer, \
+                                         qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                         all_bins, s_var, n_cross, \
+                                         true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
         //BLZ and Font-combined
         if (false)
         {
@@ -562,7 +596,7 @@ void Hist::PlotCrossSec()
                                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
                                              all_bins, s_var, n_cross, \
                                              true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
-                                             true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "Fontannaz, combined",
+                                             true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "AFG, combined",
                                              false);
             else if (q2_cut_global.Contains("lt"))
                 CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
@@ -575,9 +609,7 @@ void Hist::PlotCrossSec()
             else if (q2_cut_global.Contains("gt"))
                 cout <<"no predictions"<< endl;
         }                         
-
-        //BLZ and Font-separated
-        if (true)
+        else if (false)//BLZ and Font-separated
         {
             if (!q2_cut_global.Contains("t")) //0<Q2<350
                 CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
@@ -585,24 +617,32 @@ void Hist::PlotCrossSec()
                                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
                                              all_bins, s_var, n_cross, \
                                              true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
-                                             true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "Fontannaz, pt>2.5",
-                                             true, all_theory_cs_font_pt05, all_theory_cs_font_pt05_pos, all_theory_cs_font_pt05_neg, "Fontannaz, pt>0.5");
+                                             true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "AFG, p_{T}>2.5",
+                                             true, all_theory_cs_font_pt05, all_theory_cs_font_pt05_pos, all_theory_cs_font_pt05_neg, "AFG, p_{T}>0.5");
             else if (q2_cut_global.Contains("lt"))//Q2<30
                 CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
                                                 sum_for_CrossectionDrawer, \
                                              qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
                                              all_bins, s_var, n_cross, \
                                              false, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
-                                             true, all_theory_cs_font_pt25_Q2lt30, all_theory_cs_font_pt25_pos_Q2lt30, all_theory_cs_font_pt25_neg_Q2lt30, "Fontannaz, pt>2.5",
-                                             true, all_theory_cs_font_pt05_Q2lt30, all_theory_cs_font_pt05_pos_Q2lt30, all_theory_cs_font_pt05_neg_Q2lt30, "Fontannaz, pt>0.5");
+                                             true, all_theory_cs_font_pt25_Q2lt30, all_theory_cs_font_pt25_pos_Q2lt30, all_theory_cs_font_pt25_neg_Q2lt30, "AFG, pt>2.5",
+                                             true, all_theory_cs_font_pt05_Q2lt30, all_theory_cs_font_pt05_pos_Q2lt30, all_theory_cs_font_pt05_neg_Q2lt30, "AFG, pt>0.5");
             else if (q2_cut_global.Contains("gt"))//Q2>30
                 cout <<"no predictions"<< endl;
         }
+        else if(true)//BLZ and Font-separated only pt2.5
+        {
+            if (!q2_cut_global.Contains("t")) //0<Q2<350
+                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                sum_for_CrossectionDrawer, \
+                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                             all_bins, s_var, n_cross, \
+                                             true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                             true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "AFG, p_{T}>2.5",
+                                             false);
+            else  cout <<"no predictions"<< endl;
 
-            
-        
-
-
+        }
     }
 
 }

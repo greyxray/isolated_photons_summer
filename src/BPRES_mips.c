@@ -18,7 +18,7 @@ Double_t selector::BPRES_mips(TVector3 v_photon, Double_t conerad)
       v_bpres_mip.SetXYZ(Bpxyz[i][0]-Xvtx, Bpxyz[i][1]-Yvtx, Bpxyz[i][2]-Zvtx);
       Double_t dr = v_photon.DeltaR(v_bpres_mip);
       if(check_cuts) 
-        if (nodebugmode) cout << "bpre: "<< i << " "<<  Bpmip[i] << " " << bpres_mips_e <<" " << dr << endl;
+        if (!nodebugmode) cout << "bpre: "<< i << " "<<  Bpmip[i] << " " << bpres_mips_e <<" " << dr << endl;
       if(dr < conerad) {
 	//	cout << "Bpmip[" << i << "] = " << Bpmip[i] << endl; 
 	bpres_mips_e += Bpmip[i];
@@ -41,7 +41,7 @@ void  selector::getBpreReadout() // A.Volynets
    if (myin1)
    {
 //   read landay
-     if (nodebugmode) cout << "Global::getBpreReadout(): read " << "input/landin.dat" << endl;
+     if (!nodebugmode) cout << "Global::getBpreReadout(): read " << "input/landin.dat" << endl;
      for (Int_t i=0; i<100; i++)
      {
        myin1 >> Land[i];
@@ -49,11 +49,11 @@ void  selector::getBpreReadout() // A.Volynets
      }
    } else
    {
-     if (nodebugmode) cout << "Global::getBpreReadout(): Cannot open READOUT file " << endl;
+     if (!nodebugmode) cout << "Global::getBpreReadout(): Cannot open READOUT file " << endl;
    }
-   if (nodebugmode) cout << "Land:" << endl;
+   if (!nodebugmode) cout << "Land:" << endl;
    for(Int_t i=0; i<100; i++)
-     if (nodebugmode) cout << i << " " << Land[i] << endl;
+     if (!nodebugmode) cout << i << " " << Land[i] << endl;
    myin1.close();
 }
 
@@ -106,7 +106,7 @@ void selector::getRunsBPRE() // A.Volynets
       exit(1);
     } else
     {
-       if (nodebugmode) cout << "-> Read file=" << name << endl;
+       if (!nodebugmode) cout << "-> Read file=" << name << endl;
     }
 
     while ( myfile >> irun >> ibad )

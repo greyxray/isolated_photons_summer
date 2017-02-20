@@ -3,7 +3,8 @@ FAIL=0
 #zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
 for i in zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
 do
-	for j in q2_lt_30 q2_gt_30 
+	#q2_lt_30 q2_gt_30 
+	for j in ""
 	do 
 	    ./start_photonssys $i $j &
 	    echo "starting ($i)"  
@@ -24,4 +25,4 @@ else
 echo "startfor FAIL! ($FAIL) ($i)"
 fi
 echo "startfor end ($i)"
-echo "your computation is done" | mail -s "png ready" "greyxray@gmail.com"
+echo "your computation is done COMP" | mail -s "png ready" "greyxray@gmail.com"

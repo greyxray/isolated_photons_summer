@@ -113,10 +113,10 @@ Bool_t selector::Process()
 		Int_t missed = 0;
 	
 	if (!nodebugmode) cout<< "q2_cut_low = " << q2_cut_low << "	q2_cut_high = " << q2_cut_high << endl;
-	
+	nodebugmode = kTRUE;
 	for(Long64_t entry = 0; entry < nentries && debugcontinue; entry++)
 	{
-		
+		//if (entry > 1000) debugcontinue = kFALSE;
 		//if (entry == 3)
 		//{	cout << "doh 0" <<endl;
 		//	exit(1);
@@ -180,7 +180,9 @@ Bool_t selector::Process()
 		// Selection
 		{   
 			// if(Eventnr == 21334) check_cuts = kTRUE;//52258 22172
-			
+			check_cuts = kTRUE;
+			if (check_cuts && !nodebugmode) cout << "going into " << Runnr << " " << Eventnr << endl; 
+			if (check_cuts && !nodebugmode) cout << "going into " << Runnr << " " << Eventnr << endl;   
 			// Detector level selection
 				//parameter initialising
 				take_event = kTRUE;
@@ -230,6 +232,7 @@ Bool_t selector::Process()
 								if (Siq2el[i] < 10. || Siq2el[i] > 350.) take_electron_event = kFALSE;
 								if (Siq2el[i] < q2_cut_low || Siq2el[i] > q2_cut_high) 
 								{
+									if(check_cuts && !nodebugmode) cout <<"special cut q2: "<< Siq2el[i]<< "< q2_cut_low ||  > q2_cut_high"<< endl;
 									take_electron_event = kFALSE;
 									continue_by_q2 = kTRUE;
 									break;
@@ -240,23 +243,22 @@ Bool_t selector::Process()
 									take_electron_event = kFALSE;
 									if(check_cuts && !nodebugmode) cout << "rejected by Siecorr[0][2] = " << Siecorr[i][2] * systElE << endl;
 								}
-								//  
+								
 								if (Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 180.0) //if(Sith[i]*180.0/TMath::Pi() < 139.8 || Sith[i]*180.0/TMath::Pi() > 171.9)
 								{
 									take_electron_event = kFALSE;
-									if(check_cuts)
-										if (!nodebugmode) cout << "rejected by Sith = " << Sith[0] * 180./TMath::Pi() << endl;
+									if (check_cuts && !nodebugmode) cout << "rejected by Sith = " << Sith[0] * 180./TMath::Pi() << endl;
 								}
+								else if (check_cuts && !nodebugmode) cout << "NOT rejected by Sith = " << Sith[0] * 180./TMath::Pi() << endl;
 
 								if((TMath::Abs(Sipos[i][0]) < 14.8) &&
-										(Sipos[i][1]  >-14.6)  &&
+										(Sipos[i][1]  > -14.6)  &&
 										(Sipos[i][1]  < 12.5))  
 								{
 									take_electron_event = kFALSE;
-									if(check_cuts)
-										if (!nodebugmode) cout << "rejected by Sipos[0][0] = " << Sipos[0][0] << ", Sipos[0][1] = " << Sipos[0][1] << endl;
+									if (check_cuts && !nodebugmode) cout << "rejected by Sipos[0][0] = " << Sipos[0][0] << ", Sipos[0][1] = " << Sipos[0][1] << endl;
 								}
-								if(take_electron_event)
+								if (take_electron_event)
 								{
 									sinistra_electron_number = i;
 									break;
@@ -264,36 +266,33 @@ Bool_t selector::Process()
 							}
 						if (!take_electron_event) 
 						{
-							cout << "rejected by e investigation, take_electron_event: " << take_electron_event << endl;
+							if (check_cuts && !nodebugmode) cout << "rejected by e investigation, take_electron_event: " << take_electron_event << endl;
 							take_event = kFALSE;
 						}
-						else if (check_cuts) 
-							cout << "	passed e selection" << endl;
+						else if (check_cuts && !nodebugmode) cout << "	passed e selection" << endl;
 				
 				//kinematical cuts	
-					if (continue_by_q2) continue;// For deviding the Q2 range into two
+					//if (continue_by_q2) continue;// For deviding the Q2 range into two - should be commented when not studying
 
 					if(Zvtx < -40. || Zvtx > 40.) 
 					{
 						take_event = kFALSE;
-						if(check_cuts)
-							if (!nodebugmode) cout << "rejected by Zvtx = " << Zvtx << endl;
+						if(check_cuts && !nodebugmode) cout << "rejected by Zvtx = " << Zvtx << endl;
 					}
 
 					if(Cal_empz < 35. || Cal_empz > 65.) 
 					{
 						take_event = kFALSE;
-						if(check_cuts)
-							if (!nodebugmode) cout << "rejected by Cal_empz = " << Cal_empz << endl;
+						if (check_cuts && !nodebugmode) cout << "rejected by Cal_empz = " << Cal_empz << endl;
 					}
 
 					Int_t nVertTracks = 0;
 					for(Int_t ii = 0; ii < Trk_ntracks;ii++)
 					{
-						if(Trk_prim_vtx[ii] != 1) continue;
+						if (Trk_prim_vtx[ii] != 1) continue;
 						TVector3 tr(Trk_px[ii],Trk_py[ii],Trk_pz[ii]);
-						if(tr.Mag() <= 0.25) continue;
-						if(tr.Theta() >= 2.44) continue;
+						if (tr.Mag() <= 0.25) continue;
+						if (tr.Theta() >= 2.44) continue;
 						nVertTracks++;
 					}
 
@@ -302,7 +301,7 @@ Bool_t selector::Process()
 						take_event = kFALSE;
 						if (check_cuts && !nodebugmode) cout << "rejected by nVertTracks = " << nVertTracks << endl;
 					}
-					else cout << "passed by nVertTracks = " << nVertTracks << endl;
+					else if (check_cuts && !nodebugmode) cout << "passed by nVertTracks = " << nVertTracks << endl;
 
 					Bool_t flt_trigger = kTRUE;
 					if((Fltw[0] & (1 << 27)) == 0 &&
@@ -377,8 +376,7 @@ Bool_t selector::Process()
 					if(!spp_trigger) 
 					{
 						take_event_trig = kFALSE;
-						if(check_cuts)
-							if (!nodebugmode) cout << "rejected by trigger condition " << endl;
+						if (check_cuts&& !nodebugmode) cout << "rejected by trigger condition " << endl;
 					}
 					if (false) cout << "		passed kinematics:" << endl;
 				
@@ -445,18 +443,16 @@ Bool_t selector::Process()
 								if(dr < 0.5)
 									electron_number = zloop;
 							}
-							if(check_cuts)
-								if (!nodebugmode) cout << "electron found: zufo # " << electron_number << endl;
+							if (check_cuts && !nodebugmode) cout << "electron found: zufo # " << electron_number << endl;
 							if(dr < 0.2)
 								n_close_tracks++;
 						}
 						if(electron_number < 0) 
 						{
 							take_event = kFALSE;
-							if(check_cuts) 
-								if (!nodebugmode) cout << "event rejected because was not found zufo that is close to sinistra electron" << endl;
+							if(check_cuts && !nodebugmode) cout << "event rejected because was not found zufo that is close to sinistra electron" << endl;
 						}
-						if(check_cuts) if (!nodebugmode) cout << "Filling histograms" << endl;
+						if(check_cuts && !nodebugmode) cout << "Filling histograms" << endl;
 						//
 						// inclusive DIS histograms
 						//
@@ -559,8 +555,8 @@ Bool_t selector::Process()
 				
 				if(take_event)
 				{
-					cout << "max_et_candidate_number: "<< max_et_candidate_number << endl;
-					cout << "constructing vector on/of zufos without e and photon" <<endl;
+					if (check_cuts && !nodebugmode) cout << "max_et_candidate_number: "<< max_et_candidate_number << endl;
+					if (check_cuts && !nodebugmode) cout << "constructing vector on/of zufos without e and photon" <<endl;
 					//constructing vector on/of zufos without e and photon - input_vec, input_vec_to_zufos
 						vector<KtLorentzVector> input_vec;
 						vector<Int_t> input_vec_to_zufos;
@@ -685,7 +681,7 @@ Bool_t selector::Process()
 					}
 					if (candidate_jet_number == -1 && !nodebugmode) cout<< "###############################candidate_jet_number not found###############################"<<endl;
 					
-					cout << "After search for PrPh candidate candidate_jet_number: "<< candidate_jet_number<< endl;
+					if (candidate_jet_number == -1 && !nodebugmode) cout << "After search for PrPh candidate candidate_jet_number: "<< candidate_jet_number<< endl;
 					
 					// searching for second jet
 					Int_t max_et_accomp_jet_candidate_number = -1;
@@ -726,21 +722,18 @@ Bool_t selector::Process()
 							if(et_jet_corr < ET_JET_CUT) 
 							{
 								take_jet = kFALSE;
-								if(check_cuts)
-									if (!nodebugmode) cout << "jet with eta " << jets[jloop].eta() << " rejected by et_jet_corr = "<< et_jet_corr << endl;
+								if(check_cuts && !nodebugmode) cout << "jet with eta " << jets[jloop].eta() << " rejected by et_jet_corr = "<< et_jet_corr << endl;
 							}
 							if(jets[jloop].eta() < -1.5 || jets[jloop].eta() > 1.8) 
 							{
 								take_jet = kFALSE;
-								if(check_cuts)
-									if (!nodebugmode) cout << "jet with eta " << jets[jloop].eta() << " rejected by jets[" << jloop << "].eta() = "<< jets[jloop].eta() << endl;
+								if(check_cuts && !nodebugmode) cout << "jet with eta " << jets[jloop].eta() << " rejected by jets[" << jloop << "].eta() = "<< jets[jloop].eta() << endl;
 							}
 							//      if(jloop == candidate_jet_number)
 							//        take_jet = kFALSE;
 							if(take_jet)
 							{
-								if(check_cuts)
-									if (!nodebugmode) cout << "jet selected " << jloop << ": " << jets[jloop].eta() << " " << jets[jloop].et() << endl;
+								if (check_cuts && !nodebugmode) cout << "jet selected " << jloop << ": " << jets[jloop].eta() << " " << jets[jloop].et() << endl;
 								here_is_jet = kTRUE;
 								// max_et_accomp_jet_candidate_number = jloop;
 								if(et_jet_corr > max_et_accomp_jet)
@@ -776,7 +769,7 @@ Bool_t selector::Process()
 						}// for jloop over jets
 					}
 					
-					cout << "max_et_accomp_jet_candidate_number: " << max_et_accomp_jet_candidate_number << endl;
+					if (check_cuts && !nodebugmode) cout << "max_et_accomp_jet_candidate_number: " << max_et_accomp_jet_candidate_number << endl;
 	 
 					// fill inclusive prompt photon histograms
 						if(take_event && here_is_prph) 
@@ -809,7 +802,7 @@ Bool_t selector::Process()
 					if(take_event && here_is_jet && here_is_prph) 
 					{
 
-					cout << "max_et_accomp_jet_candidate_number: " << max_et_accomp_jet_candidate_number << endl;
+					if (check_cuts && !nodebugmode) cout << "max_et_accomp_jet_candidate_number: " << max_et_accomp_jet_candidate_number << endl;
 	 
 						//
 						// x_gamma
@@ -926,7 +919,7 @@ Bool_t selector::Process()
 							hist.prph_cell_energy_frac->Fill(cell_energy_frac, wtx);
 
 							//  -> Fill Cross_section_histograms
-							hist.det_Q2->Fill(Siq2el[0], wtx);
+							//hist.det_Q2->Fill(Siq2el[0], wtx);
 							hist.det_cross_et->Fill(v_corr_prompt_photon->Et(), wtx);
 							hist.det_cross_eta->Fill(v_corr_prompt_photon->Eta(), wtx);
 							hist.det_cross_Q2->Fill(Siq2el[0], wtx);
@@ -1291,10 +1284,10 @@ Bool_t selector::Process()
 				}//if take_event for jet searching
 
 			// Hadron level selection
-				cout << "SelectHadronLevel check: "<<  take_event << " " << here_is_jet << " " << here_is_prph << " " << take_event_trig << endl;	
+				if (!nodebugmode) cout << "SelectHadronLevel check: "<<  take_event << " " << here_is_jet << " " << here_is_prph << " " << take_event_trig << endl;	
 				if(!Data && SelectHadronLevel(take_event && here_is_jet && here_is_prph && take_event_trig)) 
 				{
-					cout << "SelectHadronLevel, entry " << entry << endl;
+					if (!nodebugmode) cout << "SelectHadronLevel, entry " << entry << endl;
 					if(take_event && here_is_jet && here_is_prph && take_event_trig) 
 					{
 						hist.h2d_phot_et_true_det->Fill(v_true_prompt_photon->Et(), v_corr_prompt_photon->Et());

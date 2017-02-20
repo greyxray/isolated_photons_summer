@@ -1431,8 +1431,8 @@ void selector::Init(TTree *tree, TString run_period, Bool_t b_Data, TString s_mc
      fChain->SetBranchAddress("Photp", Photp, &b_Photp);
      fChain->SetBranchAddress("Npart", &Npart, &b_nPart);   //hadron level
      fChain->SetBranchAddress("Part_prt", Part_prt, &b_Part_prt);
-     fChain->SetBranchAddress("Part_motherprt", Part_motherprt, &b_Part_motherprt);
-     fChain->SetBranchAddress("Part_motherid", Part_motherid, &b_Part_motherid);
+     //fChain->SetBranchAddress("Part_motherprt", Part_motherprt, &b_Part_motherprt);
+     //fChain->SetBranchAddress("Part_motherid", Part_motherid, &b_Part_motherid);
      fChain->SetBranchAddress("Part_isthep", Part_isthep, &b_Part_isthep);
      fChain->SetBranchAddress("Part_charge", Part_charge, &b_Part_charge);
      fChain->SetBranchAddress("Part_id", Part_id, &b_Part_id);

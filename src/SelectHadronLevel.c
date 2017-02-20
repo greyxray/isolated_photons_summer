@@ -35,23 +35,23 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
   {
     take_hevent = kFALSE;
     if(check_cuts)
-      if (nodebugmode) cout << "rejected by cut on true q2 = " << Mc_q2 << endl;
+      if (!nodebugmode) cout << "rejected by cut on true q2 = " << Mc_q2 << endl;
   }
-  //if (nodebugmode) cout << "create electron" << endl;
+  //if (!nodebugmode) cout << "create electron" << endl;
   TVector3 v_true_electron(Mc_pfsl[0], Mc_pfsl[1], Mc_pfsl[2]);
   if ((v_true_electron.Theta()*180.0/TMath::Pi() < 139.8 )||
       (v_true_electron.Theta()*180.0/TMath::Pi() > 180.0 ))  
   {
     take_hevent = kFALSE;
     if(check_cuts)
-      if (nodebugmode) cout << "rejected by cut on true electron theta = " << v_true_electron.Theta()*180.0/TMath::Pi() << endl;
+      if (!nodebugmode) cout << "rejected by cut on true electron theta = " << v_true_electron.Theta()*180.0/TMath::Pi() << endl;
   }
-  //if (nodebugmode) cout << "created, OK" << endl;
+  //if (!nodebugmode) cout << "created, OK" << endl;
   if(Mc_pfsl[3] < 10.)
   {
     take_hevent = kFALSE;
     if(check_cuts) 
-      if (nodebugmode) cout << "rejected by cut on true electron energy = " << Mc_pfsl[3] << endl;
+      if (!nodebugmode) cout << "rejected by cut on true electron energy = " << Mc_pfsl[3] << endl;
   }
 
   if(take_hevent) //Fill DIS
@@ -80,10 +80,10 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
   
   if(!Data && mc_type == "mc_prph")
   {
-    //      if (nodebugmode) cout << "Npart = " << Npart << endl;
+    //      if (!nodebugmode) cout << "Npart = " << Npart << endl;
     for (Int_t i=0; i<Npart; i++)
   	{
-  	  //	  if (nodebugmode) cout << "Part_id " << Part_id[i] << endl;
+  	  //	  if (!nodebugmode) cout << "Part_id " << Part_id[i] << endl;
   	  if (Part_id[i]==12)	    
       {
 
@@ -93,21 +93,21 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
 	    }
   	}
   }
-  //  if (nodebugmode) cout << " =========================================================" << endl;
+  //  if (!nodebugmode) cout << " =========================================================" << endl;
   //  for(Int_t i=0; i<Npart; i++) {
-  //    if (nodebugmode) cout << " part # " << i << "\twith id = " << Part_id[i] << "\tprt = " << Part_prt[i] << "\tmothid = " << Part_motherid[i] << "\tmothprt = " << Part_motherprt[i] << "\ten = " << Part_p[i][3] <<  endl;
+  //    if (!nodebugmode) cout << " part # " << i << "\twith id = " << Part_id[i] << "\tprt = " << Part_prt[i] << "\tmothid = " << Part_motherid[i] << "\tmothprt = " << Part_motherprt[i] << "\ten = " << Part_p[i][3] <<  endl;
   //  }
 
   //  for(Int_t ploop=0; ploop < Photn; ploop++)
   //    {
-  //      if (nodebugmode) cout << " Photon " << ploop << "\twith photid = " << Photid[ploop] << "\tphotp = " << Photp[ploop][3] << endl;
+  //      if (!nodebugmode) cout << " Photon " << ploop << "\twith photid = " << Photid[ploop] << "\tphotp = " << Photp[ploop][3] << endl;
   //    }
-  //  if (nodebugmode) cout << " =========================================================" << endl;
+  //  if (!nodebugmode) cout << " =========================================================" << endl;
   if(index_true_photon < 0)
   {
       here_is_true_prph = kFALSE;
       if(check_cuts)
-	     if (nodebugmode) cout << "there is no photon in generated level" << endl;
+	     if (!nodebugmode) cout << "there is no photon in generated level" << endl;
   }
   //  if(det_cross_sec_bin_et>=0)
   //    if (nodebugmode) cout << "hadron level: here_is_true_prph = " << here_is_true_prph << ", is_true_prph_candidate = " << is_true_prph_candidate <<  endl;
@@ -124,33 +124,32 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
     if (true_photon_et<4. || true_photon_et>15.) 
     {
       is_true_prph_candidate = kFALSE;
-      if(check_cuts)
-	     if (nodebugmode) cout << "rejected by tue_photon_et = " << true_photon_et << endl;
+      if(check_cuts && !nodebugmode) cout << "rejected by tue_photon_et = " << true_photon_et << endl;
     }
     if (true_photon_eta<-0.7 || true_photon_eta>0.9) 
     {
       is_true_prph_candidate = kFALSE;
       if(check_cuts)
-	     if (nodebugmode) cout << "rejected by cut on true photon eta = " << true_photon_eta << endl;
+	     if (!nodebugmode) cout << "rejected by cut on true photon eta = " << true_photon_eta << endl;
     }
 
     if (Ktrnjets<1) 
     {
       is_true_prph_candidate = kFALSE;
       if(check_cuts)
-	     if (nodebugmode) cout << "rejected by Ktrnjets<1: " << Ktrnjets << endl;
+	     if (!nodebugmode) cout << "rejected by Ktrnjets<1: " << Ktrnjets << endl;
     }
     if (index_jet<0) 
     {
       is_true_prph_candidate = kFALSE;
       if(check_cuts)
-	     if (nodebugmode) cout << "rejected by index_jet<0: " << index_jet << endl;
+	     if (!nodebugmode) cout << "rejected by index_jet<0: " << index_jet << endl;
     }
     if ((Part_p[index_true_photon][3]/Ktrjets[index_jet][3])<0.9) 
     {
       is_true_prph_candidate = kFALSE;
       if(check_cuts)
-	     if (nodebugmode) cout << "rejected by photon/jet energy ratio: " << Part_p[index_true_photon][3]/Ktrjets[index_jet][3] << endl;
+	     if (!nodebugmode) cout << "rejected by photon/jet energy ratio: " << Part_p[index_true_photon][3]/Ktrjets[index_jet][3] << endl;
     }
   }
   here_is_true_prph = is_true_prph_candidate;
@@ -208,7 +207,7 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
     //if (nodebugmode) cout << "jets clustered" << endl;
     if((mc_type=="mc_prph" || mc_type=="mc_prph_rad" ) && index_true_photon<0)
     {
-    	if (nodebugmode) cout<<"Warning in ReClusterize: index of TRUE photon in FMCKIN table < 0."<<endl;
+    	if (!nodebugmode) cout<<"Warning in ReClusterize: index of TRUE photon in FMCKIN table < 0."<<endl;
     	//	exit(-1);
     	//      return jetsEtTRUE.size();
     }
@@ -240,10 +239,10 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
       {
     	    here_is_true_jet = kTRUE;
     	    count_nat++;
-    	    //	    if (nodebugmode) cout << count_nat << " " << Runnr << " " << Eventnr << endl;
-    	    //	    if (nodebugmode) cout << Siq2el[0] << " " << Mc_x << endl;
-    	    //	    if (nodebugmode) cout << Mc_pfsl[3] << " " << input_hadrons[index_photon_vector].et() << " " << true_jets[j].et() << endl;
-    	    //	    if (nodebugmode) cout << endl;
+    	    //	    if (!nodebugmode) cout << count_nat << " " << Runnr << " " << Eventnr << endl;
+    	    //	    if (!nodebugmode) cout << Siq2el[0] << " " << Mc_x << endl;
+    	    //	    if (!nodebugmode) cout << Mc_pfsl[3] << " " << input_hadrons[index_photon_vector].et() << " " << true_jets[j].et() << endl;
+    	    //	    if (!nodebugmode) cout << endl;
 
     	    if(true_jets[j].et() > max_et_jet) 
           {
@@ -278,7 +277,7 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
       { 
         if( true_jets[index_of_accomp_jet].contains(input_hadrons[zloop]) )//if zufo in the jet of max_et
         {
-          //if (nodebugmode) cout<<" i = "<<zloop<< " "<< &input_hadrons[zloop] << input_hadrons[zloop] << endl;
+          //if (!nodebugmode) cout<<" i = "<<zloop<< " "<< &input_hadrons[zloop] << input_hadrons[zloop] << endl;
           x_gamma += input_hadrons[zloop].e() - input_hadrons[zloop].pz();
                             x_pomeron += input_hadrons[zloop].e() + input_hadrons[zloop].pz();
           empz_particles_inside_jet += input_hadrons[zloop].e() - input_hadrons[zloop].pz();
@@ -302,9 +301,9 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
     	hist.had_x->Fill(Mc_x, wtx);
 
     	hist.had_cross_et->Fill(input_hadrons[index_photon_vector].et(), wtx);
-    	//	if (nodebugmode) cout << endl << Eventnr << " et real = " << input_hadrons[index_photon_vector].et() << endl;
-    	//	if (nodebugmode) cout << "bins et: " << hist.had_cross_et->FindBin(input_hadrons[index_photon_vector].et()) << " " << det_cross_sec_bin_et << endl;
-    	//	if (nodebugmode) cout << "bins eta: " << hist.had_cross_eta->FindBin(input_hadrons[index_photon_vector].eta()) << " " << det_cross_sec_bin_eta << endl;
+    	//	if (!nodebugmode) cout << endl << Eventnr << " et real = " << input_hadrons[index_photon_vector].et() << endl;
+    	//	if (!nodebugmode) cout << "bins et: " << hist.had_cross_et->FindBin(input_hadrons[index_photon_vector].et()) << " " << det_cross_sec_bin_et << endl;
+    	//	if (!nodebugmode) cout << "bins eta: " << hist.had_cross_eta->FindBin(input_hadrons[index_photon_vector].eta()) << " " << det_cross_sec_bin_eta << endl;
     	hist.had_cross_eta->Fill(input_hadrons[index_photon_vector].eta(), wtx);
     	hist.had_cross_Q2->Fill(Mc_q2, wtx);
     	hist.had_cross_x->Fill(Mc_x, wtx);
@@ -332,10 +331,10 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
 
     	if(take_det_event) 
       {
-    	  //	  if (nodebugmode) cout << "check et: " << hist.had_cross_et->FindBin(input_hadrons[index_photon_vector].et()) << " " << det_cross_sec_bin_et << endl;
-    	  //	  if (nodebugmode) cout << "check eta: " << hist.had_cross_eta->FindBin(input_hadrons[index_photon_vector].eta()) << " " << det_cross_sec_bin_eta << endl;
-    	  //	  if (nodebugmode) cout << "check q2: " << hist.had_cross_Q2->FindBin(Mc_q2) << " " << det_cross_sec_bin_q2 << endl;
-    	  //	  if (nodebugmode) cout << "check x: " << hist.had_cross_x->FindBin(Mc_x) << " " << det_cross_sec_bin_x << endl;
+    	  //	  if (!nodebugmode) cout << "check et: " << hist.had_cross_et->FindBin(input_hadrons[index_photon_vector].et()) << " " << det_cross_sec_bin_et << endl;
+    	  //	  if (!nodebugmode) cout << "check eta: " << hist.had_cross_eta->FindBin(input_hadrons[index_photon_vector].eta()) << " " << det_cross_sec_bin_eta << endl;
+    	  //	  if (!nodebugmode) cout << "check q2: " << hist.had_cross_Q2->FindBin(Mc_q2) << " " << det_cross_sec_bin_q2 << endl;
+    	  //	  if (!nodebugmode) cout << "check x: " << hist.had_cross_x->FindBin(Mc_x) << " " << det_cross_sec_bin_x << endl;
         if(hist.had_cross_xgamma->FindBin(x_gamma) == det_cross_sec_bin_xgamma) //?
         {
           hist.hd_cross_xgamma->Fill(x_gamma, wtx);
@@ -399,9 +398,9 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
     	}
     }    
   }//if(take_hevent && here_is_true_prph) to find jets and cut on prph kinematics
-  //if (nodebugmode) cout << "exiting hadron selection " << endl;
+  //if (!nodebugmode) cout << "exiting hadron selection " << endl;
   //  check_cuts = kFALSE;
   //  if((take_hevent && here_is_true_prph && here_is_true_jet) || take_det_event)
-  //    if (nodebugmode) cout << "================================END=OF=EVENT============================================" << endl;
+  //    if (!nodebugmode) cout << "================================END=OF=EVENT============================================" << endl;
   return (take_hevent && here_is_true_prph && here_is_true_jet);
 }

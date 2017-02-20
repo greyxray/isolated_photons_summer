@@ -325,10 +325,10 @@ void Hist::Init()
         //cout<<n_hist<<endl;
         for(Int_t i = 0; i < n_hist; i++)
         {
-            if (i== 0) dout("hist_data_control[p][i]",0,"=",hist_data_control[0][i]->GetEntries());
+            if (i == 0) dout("hist_data_control[p][i]",0,"=",hist_data_control[0][i]->GetEntries());
             for(Int_t p = 1; p < n_periods; p++) //0 - already cloned
             {
-                if (i== 0) dout("hist_data_control[p][i]",p,"=",hist_data_control[p][i]->GetEntries());
+                if (i== 0) dout("hist_data_control[p][i]", p ,"=", hist_data_control[p][i]->GetEntries());
                 cerr << i << " " << p << " adding :" << hist_data_control[p][i]->GetName() << endl;
                 hist_data_sum[i]->Add(hist_data_control[p][i]);
                 cerr << hist_data_control[p][i]->GetNbinsX() << endl;
@@ -355,7 +355,12 @@ void Hist::Init()
                     cerr << "mc_prph - ok" << endl;
                 }
             }
-            //cout<<"i>>"<<i<<endl;
+            // dout(i);
+            // dout("hist_data_sum[i]->GetEntries()", hist_data_sum[i]->GetEntries());
+            // dout("hist_mc_sum[i]->GetEntries()", hist_mc_sum[i]->GetEntries());
+            // dout("hist_mc_norad_sum[i]->GetEntries()", hist_mc_norad_sum[i]->GetEntries());
+            // dout("hist_mc_rad_sum[i]->GetEntries()", hist_mc_rad_sum[i]->GetEntries());
+            // exit(1);
             //if (i==0) cout<<"==>"<<hist_mc_sum[i]->GetBinContent(1);
             //hist_mc_sum[i]->Scale((lumi_data[0]+lumi_data[1]+lumi_data[2])/lumi_mc_prph);
             //if (i==0) cout<<"==>"<<hist_mc_sum[i]->GetBinContent(1);

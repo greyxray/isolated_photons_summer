@@ -149,8 +149,7 @@ Double_t selector::jet_en_corr(Double_t eta, Double_t et, TString period, TStrin
     }
   }
   //  cout << "return " << et_corr << endl;
-  if(check_cuts)
-    cout << "return value: " << eta << ", " << et  << ", " << period << ", " << mc_type << ", " << et_corr << ", " << a0_corr << ", " << a1_corr << endl;
+  if (check_cuts && !nodebugmode) cout << "return value: " << eta << ", " << et  << ", " << period << ", " << mc_type << ", " << et_corr << ", " << a0_corr << ", " << a1_corr << endl;
   return et_corr;
 }
 

@@ -1,13 +1,14 @@
 #include "cross_sec.h"
 
 TString q2_cut_global = "";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
-TString whichCorrection("NoCorrection");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
+TString whichCorrection("");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
 unsigned int NoScalingForBinsTest = 0;
 unsigned int ProduceDZoverollPlot = 1;
-Bool_t nodebugmode = kFALSE;
+bool dZdetailed = false;
+Bool_t nodebugmode = kTRUE;
 Bool_t once = kTRUE;
 
 unsigned int QQfit = 1; 
@@ -18,7 +19,8 @@ unsigned int QQfit = 1;
     //QQ' = QQ.scale([Data - LL] / QQ) if fitWithLL==1 and fitWithLLinBg=0
     //bg' = bg.scale([Data] / bg)
 unsigned int fitWithLL = 1; 
-unsigned int fitWithLLinBg = 0; 
+
+unsigned int fitWithLLinBg = 0; //DON"T TURN ON ANYMORE
 //data =LL’ +  QQ’ * a + bg’ * (1- a)
     //unsigned int QQfit = 1;
     //unsigned int fitWithLL= 1;
@@ -44,21 +46,21 @@ Hist hist;
 //0.05 - 0.8 - our new
 //0 - 0.8 - paper
 //0 - 0.95 - actual dz paper
-Double_t leftRange = 0.05;//0.00;//0.05
-Double_t sys_fit = 0.8;//0.95;//0.8
+Double_t leftRange = 0.05;//0.05;//0.00;//0.05
+Double_t sys_fit = 0.8;//0.8;//0.95;//0.8
 Int_t GetFitRange( TH1D* h, bool f=true)
 {
     if (f) 
     {
         
-        return h->FindBin(leftRange);//-1 was from old code when the range was 0 - 0.95
+        return h->FindBin(leftRange) -1;//-1 was from old code when the range was 0 - 0.95
     } //left range
     else 
     {
         if (once) 
         dout("right ",h->FindBin(sys_fit),"sys_fit=",sys_fit);//0.6 - 1.0
         once = kFALSE;
-        return h->FindBin(sys_fit);
+        return h->FindBin(sys_fit) ;
     }
 }
 
@@ -122,6 +124,7 @@ void DoReparametrisation(Int_t histindex, Double_t* param, Double_t* param_err, 
     param[index] = a;
     param_err[index] = da; 
 }
+
 void DoReparametrisation(Double_t* param, Double_t* param_err, Int_t index)//for old variables
 {
     Double_t        a = param[index], da = param_err[index];
@@ -210,7 +213,7 @@ void DoReparametrisationQQfit(Int_t histindex, Double_t* param, Double_t* param_
     Double_t g = (q*a)/d,
             dg = TMath::Sqrt((d*d* da*da* q*q + a*a* (d*d *dq*dq + dd*dd* q*q))/pow(d,4));
 
-             if (nodebugmode) cout << "===> " << param[index] << " ===> " << g <<endl;
+    if (nodebugmode) cout << "===> " << param[index] << " ===> " << g <<endl;
     if (nodebugmode) cout << "===> " << param_err[index] << " ===> " << dg <<endl;
     param[index] = g;
     param_err[index] = dg;   
@@ -304,12 +307,18 @@ void Chi2StatisticsCheck(Double_t* array, Int_t number_of_bins)
 
   
 int main(int argc, char *argv[])
-{ 
-    if (q2_cut_global.Contains("gt")) 
-            all_syst = {et_sys_q2_gt_30, eta_sys_q2_gt_30, Q2_sys_q2_gt_30, x_sys_q2_gt_30, et_jet_sys_q2_gt_30, eta_jet_sys_q2_gt_30, xgamma_sys_q2_gt_30, xp_sys_q2_gt_30, dphi_sys_q2_gt_30, deta_sys_q2_gt_30, dphi_e_ph_sys_q2_gt_30, deta_e_ph_sys_q2_gt_30};
-    else if (q2_cut_global.Contains("lt"))
-            all_syst = {et_sys_q2_lt_30, eta_sys_q2_lt_30, Q2_sys_q2_lt_30, x_sys_q2_lt_30, et_jet_sys_q2_lt_30, eta_jet_sys_q2_lt_30, xgamma_sys_q2_lt_30, xp_sys_q2_lt_30, dphi_sys_q2_lt_30, deta_sys_q2_lt_30, dphi_e_ph_sys_q2_lt_30, deta_e_ph_sys_q2_lt_30};
-    
+{
+    dout("stststst");
+    if (q2_cut_global.Contains("gt")) {
+            auto init = std::initializer_list<Double_t *>({et_sys_q2_gt_30, eta_sys_q2_gt_30, Q2_sys_q2_gt_30, x_sys_q2_gt_30, et_jet_sys_q2_gt_30, eta_jet_sys_q2_gt_30, xgamma_sys_q2_gt_30, xp_sys_q2_gt_30, dphi_sys_q2_gt_30, deta_sys_q2_gt_30, dphi_e_ph_sys_q2_gt_30, deta_e_ph_sys_q2_gt_30});
+            std::copy(init.begin(), init.end(), all_syst);
+            //all_syst = {et_sys_q2_gt_30, eta_sys_q2_gt_30, Q2_sys_q2_gt_30, x_sys_q2_gt_30, et_jet_sys_q2_gt_30, eta_jet_sys_q2_gt_30, xgamma_sys_q2_gt_30, xp_sys_q2_gt_30, dphi_sys_q2_gt_30, deta_sys_q2_gt_30, dphi_e_ph_sys_q2_gt_30, deta_e_ph_sys_q2_gt_30};
+        }
+    else if (q2_cut_global.Contains("lt")){
+            auto init = std::initializer_list<Double_t *>({et_sys_q2_lt_30, eta_sys_q2_lt_30, Q2_sys_q2_lt_30, x_sys_q2_lt_30, et_jet_sys_q2_lt_30, eta_jet_sys_q2_lt_30, xgamma_sys_q2_lt_30, xp_sys_q2_lt_30, dphi_sys_q2_lt_30, deta_sys_q2_lt_30, dphi_e_ph_sys_q2_lt_30, deta_e_ph_sys_q2_lt_30});
+            std::copy(init.begin(), init.end(), all_syst);
+            //all_syst = {et_sys_q2_lt_30, eta_sys_q2_lt_30, Q2_sys_q2_lt_30, x_sys_q2_lt_30, et_jet_sys_q2_lt_30, eta_jet_sys_q2_lt_30, xgamma_sys_q2_lt_30, xp_sys_q2_lt_30, dphi_sys_q2_lt_30, deta_sys_q2_lt_30, dphi_e_ph_sys_q2_lt_30, deta_e_ph_sys_q2_lt_30};
+        }
     hist.q2_cut.Form(q2_cut_global);
     debug.open("debug" + q2_cut_global + ".txt");
     if((argc >= 2)) 
@@ -1397,6 +1406,8 @@ int main(int argc, char *argv[])
         minimizer->ExecuteCommand("MINOS",0,0);   
         param_xp[i] = minimizer->GetParameter(0);
         param_err_xp[i] = minimizer->GetParError(0);
+        if (param_xp[i] != param_xp[i]) param_xp[i] = 0;
+        if (param_err_xp[i] != param_err_xp[i]) param_err_xp[i] = 0;
         Double_t par[1]; par[0] = param_xp[i];
         chi2_xp[i] = chi2(par, dof_xp[i], left_xp[i], right_xp[i], chi_method) / dof_xp[i];
         //chi squared per bin
@@ -1454,10 +1465,11 @@ int main(int argc, char *argv[])
         DoComplicatedScale(hist.h_deltaz_xp_norad_sum[i], 1 - param_xp_PhotonsFit[i], param_err_xp_PhotonsFit[i]);
         DoComplicatedScale(hist.h_deltaz_xp_prph_sum[i], param_xp_PhotonsFitforQQ[i], param_err_xp_PhotonsFitforQQ[i]);
 
-        if (QQfit == 1 && fitWithLL== 0) hist.h_deltaz_xp_res[i]->Scale(0);
+        if (QQfit == 1 && fitWithLL == 0) hist.h_deltaz_xp_res[i]->Scale(0);
         hist.h_deltaz_xp_res[i]->Add(hist.h_deltaz_xp_norad_sum[i]);
         hist.h_deltaz_xp_res[i]->Add(hist.h_deltaz_xp_prph_sum[i]);
-        //if (nodebugmode) cout << "par in bin xp " << i << ": " << param_xp[i] << " +- " << param_err_xp[i] << ", chi2/dof = " << chi2_xp[i]  << endl;
+        //if (nodebugmode) 
+            cout << "par in bin xp " << i << ": " << param_xp[i] << " +- " << param_err_xp[i] << ", chi2/dof = " << chi2_xp[i]  << endl;
     }
 
 
@@ -2029,7 +2041,6 @@ int main(int argc, char *argv[])
     if (ProduceDZoverollPlot == 1)
     {
         dout("ProduceDZoverollPlot");
-        bool detailed = false;
             Int_t i = hist.n_hist - 1;
             hist_data[0] = (TH1D*)hist.hist_data_sum[i]->Clone();             hist_data[0]->SetName("data");
             hist_mc[0] = (TH1D*)hist.hist_mc_sum[i]->Clone();             hist_mc[0]->SetName("prph");//QQ
@@ -2211,7 +2222,7 @@ int main(int argc, char *argv[])
             h_window_control->Draw();
 
             TLegend *leg = new TLegend(0.5, 0.4, 0.9, 0.79);//(0.5, 0.5, 0.9, 0.89);//TLegend(0.55, 0.6, 0.95, 0.91);//
-            if (detailed) leg = new TLegend(0.55, 0.65, 0.9, 0.91);
+            if (dZdetailed) leg = new TLegend(0.5, 0.5, 0.9, 0.79);//0.55, 0.65, 0.9, 0.91
             leg->SetBorderSize(0);
             leg->SetFillColor(0);
             hist_res[0]->SetLineColor(kRed);
@@ -2247,7 +2258,7 @@ int main(int argc, char *argv[])
                 //leg->SetY1(0.5);
                 //leg->SetX2(0.9);
                 //leg->SetY2(0.89);
-                inform = new TPaveText(0.45,0.45,0.85,0.64, "NDC");
+                inform = new TPaveText(0.45,0.3,0.9,0.5, "NDC");
                 TText *t1, *t2, *t3, *t4;
                 TString s1, s2, s3, s4; 
                 s1.Form("fit range: bins %i .. %i", int(left_bound), int(right_bound)); 
@@ -2269,7 +2280,7 @@ int main(int argc, char *argv[])
             datamarker_h.SetMarkerStyle(hist_data[0]->GetMarkerStyle()); 
 
 
-            leg->AddEntry(&datamarker_h, "ZEUS (prel.)", "p"); 
+            leg->AddEntry(&datamarker_h, "ZEUS", "p"); 
             if(QQfit == 1)
                 leg->AddEntry(hist_mc[0], "QQ", "f"); //blue
             else
@@ -2296,7 +2307,7 @@ int main(int argc, char *argv[])
             
             leg->DrawClone();
 
-            if (detailed)
+            if (dZdetailed)
             {
                     inform->Draw();
                     TLine *lineLeft = new TLine(), *lineRight = new TLine();
@@ -2329,8 +2340,8 @@ int main(int argc, char *argv[])
             else
                 str_temp2 += "_noLLinBg";
 
-            TPaveText *t = new TPaveText(0.27, 0.83, 0.8, 1.0, "NDC"); // left-up
-                t->AddText("ZEUS preliminary");
+            TPaveText *t = new TPaveText(0.27, 0.85, 0.8, 0.95, "NDC"); // left-up
+                t->AddText("ZEUS");
                 t->SetFillColor(0);
                 t->SetBorderSize(0);
                 t->SetFillStyle(0);
