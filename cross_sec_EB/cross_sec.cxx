@@ -1,7 +1,7 @@
 #include "cross_sec.h"
 
 TString q2_cut_global = "";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
-TString whichCorrection("");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
+TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
 vector<Double_t> PeterCorrectionBg({1, 1.2, 1.3, 1.15, 1.05, 1., 0.95, 0.95});//paste to whichCorrection "PeterBgCorr"
@@ -10,6 +10,8 @@ unsigned int ProduceDZoverollPlot = 1;
 bool dZdetailed = false;
 Bool_t nodebugmode = kTRUE;
 Bool_t once = kTRUE;
+
+bool llCorrectiontoo = false;
 
 unsigned int QQfit = 1; 
 //0 : data = photons * a + bg' * (1 - a);
@@ -53,7 +55,7 @@ Int_t GetFitRange( TH1D* h, bool f=true)
     if (f) 
     {
         
-        return h->FindBin(leftRange) -1;//-1 was from old code when the range was 0 - 0.95
+        return h->FindBin(leftRange) ;//-1 was from old code when the range was 0 - 0.95
     } //left range
     else 
     {
@@ -252,7 +254,7 @@ void DoComplicatedScale(TH1D* h, Double_t a, Double_t a_err, bool out = false)
         }
 }
 
-void MakeCorrection(TH1D* d, TH1D* nr)
+void MakeCorrection(TH1D* d, TH1D* nr, TH1D* ll=0)
 {
     if(!whichCorrection.Contains("NoCorrection"))//Think how to extend it to other case
         {
@@ -262,6 +264,11 @@ void MakeCorrection(TH1D* d, TH1D* nr)
                 {
                     d->SetBinContent(j+1, d->GetBinContent(j+1) * IanCorrectionSg[j]); 
                     d->SetBinError(j+1, d->GetBinError(j+1) * IanCorrectionSg[j]);
+                    if (llCorrectiontoo && ll !=0)
+                    {
+                        ll->SetBinContent(j+1, ll->GetBinContent(j+1) * IanCorrectionSg[j]);  
+                        ll->SetBinError(j+1, ll->GetBinError(j+1) * IanCorrectionSg[j]);                  
+                    }
                 }
             if (whichCorrection.Contains("PeterSg"))
                 for (size_t j = 0; j != PeterCorrectionSg.size(); ++j) 
@@ -308,6 +315,22 @@ void Chi2StatisticsCheck(Double_t* array, Int_t number_of_bins)
   
 int main(int argc, char *argv[])
 {
+    if (false)
+    {
+        dout("====");
+        TH1D * h = new TH1D("temp","temp", 5, 0, 5);
+        dout("nbins:",h->GetNbinsX());
+        h->Print();
+        for(int i = 1; i<=5; i++){
+            dout("i bin",i);
+                    h->SetBinContent(i,i);}
+        h->Print();
+        for(int i = 0; i<=6; i++)
+            dout("h i", i, h->GetBinContent(i));
+        dout("Integral:", h->Integral());
+        dout("Integral 2 4:", h->Integral(2, 4));
+        exit(1);
+    }
     dout("stststst");
     if (q2_cut_global.Contains("gt")) {
             auto init = std::initializer_list<Double_t *>({et_sys_q2_gt_30, eta_sys_q2_gt_30, Q2_sys_q2_gt_30, x_sys_q2_gt_30, et_jet_sys_q2_gt_30, eta_jet_sys_q2_gt_30, xgamma_sys_q2_gt_30, xp_sys_q2_gt_30, dphi_sys_q2_gt_30, deta_sys_q2_gt_30, dphi_e_ph_sys_q2_gt_30, deta_e_ph_sys_q2_gt_30});
@@ -480,7 +503,7 @@ int main(int argc, char *argv[])
         //chi squared per bin
         Double_t total_chi2 = 0;
         Int_t dof = 0;
-        if (nodebugmode) dout("Fit in bins of et: from bin ", GetFitRange(hist_data[0], true),"to", GetFitRange(hist_data[0], false));      
+        if (nodebugmode) dout("Fit in bins of et: from bin ", GetFitRange(hist_data[0], true),"to", GetFitRange(hist_data[0], false), "(not including)");      
         
         //for(Int_t bin = hist_data[0]->FindBin(0.) - 1; bin < hist_data[0]->FindBin(0.6) + 4 - hist_data[0]->FindBin(0.) + 1; bin++) //? 02/07/15
         for(Int_t bin = GetFitRange(hist_data[0], true); bin < GetFitRange(hist_data[0], false); bin++) //? 02/07/15
@@ -2070,7 +2093,17 @@ int main(int argc, char *argv[])
             }
 
             cout << "AFTER  SCALING: mc QQ: " << hist_mc[0]->Integral() << " mc LL: " << hist_mc_rad[0]->Integral() << " mc bg: " << hist_mc_norad[0]->Integral() << " data: " << hist_data[0]->Integral()<<endl;
+            
+            bool minusone = true;
+            double scalefactor = (hist_data[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)
+                                    - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)) 
+                                / hist_mc[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) ;
+            dout("Scale factor:", scalefactor);
+            hist_mc[0]->Scale(scalefactor);
+            hist_mc_norad[0]->Scale(scalefactor);
 
+            dout("AFTER RESCALING IN RANGE OF FIT");
+            cout << " mc QQ: " << hist_mc[0]->Integral() << " mc LL: " << hist_mc_rad[0]->Integral() << " mc bg: " << hist_mc_norad[0]->Integral() << " data: " << hist_data[0]->Integral()<<endl;
 
                 hist_mc_photon[0] = (TH1D*)hist.hist_mc_rad_sum[i]->Clone();//LL' - scaled to totLum
                 hist_mc_photon[0]->SetName("photon");
@@ -2111,10 +2144,73 @@ int main(int argc, char *argv[])
             Double_t sumSgAll, sumRd, sumSg, a, aErr;
             if (QQfit == 1)
             {
+                // double tempd = 0;
+                // hA = hist_mc[0];
+
+                // dout("sumSgAll bins:");
+                //     for(int i=1; i<=hA->GetNbinsX(); i++ )
+                //     {
+                //         dout("bin i", i, ":", hA->GetBinContent(i));
+                //         tempd+= hA->GetBinContent(i);
+                //     }
+                //     dout("sum:", tempd); 
+                // sumSgAll = hA->Integral();
+
+                // dout("sumRd (data) bins:");
+                //     tempd = 0;
+                //     for(int i=1; i<=hist_data[0]->GetNbinsX(); i++ )
+                //     {
+                //         dout("bin i", i, ":", hist_data[0]->GetBinContent(i));
+                //         tempd+= hist_data[0]->GetBinContent(i);
+                //     }
+                //     dout("sum:", tempd); 
+                // sumRd = hist_data[0]->Integral();
+
+                // dout("sumSg bins:");
+                //     tempd = 0;
+                //     for(int i=GetFitRange(hist_data[0], true); i<=GetFitRange(hist_data[0], false); i++ )
+                //     {
+                //         dout("bin i", i, ":", hA->GetBinContent(i));
+                //         tempd+= hA->GetBinContent(i);
+                //     }
+                //     dout("sum:", tempd); 
+                // sumSg = hA->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false));
+
+                // a = param[0];
+                // aErr = param_err[0];
+                
+                double tempd = 0;
                 hA = hist_mc[0];
+
+                dout("sumSgAll bins:");
+                    for(int i=1; i<=hA->GetNbinsX(); i++ )
+                    {
+                        dout("bin i", i, ":", hA->GetBinContent(i));
+                        tempd+= hA->GetBinContent(i);
+                    }
+                    dout("sum:", tempd); 
                 sumSgAll = hA->Integral();
-                sumRd = hist_data[0]->Integral();
-                sumSg = hA->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false));
+
+                dout("sumRd (data) bins:");
+                    tempd = 0;
+                    for(int i=1; i<=hist_data[0]->GetNbinsX(); i++ )
+                    {
+                        dout("bin i", i, ":", hist_data[0]->GetBinContent(i));
+                        tempd+= hist_data[0]->GetBinContent(i);
+                    }
+                    dout("sum:", tempd); 
+                sumRd = hist_data[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone);
+                //sumRd = hist_data[0]->Integral();
+                dout("sumSg bins:");
+                    tempd = 0;
+                    for(int i=GetFitRange(hist_data[0], true); i < GetFitRange(hist_data[0], false); i++ )
+                    {
+                        dout("bin i", i, ":", hA->GetBinContent(i));
+                        tempd+= hA->GetBinContent(i);
+                    }
+                    dout("sum:", tempd); 
+                sumSg = hA->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone);
+
                 a = param[0];
                 aErr = param_err[0];
             }
@@ -2123,18 +2219,32 @@ int main(int argc, char *argv[])
                 hA = hist_mc_photon[0];
                 sumSgAll = hA->Integral();
                 sumRd = hist_data[0]->Integral();
-                sumSg = hA->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false));
+                sumSg = hA->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone);
                 a = param[0];
                 aErr = param_err[0];
             }
-            dout("a, sumSgAll, sumRd, sumSg", a, sumSgAll, sumRd, sumSg);
-            Double_t N = a * sumRd * (sumSgAll / sumSg);                
+            Double_t sumLL_fit = hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone);
+            dout("a, sumSgAll, sumRd_fit, sumSg_fit, sumLL_fit", a, sumSgAll, sumRd, sumSg, sumLL_fit);
+            //Double_t N = a * sumRd * (sumSgAll / sumSg);  
+            //Double_t N = a * (sumRd - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false))) * (sumSgAll / sumSg);       
+
+            dout("N =", a ,"*", "(",sumRd, "-", sumLL_fit,") * (",sumSgAll, "/", sumSg);       
+            Double_t N = a * (sumRd - sumLL_fit) * (sumSgAll / sumSg);              
             Double_t dS = sumSgAll - sumSg;
             Double_t Nerr = TMath::Sqrt( pow((1 + dS/sumSg), 2) * ( pow(sumRd, 2) * pow(aErr, 2) + pow(a, 2) * sumRd ) \
                                         + pow(a, 2) * pow(sumRd, 2) * ( dS + pow(dS, 2) / sumSg ) / pow(sumSg, 2) );
             Double_t NLL =  hist_mc_rad[0]->Integral(), NLLerr(0);
             if (QQfit == 1 && fitWithLL==1 && fitWithLLinBg==0)
             {
+                dout("sumLLAll (LL) bins:");
+                    double tempd = 0;
+                    for(int i=1; i<=hist_mc_rad[0]->GetNbinsX(); i++ )
+                    {
+                        dout("bin i", i, ":", hist_mc_rad[0]->GetBinContent(i), "+-", hist_mc_rad[0]->GetBinError(i));
+                        tempd+= hist_mc_rad[0]->GetBinContent(i);
+                    }
+                    dout("sum:", tempd); 
+                dout("N+=",hist_mc_rad[0]->Integral());
                 N += hist_mc_rad[0]->Integral();
                 Double_t hist_mc_noradIntegrated_error = 0;
                 Double_t total = hist_mc_rad[0]->IntegralAndError(1, hist_mc_rad[0]->GetNbinsX(), hist_mc_noradIntegrated_error,"");
@@ -2165,6 +2275,17 @@ int main(int argc, char *argv[])
                 //DoReparametrisation(1, param_xgamma, param_err_xgamma, i);
                 //DoReparametrisationforQQ(1, param_xgamma_PhotonsFitforQQ, param_err_xgamma_PhotonsFitforQQ, i);
             }
+
+            dout("hist_mc_norad (had.bg.) bins:");
+            double tempd = 0;
+                    for(int i=1; i<=hist_mc_norad[0]->GetNbinsX(); i++ )
+                    {
+                        dout("bin i", i, ":", hist_mc_norad[0]->GetBinContent(i), "+-", hist_mc_norad[0]->GetBinError(i));
+                        tempd+= hist_mc_norad[0]->GetBinContent(i);
+                    }
+                    dout("sum:", tempd); 
+
+
             DoComplicatedScale(hist_mc_norad[0], 1 - param[0], param_err[0]);//Bg*a
             DoComplicatedScale(hist_mc[0], param[0], param_err[0]);//QQ*a
             if (QQfit == 1 && fitWithLL == 0)
@@ -2177,6 +2298,8 @@ int main(int argc, char *argv[])
             dout("hist_res[0][3] = ", hist_res[0]->GetBinContent(3));
             //#temp if (QQfit==0)  DoComplicatedScale(hist_res[0], param[0], param_err[0]);//LL*a or QQ*a
             hist_res[0]->Add(hist_mc_norad[0]);// LL + bg'*(1-a) || QQ*a + bg'*(1-a)
+
+            
 
             if (QQfit == 1 && fitWithLL == 1)
                 hist_res[0]->Add(hist_mc[0]);//LL +  QQ'*a + bg'*(1-a)
@@ -2261,7 +2384,7 @@ int main(int argc, char *argv[])
                 inform = new TPaveText(0.45,0.3,0.9,0.5, "NDC");
                 TText *t1, *t2, *t3, *t4;
                 TString s1, s2, s3, s4; 
-                s1.Form("fit range: bins %i .. %i", int(left_bound), int(right_bound)); 
+                s1.Form("fit range: bins %i .. %i", int(left_bound), int(right_bound - 1)); 
                 s2.Form("#chi^{2} / %i-2 = %.2f", ndf+2, chi_squared);
                 s3.Form("N_{fitted photons} = %.2f +- %.2f", N, Nerr);
                 s4.Form("N_{LL photons} = %.2f +- %.2f", NLL, NLLerr);
@@ -2321,7 +2444,7 @@ int main(int argc, char *argv[])
             }
             else
             {
-                cout << "fit range: bins " << int(left_bound)<< ".."  << int(right_bound) << endl;
+                cout << "fit range: bins " << int(left_bound)<< ".."  << int(right_bound - 1) << endl;
                 cout << "#chi^{2} /" << ndf+2 << "-2 = " << chi_squared << endl;
                 cout << "N_{fitted photons} = " << N <<  "+-" <<  Nerr << endl;
                 cout << "N_{LL photons} = " << NLL << "+-" << NLLerr << endl;
@@ -2377,8 +2500,9 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
     {
         index = g_index_deltaz;
         left = GetFitRange(hist_data[index], true);//hist_data[index]->FindBin(0.) - 1;
-        right = GetFitRange(hist_data[index], false); // 5;//20;//hist_data[index]->FindBin(0.8);//18;//hist_data[index]->FindBin(0.8); //0.8 / 0.05
+        right = GetFitRange(hist_data[index], false) ; // 5;//20;//hist_data[index]->FindBin(0.8);//18;//hist_data[index]->FindBin(0.8); //0.8 / 0.05
         //if (nodebugmode) cout<<"right "<<right<<" left "<< left<< endl; 
+        //dout("left:", left,"right",right);exit(1);
     }
     else
     if(fit_method == "fmax") 
@@ -2395,6 +2519,7 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
 
     for(Int_t i = left; i < right; i++)
     {
+        //dout("i",i);
         Double_t diff;
         //Check the bins abd ranges
         //if (nodebugmode) cout << "getting bin " << i << " from " << hist_data_sum[index]->GetBinLowEdge(i+1) << " to " <<  hist_data_sum[index]->GetBinLowEdge(i+2) << endl;
@@ -2510,6 +2635,7 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
             res += diff*diff/denom;
         ndf++;
     }
+    //exit(1);
     ndf = ndf - 2 ;//?- QQfit
     //   if (nodebugmode) cout << "ndf = " << ndf << endl;
         //  res /= float(ndf-1);

@@ -450,6 +450,11 @@ void Hist::Init()
                             {
                                 hist_mc_sum[i]->SetBinContent(j+1, hist_mc_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]); 
                                 hist_mc_sum[i]->SetBinError(j+1, hist_mc_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);
+                                if (llCorrectiontoo)
+                                {
+                                    hist_mc_rad_sum[i]->SetBinContent(j+1, hist_mc_rad_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]);  
+                                    hist_mc_rad_sum[i]->SetBinError(j+1, hist_mc_rad_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);                   
+                                }
                             }
                         if (whichCorrection.Contains("PeterSg"))
                             for (size_t j = 0; j != PeterCorrectionSg.size(); ++j) 
@@ -506,6 +511,10 @@ void Hist::Init()
             hist_mc_photon_sum[i] -> Add(hist_mc_sum[i]);//LL+QQ'
         }
         cerr << "ADDING : OK" << endl;
+
+        // dout("here");
+        // dout(hist_mc_norad_sum[n_hist-1]->Integral());
+        // exit(1);
         //if (nodebugmode) cout << "AFTER  SCALING: mc QQ: " << hist_mc_sum[g_index_deltaz]->Integral() << " mc LL: " << hist_mc_rad_sum[g_index_deltaz]->Integral() << " mc bg: " << hist_mc_norad_sum[g_index_deltaz]->Integral() << " data: " << hist_data_sum [g_index_deltaz]->Integral()<<endl;
            // for(Int_t j = 0;j<10;j++)//GetNbinsX()
            //               dout("hsj=",j,")",hist_mc_sum[n_hist-1]->GetBinContent(j+1) );
@@ -555,6 +564,7 @@ void Hist::Init()
         }
 
     }
+
     //////////////////////////////////////////////////
     //
     //             Connect Input Files Reading Data II - for the fit
