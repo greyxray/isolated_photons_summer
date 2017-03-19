@@ -205,7 +205,9 @@ void Hist::Init()
     set_hist_atributes(6,  "h_deltaz", "Photon_with_jet", "<#delta z>", 0, 1.5, 0.1, kFALSE, 10);//g_index_deltaz
     
     TString s_process;// = "zero"; 
-    TString s_path = "../my_";//"../root_files/my_" "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
+    TString s_path = "../my_";// - NICE
+    if (q2_cut_global.Contains("_q2_lt_30")) s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
+    //TString s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     s_process.Form(correctiontype );
     {
         TString s_period[n_periods] = {"0405e", "06e", "0607p"};
@@ -446,14 +448,21 @@ void Hist::Init()
 
                         dout("correctio: ", whichCorrection);
                         if (whichCorrection.Contains("IanSg"))
-                            for (size_t j = 0; j != IanCorrectionSg.size(); ++j) 
                             {
-                                hist_mc_sum[i]->SetBinContent(j+1, hist_mc_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]); 
-                                hist_mc_sum[i]->SetBinError(j+1, hist_mc_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);
-                                if (llCorrectiontoo)
+                                double scaletemp=hist_mc_rad_sum[i]->Integral();
+                                for (size_t j = 0; j != IanCorrectionSg.size(); ++j) 
                                 {
-                                    hist_mc_rad_sum[i]->SetBinContent(j+1, hist_mc_rad_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]);  
-                                    hist_mc_rad_sum[i]->SetBinError(j+1, hist_mc_rad_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);                   
+                                    hist_mc_sum[i]->SetBinContent(j+1, hist_mc_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]); 
+                                    hist_mc_sum[i]->SetBinError(j+1, hist_mc_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);
+                                    if (llCorrectiontoo)
+                                    {
+                                        hist_mc_rad_sum[i]->SetBinContent(j+1, hist_mc_rad_sum[i]->GetBinContent(j+1) * IanCorrectionSg[j]);  
+                                        hist_mc_rad_sum[i]->SetBinError(j+1, hist_mc_rad_sum[i]->GetBinError(j+1) * IanCorrectionSg[j]);                   
+                                    }
+                                }
+                                if(llCorrectiontoo && backnormaliseLL)
+                                {
+                                    hist_mc_rad_sum[i]->Scale(scaletemp/hist_mc_rad_sum[i]->Integral());
                                 }
                             }
                         if (whichCorrection.Contains("PeterSg"))

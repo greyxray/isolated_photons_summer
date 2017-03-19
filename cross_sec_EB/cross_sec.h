@@ -330,6 +330,7 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 	
 		//print [ format(l[i] * (e[i]), '.5f') for i in range(len(l)) ]  ---python 2.7
 		// 0< Q2< 320
+/*OLD
 			//pT_cut in center-of-mass frame = 0.5 GeV/c
 				Double_t font_xgamma_pt05_Q2full[number_xgamma_bins] = {1.8278515, 3.044947495, 5.64863888, 9.37396173, 19.5624161, 50.670627};
 				Double_t font_xp_pt05_Q2full[number_xp_bins] = {401.10974, 765.5574, 466.859288, 157.067935, 31.065670667, 3.089876};
@@ -360,7 +361,74 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 				Double_t font_xp_neg_pt25_Q2full[number_xp_bins] = {34.47359, 63.38289, 36.88653, 13.59409, 2.79586, 0.30315};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 				Double_t font_deta_neg_pt25_Q2full[number_deta_bins] = {0.06338, 0.22585, 0.33480, 0.32497, 0.21653, 0.04616};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
 				Double_t font_dphi_e_gamma_neg_pt25_Q2full[number_dphi_e_ph_bins] = {0.00194, 0.00250, 0.00379, 0.00649, 0.00987, 0.00852};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
-			//Combined - This is what was used before
+			*/
+//NEW
+			// 0< Q2< 320
+			//pT_cut in center-of-mass frame = 0.5 GeV/c
+				Double_t font_xgamma_pt05_Q2full[number_xgamma_bins] = {1.27, 3.04, 5.45, 8.86, 18.54, 49.39};
+				Double_t font_xp_pt05_Q2full[number_xp_bins] = {380., 761., 446., 152., 29.13, 2.90};
+				Double_t font_deta_pt05_Q2full[number_deta_bins] = {0.884, 3.457, 3.743, 3.318, 2.180, 0.435};
+				Double_t font_dphi_e_gamma_pt05_Q2full[number_dphi_e_ph_bins] = {0.0185, 0.024, 0.037, 0.064, 0.106, 0.133};
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				/*
+					Double_t font_xgamma_pos_pt05_Q2full[number_xgamma_bins] = {0.12700, 0.30400, 0.54500, 0.88600, 1.85400, 4.93900};
+					Double_t font_xp_pos_pt05_Q2full[number_xp_bins] = {38.00000, 76.10000, 44.60000, 15.20000, 2.91300, 0.29000};
+					Double_t font_deta_pos_pt05_Q2full[number_deta_bins] = {0.19767, 0.77301, 0.83696, 0.34641, 0.22760, 0.04542};
+					Double_t font_dphi_e_gamma_pos_pt05_Q2full[number_dphi_e_ph_bins] = {0.00414, 0.00537, 0.00827, 0.01431, 0.01107, 0.01389};// DONE
+
+					Double_t font_xgamma_neg_pt05_Q2full[number_xgamma_bins] = {0.12700, 0.30400, 0.54500, 0.88600, 1.85400, 4.93900};
+					Double_t font_xp_neg_pt05_Q2full[number_xp_bins] = {38.00000, 76.10000, 44.60000, 15.20000, 2.91300, 0.29000};
+					Double_t font_deta_neg_pt05_Q2full[number_deta_bins] = {0.19767, 0.77301, 0.83696, 0.34641, 0.22760, 0.04542};
+					Double_t font_dphi_e_gamma_neg_pt05_Q2full[number_dphi_e_ph_bins] = {0.00414, 0.00537, 0.00827, 0.01431, 0.01107, 0.01389};// DONE
+				*/
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xgamma_pos_pt05_Q2full[number_xgamma_bins] = {0.12700, 0.30400, 0.54500, 0.88600, 1.85400, 4.93900};
+					Double_t font_xp_pos_pt05_Q2full[number_xp_bins] = {38.00000, 76.10000, 44.60000, 15.20000, 2.91300, 0.29000};
+					Double_t font_deta_pos_pt05_Q2full[number_deta_bins] = {0.08840, 0.34570, 0.37430, 0.33180, 0.21800, 0.04350};
+					Double_t font_dphi_e_gamma_pos_pt05_Q2full[number_dphi_e_ph_bins] = {0.00185, 0.00240, 0.00370, 0.00640, 0.01060, 0.01330};
+					Double_t * font_xgamma_neg_pt05_Q2full = font_xgamma_pos_pt05_Q2full;
+					Double_t * font_xp_neg_pt05_Q2full = font_xp_pos_pt05_Q2full;
+					Double_t * font_deta_neg_pt05_Q2full = font_deta_pos_pt05_Q2full;
+					Double_t * font_dphi_e_gamma_neg_pt05_Q2full = font_dphi_e_gamma_pos_pt05_Q2full;
+
+			//pT_cut in center-of-mass frame = 2.5 GeV/c - ADDITIONAL 10% unc added everywhere - for now: only this 10 % included!!!!
+				Double_t font_xgamma_pt25_Q2full[number_xgamma_bins] = {1.2178, 2.8124, 4.7374, 7.3692, 14.5175, 45.1021};//l=[1.2178, 2.8124, 4.7374, 7.3692, 14.5175, 45.1021]
+				Double_t font_xp_pt25_Q2full[number_xp_bins] = {326.7, 605.4, 344.1, 130.3, 26.76, 2.865};//l=[326.7, 605.4, 344.1, 130.3, 26.76, 2.865]
+				Double_t font_deta_pt25_Q2full[number_deta_bins] = {0.593, 2.121, 3.167, 3.116, 2.095, 0.461};//l=[0.593, 2.121, 3.167, 3.116, 2.095, 0.461]
+				Double_t font_dphi_e_gamma_pt25_Q2full[number_dphi_e_ph_bins] = {0.0180, 0.0235, 0.0363, 0.0628, 0.0936, 0.0798};//l=[0.0180, 0.0235, 0.0363, 0.0628, 0.0936, 0.0798]
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				/*
+					Double_t font_xgamma_pos_pt25_Q2full[number_xgamma_bins] = {0.12178, 0.28124, 0.47374, 0.73692, 1.45175, 4.51021};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xp_pos_pt25_Q2full[number_xp_bins] = {32.67000, 60.54000, 34.41000, 13.03000, 2.67600, 0.28650};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_deta_pos_pt25_Q2full[number_deta_bins] = {0.13260, 0.47427, 0.70816, 0.32532, 0.21872, 0.04813};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+					Double_t font_dphi_e_gamma_pos_pt25_Q2full[number_dphi_e_ph_bins] = {0.00402, 0.00525, 0.00812, 0.01404, 0.00977, 0.00833};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+
+					Double_t font_xgamma_neg_pt25_Q2full[number_xgamma_bins] = {0.12178, 0.28124, 0.47374, 0.73692, 1.45175, 4.51021};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xp_neg_pt25_Q2full[number_xp_bins] = {32.67000, 60.54000, 34.41000, 13.03000, 2.67600, 0.28650};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_deta_neg_pt25_Q2full[number_deta_bins] = {0.13260, 0.47427, 0.70816, 0.32532, 0.21872, 0.04813};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+					Double_t font_dphi_e_gamma_neg_pt25_Q2full[number_dphi_e_ph_bins] = {0.00402, 0.00525, 0.00812, 0.01404, 0.00977, 0.00833};//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				*/
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xgamma_pos_pt25_Q2full[number_xgamma_bins] = {0.12178, 0.28124, 0.47374, 0.73692, 1.45175, 4.51021};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1] 
+					Double_t font_xp_pos_pt25_Q2full[number_xp_bins] = {32.67000, 60.54000, 34.41000, 13.03000, 2.67600, 0.28650};//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1] 
+					Double_t font_deta_pos_pt25_Q2full[number_deta_bins] = {0.05930, 0.21210, 0.31670, 0.31160, 0.20950, 0.04610};
+					Double_t font_dphi_e_gamma_pos_pt25_Q2full[number_dphi_e_ph_bins] = {0.00180, 0.00235, 0.00363, 0.00628, 0.00936, 0.00798};
+					Double_t * font_xgamma_neg_pt25_Q2full = font_xgamma_pos_pt25_Q2full;
+					Double_t * font_xp_neg_pt25_Q2full = font_xp_pos_pt25_Q2full;
+					Double_t * font_deta_neg_pt25_Q2full = font_deta_pos_pt25_Q2full;
+					Double_t * font_dphi_e_gamma_neg_pt25_Q2full = font_dphi_e_gamma_pos_pt25_Q2full;
+
+			//Combined - This is what was used before - Old!!!!!!!!!!
 				//For the meanwhile mean variables are just center between predictions of pt 2.5 and pt 0.5 so the errors would be semmetric - boundaries
 				Double_t font_xgamma[number_xgamma_bins] = {1.77864105, 2.9388162475, 5.29177594, 8.597595365, 17.44771155, 48.0353915};
 				Double_t font_xp[number_xp_bins] = {372.92281, 699.69313, 417.862304, 146.5044075, 29.5121153335, 3.060679665};
@@ -376,7 +444,8 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 				Double_t font_xp_neg[number_xp_bins] = {28.186930000000018, 65.86427000000003, 48.996984, 10.56352750000002, 1.5535553335000003, 0.029196334999999962};//NEED TO SMEAR
 				Double_t font_deta_neg[number_deta_bins] = {0.17041357150000003, 0.6584713569999998, 0.3457228569999997, 0.08681205699999994, 0.055872971499999924, -0.0121046145};//NEED TO SMEAR// this error was additionaly smeared doun by e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03], last el set to 0 since neg '-0.01174'
 				Double_t font_dphi_e_gamma_neg[number_dphi_e_ph_bins] = {0.0002918434999999997, 0.00037676299999999871, 0.00070583399999999893, 0.00073954349999999502, 0.0055847269999999977, 0.0284582195};//NEED TO SMEAR
-
+//OLD
+/*
 		// 0<Q2<30 range
 			//pT_cut in  in center-of-mass frame = 0.5 GeV/c
 				Double_t font_xgamma_pt05_Q2lt30[number_xgamma_bins] = {0.896, 1.958, 2.598, 3.582, 6.417, 20.668};
@@ -408,7 +477,77 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 				Double_t font_xp_neg_pt25_Q2lt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_deta_neg_pt25_Q2lt30[number_deta_bins] = {0.05920, 0.19340, 0.29740, 0.04401, 0.02745, 0.00780};// DONE
 				Double_t font_dphi_e_gamma_neg_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.00225, 0.00281, 0.00400, 0.00591, 0.00102, 0.00094};// DONE
-			//Combined  
+*/
+				//NEW
+				// 0<Q2<30 range
+
+			//pT_cut in  in center-of-mass frame = 0.5 GeV/c
+				Double_t font_xgamma_pt05_Q2lt30[number_xgamma_bins] = {0.64, 1.85, 2.51, 3.47, 6.33, 20.60}; // l = [0.64, 1.85, 2.51, 3.47, 6.33, 20.60]
+				Double_t font_xp_pt05_Q2lt30[number_xp_bins] = {171.62, 306.68, 157.94, 52.04, 10.13, 0.861}; // l = [171.62, 306.68, 157.94, 52.04, 10.13, 0.861]
+				Double_t font_deta_pt05_Q2lt30[number_deta_bins] = {0.342, 1.070, 1.654, 1.464, 0.897, 0.252}; // l = [0.342, 1.070, 1.654, 1.464, 0.897, 0.252]
+				Double_t font_dphi_e_gamma_pt05_Q2lt30[number_dphi_e_ph_bins] = {0.0106, 0.0134, 0.0195, 0.0291, 0.0356, 0.0367}; // l = [0.0106, 0.0134, 0.0195, 0.0291, 0.0356, 0.0367]
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				/*
+					Double_t font_xgamma_pos_pt05_Q2lt30[number_xgamma_bins] = {0.06400, 0.18500, 0.25100, 0.34700, 0.63300, 2.06000};  //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xp_pos_pt05_Q2lt30[number_xp_bins] = {17.16200, 30.66800, 15.79400, 5.20400, 1.01300, 0.08610}; //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_deta_pos_pt05_Q2lt30[number_deta_bins] = {0.07647, 0.23926, 0.36985, 0.15285, 0.09365, 0.02631}; //e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+					Double_t font_dphi_e_gamma_pos_pt05_Q2lt30[number_dphi_e_ph_bins] = {0.00237, 0.00300, 0.00436, 0.00651, 0.00372, 0.00383};  //e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+
+					Double_t font_xgamma_neg_pt05_Q2lt30[number_xgamma_bins]  = {0.06400, 0.18500, 0.25100, 0.34700, 0.63300, 2.06000};  //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xp_neg_pt05_Q2lt30[number_xp_bins]  = {17.16200, 30.66800, 15.79400, 5.20400, 1.01300, 0.08610}; //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_deta_neg_pt05_Q2lt30[number_deta_bins]  = {0.07647, 0.23926, 0.36985, 0.15285, 0.09365, 0.02631}; //e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+					Double_t font_dphi_e_gamma_neg_pt05_Q2lt30[number_dphi_e_ph_bins]  = {0.00237, 0.00300, 0.00436, 0.00651, 0.00372, 0.00383};  //e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				*/
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xgamma_pos_pt05_Q2lt30[number_xgamma_bins] = {0.06400, 0.18500, 0.25100, 0.34700, 0.63300, 2.06000};  //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xp_pos_pt05_Q2lt30[number_xp_bins] = {17.16200, 30.66800, 15.79400, 5.20400, 1.01300, 0.08610}; //e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_deta_pos_pt05_Q2lt30[number_deta_bins] = {0.03420, 0.10700, 0.16540, 0.14640, 0.08970, 0.02520};
+					Double_t font_dphi_e_gamma_pos_pt05_Q2lt30[number_dphi_e_ph_bins] = {0.00106, 0.00134, 0.00195, 0.00291, 0.00356, 0.00367};
+
+					Double_t * font_xgamma_neg_pt05_Q2lt30 = font_xgamma_pos_pt05_Q2lt30;
+					Double_t * font_xp_neg_pt05_Q2lt30 = font_xp_pos_pt05_Q2lt30;
+					Double_t * font_deta_neg_pt05_Q2lt30 = font_deta_pos_pt05_Q2lt30;
+					Double_t * font_dphi_e_gamma_neg_pt05_Q2lt30 = font_dphi_e_gamma_pos_pt05_Q2lt30;
+				
+			//pT_cut in center-of-mass frame = 2.5 GeV/c
+				Double_t font_xgamma_pt25_Q2lt30[number_xgamma_bins] = {0.613, 1.80, 2.43, 3.26, 5.68, 18.78}; // l = [0.613, 1.80, 2.43, 3.26, 5.68, 18.78]
+				Double_t font_xp_pt25_Q2lt30[number_xp_bins] = {158.89, 281.51, 146.03, 49.92, 9.6153, 0.899}; // l = [158.89, 281.51, 146.03, 49.92, 9.6153, 0.899]
+				Double_t font_deta_pt25_Q2lt30[number_deta_bins] = {0.296, 0.921, 1.419, 1.396, 0.871, 0.259}; // l = [0.296, 0.921, 1.419, 1.396, 0.871, 0.259]
+				Double_t font_dphi_e_gamma_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.0105, 0.0132, 0.0190, 0.0286, 0.0327, 0.0302}; // l = [0.0105, 0.0132, 0.0190, 0.0286, 0.0327, 0.0302]
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
+				/*
+					Double_t font_xgamma_pos_pt25_Q2lt30[number_xgamma_bins] = {0.06130, 0.18000, 0.24300, 0.32600, 0.56800, 1.87800};
+					Double_t font_xp_pos_pt25_Q2lt30[number_xp_bins] = {15.88900, 28.15100, 14.60300, 4.99200, 0.96153, 0.08990};
+					Double_t font_deta_pos_pt25_Q2lt30[number_deta_bins] = {0.06619, 0.20594, 0.31730, 0.14575, 0.09094, 0.02704};
+					Double_t font_dphi_e_gamma_pos_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.00235, 0.00295, 0.00425, 0.00640, 0.00341, 0.00315};
+
+					Double_t font_xgamma_neg_pt25_Q2lt30[number_xgamma_bins] = {0.06130, 0.18000, 0.24300, 0.32600, 0.56800, 1.87800};
+					Double_t font_xp_neg_pt25_Q2lt30[number_xp_bins] = {15.88900, 28.15100, 14.60300, 4.99200, 0.96153, 0.08990};
+					Double_t font_deta_neg_pt25_Q2lt30[number_deta_bins] = {0.06619, 0.20594, 0.31730, 0.14575, 0.09094, 0.02704};
+					Double_t font_dphi_e_gamma_neg_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.00235, 0.00295, 0.00425, 0.00640, 0.00341, 0.00315};
+				*/
+
+				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
+					Double_t font_xgamma_pos_pt25_Q2lt30[number_xgamma_bins] = {0.06130, 0.18000, 0.24300, 0.32600, 0.56800, 1.87800};
+					Double_t font_xp_pos_pt25_Q2lt30[number_xp_bins] = {15.88900, 28.15100, 14.60300, 4.99200, 0.96153, 0.08990};
+					Double_t font_deta_pos_pt25_Q2lt30[number_deta_bins] = {0.02960, 0.09210, 0.14190, 0.13960, 0.08710, 0.02590};
+					Double_t font_dphi_e_gamma_pos_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.00105, 0.00132, 0.00190, 0.00286, 0.00327, 0.00302};
+
+					Double_t * font_xgamma_neg_pt25_Q2lt30 = font_xgamma_pos_pt25_Q2lt30;
+					Double_t * font_xp_neg_pt25_Q2lt30 = font_xp_pos_pt25_Q2lt30;
+					Double_t * font_deta_neg_pt25_Q2lt30 = font_deta_pos_pt25_Q2lt30;
+					Double_t * font_dphi_e_gamma_neg_pt25_Q2lt30 = font_dphi_e_gamma_pos_pt25_Q2lt30;
+
+			//Combined  - OLD !!!!!!!!! 
 				//print [format((l1[i]+l2[i])/2,'.5f') for i in range(len(l1))]
 				Double_t font_xgamma_Q2lt30[number_xgamma_bins] = {0.87850, 1.93600, 2.55250, 3.47900, 6.12150, 19.78450};
 				Double_t font_xp_Q2lt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
