@@ -2234,15 +2234,32 @@ int main(int argc, char *argv[])
                 + (1-param[0])* hist_mc_norad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone));
             
             Double_t sumLL_fit = hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone);
-            dout("a, sumSgAll, sumRd_fit, sumSg_fit, sumLL_fit", a, sumSgAll, sumRd, sumSg, sumLL_fit);
+            dout("a+-aerr, sumSgAll, sumRd_fit, sumSg_fit, sumLL_fit", a, "+-", aErr, sumSgAll, sumRd, sumSg, sumLL_fit);
             //Double_t N = a * sumRd * (sumSgAll / sumSg);  
             //Double_t N = a * (sumRd - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false))) * (sumSgAll / sumSg);       
 
             dout("N =", a ,"*", "(",sumRd, "-", sumLL_fit,") * (",sumSgAll, "/", sumSg);       
             Double_t N = a * (sumRd - sumLL_fit) * (sumSgAll / sumSg);              
             Double_t dS = sumSgAll - sumSg;
-            Double_t Nerr = TMath::Sqrt( pow((1 + dS/sumSg), 2) * ( pow(sumRd, 2) * pow(aErr, 2) + pow(a, 2) * sumRd ) \
-                                        + pow(a, 2) * pow(sumRd, 2) * ( dS + pow(dS, 2) / sumSg ) / pow(sumSg, 2) );
+
+            // Like Urii
+            /*
+                Double_t Nerr = TMath::Sqrt( pow((1 + dS/sumSg), 2) * ( pow(sumRd, 2) * pow(aErr, 2) + pow(a, 2) * sumRd ) \
+                                       + pow(a, 2) * pow(sumRd, 2) * ( dS + pow(dS, 2) / sumSg ) / pow(sumSg, 2) );
+            */
+            
+            //Wolfram
+            //(1/(sumSg^4))* (-a dSumLLfit^2 sumSg^3 sumSgAll +    aErr^2 (sumLLfit - sumRd)^2 sumSg^2 sumSgAll^2 +    a^2  (dSumSgAll^2 (sumLLfit -  sumRd)^2 sumSg^2          + (dSumSg^2 (sumLLfit - sumRd)^2          +  dSumRd^2 sumSg^2) sumSgAll^2)         )
+                Double_t dSumLLfit = 0; Double_t total = hist_mc_rad[0]->IntegralAndError(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone, dSumLLfit,"");
+                Double_t dSumSgAll = 0; total = hist_mc[0]->IntegralAndError(1,  hist_mc_rad[0]->GetNbinsX(), dSumSgAll,"");
+                Double_t dSumSg = 0;    total = hist_mc[0]->IntegralAndError(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone, dSumSg,"");
+                Double_t dSumRd = 0;    total = hist_data[0]->IntegralAndError(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone, dSumRd,"");
+
+            Double_t Nerr = TMath::Sqrt((1/pow(sumSg,4))*(-a* pow(dSumLLfit,2) * pow(sumSg,3)* sumSgAll + 
+  pow(aErr,2) * pow((sumLL_fit - sumRd),2)* pow(sumSg,2)* pow(sumSgAll,2) + 
+  pow(a,2)* (pow(dSumSgAll,2)* pow((sumLL_fit -  sumRd),2) * pow(sumSg,2) + (pow(dSumSg,2) * pow((sumLL_fit - sumRd),2) + 
+  pow(dSumRd,2)* pow(sumSg,2))* pow(sumSgAll,2))));
+            dout("NQQ error", Nerr);
             Double_t NLL =  hist_mc_rad[0]->Integral(), NLLerr(0);
             if (QQfit == 1 && fitWithLL==1 && fitWithLLinBg==0)
             {
@@ -2256,10 +2273,10 @@ int main(int argc, char *argv[])
                     dout("sum:", tempd); 
                 dout("N+=",hist_mc_rad[0]->Integral());
                 N += hist_mc_rad[0]->Integral();
-                Double_t hist_mc_noradIntegrated_error = 0;
-                Double_t total = hist_mc_rad[0]->IntegralAndError(1, hist_mc_rad[0]->GetNbinsX(), hist_mc_noradIntegrated_error,"");
-                NLLerr = hist_mc_noradIntegrated_error;
-                Nerr = TMath::Sqrt( Nerr*Nerr + hist_mc_noradIntegrated_error*hist_mc_noradIntegrated_error);
+                Double_t hist_mc_radIntegrated_error = 0;
+                Double_t total = hist_mc_rad[0]->IntegralAndError(1, hist_mc_rad[0]->GetNbinsX(), hist_mc_radIntegrated_error,"");
+                NLLerr = hist_mc_radIntegrated_error;
+                Nerr = TMath::Sqrt( Nerr*Nerr + hist_mc_radIntegrated_error*hist_mc_radIntegrated_error);
                 dout(total, "=", hist_mc_rad[0]->GetSumOfWeights());
                 //dout(hist_mc_rad[0]->GetSumw2()->GetSum());
                 float err(0.);
