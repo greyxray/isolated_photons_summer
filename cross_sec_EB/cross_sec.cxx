@@ -47,10 +47,10 @@ ofstream debug;
 Hist hist;
 
 //0.05 - 0.8 - our new
-//0 - 0.8 - paper
+//0 - 0.8 - paper --> I get overall, quoted 2440 get 2532.86
 //0 - 0.95 - actual dz paper
-Double_t leftRange = 0.05;//0.05;//0.00;//0.05
-Double_t sys_fit = 0.8;//0.8;//0.95;//0.8
+Double_t leftRange = 0.05;// after chi2 i+1 -->i: 0.05 + 0.05;//0.05;//0.00;//0.05
+Double_t sys_fit = 0.8;// after chi2 i+1 -->i: 0.8 + 0.05;//0.8;//0.95;//0.8
 Int_t GetFitRange( TH1D* h, bool left_range=true)
 {
     if (left_range) 
@@ -418,7 +418,7 @@ int main(int argc, char *argv[])
     Double_t checksum = 0;
     for(Int_t i = 0; i < number_etbins; i++)// процедура фитирования выполняется на каждый бин по Et
     {
-        MakeCorrection(hist.h_deltaz_et_prph_sum[i], hist.h_deltaz_et_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_et_prph_sum[i], hist.h_deltaz_et_norad_sum[i], hist.h_deltaz_et_rad_sum[i]);
         hist_data[0] = (TH1D*)hist.h_deltaz_et_data_sum[i]->Clone(); 
         checksum += hist_data[0]->GetEntries();
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_prph_sum[i]->Clone();
@@ -612,12 +612,10 @@ int main(int argc, char *argv[])
             , ", h.n_prph = " , hist.h_deltaz_et_prph_sum[i]->GetSum() \
             , ", n_res = " , hist.h_deltaz_et_res[i]->GetSum());
         if (i==0 && !nodebugmode) dout(  "par in bin et ", i, ": ", param_et[i], " +- ", param_err_et[i], ", chi2/dof = ", chi2_et[i] );
-
     }
     dout("checksum = ", checksum);
     dout("et:");
     Chi2StatisticsCheck(chi2_et, number_etbins);
-
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of eta
@@ -625,7 +623,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_etabins; i++)
     {      
-        MakeCorrection(hist.h_deltaz_eta_prph_sum[i], hist.h_deltaz_eta_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_eta_prph_sum[i], hist.h_deltaz_eta_norad_sum[i], hist.h_deltaz_eta_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_data_sum[i]->Clone(); 
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_prph_sum[i]->Clone(); 
@@ -732,11 +730,9 @@ int main(int argc, char *argv[])
         if (QQfit == 1 && fitWithLL== 0) hist.h_deltaz_eta_res[i]->Scale(0);
         hist.h_deltaz_eta_res[i]->Add(hist.h_deltaz_eta_norad_sum[i]);
         hist.h_deltaz_eta_res[i]->Add(hist.h_deltaz_eta_prph_sum[i]);
-
     }
     dout("eta:");
     Chi2StatisticsCheck(chi2_eta, number_etabins);
-
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of q2
@@ -745,7 +741,7 @@ int main(int argc, char *argv[])
     debug << "Q2 comparison h_deltaz_q2_data_sum[i]" << endl;
     for(Int_t i=0; i<number_Q2bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_q2_prph_sum[i], hist.h_deltaz_q2_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_q2_prph_sum[i], hist.h_deltaz_q2_norad_sum[i], hist.h_deltaz_q2_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_q2_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_q2_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -847,7 +843,6 @@ int main(int argc, char *argv[])
         hist.h_deltaz_q2_res[i]->Add(hist.h_deltaz_q2_norad_sum[i]);
         hist.h_deltaz_q2_res[i]->Add(hist.h_deltaz_q2_prph_sum[i]);
     }
-
     dout("q2:");
     Chi2StatisticsCheck(chi2_q2, number_Q2bins);
     ///////////////////////////////////////////////////////
@@ -857,7 +852,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_x_prph_sum[i], hist.h_deltaz_x_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_x_prph_sum[i], hist.h_deltaz_x_norad_sum[i], hist.h_deltaz_x_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_x_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_x_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -956,7 +951,6 @@ int main(int argc, char *argv[])
         hist.h_deltaz_x_res[i]->Add(hist.h_deltaz_x_norad_sum[i]);
         hist.h_deltaz_x_res[i]->Add(hist.h_deltaz_x_prph_sum[i]);
     }
-
     dout("x:");
     Chi2StatisticsCheck(chi2_x, number_xbins);
     ///////////////////////////////////////////////////////
@@ -966,7 +960,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_et_jetbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_et_jet_prph_sum[i], hist.h_deltaz_et_jet_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_et_jet_prph_sum[i], hist.h_deltaz_et_jet_norad_sum[i], hist.h_deltaz_et_jet_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_et_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_et_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1065,7 +1059,6 @@ int main(int argc, char *argv[])
         hist.h_deltaz_et_jet_res[i]->Add(hist.h_deltaz_et_jet_norad_sum[i]);
         hist.h_deltaz_et_jet_res[i]->Add(hist.h_deltaz_et_jet_prph_sum[i]);
     }
-
     dout("et_jet:");
     Chi2StatisticsCheck(chi2_et, number_et_jetbins);
     ///////////////////////////////////////////////////////
@@ -1075,7 +1068,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_eta_jetbins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_eta_jet_prph_sum[i], hist.h_deltaz_eta_jet_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_eta_jet_prph_sum[i], hist.h_deltaz_eta_jet_norad_sum[i], hist.h_deltaz_eta_jet_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_eta_jet_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_eta_jet_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1174,7 +1167,6 @@ int main(int argc, char *argv[])
         hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_norad_sum[i]);
         hist.h_deltaz_eta_jet_res[i]->Add(hist.h_deltaz_eta_jet_prph_sum[i]);//if (nodebugmode) cout << "par in bin eta_jet " << i << ": " << param_eta_jet[i] << " +- " << param_err_eta_jet[i] << ", chi2/dof = " << chi2_eta_jet[i]  << endl;
     }
-
     dout("eta_jet:");
     Chi2StatisticsCheck(chi2_eta_jet, number_eta_jetbins);
     ///////////////////////////////////////////////////////
@@ -1197,7 +1189,7 @@ int main(int argc, char *argv[])
     */
     for(Int_t i=0; i < number_xgamma_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_xgamma_prph_sum[i], hist.h_deltaz_xgamma_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_xgamma_prph_sum[i], hist.h_deltaz_xgamma_norad_sum[i], hist.h_deltaz_xgamma_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_xgamma_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
@@ -1361,7 +1353,6 @@ int main(int argc, char *argv[])
              cout << "   photons: " << hist_mc_photon[0]->Integral(1, hist_mc_photon[0]->GetNbinsX())<<endl;
         }
     }
-
     dout("xgamma:");
     Chi2StatisticsCheck(chi2_xgamma, number_xgamma_bins);
     ///////////////////////////////////////////////////////
@@ -1371,7 +1362,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_xp_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_xp_prph_sum[i], hist.h_deltaz_xp_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_xp_prph_sum[i], hist.h_deltaz_xp_norad_sum[i], hist.h_deltaz_xp_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_xp_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_xp_prph_sum[i]->Clone(); 
@@ -1499,8 +1490,6 @@ int main(int argc, char *argv[])
         //if (nodebugmode) 
             cout << "par in bin xp " << i << ": " << param_xp[i] << " +- " << param_err_xp[i] << ", chi2/dof = " << chi2_xp[i]  << endl;
     }
-
-
     dout("xp:");
     Chi2StatisticsCheck(chi2_xp, number_xp_bins);
     ///////////////////////////////////////////////////////
@@ -1510,7 +1499,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_dphi_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_dphi_prph_sum[i], hist.h_deltaz_dphi_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_dphi_prph_sum[i], hist.h_deltaz_dphi_norad_sum[i], hist.h_deltaz_dphi_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_data_sum[i]->Clone(); 
         hist_data[0]->SetName("data");
@@ -1625,7 +1614,6 @@ int main(int argc, char *argv[])
     }
      std::copy(param_dphi, param_dphi + number_dphi_bins,  hist.param_dphi);//?
      std::copy(param_err_dphi, param_err_dphi + number_dphi_bins,  hist.param_err_dphi);
-
     dout("dphi:");
     Chi2StatisticsCheck(chi2_dphi, number_dphi_bins);
     ///////////////////////////////////////////////////////
@@ -1635,7 +1623,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_deta_prph_sum[i], hist.h_deltaz_deta_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_deta_prph_sum[i], hist.h_deltaz_deta_norad_sum[i], hist.h_deltaz_deta_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_deta_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_deta_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1756,10 +1744,8 @@ int main(int argc, char *argv[])
         hist.h_deltaz_deta_res[i]->Add(hist.h_deltaz_deta_prph_sum[i]);
         //if (nodebugmode) cout << "par in bin deta " << i << ": " << param_deta[i] << " +- " << param_err_deta[i] << ", chi2/dof = " << chi2_deta[i]  << endl;
     }
-
     dout("deta:");
     Chi2StatisticsCheck(chi2_deta, number_deta_bins);
-
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of dphi_e_ph
@@ -1767,7 +1753,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i = 0; i < number_dphi_e_ph_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_dphi_e_ph_prph_sum[i], hist.h_deltaz_dphi_e_ph_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_dphi_e_ph_prph_sum[i], hist.h_deltaz_dphi_e_ph_norad_sum[i], hist.h_deltaz_dphi_e_ph_rad_sum[i]);
       
         hist_data[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_data_sum[i]->Clone(); hist_data[0]->SetName("data");
         hist_mc[0] = (TH1D*)hist.h_deltaz_dphi_e_ph_prph_sum[i]->Clone(); hist_mc[0]->SetName("prph");
@@ -1893,10 +1879,8 @@ int main(int argc, char *argv[])
 
         //if (nodebugmode) cout << "par in bin dphi_e_ph " << i << ": " << param_dphi_e_ph[i] << " +- " << param_err_dphi_e_ph[i] << ", chi2/dof = " << chi2_dphi_e_ph[i]  << endl;
     }
-
     dout("dphi_e_ph:");
     Chi2StatisticsCheck(chi2_dphi_e_ph, number_dphi_e_ph_bins);
-
     ///////////////////////////////////////////////////////
     //
     //          Fit in bins of deta_e_ph
@@ -1904,7 +1888,7 @@ int main(int argc, char *argv[])
     ///////////////////////////////////////////////////////
     for(Int_t i=0; i<number_deta_e_ph_bins; i++)
     { 
-        MakeCorrection(hist.h_deltaz_deta_e_ph_prph_sum[i], hist.h_deltaz_deta_e_ph_norad_sum[i]);
+        MakeCorrection(hist.h_deltaz_deta_e_ph_prph_sum[i], hist.h_deltaz_deta_e_ph_norad_sum[i], hist.h_deltaz_deta_e_ph_rad_sum[i]);
 
         hist_data[0] = (TH1D*)hist.h_deltaz_deta_e_ph_data_sum[i]->Clone(); 
         hist_mc[0] = (TH1D*)hist.h_deltaz_deta_e_ph_prph_sum[i]->Clone(); 
@@ -2058,14 +2042,21 @@ int main(int argc, char *argv[])
     std::copy(param_err_deta_e_ph, param_err_deta_e_ph + number_deta_e_ph_bins,  hist.param_err_deta_e_ph);
      //hist.param_deta_e_ph[0] = 0;
      //hist.param_err_deta_e_ph[0] = 0;
-
     dout("deta_e_ph:");
     Chi2StatisticsCheck(chi2_deta_e_ph, number_deta_e_ph_bins);
-
     hist.PlotFitInBinsOfCrossSec();
     dout("PlotCrossSec");
     hist.PlotCrossSec(); 
     
+
+
+
+
+    ///////////////////////////////////////////////////////
+    //
+    //          OVERALL FIT
+    //
+    ///////////////////////////////////////////////////////
     if (ProduceDZoverollPlot == 1)
     {
         dout("ProduceDZoverollPlot");
@@ -2521,7 +2512,7 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
         left = GetFitRange(hist_data[index], true);//hist_data[index]->FindBin(0.) - 1;
         right = GetFitRange(hist_data[index], false) ; // 5;//20;//hist_data[index]->FindBin(0.8);//18;//hist_data[index]->FindBin(0.8); //0.8 / 0.05
         //if (nodebugmode) cout<<"right "<<right<<" left "<< left<< endl; 
-        //dout("left:", left,"right",right);exit(1);
+        //dout("left:", left,"right",right);//exit(1);
     }
     else
     if(fit_method == "fmax") 
@@ -2538,23 +2529,26 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
 
     for(Int_t i = left; i < right; i++)
     {
-        //dout("i",i);
+        Int_t actual_index = i;
+        //dout("i", actual_index);
+
         Double_t diff;
         //Check the bins abd ranges
         //if (nodebugmode) cout << "getting bin " << i << " from " << hist_data_sum[index]->GetBinLowEdge(i+1) << " to " <<  hist_data_sum[index]->GetBinLowEdge(i+2) << endl;
-        Double_t s_d = hist_data[index]->GetBinError(i+1);
-        Double_t s_l = hist_mc_rad[index]->GetBinError(i+1);
-        Double_t s_q = hist_mc[index]->GetBinError(i+1);
-        Double_t s_ph = hist_mc_photon[index]->GetBinError(i+1);
-        Double_t s_bg = hist_mc_norad[index]->GetBinError(i+1);
-        //      Double_t s_photon = hist_mc_photon[index]->GetBinError(i+1);
+        // 17 mar 2017 changed i+1 ->i
+        Double_t s_d = hist_data[index]->GetBinError(actual_index);
+        Double_t s_l = hist_mc_rad[index]->GetBinError(actual_index);
+        Double_t s_q = hist_mc[index]->GetBinError(actual_index);
+        Double_t s_ph = hist_mc_photon[index]->GetBinError(actual_index);
+        Double_t s_bg = hist_mc_norad[index]->GetBinError(actual_index);
+        //      Double_t s_photon = hist_mc_photon[index]->GetBinError(actual_index);
 
-        Double_t v_d = hist_data[index]->GetBinContent(i+1);
-        Double_t v_l = hist_mc_rad[index]->GetBinContent(i+1);
-        Double_t v_q = hist_mc[index]->GetBinContent(i+1);
-        Double_t v_ph = hist_mc_photon[index]->GetBinContent(i+1);
-        Double_t v_bg = hist_mc_norad[index]->GetBinContent(i+1);
-            //      Double_t v_photon = hist_mc_photon[index]->GetBinContent(i+1);
+        Double_t v_d = hist_data[index]->GetBinContent(actual_index);
+        Double_t v_l = hist_mc_rad[index]->GetBinContent(actual_index);
+        Double_t v_q = hist_mc[index]->GetBinContent(actual_index);
+        Double_t v_ph = hist_mc_photon[index]->GetBinContent(actual_index);
+        Double_t v_bg = hist_mc_norad[index]->GetBinContent(actual_index);
+            //      Double_t v_photon = hist_mc_photon[index]->GetBinContent(i);
             //
             // Ian's page
             //
@@ -2579,12 +2573,12 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
             //EB:
             //!!!! by 031015
         if (QQfit == 0)
-            diff = hist_data[index]->GetBinContent(i+1) \
-                    - par[0]*hist_mc_photon[index]->GetBinContent(i+1) - \
-                    (1-par[0])*hist_mc_norad[index]->GetBinContent(i+1);
+            diff = hist_data[index]->GetBinContent(actual_index) \
+                    - par[0]*hist_mc_photon[index]->GetBinContent(actual_index) - \
+                    (1-par[0])*hist_mc_norad[index]->GetBinContent(actual_index);
         else
-            diff = hist_data[index]->GetBinContent(i+1) - fitWithLL*hist_mc_rad[index]->GetBinContent(i+1) \
-                    - par[0]*hist_mc[index]->GetBinContent(i+1) - (1-par[0])*hist_mc_norad[index]->GetBinContent(i+1);
+            diff = hist_data[index]->GetBinContent(actual_index) - fitWithLL*hist_mc_rad[index]->GetBinContent(actual_index) \
+                    - par[0]*hist_mc[index]->GetBinContent(actual_index) - (1-par[0])*hist_mc_norad[index]->GetBinContent(actual_index);
                
         ///if (nodebugmode) cout << "par[0] = " << par[0] ;
                 // ====================================================================================================
@@ -2614,10 +2608,8 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
             }
             //  denom = (s_d + s_l)*(s_d + s_l) + par[0]*par[0]*s_q*s_q + (1.-par[0])*(1.-par[0])*s_bg*s_bg;
 
-            if (QQfit == 0)
-                denom = s_d*s_d + par[0]*par[0]*s_ph*s_ph + (1.-par[0])*(1.-par[0])*s_bg*s_bg;
-            else
-                denom = s_d*s_d + s_l*s_l*fitWithLL + par[0]*par[0]*s_q*s_q + (1.-par[0])*(1.-par[0])*s_bg*s_bg;
+            if (QQfit == 0) denom = s_d*s_d                     + par[0]*par[0] *s_ph*s_ph  + (1.-par[0])*(1.-par[0])*s_bg*s_bg;
+            else            denom = s_d*s_d + s_l*s_l*fitWithLL + par[0]*par[0] *s_q*s_q    + (1.-par[0])*(1.-par[0])*s_bg*s_bg;
 
             //  if (nodebugmode) cout << "min: " << i << " " << s_d << " " << s_l << " " << s_q << " " << s_bg << " " << par[0] << " " << denom << endl;
                 //  if (nodebugmode) cout << " denom = " << denom << endl;
@@ -2648,10 +2640,8 @@ Double_t chi2(double* par, Int_t& ndf, Int_t& left, Int_t& right, TString s_meth
         ///if (nodebugmode) cout << "errs: " << i << " " << par[0] << " " << s_d << " " << s_l << " " << s_q << " " << s_bg << " " << diff << " " << denom << endl;  
             // if (nodebugmode) cout << "bin " << i+1  << " " << diff << " " << denom << " " << diff*diff/denom << " " << res << endl;
 
-        if(par[0]!=par[0])
-            res += 1000.;
-        else
-            res += diff*diff/denom;
+        if (par[0] != par[0]) res += 1000.;
+        else res += diff*diff / denom;
         ndf++;
     }
     //exit(1);
