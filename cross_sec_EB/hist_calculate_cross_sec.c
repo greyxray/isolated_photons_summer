@@ -43,7 +43,9 @@ void Hist::CalculateCrossSec(TH1D* data,
            sigma_tot_err_2 = 0.,
            fig3_scale = 1.6,
            sigma_tot_copy = 0, 
-           sigma_tot_err_copy = 0.;
+           sigma_tot_err_copy = 0.,
+           sigma_tot_ll = 0,
+           sigma_tot_qq = 0;
   Int_t    nbins = 0;
 
   if (ll_det_copy == 0) dout("something went wrong");
@@ -634,7 +636,9 @@ void Hist::CalculateCrossSec(TH1D* data,
 
         //      h_Acc->SetBinContent(i+1, 1./C_acc);
         //      h_Acc->SetBinError(i+1, C_err/(C_acc*C_acc));
-        
+        sigma_tot_ll += ll_cross_sec * bin_width;
+        sigma_tot_qq += prph_cross_sec * bin_width;
+
         sigma_tot += cross_sec * bin_width;
         sigma_tot_err += err * err * bin_width * bin_width;
 
@@ -667,18 +671,17 @@ void Hist::CalculateCrossSec(TH1D* data,
         }
         fout << "h_1st[0]->SetBinContent(" << i+1 << ", " << cross_sec << ");" << endl;
         fout << "h_1st[0]->SetBinError(" << i+1 << ", " << err << ");" << endl;
-    }//for i over bins
+    }
     fout << endl;
+
     dout("THE CHECK FOR 1.6!!!!!!!!!!!!!!!!!!!!!!!!!",\
      res[0]->Integral(0, res[0]->GetNbinsX(), "width"), "-", 
      res_copy[9]->Integral(0, res_copy[9]->GetNbinsX(), "width"), "/", 
      test_forest->Integral(0, test_forest->GetNbinsX(), "width"),"=",\
    (res[0]->Integral(0, res[0]->GetNbinsX(), "width") - res_copy[9]->Integral(0, res_copy[9]->GetNbinsX(), "width"))/ test_forest->Integral(0, test_forest->GetNbinsX(), "width"));
-    if (name.Contains("deta_e_ph"))
-        {
-            dout("test_deleteme",test_deleteme);
-        }
-    if (!nodebugmode) cout << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
+    if (name.Contains("deta_e_ph")) dout("test_deleteme", test_deleteme);
+    if (nodebugmode) cout << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
+    dout("sigma ll:", sigma_tot_ll, "sigma qq:", sigma_tot_qq);
     if (nodebugmode) cout << "sigma_tot_fig3 = " << sigma_tot_copy << " +- " << sigma_tot_err_copy << " pb" << endl;
     selectedoutput << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
 

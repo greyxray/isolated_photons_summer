@@ -1,6 +1,6 @@
 #include "cross_sec.h"
 
-TString q2_cut_global = "";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
+TString q2_cut_global = "_q2_gt_30";// _q2_gt_30 // _q2_lt_30//initialisation of q2_cut="" - re do it in form of input parameter
 TString whichCorrection("IanSgCorr");//"IanSgCorr" NoCorrection; Default is IanSgCorr QQfit = 1 fitWithLL = 1 fitWithLLinBg = 0
 vector<Double_t> IanCorrectionSg({ 1, 1.2, 1.2, 1.4});//paste to whichCorrection "IanSgCorr"
 vector<Double_t> PeterCorrectionSg({1, 1.2, 1.3, 1.3});//paste to whichCorrection "PeterSgCorr"
@@ -10,6 +10,7 @@ unsigned int ProduceDZoverollPlot = 1;
 bool dZdetailed = false;
 Bool_t nodebugmode = kTRUE;
 Bool_t once = kTRUE;
+TString prel("");//" (prel.)"
 
 bool llCorrectiontoo = true;
 bool backnormaliseLL = true;
@@ -2092,12 +2093,12 @@ int main(int argc, char *argv[])
             
             bool minusone = true;
             double scalefactor = (hist_data[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)
-                                    - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)) 
+                                    - fitWithLL * hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) ) 
                                 / hist_mc[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) ;
             dout("Scale factor QQ:", scalefactor);
             hist_mc[0]->Scale(scalefactor);
             scalefactor = (hist_data[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)
-                                    - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)) 
+                                    - fitWithLL * hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone)) 
                                 / hist_mc_norad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) ;
             dout("Scale factor had:", scalefactor);
             hist_mc_norad[0]->Scale(scalefactor);
@@ -2115,7 +2116,7 @@ int main(int argc, char *argv[])
                 hist_mc_photon[0]->Add(hist_mc[0], QQfit + (1 - QQfit) * hist.total_luminosity_data/hist.lumi_mc_prph);// QQfit==0: LL' + QQ.scaledto(totLum) //PhotonFit: LL'+QQ';    QQfit: LL' + QQ  => the variable makes no sence for QQfit
                 hist_mc_photon[0]->Scale(hist_data[0]->Integral()/hist_mc_photon[0]->Integral());//phtotons scaled to data
             //Стоп, разве это должно тут быть? разве это не сделано в hist.c? Да. Но Вообще говоря не играет роли, потому что входят в фотоны с параметром.
-                dout("Error second scale:", (hist_data[0]->Integral() - hist_mc_rad[0]->Integral())/hist_mc[0]->Integral());
+                dout("Error second scale:", (hist_data[0]->Integral() - fitWithLL * hist_mc_rad[0]->Integral() )/hist_mc[0]->Integral());
                 dout("Error second scale:", hist_data[0]->Integral() / hist_mc_norad[0]->Integral());
             // hist_mc[0]->Scale((hist_data[0]->Integral() - hist_mc_rad[0]->Integral())/hist_mc[0]->Integral());//QQ'
             // hist_mc_norad[0]->Scale(hist_data[0]->Integral() / hist_mc_norad[0]->Integral());//Bg'
@@ -2229,7 +2230,7 @@ int main(int argc, char *argv[])
             }
             dout("Check:", 
                 hist_data[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone), 
-                "=", hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) 
+                "=", fitWithLL * hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) 
                 + param[0]*hist_mc[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone) 
                 + (1-param[0])* hist_mc_norad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone));
             
@@ -2239,7 +2240,7 @@ int main(int argc, char *argv[])
             //Double_t N = a * (sumRd - hist_mc_rad[0]->Integral(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false))) * (sumSgAll / sumSg);       
 
             dout("N =", a ,"*", "(",sumRd, "-", sumLL_fit,") * (",sumSgAll, "/", sumSg);       
-            Double_t N = a * (sumRd - sumLL_fit) * (sumSgAll / sumSg);              
+            Double_t N = a * (sumRd - fitWithLL * sumLL_fit) * (sumSgAll / sumSg);              
             Double_t dS = sumSgAll - sumSg;
 
             // Like Urii
@@ -2256,9 +2257,9 @@ int main(int argc, char *argv[])
                 Double_t dSumRd = 0;    total = hist_data[0]->IntegralAndError(GetFitRange(hist_data[0], true), GetFitRange(hist_data[0], false) - 1*minusone, dSumRd,"");
 
             Double_t Nerr = TMath::Sqrt((1/pow(sumSg,4))*(-a* pow(dSumLLfit,2) * pow(sumSg,3)* sumSgAll + 
-  pow(aErr,2) * pow((sumLL_fit - sumRd),2)* pow(sumSg,2)* pow(sumSgAll,2) + 
-  pow(a,2)* (pow(dSumSgAll,2)* pow((sumLL_fit -  sumRd),2) * pow(sumSg,2) + (pow(dSumSg,2) * pow((sumLL_fit - sumRd),2) + 
-  pow(dSumRd,2)* pow(sumSg,2))* pow(sumSgAll,2))));
+                          pow(aErr,2) * pow((fitWithLL * sumLL_fit - sumRd),2)* pow(sumSg,2)* pow(sumSgAll,2) + 
+                          pow(a,2)* (pow(dSumSgAll,2)* pow((fitWithLL * sumLL_fit -  sumRd),2) * pow(sumSg,2) + (pow(dSumSg,2) * pow((fitWithLL * sumLL_fit - sumRd),2) + 
+                          pow(dSumRd,2)* pow(sumSg,2))* pow(sumSgAll,2))));
             dout("NQQ error", Nerr);
             Double_t NLL =  hist_mc_rad[0]->Integral(), NLLerr(0);
             if (QQfit == 1 && fitWithLL==1 && fitWithLLinBg==0)
@@ -2315,8 +2316,7 @@ int main(int argc, char *argv[])
 
             DoComplicatedScale(hist_mc_norad[0], 1 - param[0], param_err[0]);//Bg*a
             DoComplicatedScale(hist_mc[0], param[0], param_err[0]);//QQ*a
-            if (QQfit == 1 && fitWithLL == 0)
-                hist_res[0] = (TH1D*)hist_mc[0]->Clone(); //QQ
+            if (QQfit == 1 && fitWithLL == 0) hist_res[0] = (TH1D*)hist_mc[0]->Clone(); //QQ
             else if (QQfit == 0)
             {
                 DoComplicatedScale(hist_mc_photon[0], param[0], param_err[0]);
@@ -2328,8 +2328,7 @@ int main(int argc, char *argv[])
 
             
 
-            if (QQfit == 1 && fitWithLL == 1)
-                hist_res[0]->Add(hist_mc[0]);//LL +  QQ'*a + bg'*(1-a)
+            if (QQfit == 1 && fitWithLL == 1) hist_res[0]->Add(hist_mc[0]);//LL +  QQ'*a + bg'*(1-a)
             // dout("hist_res[0][3] = ", hist_res[0]->GetBinContent(3));
                  dout("hist_data[0][3] = ", hist_data[0]->GetBinContent(3));
                 // dout("hist_mc_rad[0][3] = ", hist_mc_rad[0]->GetBinContent(3));
@@ -2430,15 +2429,15 @@ int main(int argc, char *argv[])
             datamarker_h.SetMarkerStyle(hist_data[0]->GetMarkerStyle()); 
 
 
-            leg->AddEntry(&datamarker_h, "ZEUS", "p"); 
+            leg->AddEntry(&datamarker_h, "ZEUS 326 pb^{-1}" + prel, "p"); 
             if(QQfit == 1)
-                leg->AddEntry(hist_mc[0], "QQ", "f"); //blue
+                leg->AddEntry(hist_mc[0], "QQ", "l"); //blue
             else
-                leg->AddEntry(hist_mc_photon[0], "Sg.(LL+QQ)", "f"); //blue
+                leg->AddEntry(hist_mc_photon[0], "Sg.(LL+QQ)", "l"); //blue
             if (fitWithLL==1)
-                leg->AddEntry(hist_mc_rad[0], "LL", "f");// red dots
-            leg->AddEntry(hist_mc_norad[0], "Hadronic BG", "f");// small dots
-            leg->AddEntry(hist_res[0], "Fit result", "f");//yellow area
+                leg->AddEntry(hist_mc_rad[0], "LL", "l");// red dots
+            leg->AddEntry(hist_mc_norad[0], "Hadronic BG", "l");// small dots
+            leg->AddEntry(hist_res[0], "Fit result", "l");//yellow area
 
             hist_res[0]->DrawClone("HIST SAME"); //E1 - with errors
             if(QQfit == 1)
@@ -2473,7 +2472,8 @@ int main(int argc, char *argv[])
             {
                 cout << "fit range: bins " << int(left_bound)<< ".."  << int(right_bound - 1) << endl;
                 cout << "#chi^{2} /" << ndf+2 << "-2 = " << chi_squared << endl;
-                cout << "N_{fitted photons} = " << N <<  "+-" <<  Nerr << endl;
+                dout("fit param:", a, "+-", aErr);
+                cout << "N_{fitted photons} = " << N <<  "+-" <<  Nerr << " Ians: " << N * aErr/a << endl;
                 cout << "N_{LL photons} = " << NLL << "+-" << NLLerr << endl;
             }
             TString str_temp2(whichCorrection);
@@ -2491,11 +2491,11 @@ int main(int argc, char *argv[])
                 str_temp2 += "_noLLinBg";
 
             TPaveText *t = new TPaveText(0.27, 0.85, 0.8, 0.95, "NDC"); // left-up
-                t->AddText("ZEUS");
+                t->AddText("ZEUS 326 pb^{-1}" + prel);
                 t->SetFillColor(0);
                 t->SetBorderSize(0);
                 t->SetFillStyle(0);
-                t->Draw();
+                //t->Draw();//PLOTS
 
             dout(tempstr + "_" + str_temp2  + ".png");
             c->Print(tempstr + "_" + str_temp2  + ".png");

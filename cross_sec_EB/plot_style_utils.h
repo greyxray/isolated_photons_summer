@@ -73,34 +73,36 @@ void sign_window(TVirtualPad *p, TH2D* h, TString xaxis, TString yaxis, TString 
   h->SetTitle(title);
   //h->SetTitleOffset(0.8);
   h->SetTitleSize( 0.08, "X" ); h->SetTitleOffset(0.05, "X");
-  h->SetTitleSize( 0.08, "Y" ); h->SetTitleOffset(0.01, "Y");
+  h->SetTitleSize( 0.08, "Y" ); h->SetTitleOffset(0.22, "Y");
 
-  h->GetXaxis()->SetTitle(xaxis);
-  //  h->GetXaxis()->CenterTitle();
-  h->GetXaxis()->SetTitleSize(fontsizex);
-  h->GetXaxis()->SetTitleFont(22);
-  h->GetXaxis()->SetLabelSize(0.9*fontsizex);
-  h->GetXaxis()->SetLabelFont(22);
-  h->GetXaxis()->SetTitleOffset(1.1);
-  /*if(p->GetLogx())
+  // X-axis
+    h->GetXaxis()->SetTitle(xaxis);
+    //  h->GetXaxis()->CenterTitle();
+    h->GetXaxis()->SetTitleSize(fontsizex);
+    h->GetXaxis()->SetTitleFont(22);
+    h->GetXaxis()->SetLabelSize(0.9*fontsizex);
+    h->GetXaxis()->SetLabelFont(22);
     h->GetXaxis()->SetTitleOffset(1.1);
-  else
-    h->GetXaxis()->SetTitleOffset(0.50);*/
-  h->GetXaxis()->SetNdivisions(507, kTRUE);
+    /*if(p->GetLogx())
+      h->GetXaxis()->SetTitleOffset(1.1);
+    else
+      h->GetXaxis()->SetTitleOffset(0.50);*/
+    h->GetXaxis()->SetNdivisions(507, kTRUE);
 
-  h->GetYaxis()->SetTitle(yaxis);
-  //  h->GetYaxis()->CenterTitle();
-  h->GetYaxis()->SetTitleSize(fontsizey);
-  h->GetYaxis()->SetTitleFont(22);
-  h->GetYaxis()->SetLabelSize(0.9*fontsizey);
-  h->GetYaxis()->SetLabelFont(22);
-  if(p->GetLogy())
-    h->GetYaxis()->SetTitleOffset(1.1);
-  else
-    h->GetYaxis()->SetTitleOffset(1.1);//0.94
-  h->GetYaxis()->SetNdivisions(507, kTRUE);
+  // Y-axis
+    h->GetYaxis()->SetTitle(yaxis);
+    //  h->GetYaxis()->CenterTitle();
+    h->GetYaxis()->SetTitleSize(fontsizey);
+    h->GetYaxis()->SetTitleFont(22);
+    h->GetYaxis()->SetLabelSize(0.9*fontsizey);
+    h->GetYaxis()->SetLabelFont(22);
+    if (p->GetLogy())
+      h->GetYaxis()->SetTitleOffset(1.1);
+    else
+      h->GetYaxis()->SetTitleOffset(1.1);//0.94
 
-  h->GetYaxis()->SetLabelOffset(0.016);
+    h->GetYaxis()->SetNdivisions(507, kTRUE);
+    h->GetYaxis()->SetLabelOffset(0.016); // how far from the axis the Numbers will be
 
   if(title_size == "large" && false)
     {

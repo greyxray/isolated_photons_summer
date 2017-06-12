@@ -206,7 +206,7 @@ void Hist::Init()
     
     TString s_process;// = "zero"; 
     TString s_path = "../my_";// - NICE
-    if (q2_cut_global.Contains("_q2_lt_30")) s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
+    if (q2_cut_global.Contains("_q2_lt_30") || q2_cut_global.Contains("_q2_gt_30")) s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     //TString s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     s_process.Form(correctiontype );
     {
