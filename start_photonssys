@@ -40,25 +40,25 @@ do
     if [ "$i" == "zero" ];
     then 
     echo "Yes it is zero"
-    ./main 0405e data 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 06e data 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 0607p data 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
+    ./main 0405e data 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 06e data 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 0607p data 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
     else
     echo "No it's not zero"
     fi
 
     #uncomment this if the MC selection or system study are needed
     #echo "ATTENTION! the MC were not selected"
-    ./main 0405e mc_bg_rad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 06e mc_bg_rad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 0607p mc_bg_rad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
+    ./main 0405e mc_bg_rad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 06e mc_bg_rad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 0607p mc_bg_rad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
       
-    ./main 0405e mc_bg_norad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 06e mc_bg_norad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 0607p mc_bg_norad 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
+    ./main 0405e mc_bg_norad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 06e mc_bg_norad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 0607p mc_bg_norad 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
       
-    ./main 0405e mc_prph 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
-    ./main 06e mc_prph 0 0 0 $i $Q2CUT > /dev/null 2> /dev/null &
+    ./main 0405e mc_prph 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
+    ./main 06e mc_prph 0 0 0 $i $Q2CUT # > /dev/null 2> /dev/null &
     
 
 done

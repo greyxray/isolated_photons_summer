@@ -1,9 +1,9 @@
 #!/bin/sh
 FAIL=0
 #zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
-for i in zero systJetE+ systJetE- systPhE+ systPhE- systElE+ systElE- systAcc  
+for i in zero   
 do
-	#q2_lt_30 q2_gt_30 
+	#"" "q2_lt_30" "q2_gt_30" 
 	for j in ""
 	do 
 	    ./start_photonssys $i $j &

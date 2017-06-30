@@ -774,7 +774,18 @@ void Hist::PlotCrossSec()
                                      all_bins, s_var, n_cross, \
                                      true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
         
-        //BLZ and Font-combined
+        // Hadcor for different Q2 regions
+        if (q2_cut_global.Contains("lt"))
+        {
+            std::copy(std::begin(all_hadcort_q2_lt_30), std::end(all_hadcort_q2_lt_30), std::begin(all_hadcort));
+            std::copy(std::begin(all_hadcort_err_q2_lt_30), std::end(all_hadcort_err_q2_lt_30), std::begin(all_hadcort_err));
+        }
+        else if (q2_cut_global.Contains("gt"))
+        {
+            std::copy(std::begin(all_hadcort_q2_gt_30), std::end(all_hadcort_q2_gt_30), std::begin(all_hadcort));
+            std::copy(std::begin(all_hadcort_err_q2_gt_30), std::end(all_hadcort_err_q2_gt_30), std::begin(all_hadcort_err));
+        }
+
         if (ForFig7) //USE THIS TO PRODUCE THEORY PLOTS FOR Q2<30 FOR FIG7
         {
             /* combined collection: 
@@ -833,6 +844,8 @@ void Hist::PlotCrossSec()
         }
         else if (true)//BLZ and Font-separated only pt2.5 def: True
         {
+            dout("lol");
+            exit(1);
             if (!q2_cut_global.Contains("t")) //0<Q2<350
                 CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
                                                 sum_for_CrossectionDrawer, \
@@ -842,7 +855,6 @@ void Hist::PlotCrossSec()
                                              true, all_theory_cs_font_pt25, all_theory_cs_font_pt25_pos, all_theory_cs_font_pt25_neg, "AFG",//, p_{T}>2.5
                                              false);
             else  cout <<"no predictions"<< endl;
-
         }
     }
 
