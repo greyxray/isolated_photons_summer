@@ -531,19 +531,38 @@ void Hist::PlotCrossSec()
     {  
         //m - on one page n - width
         //usual m=6 n=2 or 3 (for slides)
-        CrossectionDrawer::m = 1;
-        CrossectionDrawer::n = 1;
-        CrossectionDrawer::for_paper = true;
+        CrossectionDrawer::m = CrossectionDrawer_m;
+        CrossectionDrawer::n = CrossectionDrawer_n;
+        CrossectionDrawer::for_paper = CrossectionDrawer_for_paper;
+        std::copy(std::begin(font_xgamma_pos_pt05_Q2full), std::end(font_xgamma_pos_pt05_Q2full), std::begin(font_xgamma_neg_pt05_Q2full));
+        std::copy(std::begin(font_xp_pos_pt05_Q2full), std::end(font_xp_pos_pt05_Q2full), std::begin(font_xp_neg_pt05_Q2full));
+        std::copy(std::begin(font_deta_pos_pt05_Q2full), std::end(font_deta_pos_pt05_Q2full), std::begin(font_deta_neg_pt05_Q2full));
+        std::copy(std::begin(font_dphi_e_gamma_pos_pt05_Q2full), std::end(font_dphi_e_gamma_pos_pt05_Q2full), std::begin(font_dphi_e_gamma_neg_pt05_Q2full));
+        std::copy(std::begin(font_xgamma_pos_pt25_Q2full), std::end(font_xgamma_pos_pt25_Q2full), std::begin(font_xgamma_neg_pt25_Q2full));
+        std::copy(std::begin(font_xp_pos_pt25_Q2full), std::end(font_xp_pos_pt25_Q2full), std::begin(font_xp_neg_pt25_Q2full));
+        std::copy(std::begin(font_deta_pos_pt25_Q2full), std::end(font_deta_pos_pt25_Q2full), std::begin(font_deta_neg_pt25_Q2full));
+        std::copy(std::begin(font_dphi_e_gamma_pos_pt25_Q2full), std::end(font_dphi_e_gamma_pos_pt25_Q2full), std::begin(font_dphi_e_gamma_neg_pt25_Q2full));
+        std::copy(std::begin(font_dphi_pos_pt25_Q2full), std::end(font_dphi_pos_pt25_Q2full), std::begin(font_dphi_neg_pt25_Q2full));
+        std::copy(std::begin(font_deta_e_gamma_pos_pt25_Q2full), std::end(font_deta_e_gamma_pos_pt25_Q2full), std::begin(font_deta_e_gamma_neg_pt25_Q2full));
+        std::copy(std::begin(font_xgamma_pos_pt05_Q2lt30), std::end(font_xgamma_pos_pt05_Q2lt30), std::begin(font_xgamma_neg_pt05_Q2lt30));
+        std::copy(std::begin(font_xp_pos_pt05_Q2lt30), std::end(font_xp_pos_pt05_Q2lt30), std::begin(font_xp_neg_pt05_Q2lt30));
+        std::copy(std::begin(font_deta_pos_pt05_Q2lt30), std::end(font_deta_pos_pt05_Q2lt30), std::begin(font_deta_neg_pt05_Q2lt30));
+        std::copy(std::begin(font_dphi_e_gamma_pos_pt05_Q2lt30), std::end(font_dphi_e_gamma_pos_pt05_Q2lt30), std::begin(font_dphi_e_gamma_neg_pt05_Q2lt30));
+        std::copy(std::begin(font_xgamma_pos_pt25_Q2lt30), std::end(font_xgamma_pos_pt25_Q2lt30), std::begin(font_xgamma_neg_pt25_Q2lt30));
+        std::copy(std::begin(font_xp_pos_pt25_Q2lt30), std::end(font_xp_pos_pt25_Q2lt30), std::begin(font_xp_neg_pt25_Q2lt30));
+        std::copy(std::begin(font_deta_pos_pt25_Q2lt30), std::end(font_deta_pos_pt25_Q2lt30), std::begin(font_deta_neg_pt25_Q2lt30));
+        std::copy(std::begin(font_dphi_e_gamma_pos_pt25_Q2lt30), std::end(font_dphi_e_gamma_pos_pt25_Q2lt30), std::begin(font_dphi_e_gamma_neg_pt25_Q2lt30));
         bool ForFig7 = false;
         if (q2_cut_global.Contains("_q2_")) ForFig7 = true;
 
-        //Print LL components 
-        if (false)
+        // Print LL components 
+        if (true)
         {
+            dout("Print LL components");
             for(int i = 0; i < n_cross; i++)
             {
                 Double_t q2_theory_AFG_cs = 0, sumll = 0, sum_cs = 0;
-                dout(i, cs_x_names[i], ":");
+                dout(cs_x_names[i], ":");
                 string ll_name, dll_name;
                 // For AFG comparison we compare to qq + ll:
                     if (!q2_cut_global.Contains("t"))
@@ -571,6 +590,7 @@ void Hist::PlotCrossSec()
                         dout("pass"); 
                         continue;
                     }
+
                 //Print the arrays
                     cout << ll_name << "[" << numberAllBins_names[i] << "]" << " = {";
                     for (int j = 0; j < ll_for_CrossectionDrawer[i]->GetNbinsX(); j++)
@@ -579,12 +599,9 @@ void Hist::PlotCrossSec()
                         sum_cs += data_for_CrossectionDrawer[i]->GetBinContent(j+1) * binWidth;
                         sumll  += ll_for_CrossectionDrawer[i]->GetBinContent(j+1) * binWidth;
 
-                        if (q2_cut_global.Contains("lt") 
-                            && all_theory_cs_font_pt25_Q2lt30[i] != 0) q2_theory_AFG_cs += all_theory_cs_font_pt25_Q2lt30[i][j] * binWidth;
-                        else if (q2_cut_global.Contains("gt") 
-                            && all_theory_cs_font_pt25_Q2gt30[i] != 0) q2_theory_AFG_cs += all_theory_cs_font_pt25_Q2gt30[i][j] * binWidth;
-                        else if (!q2_cut_global.Contains("t")
-                            && all_theory_cs_font_pt25[i] != 0)      q2_theory_AFG_cs += all_theory_cs_font_pt25[i][j] * binWidth;
+                        if (q2_cut_global.Contains("lt") && all_theory_cs_font_pt25_Q2lt30[i] != 0)      q2_theory_AFG_cs += all_theory_cs_font_pt25_Q2lt30[i][j] * binWidth;
+                        else if (q2_cut_global.Contains("gt") && all_theory_cs_font_pt25_Q2gt30[i] != 0) q2_theory_AFG_cs += all_theory_cs_font_pt25_Q2gt30[i][j] * binWidth;
+                        else if (!q2_cut_global.Contains("t") && all_theory_cs_font_pt25[i] != 0)        q2_theory_AFG_cs += all_theory_cs_font_pt25[i][j] * binWidth;
 
                         cout << ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
                         if (ll_for_CrossectionDrawer[i]->GetNbinsX() - 1 != j) cout << ", ";
@@ -635,14 +652,98 @@ void Hist::PlotCrossSec()
                     dout();
                 }
             }
-            //exit(1);
+        }
+
+        // Apply hadcor for AFG
+        dout("Apply hadcor for AFG");
+        for(int i = 0; i < n_cross; ++i)
+        {
+            dout("\tHist", i, simple_names[i]);
+            dout("ll_for_CrossectionDrawer[i]->GetNbinsX()", ll_for_CrossectionDrawer[i]->GetNbinsX());
+            for (int j = 0; j < ll_for_CrossectionDrawer[i]->GetNbinsX(); ++j) // dirty hack
+            {
+                if (q2_cut_global.Contains("lt"))
+                {
+                    if (all_theory_cs_font_pt25_Q2lt30[i] == 0) continue;
+                    dout("\t\tbin", j, ") cs: ", all_theory_cs_font_pt25_Q2lt30[i][j], "*", all_hadcort_q2_lt_30[i][j], "=", all_theory_cs_font_pt25_Q2lt30[i][j] * all_hadcort_q2_lt_30[i][j]); //(afg+ll)* had
+
+                    // pt>2.5
+                    all_theory_cs_font_pt25_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2lt30[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt25_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font_pt25_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2lt30[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt25_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font_pt25_Q2lt30[i][j]  = all_theory_cs_font_pt25_Q2lt30[i][j] * all_hadcort_q2_lt_30[i][j];
+
+                    // combined
+                    all_theory_cs_font_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_lt_30[i][j];
+
+                    // pt>0.5
+                    all_theory_cs_font_pt05_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font_pt05_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                    all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_lt_30[i][j];
+
+                    dout("\t\t\t", "Had:", all_hadcort_q2_lt_30[i][j], "dHad:", all_hadcort_err_q2_lt_30[i][j], "neg:", all_theory_cs_font_pt25_neg_Q2lt30[i][j], "pos:", all_theory_cs_font_pt25_pos_Q2lt30[i][j]);
+                
+                }
+                else if (q2_cut_global.Contains("gt"))
+                {
+                    if (all_theory_cs_font_pt25_Q2gt30[i] == 0) continue;
+                    dout("\t\tbin", j, ") cs: ", all_theory_cs_font_pt25_Q2gt30[i][j], "*", all_hadcort_q2_gt_30[i][j], "=", all_theory_cs_font_pt25_Q2gt30[i][j] * all_hadcort_q2_gt_30[i][j]); //(afg+ll)* had
+
+                    // pt>2.5
+                    all_theory_cs_font_pt25_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2gt30[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt25_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font_pt25_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2gt30[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt25_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font_pt25_Q2gt30[i][j]  = all_theory_cs_font_pt25_Q2gt30[i][j] * all_hadcort_q2_gt_30[i][j];
+
+                    // combined
+                    all_theory_cs_font_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_gt_30[i][j];
+
+                    // pt>0.5
+                    all_theory_cs_font_pt05_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font_pt05_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                    all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_gt_30[i][j];
+
+                    dout("\t\t\t", "Had:", all_hadcort_q2_gt_30[i][j], "dHad:", all_hadcort_err_q2_gt_30[i][j], "neg:", all_theory_cs_font_pt25_neg_Q2gt30[i][j], "pos:", all_theory_cs_font_pt25_pos_Q2gt30[i][j]);
+                }
+                else // full Q2
+                {
+                    if (all_theory_cs_font_pt25[i] == 0) continue;
+                    dout("\t\tbin", j, ") cs: ", all_theory_cs_font_pt25[i][j], "*", all_hadcort[i][j], "=", all_theory_cs_font_pt25[i][j] * all_hadcort[i][j]); //(afg+ll)* had
+
+                    // pt>2.5
+                    //dout(" pt>2.5");
+                    all_theory_cs_font_pt25_neg[i][j] = sqrt(pow(all_theory_cs_font_pt25[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pt25_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                    all_theory_cs_font_pt25_pos[i][j] = sqrt(pow(all_theory_cs_font_pt25[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pt25_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                    all_theory_cs_font_pt25[i][j]  = all_theory_cs_font_pt25[i][j] * all_hadcort[i][j];
+
+                    // combined
+                    //dout(" comb");
+                    if (all_theory_cs_font[i] != 0)
+                    {
+                        all_theory_cs_font_neg[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                        all_theory_cs_font_pos[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                        all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort[i][j];
+                    }
+                    // pt>0.5
+                    //dout(" pt>0.5");
+                    if (all_theory_cs_font_pt05[i] != 0)
+                    {
+                        all_theory_cs_font_pt05_neg[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pt05_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                        all_theory_cs_font_pt05_pos[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pt05_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );
+                        all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort[i][j];
+                    }
+                    dout("\t\t\t", "Had:", all_hadcort[i][j], "dHad:", all_hadcort_err[i][j], "neg:", all_theory_cs_font_pt25_neg[i][j], "pos:", all_theory_cs_font_pt25_pos[i][j]);
+                }
+            }
         }
 
         dout("Add the LL component to AFG prediction");
         for(int i = 0; i < n_cross; i++)
         {
             Double_t q2_lt_30_sumll = 0, q2_lt_30_sum_cs = 0, sumll = 0, sum_cs = 0;
-            dout("Hist", i, simple_names[i]);
+            dout("\tHist", i, simple_names[i]);
 
             for (int j = 0; j < ll_for_CrossectionDrawer[i]->GetNbinsX(); j++)
             {
@@ -657,14 +758,16 @@ void Hist::PlotCrossSec()
                         {
                             //dout("AFG pt>2.5, full Q2");
                             //if (s_var[i] == "dphi") dout("was ", j, ":", all_theory_cs_font_pt25[i][j], "+-", all_theory_cs_font_pt25_pos[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
+                            dout("\t\twas in bin", j, ":", all_theory_cs_font_pt25[i][j], "+-", all_theory_cs_font_pt25_pos[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
                             all_theory_cs_font_pt25[i][j]     = all_theory_cs_font_pt25[i][j] + ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
                             all_theory_cs_font_pt25_pos[i][j] = sqrt( pow(all_theory_cs_font_pt25_pos[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
                             all_theory_cs_font_pt25_neg[i][j] = sqrt( pow(all_theory_cs_font_pt25_neg[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
                             //if (s_var[i] == "dphi") dout("now ",j,":", all_theory_cs_font_pt25[i][j],"+-", all_theory_cs_font_pt25_pos[i][j]);
+                            dout("\t\tnow in bin", j, ":", all_theory_cs_font_pt25[i][j], "+-", all_theory_cs_font_pt25_pos[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
 
                             if (ll_for_CrossectionDrawer[i]->GetBinContent(j+1) - all_ll_for_CrossectionDrawer_fullQ2[i][j] > 0.001)
                             {
-                                dout("LL value changed! i:", i, "j:", j);
+                                dout("\t\tLL value changed! i:", i, "j:", j);
                                 exit(1);
                             }
                         }
@@ -740,10 +843,21 @@ void Hist::PlotCrossSec()
             dout("q2_lt_30_sumll:", q2_lt_30_sumll, "q2_lt_30_sum_cs:", q2_lt_30_sum_cs);
             dout("sumll:",sumll, "sum_cs:", sum_cs);
         }
-        //exit(1);
+
+        // Hadcor for different Q2 regions
+        if (q2_cut_global.Contains("lt"))
+        {
+            std::copy(std::begin(all_hadcort_q2_lt_30), std::end(all_hadcort_q2_lt_30), std::begin(all_hadcort));
+            std::copy(std::begin(all_hadcort_err_q2_lt_30), std::end(all_hadcort_err_q2_lt_30), std::begin(all_hadcort_err));
+        }
+        else if (q2_cut_global.Contains("gt"))
+        {
+            std::copy(std::begin(all_hadcort_q2_gt_30), std::end(all_hadcort_q2_gt_30), std::begin(all_hadcort));
+            std::copy(std::begin(all_hadcort_err_q2_gt_30), std::end(all_hadcort_err_q2_gt_30), std::begin(all_hadcort_err));
+        }
 
         /*
-        void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
+            void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, TH1 ** qq, TH1 ** ll, \
                                  Double_t * all_bins[12], TString s_var[12], int nplots,\
                                  bool with_BLZ = false, \
                                  Double_t * all_theory_cs[12] = 0, Double_t * all_theory_cs_pos[12] = 0, Double_t * all_theory_cs_neg[12] = 0, TString theory_name = "BLZ",\
@@ -751,7 +865,6 @@ void Hist::PlotCrossSec()
                                  Double_t * all_theory_cs_font[12] = 0, Double_t * all_theory_cs_font_pos[12] = 0, Double_t * all_theory_cs_font_neg[12] = 0, TString theory_name_2 = "Fontannaz",
                                  bool two_fontannaz = false,//frst 0.5 cut second 2.5
                                  Double_t * all_theory_cs_font_25[12] = 0, Double_t * all_theory_cs_font_pos_25[12] = 0, Double_t * all_theory_cs_font_neg_25[12] = 0, TString theory_name_2_25 = "Fontannaz pt>2.5")//TString s_var[n_cross];
-
         */
         //Fontanazz prediction on full range
             //combined one
@@ -773,18 +886,6 @@ void Hist::PlotCrossSec()
                                      qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
                                      all_bins, s_var, n_cross, \
                                      true, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ");
-        
-        // Hadcor for different Q2 regions
-        if (q2_cut_global.Contains("lt"))
-        {
-            std::copy(std::begin(all_hadcort_q2_lt_30), std::end(all_hadcort_q2_lt_30), std::begin(all_hadcort));
-            std::copy(std::begin(all_hadcort_err_q2_lt_30), std::end(all_hadcort_err_q2_lt_30), std::begin(all_hadcort_err));
-        }
-        else if (q2_cut_global.Contains("gt"))
-        {
-            std::copy(std::begin(all_hadcort_q2_gt_30), std::end(all_hadcort_q2_gt_30), std::begin(all_hadcort));
-            std::copy(std::begin(all_hadcort_err_q2_gt_30), std::end(all_hadcort_err_q2_gt_30), std::begin(all_hadcort_err));
-        }
 
         if (ForFig7) //USE THIS TO PRODUCE THEORY PLOTS FOR Q2<30 FOR FIG7
         {
@@ -801,13 +902,16 @@ void Hist::PlotCrossSec()
                                              true, all_theory_cs_font, all_theory_cs_font_pos, all_theory_cs_font_neg, "AFG        ",
                                              false);
             else if (q2_cut_global.Contains("lt"))
-                CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
-                                                sum_for_CrossectionDrawer, \
-                                             qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
-                                             all_bins, s_var, n_cross, \
-                                             false, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
-                                             true, all_theory_cs_font_pt25_Q2lt30, all_theory_cs_font_pt25_pos_Q2lt30, all_theory_cs_font_pt25_neg_Q2lt30, "AFG        ",
-                                             false);
+            {
+
+                cout <<"Actually with lt predictions"<< endl;
+                            CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
+                                                            sum_for_CrossectionDrawer, \
+                                                         qq_for_CrossectionDrawer, ll_for_CrossectionDrawer, \
+                                                         all_bins, s_var, n_cross, \
+                                                         false, all_theory_cs, all_theory_pos, all_theory_neg, "BLZ",
+                                                         true, all_theory_cs_font_pt25_Q2lt30, all_theory_cs_font_pt25_pos_Q2lt30, all_theory_cs_font_pt25_neg_Q2lt30, "AFG        ",
+                                                         false);}
             else if (q2_cut_global.Contains("gt")) 
             {
                 cout <<"Actually no predictions"<< endl;
@@ -844,8 +948,6 @@ void Hist::PlotCrossSec()
         }
         else if (true)//BLZ and Font-separated only pt2.5 def: True
         {
-            dout("lol");
-            exit(1);
             if (!q2_cut_global.Contains("t")) //0<Q2<350
                 CrossectionDrawer::DrawAll(data_for_CrossectionDrawer, data_for_CrossectionDrawer_tot_err,
                                                 sum_for_CrossectionDrawer, \

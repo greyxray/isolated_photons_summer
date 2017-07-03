@@ -662,6 +662,14 @@ void Hist::CalculateCrossSec(TH1D* data,
         selectedoutput << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
              << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
         
+
+        cout << name << " cros sec in bin " << i << ": " << cross_sec 
+                << " +- " << err << ", lumi = " << Lumi << ", acc_Prompt = " 
+                << C_acc << ", binWidth = " << bin_width << ", nentries = " << prph << endl;
+        cout << "ll data: " << ll_cross_sec  << " +- " << err_ll << ", acc_LL = " << C_ll_acc << ", ll mc: " << ll_mc_cross_sec << endl;
+        cout << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
+             << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
+
         if (name.Contains("deta_e_ph"))
         {
           dout(i, "res[0]->GetBinContent(i+1)", res[0]->GetBinContent(i+1));
@@ -684,7 +692,7 @@ void Hist::CalculateCrossSec(TH1D* data,
     dout("sigma ll:", sigma_tot_ll, "sigma qq:", sigma_tot_qq);
     if (nodebugmode) cout << "sigma_tot_fig3 = " << sigma_tot_copy << " +- " << sigma_tot_err_copy << " pb" << endl;
     selectedoutput << "sigma_tot = " << sigma_tot << " +- " << sigma_tot_err << " pb" << endl;
-
+    dout();
     //TCanvas* c_acc  = new TCanvas("c_cs_" + name, "CS", 800, 600);
   }
   

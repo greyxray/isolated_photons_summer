@@ -143,8 +143,8 @@ Double_t CrossectionDrawer::GetYmax(bool nottheory = true) const
     else ymax = TMath::MaxElement(fCSdata->GetNbinsX(), fAsymmError->GetY()) > TMath::MaxElement(fCSdata->GetNbinsX(), fTGraphTheory->GetY()) ? TMath::MaxElement(fCSdata->GetNbinsX(), fAsymmError->GetY()) : TMath::MaxElement(fCSdata->GetNbinsX(), fTGraphTheory->GetY());
     
     ymax = 1.2 * ymax;
-    if ( fVariableName.Contains("xgamma") ) ymax = ymax * 5;
-    if ( fVariableName.Contains("xp") )     ymax = ymax * 2;
+    if ( logY_for_xgamma_xp && fVariableName.Contains("xgamma") ) ymax = ymax * 5;
+    if ( logY_for_xgamma_xp && fVariableName.Contains("xp") )     ymax = ymax * 2;
     if ( fVariableName.Contains("deta") || fVariableName.Contains("dphi")/*&& !fVariableName.Contains("_e_ph")*/ ) ymax = ymax * 1.2; // extra space for deta
     if ( fVariableName.Contains("dphi") && !q2_cut_global.Contains("_q2_") && !nottheory && !fVariableName.Contains("_e_ph")) ymax = ymax * 1.2;
     return ymax;
@@ -178,9 +178,13 @@ void CrossectionDrawer::DrawLegend(bool draw, int i, bool with_BLZ = false,
         }
         else if( fVariableName.Contains("xgamma") || fVariableName.Contains("xp") )
         {
-            y1 =  0.50;//0.5
-            y2 = 0.83;//0.88
+            y1 = 0.50;//0.5
+            y2 = 0.82;//0.88
             x2 = 0.68;
+            if (q2_cut_global.Contains("t"))
+            {
+                x2 = 0.92;
+            }
         }
         else
         {
@@ -192,96 +196,96 @@ void CrossectionDrawer::DrawLegend(bool draw, int i, bool with_BLZ = false,
     {
         y1 = 0.6;// 0.55
         y2 = 0.9;
-    }
 
-    if (fVariableName.Contains("xp") ) 
-    {
-        x1 = 0.45; x2 = 0.9; // good at least for split region
-    }
-    else if (fVariableName.Contains("xgamma") )
-    {
-        if (q2_cut_global.Contains("_q2_"))
+        if (fVariableName.Contains("xp") ) 
         {
-            if (!(with_BLZ|| with_Font))// add the legent entries Fig.3 Fig.4 Fig.5
+            x1 = 0.45; x2 = 0.9; // good at least for split region
+        }
+        else if (fVariableName.Contains("xgamma") )
+        {
+            if (q2_cut_global.Contains("_q2_"))
             {
-                           x2 = 0.7;
-                //y1 = 0.65; y2 = 0.97;
+                if (!(with_BLZ|| with_Font))// add the legent entries Fig.3 Fig.4 Fig.5
+                {
+                               x2 = 0.7;
+                    //y1 = 0.65; y2 = 0.97;
+                }
+            }
+            else
+            {
+                if (!(with_BLZ|| with_Font))// add the legent entries Fig.3 Fig.4 Fig.5
+                {
+                    x2 =0.5;
+                }
             }
         }
-        else
+        else if (fVariableName.Contains("deta_e_ph") ) 
         {
-            if (!(with_BLZ|| with_Font))// add the legent entries Fig.3 Fig.4 Fig.5
+            if (with_BLZ)
             {
-                x2 =0.5;
+                x1 = 0.35; x2 = 0.8;
+                y1 = 0.20; y2 = 0.5;
             }
-        }
-    }
-    else if (fVariableName.Contains("deta_e_ph") ) 
-    {
-        if (with_BLZ)
-        {
-            x1 = 0.35; x2 = 0.8;
-            y1 = 0.20; y2 = 0.5;
-        }
-        else // data
-        {
-            x1 = 0.21; x2 = 0.8; //0.5;
-            y1 = 0.65; y2 = 0.97;
-        }
-        // else if (! q2_cut_global.Contains("lt_30")) // full q2 and q2>30
-        // {
-        //     x1 = 0.21; x2 = 0.7; //0.5;
-        //     y1 = 0.65; y2 = 0.93;
-        // }
-        // else // q2<30
-        // {
-        //     x1 = 0.5;//0.63; 
-        //     x2 = 0.9;
-        //     y1 = 0.63; y2 = 0.91;
-        // }
-    }
-    else if (fVariableName.Contains("deta") ) 
-    {
-        if (with_BLZ)
-        {
-            x1 = 0.42; x2 = 0.95;
-            y1 = 0.20; y2 = 0.5;
-        }
-        else if (!q2_cut_global.Contains("_q2_"))
-        {
-            x1 = 0.21; x2 = 0.5;
-            y1 = 0.65; y2 = 0.93;
-        }
-        else // full q2
-        {
-            x1 = 0.21; x2 = 0.5;
-            y1 = 0.68; y2 = 0.92;
-
-             x2 = 0.7;//0.6;
-             y1 = 0.67;
-             if (!fVariableName.Contains("deta_e_ph") )  x2 = 0.7;
-             // if (q2_cut_global.Contains("gt_30"))
-             // {
-             //    x2 = 0.55;
-             // }
-
-        }
-    }
-    else if (fVariableName.Contains("dphi"))
-    {
-            if (!(with_BLZ|| with_Font))
+            else // data
             {
-                           x2 = 0.7;
+                x1 = 0.21; x2 = 0.8; //0.5;
                 y1 = 0.65; y2 = 0.97;
             }
-    } 
-
-    // control the leg size for theory plots
-        if (with_BLZ || with_Font) 
-        {
-            y1 = 0.7; // Smaller legend for the theory
-            if (q2_cut_global.Contains("t")) x2 = 0.7; // For fig.7 more space for legend
+            // else if (! q2_cut_global.Contains("lt_30")) // full q2 and q2>30
+            // {
+            //     x1 = 0.21; x2 = 0.7; //0.5;
+            //     y1 = 0.65; y2 = 0.93;
+            // }
+            // else // q2<30
+            // {
+            //     x1 = 0.5;//0.63; 
+            //     x2 = 0.9;
+            //     y1 = 0.63; y2 = 0.91;
+            // }
         }
+        else if (fVariableName.Contains("deta") ) 
+        {
+            if (with_BLZ)
+            {
+                x1 = 0.42; x2 = 0.95;
+                y1 = 0.20; y2 = 0.5;
+            }
+            else if (!q2_cut_global.Contains("_q2_"))
+            {
+                x1 = 0.21; x2 = 0.5;
+                y1 = 0.65; y2 = 0.93;
+            }
+            else // full q2
+            {
+                x1 = 0.21; x2 = 0.5;
+                y1 = 0.68; y2 = 0.92;
+
+                 x2 = 0.7;//0.6;
+                 y1 = 0.67;
+                 if (!fVariableName.Contains("deta_e_ph") )  x2 = 0.7;
+                 // if (q2_cut_global.Contains("gt_30"))
+                 // {
+                 //    x2 = 0.55;
+                 // }
+
+            }
+        }
+        else if (fVariableName.Contains("dphi"))
+        {
+                if (!(with_BLZ|| with_Font))
+                {
+                               x2 = 0.7;
+                    y1 = 0.65; y2 = 0.97;
+                }
+        } 
+
+        // control the leg size for theory plots
+            if (with_BLZ || with_Font) 
+            {
+                y1 = 0.7; // Smaller legend for the theory
+                if (q2_cut_global.Contains("t")) x2 = 0.7; // For fig.7 more space for legend
+            }
+    }
 
     TLegend *leg = new TLegend(x1, y1, x2, y2);
     leg->SetBorderSize(0);
@@ -481,6 +485,7 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
     //TPaveText t;
     //t.SetOption(Option_t* option = "NDC");
     TString outname = "separate_";
+    TString canvas_name = "";
     if (!nottheory) outname = "theory_";
 
     if (m == 2)
@@ -504,8 +509,9 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         t.SetFillColor(0);
         t.SetBorderSize(0);
         if (false) t.Draw(); // big ZUES lable on top
-        fCanvas->Print(outname + "per_2_plots_of_" + Form("%d",n) + "_width_" + fCanvas->GetName() + q2_cut_global + TString(".png") );
-        dout("cs saved canvas: ", fCanvas);
+        canvas_name = outname + "per_2_plots_of_" + Form("%d",n) + "_width_" + fCanvas->GetName() + q2_cut_global + TString(".png") ;
+        fCanvas->Print(canvas_name);
+        dout("cs saved canvas: ", canvas_name);
     }
     
     if(m == 1)
@@ -536,8 +542,9 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         //if (!for_paper) 
         
         if (false) t.Draw(); // big ZEUS 326 pb^{-1} something lable on top
-        fCanvas->Print(outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + q2_cut_global + TString(".png") );// here we can simply name with variablename
-        dout("cs saved canvas:: ", fCanvas);
+        canvas_name = outname + "per_1_plot_" + Form("%d",n) + "_width_"  + fVariableName + q2_cut_global + TString(".png") ;
+        fCanvas->Print(canvas_name);// here we can simply name with variablename
+        dout("cs saved canvas:: ", canvas_name);
     }
 
     if(m == 6)
@@ -572,8 +579,9 @@ void CrossectionDrawer::SaveCanvas(bool draw, bool nottheory=true) const
         dout("text size:", textsize);
         //void SetTextSize(Float_t tsize = 1)
         if (false) t.Draw(); // big ZEUS lable on top
-        fCanvas->Print(outname + "per_6_plots_" + Form("%d",n) + "_width_"  + fCanvas->GetName() + q2_cut_global + TString(".png") );
-        dout("saved canvas: ", fCanvas);
+        canvas_name = outname + "per_6_plots_" + Form("%d", n) + "_width_"  + fCanvas->GetName() + q2_cut_global + TString(".png") ;
+        fCanvas->Print(canvas_name);
+        dout("saved canvas: ", canvas_name);
     }
     
     //TH1F * frame = fCanvas->DrawFrame(-1., 0., 2., 2.,"ZEUS");
@@ -618,8 +626,7 @@ void CrossectionDrawer::AdjustPad()
         return;
     }
 
-    if (fVariableName.Contains("xp") || fVariableName.Contains("gamma") ) fPad->SetLogy();
-
+    if (logY_for_xgamma_xp && (fVariableName.Contains("xp") || fVariableName.Contains("gamma"))) fPad->SetLogy();
 
     fPad->SetFrameBorderMode(0);
     fPad->SetTicks(1,1);
@@ -634,15 +641,15 @@ void CrossectionDrawer::AdjustPad()
     {
         if (!(m == 1 && n == 1))
         {
-            if(fPad->GetLogy() || fVariableName.Contains("deta"))
+            if (fPad->GetLogy() || fVariableName.Contains("deta"))
                 fWindowControl->GetYaxis()->SetTitleOffset(1.1);
             else
                     fWindowControl->GetYaxis()->SetTitleOffset(1.4);
         }
         else 
         {
-            if(fPad->GetLogy() || fVariableName.Contains("deta"))
-                fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+            if (fPad->GetLogy() || fVariableName.Contains("deta")) fWindowControl->GetYaxis()->SetTitleOffset(1.1);
+            else if (!fPad->GetLogy() && fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(1.2);
             else
             {
                 //fWindowControl->GetYaxis()->SetTitleOffset(1.5);
@@ -657,7 +664,8 @@ void CrossectionDrawer::AdjustPad()
         else                 fWindowControl->GetYaxis()->SetTitleOffset(1.1);
         // Setting lable text offset a bit away from axis
             if (fVariableName.Contains("deta")) fWindowControl->GetYaxis()->SetTitleOffset(0.8);
-            if (fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(0.9);
+            if (fPad->GetLogy() && fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(0.9);
+            else if (!fPad->GetLogy() && fVariableName.Contains("xp")) fWindowControl->GetYaxis()->SetTitleOffset(1.0);
             if (fVariableName.Contains("dphi_e_ph")) fWindowControl->GetYaxis()->SetTitleOffset(1.2);
     }
 
@@ -685,20 +693,24 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                                  Double_t * all_theory_cs_font_25[12] = 0, Double_t * all_theory_cs_font_pos_25[12] = 0, Double_t * all_theory_cs_font_neg_25[12] = 0, TString theory_name_Font2 = "Fontannaz")//TString s_var[n_cross];
 {
     dout("CrossectionDrawer::DrawAll: m,n ============>", m, n);
-    if ( (m == 1 || m == 2 || m== 3) && !(n == m || n == 1)) n = m;
-    else if ((m == 6 && !(n == 3 || n == 2)) || (m == 4)) n = 2;
-    else if (m == 5 || m > 6) 
-    {
-        dout("CrossectionDrawer::DrawAll: m forced to 6, n forced to 2"); 
-        m = 6; 
-        n = 2;
-    }
+dout("BLZ:", with_BLZ);
+// exit(1);
+    // Check the positioning of plots on the canvas
+        if ( (m == 1 || m == 2 || m== 3) && !(n == m || n == 1)) n = m;
+        else if ((m == 6 && !(n == 3 || n == 2)) || (m == 4)) n = 2;
+        else if (m == 5 || m > 6) 
+        {
+            dout("CrossectionDrawer::DrawAll: m forced to 6, n forced to 2"); 
+            m = 6; 
+            n = 2;
+        }
 
-    TCanvas * test;// = new TCanvas('c1', 'c', 899, 900);
+    TCanvas * test;
     CrossectionDrawer * drawers[12] = {};
+
     //////////////////////////////////////////////////
     // Draws separate plots
-    // saves the same data to be plotted with theory
+    // saves the same data to be plotted with theory - Fig. 3-5
     //////////////////////////////////////////////////
         for(int i = 0; i < nplots; ++i)
         {
@@ -753,12 +765,13 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             
             drawers[i]->DrawHist();
             drawers[i]->SaveCanvas( (i + 1) % m == 0 );
+            dout(drawers[i]->fVariableName);
         }
     dout("CrossectionDrawer::DrawAll: DONE CALCULATING THE SEPARATE PLOTS!!!!!!!!!!!!!!!!!!");
 
 
     //////////////////////////////////////////////////
-    // Draws theory
+    // Draws theory - Fig. 6-8
     //////////////////////////////////////////////////
     if (with_BLZ || withFontannaz)
     {
@@ -781,11 +794,11 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     return;
                 }
             }
-
+        dout("Draws theory - Fig. 6-8");
         TCanvas * test_theor;// = new TCanvas('c1', 'c', 899, 900);
         for(int i = 0; i < nplots; ++i)
         {
-            dout("CrossectionDrawer::DrawAll:", "processing", i);
+            dout("\nCrossectionDrawer::DrawAll:", "processing", i,  drawers[i]->fVariableName);
             if ( (i ) % m == 0 ) 
             {   
                 test_theor  = new TCanvas(Form("theor_c%d", i * 10), "bins of ",  n*800, (m / n + m % n) * 600 + 100 * (for_paper == false));
@@ -797,39 +810,35 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             // Adjusting pads
                     if ( m == 6 && ((n == 2 && (i == 0 || i == 1 || i == 6 || i == 7) ) || (n == 3 && ( i == 6 || i == 7 || i == 8))))
                     {
-                        dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                        //dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
                         pad->SetBottomMargin(0);
-                        dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                        //dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
                         pad->SetTopMargin(2* pad->GetTopMargin());
                     }
                     if ( m == 6 && n == 2 && (i == 2 || i == 3 || i == 8 || i == 9 ))
                     {
-                        dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
+                        //dout("CrossectionDrawer::DrawAll: t GetBottomMargin() const: ", pad->GetBottomMargin() );
                         pad->SetBottomMargin(0.05);
-                        dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
+                        //dout("CrossectionDrawer::DrawAll: t GetTopMargin() const: ", pad->GetTopMargin() );
                         pad->SetTopMargin(pad->GetTopMargin());
                     }
 
             pad->SetFillStyle(4000);//transparent TPad
             drawers[i]->AdjustPad();
-            if (with_BLZ)
-            {
-                //Check the pointer
-                    if (all_theory_cs_BLZ[i] == 0) 
-                    {
-                        dout("CrossectionDrawer::DrawAll:", i, "appered to be ", all_theory_cs_BLZ[0]);
-                        continue;
-                    }; 
-                
-                drawers[i]->theory_name = theory_name_BLZ;
-                drawers[i]->AssighnTheory(all_theory_cs_BLZ[i], all_theory_cs_BLZ_pos[i], all_theory_cs_BLZ_neg[i], i);
-                drawers[i]->DrawHist(false, true);
-            }
-            else 
-            {
-                drawers[i]->DrawHist(false, false);
-                cout <<"THATSWHY"<< endl;
-            }
+            // Say what we are drawing data or theory with BLZ or theory withpit BLZ
+                if (with_BLZ)
+                {
+                    //Check the pointer
+                        if (all_theory_cs_BLZ[i] == 0) 
+                        {
+                            dout("CrossectionDrawer::DrawAll:", i, "appered to be ", all_theory_cs_BLZ[0]);
+                            continue;
+                        };
+                    drawers[i]->theory_name = theory_name_BLZ;
+                    drawers[i]->AssighnTheory(all_theory_cs_BLZ[i], all_theory_cs_BLZ_pos[i], all_theory_cs_BLZ_neg[i], i);
+                    drawers[i]->DrawHist(false, true);
+                }
+                else drawers[i]->DrawHist(false, false);
                 //if (i==6) drawers[i]->fCanvas->Print("testing4.png");
 
             //////////////////////////////////////////////////////////
@@ -839,60 +848,57 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
             if (withFontannaz)
             {   
                 //Check the pointer
-                    if ( (all_theory_cs_font[i] == 0 || all_theory_cs_font_pos[i] == 0 || all_theory_cs_font_neg[i] == 0) ||
+                    if ((all_theory_cs_font[i] == 0 || all_theory_cs_font_pos[i] == 0 || all_theory_cs_font_neg[i] == 0) ||
                     (two_fontannaz && (all_theory_cs_font_25[i] == 0 || all_theory_cs_font_pos_25[i] == 0 || all_theory_cs_font_neg_25[i] == 0)) )
                     {
                         dout("CrossectionDrawer::DrawAll: one of the passed Font[i] theory arrays is zero");
                         continue;
                     }
 
-                const Int_t nn = drawers[i]->fCSdata->GetNbinsX();
-                Double_t x[nn];
-                Double_t y[nn];
-                Double_t exl[nn] ;
-                Double_t exh[nn] ;
-                Double_t eyl[nn];
-                Double_t eyh[nn];
-                Double_t temp = 0;
-                for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
-                {
-                    x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
-                    y[j]   = all_theory_cs_font[i][j] * all_hadcort[i][j];
-                    exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
-                    exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
-                    eyl[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
-                    eyh[j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
-                    
-                    cout << j << ") eyl[j] " << eyl[j] << " eyh[j] " << eyh[j] << " cs:" << all_theory_cs_font[i][j]<< endl;
-                    dout("\t", "Had:", all_hadcort[i][j], "dHad:", all_hadcort_err[i][j], "neg:", all_theory_cs_font_neg[i][j], "pos:", all_theory_cs_font_pos[i][j]);
-                    temp  += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
-                }
-                dout("CrossectionDrawer::DrawAll: Fontannaz(1) theory sum_sigma = ", temp);
-                //if (drawers[i]->fVariableName.Contains("deta")); exit(1);
-                fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
-                fTGraphTheoryFont->SetMarkerColor(kBlue);//kRed
-                fTGraphTheoryFont->SetMarkerSize(1.1);
-                fTGraphTheoryFont->SetMarkerStyle(20);
-                fTGraphTheoryFont->SetLineColor(1);
-                fTGraphTheoryFont->SetLineWidth(1);
-                fTGraphTheoryFont->SetFillStyle(3005);
-                fTGraphTheoryFont->SetFillColor(kBlue);//kRed
-                //fTGraphTheoryFont->SetMarkerStyle(1);
-                fTGraphTheoryFont->Draw("SAME 5 ");
-                
+                // Init
+                    const Int_t nn = drawers[i]->fCSdata->GetNbinsX();
+                    Double_t x[nn], y[nn], exl[nn], exh[nn], eyl[nn], eyh[nn];
+                    Double_t temp = 0;
+
+                // Creating graph for AFG theory
+                    dout("\tCreating graph for AFG theory");
+                    for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
+                    {
+                        x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
+                        y[j]   = all_theory_cs_font[i][j];// * all_hadcort[i][j];
+                        exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
+                        exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
+                        eyl[j] = all_theory_cs_font_neg[i][j]; //sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_neg[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
+                        eyh[j] = all_theory_cs_font_pos[i][j]; //sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos[i][j], 2) * pow(all_hadcort[i][j], 2) );//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
+                        // dout("\t\tbin", j, ") cs: ", all_theory_cs_font[i][j], "*", all_hadcort[i][j], "=", y[j]); //(afg+ll)* had
+                        // dout( "\t\t\t", "eyl[j]: ", eyl[j], " eyh[j]: ", eyh[j], " cs all_theory_cs_font:", all_theory_cs_font[i][j]); // afg+ll
+                        // dout("\t\t\t", "Had:", all_hadcort[i][j], "dHad:", all_hadcort_err[i][j], "neg:", all_theory_cs_font_neg[i][j], "pos:", all_theory_cs_font_pos[i][j]);
+                        temp  += all_theory_cs_font[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
+                    }
+                    dout("\tCrossectionDrawer::DrawAll: Fontannaz(1) theory sum_sigma = ", temp);
+                    //if (drawers[i]->fVariableName.Contains("deta")); exit(1);
+                    fTGraphTheoryFont = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
+                    fTGraphTheoryFont->SetMarkerColor(kBlue);//kRed
+                    fTGraphTheoryFont->SetMarkerSize(1.1);
+                    fTGraphTheoryFont->SetMarkerStyle(20);
+                    fTGraphTheoryFont->SetLineColor(1);
+                    fTGraphTheoryFont->SetLineWidth(1);
+                    fTGraphTheoryFont->SetFillStyle(3005);
+                    fTGraphTheoryFont->SetFillColor(kBlue);//kRed
+                    //fTGraphTheoryFont->SetMarkerStyle(1);
+                    fTGraphTheoryFont->Draw("SAME 5 ");
+
                 if (two_fontannaz) 
                 {   
                     temp = 0;
                     for(int j = 0; j < drawers[i]->fCSdata->GetNbinsX(); ++j)
                     {
                         x[j]   = drawers[i]->fCSdata->GetBinCenter(j + 1) ;
-                        y[j]   = all_theory_cs_font_25[i][j] * all_hadcort[i][j];
+                        y[j]   = all_theory_cs_font_25[i][j];// * all_hadcort[i][j];
                         exl[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1); 
                         exh[j] = 0.5 * drawers[i]->fCSdata->GetBinWidth(j+1);
-                        eyl[j] = sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j], 2) 
-                                    + pow(all_theory_cs_font_neg_25[i][j], 2) * pow(all_hadcort[i][j], 2));//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
-                        eyh[j] = sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j],2) 
-                                    + pow(all_theory_cs_font_pos_25[i][j], 2) * pow(all_hadcort[i][j], 2));//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
+                        eyl[j] = all_theory_cs_font_neg_25[i][j]; //sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j], 2) + pow(all_theory_cs_font_neg_25[i][j], 2) * pow(all_hadcort[i][j], 2));//all_theory_cs_font_neg[i][j] * all_hadcort[i][j];//statistical - not statistical and acceptance //TODO: propagate errors
+                        eyh[j] = all_theory_cs_font_pos_25[i][j]; //sqrt(pow(all_theory_cs_font_25[i][j], 2) * pow(all_hadcort_err[i][j],2) + pow(all_theory_cs_font_pos_25[i][j], 2) * pow(all_hadcort[i][j], 2));//all_theory_cs_font_pos[i][j] * all_hadcort[i][j];
                         temp  += all_theory_cs_font_25[i][j] * drawers[i]->fCSdata->GetBinWidth(j+1);
                     }
                     dout("CrossectionDrawer::DrawAll: Fontannaz(2) theory sum_sigma = ", temp);
@@ -964,7 +970,7 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                 {
                     if (!two_fontannaz)
                     {
-                    dout("!with_BLZ && withFontannaz && !two_fontannaz");
+                        dout("!with_BLZ && withFontannaz && !two_fontannaz");
                         if (!for_paper || (for_paper && (i == 0 || i == 6))) //PLOTS
                         drawers[i]->DrawLegend( (i ) % m == 0 , i, false, 
                                                                 true, fTGraphTheoryFont, theory_name_Font1,
@@ -972,8 +978,7 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     }
                     else if ( two_fontannaz)
                     {
-
-                    dout("!with_BLZ && withFontannaz && two_fontannaz");
+                        dout("!with_BLZ && withFontannaz && two_fontannaz");
                         if (!for_paper || (for_paper && (i == 0 || i == 6))) //PLOTS
                         drawers[i]->DrawLegend( (i ) % m == 0 , i, false, 
                                                                 true, fTGraphTheoryFont,  theory_name_Font1, 
@@ -981,14 +986,13 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     }
                     else cerr << "Something strange"<< endl;
                 }
-
             drawers[i]->SaveCanvas( (i + 1) % m == 0 , false);
-
         }    
     }
 
 }
 
+// So far used only on BLZ
 void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, Double_t * cs_neg = 0, int num = -1)
 {
     if (num == -1)
@@ -1047,6 +1051,7 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     fWindowControl->Draw();
        //graph->SetMarkerSize(5);  
 }
+
 void CrossectionDrawer::SetPad(TCanvas * c, TVirtualPad * pad)//rewrite so there was a pads vector to store all the pads 
 {
     fPad = pad;
