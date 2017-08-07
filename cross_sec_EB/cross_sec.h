@@ -345,6 +345,7 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 	// dphi_e_gamma errors: 3% ? dphi_e_gamma < 135 : 20%
 	
 	//print [ format(l[i] * (e[i]), '.5f') for i in range(len(l)) ]  ---python 2.7
+	
 	// 0< Q2 < 350
 		/*OLD
 					//pT_cut in center-of-mass frame = 0.5 GeV/c
@@ -382,9 +383,12 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 			//pT_cut in center-of-mass frame = 0.5 GeV/c
 				Double_t font_xgamma_pt05_Q2full[number_xgamma_bins] = {1.27, 3.04, 5.45, 8.86, 18.54, 49.39};
 				Double_t font_xp_pt05_Q2full[number_xp_bins] = 	{380., 761., 446., 152., 29.13, 2.90};
+				//Double_t font_dphi_pt05_Q2full[number_dphi_bins] = 
 				Double_t font_deta_pt05_Q2full[number_deta_bins] = {0.884, 3.457, 3.743, 3.318, 2.180, 0.435};
 				Double_t font_dphi_e_gamma_pt05_Q2full[number_dphi_e_ph_bins] = {0.0185, 0.024, 0.037, 0.064, 0.106, 0.133};
+				//Double_t font_deta_e_gamma_pt05_Q2full[number_deta_e_ph_bins] =
 				
+
 				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
@@ -424,7 +428,7 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 			//pT_cut in center-of-mass frame = 2.5 GeV/c - ADDITIONAL 8% unc added everywhere - for now: only this 10 % included!!!!
 				Double_t font_xgamma_pt25_Q2full[number_xgamma_bins] = {1.2178, 2.8124, 4.7374, 7.3692, 14.5175, 45.1021};//l=[1.2178, 2.8124, 4.7374, 7.3692, 14.5175, 45.1021]
 				Double_t font_xp_pt25_Q2full[number_xp_bins] = {326.7, 605.4, 344.1, 130.3, 26.76, 2.865};//l=[326.7, 605.4, 344.1, 130.3, 26.76, 2.865]
-				Double_t font_dphi_pt25_Q2full[number_dphi_bins] = {0.0118, 0.0455, 0.0639, 0.0711, 0.0849, 0.113, 0.188}; // l = [0.0118, 0.0455, 0.0639, 0.0711, 0.0849, 0.113, 0.188]
+				Double_t font_dphi_pt25_Q2full[number_dphi_bins] = {0.0181, 0.0546, 0.0720, 0.0829, 0.0951, 0.1006, 0.0778};// Before the July2017 email {0.0118, 0.0455, 0.0639, 0.0711, 0.0849, 0.113, 0.188}; // l = [0.0118, 0.0455, 0.0639, 0.0711, 0.0849, 0.113, 0.188]
 				Double_t font_deta_pt25_Q2full[number_deta_bins] = {0.593, 2.121, 3.167, 3.116, 2.095, 0.461};//l=[0.593, 2.121, 3.167, 3.116, 2.095, 0.461]
 				Double_t font_dphi_e_gamma_pt25_Q2full[number_dphi_e_ph_bins] = {0.0180, 0.0235, 0.0363, 0.0628, 0.0936, 0.0798};//l=[0.0180, 0.0235, 0.0363, 0.0628, 0.0936, 0.0798]
 				Double_t font_deta_e_gamma_pt25_Q2full[number_deta_e_ph_bins] = {1.451, 3.545, 4.476, 3.019, 1.070}; // l = [1.451, 3.545, 4.476, 3.019, 1.070]
@@ -529,7 +533,7 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 			//pT_cut in  in center-of-mass frame = 0.5 GeV/c
 				// l1  = [[0.64, 1.85, 2.51, 3.47, 6.33, 20.60], [171.62, 306.68, 157.94, 52.04, 10.13, 0.861], [0.342, 1.070, 1.654, 1.464, 0.897, 0.252], [0.0106, 0.0134, 0.0195, 0.0291, 0.0356, 0.0367]]
 				Double_t font_xgamma_pt05_Q2lt30[number_xgamma_bins] = {0.64, 1.85, 2.51, 3.47, 6.33, 20.60}; // l = [0.64, 1.85, 2.51, 3.47, 6.33, 20.60]
-				Double_t font_xp_pt05_Q2lt30[number_xp_bins] = {171.62, 306.68, 157.94, 52.04, 10.13, 0.861}; // l = [171.62, 306.68, 157.94, 52.04, 10.13, 0.861]
+				Double_t font_xp_pt05_Q2lt30[number_xp_bins] = {171.62, 306.68, 157.94, 52.04, 10.13, 0.963}; // l = [171.62, 306.68, 157.94, 52.04, 10.13, 0.861]
 				Double_t font_deta_pt05_Q2lt30[number_deta_bins] = {0.342, 1.070, 1.654, 1.464, 0.897, 0.252}; // l = [0.342, 1.070, 1.654, 1.464, 0.897, 0.252]
 				Double_t font_dphi_e_gamma_pt05_Q2lt30[number_dphi_e_ph_bins] = {0.0106, 0.0134, 0.0195, 0.0291, 0.0356, 0.0367}; // l = [0.0106, 0.0134, 0.0195, 0.0291, 0.0356, 0.0367]
 
@@ -574,9 +578,11 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 				// l2 =[[0.613, 1.80, 2.43, 3.26, 5.68, 18.78], [158.89, 281.51, 146.03, 49.92, 9.6153, 0.899], [0.296, 0.921, 1.419, 1.396, 0.871, 0.259], [0.0105, 0.0132, 0.0190, 0.0286, 0.0327, 0.0302]]
 				Double_t font_xgamma_pt25_Q2lt30[number_xgamma_bins] = {0.613, 1.80, 2.43, 3.26, 5.68, 18.78}; // l = [0.613, 1.80, 2.43, 3.26, 5.68, 18.78]
 				Double_t font_xp_pt25_Q2lt30[number_xp_bins] = {158.89, 281.51, 146.03, 49.92, 9.6153, 0.899}; // l = [158.89, 281.51, 146.03, 49.92, 9.6153, 0.899]
+				Double_t font_dphi_pt25_Q2lt30[number_dphi_bins] = {0.00265, 0.0208, 0.0389, 0.0476, 0.0572, 0.0659, 0.0515}; // l = [0.00265, 0.0208, 0.0389, 0.0476, 0.0572, 0.0659, 0.0515]
 				Double_t font_deta_pt25_Q2lt30[number_deta_bins] = {0.296, 0.921, 1.419, 1.396, 0.871, 0.259}; // l = [0.296, 0.921, 1.419, 1.396, 0.871, 0.259]
 				Double_t font_dphi_e_gamma_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.0105, 0.0132, 0.0190, 0.0286, 0.0327, 0.0302}; // l = [0.0105, 0.0132, 0.0190, 0.0286, 0.0327, 0.0302]
-
+				Double_t font_deta_e_gamma_pt25_Q2lt30[number_deta_e_ph_bins] = {1.408, 2.236, 1.875, 0.512, 0.017}; // l = [1.408, 2.236, 1.875, 0.512, 0.017]
+				
 				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 				//e = [0.1, 0.1, 0.1, 0.1, 0.1, 0.1]
 				//e = [0.22360679774997899, 0.22360679774997899, 0.22360679774997899, 0.1044030650891055, 0.1044030650891055, 0.1044030650891055]//e = [0.2, 0.2, 0.2, 0.03, 0.03, 0.03]
@@ -608,12 +614,16 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 				//dl2 = [[0.08, 0.08, 0.08, 0.08, 0.08, 0.08], [0.08, 0.08, 0.08, 0.08, 0.08, 0.08], [0.08, 0.08, 0.08, 0.08, 0.08, 0.08], [0.08, 0.08, 0.08, 0.08, 0.08, 0.08]]
 					Double_t font_xgamma_pos_pt25_Q2lt30[number_xgamma_bins] = {0.04904, 0.14400, 0.19440, 0.26080, 0.45440, 1.50240};
 					Double_t font_xp_pos_pt25_Q2lt30[number_xp_bins] = {12.71120, 22.52080, 11.68240, 3.99360, 0.76922, 0.07192};
+					Double_t font_dphi_pos_pt25_Q2lt30[number_dphi_bins] = {0.00021, 0.00166, 0.00311, 0.00381, 0.00458, 0.00527, 0.00412};
 					Double_t font_deta_pos_pt25_Q2lt30[number_deta_bins] = {0.02368, 0.07368, 0.11352, 0.11168, 0.06968, 0.02072};
 					Double_t font_dphi_e_gamma_pos_pt25_Q2lt30[number_dphi_e_ph_bins] = {0.00084, 0.00106, 0.00152, 0.00229, 0.00262, 0.00242};
+					Double_t font_deta_pos_e_gamma_pt25_Q2lt30[number_deta_e_ph_bins] = {0.11264, 0.17888, 0.15000, 0.04096, 0.00136};
 						Double_t font_xgamma_neg_pt25_Q2lt30[number_xgamma_bins];
 						Double_t font_xp_neg_pt25_Q2lt30[number_xp_bins];
+						Double_t font_dphi_neg_pt25_Q2lt30[number_dphi_bins];
 						Double_t font_deta_neg_pt25_Q2lt30[number_dphi_bins];
-						Double_t font_dphi_e_gamma_neg_pt25_Q2lt30[number_deta_bins];		
+						Double_t font_dphi_e_gamma_neg_pt25_Q2lt30[number_deta_bins];	
+						Double_t font_deta_neg_e_gamma_pt25_Q2lt30[number_deta_e_ph_bins];
 			//Combined - For Fig.7 
 				// for j in range(0,len(l1)):
 				//    print [format((l1[j][i]+l2[j][i])/2,'.5f') for i in range(len(l1[j]))]
@@ -680,18 +690,24 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 			//pT_cut in center-of-mass frame = 2.5 GeV/c
 				Double_t font_xgamma_pt25_Q2gt30[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_xp_pt25_Q2gt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_dphi_pt25_Q2gt30[number_dphi_bins] = {0, 0, 0, 0, 0, 0, 0};
 				Double_t font_deta_pt25_Q2gt30[number_deta_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_dphi_e_gamma_pt25_Q2gt30[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_deta_e_gamma_pt25_Q2gt30[number_deta_e_ph_bins] = {0, 0, 0, 0, 0};
 
 				Double_t font_xgamma_pos_pt25_Q2gt30[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_xp_pos_pt25_Q2gt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_dphi_pos_pt25_Q2gt30[number_dphi_bins] = {0, 0, 0, 0, 0, 0, 0};
 				Double_t font_deta_pos_pt25_Q2gt30[number_deta_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_dphi_e_gamma_pos_pt25_Q2gt30[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_deta_pos_e_gamma_pt25_Q2gt30[number_deta_e_ph_bins] = {0, 0, 0, 0, 0};
 
 				Double_t font_xgamma_neg_pt25_Q2gt30[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_xp_neg_pt25_Q2gt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_dphi_neg_pt25_Q2gt30[number_dphi_bins] = {0, 0, 0, 0, 0, 0, 0};
 				Double_t font_deta_neg_pt25_Q2gt30[number_deta_bins] = {0, 0, 0, 0, 0, 0};
 				Double_t font_dphi_e_gamma_neg_pt25_Q2gt30[number_dphi_e_ph_bins] = {0, 0, 0, 0, 0, 0};
+				Double_t font_deta_neg_e_gamma_pt25_Q2gt30[number_deta_e_ph_bins] = {0, 0, 0, 0, 0};
 			//Combined
 					Double_t font_xgamma_Q2gt30[number_xgamma_bins] = {0, 0, 0, 0, 0, 0};
 					Double_t font_xp_Q2gt30[number_xp_bins] = {0, 0, 0, 0, 0, 0};
@@ -710,9 +726,9 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 
 	// Q2gt30
 		//pT_cut in center-of-mass frame = 2.5 GeV/c
-		Double_t * all_theory_cs_font_pt25_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt25_Q2gt30, font_xp_pt25_Q2gt30, 0, font_deta_pt25_Q2gt30, font_dphi_e_gamma_pt25_Q2gt30, 0};
-		Double_t * all_theory_cs_font_pt25_pos_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt25_Q2gt30, font_xp_pos_pt25_Q2gt30, 0, font_deta_pos_pt25_Q2gt30, font_dphi_e_gamma_pos_pt25_Q2gt30, 0};
-		Double_t * all_theory_cs_font_pt25_neg_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg_pt25_Q2gt30, font_xp_neg_pt25_Q2gt30, 0, font_deta_neg_pt25_Q2gt30, font_dphi_e_gamma_neg_pt25_Q2gt30, 0};
+		Double_t * all_theory_cs_font_pt25_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt25_Q2gt30, font_xp_pt25_Q2gt30, font_dphi_pt25_Q2gt30, font_deta_pt25_Q2gt30, font_dphi_e_gamma_pt25_Q2gt30, font_deta_e_gamma_pt25_Q2gt30};
+		Double_t * all_theory_cs_font_pt25_pos_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt25_Q2gt30, font_xp_pos_pt25_Q2gt30, font_dphi_pos_pt25_Q2gt30, font_deta_pos_pt25_Q2gt30, font_dphi_e_gamma_pos_pt25_Q2gt30, font_deta_pos_e_gamma_pt25_Q2gt30};
+		Double_t * all_theory_cs_font_pt25_neg_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg_pt25_Q2gt30, font_xp_neg_pt25_Q2gt30, font_dphi_neg_pt25_Q2gt30, font_deta_neg_pt25_Q2gt30, font_dphi_e_gamma_neg_pt25_Q2gt30, font_deta_neg_e_gamma_pt25_Q2gt30};
 		//pT_cut in center-of-mass frame = 0.5 GeV/c
 		Double_t * all_theory_cs_font_pt05_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt05_Q2gt30, font_xp_pt05_Q2gt30, 0, font_deta_pt05_Q2gt30, font_dphi_e_gamma_pt05_Q2gt30, 0};
 		Double_t * all_theory_cs_font_pt05_pos_Q2gt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt05_Q2gt30, font_xp_pos_pt05_Q2gt30, 0, font_deta_pos_pt05_Q2gt30, font_dphi_e_gamma_pos_pt05_Q2gt30, 0};
@@ -724,9 +740,9 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 		// see the hist_crosses_draw where I fill it in
 	// Q2lt30
 		//pT_cut in center-of-mass frame = 2.5 GeV/c
-		Double_t * all_theory_cs_font_pt25_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt25_Q2lt30, font_xp_pt25_Q2lt30, 0, font_deta_pt25_Q2lt30, font_dphi_e_gamma_pt25_Q2lt30, 0};
-		Double_t * all_theory_cs_font_pt25_pos_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt25_Q2lt30, font_xp_pos_pt25_Q2lt30, 0, font_deta_pos_pt25_Q2lt30, font_dphi_e_gamma_pos_pt25_Q2lt30, 0};
-		Double_t * all_theory_cs_font_pt25_neg_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg_pt25_Q2lt30, font_xp_neg_pt25_Q2lt30, 0, font_deta_neg_pt25_Q2lt30, font_dphi_e_gamma_neg_pt25_Q2lt30, 0};
+		Double_t * all_theory_cs_font_pt25_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt25_Q2lt30, font_xp_pt25_Q2lt30, font_dphi_pt25_Q2lt30, font_deta_pt25_Q2lt30, font_dphi_e_gamma_pt25_Q2lt30, font_deta_e_gamma_pt25_Q2lt30};
+		Double_t * all_theory_cs_font_pt25_pos_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt25_Q2lt30, font_xp_pos_pt25_Q2lt30, font_dphi_pos_pt25_Q2lt30, font_deta_pos_pt25_Q2lt30, font_dphi_e_gamma_pos_pt25_Q2lt30, font_deta_pos_e_gamma_pt25_Q2lt30};
+		Double_t * all_theory_cs_font_pt25_neg_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_neg_pt25_Q2lt30, font_xp_neg_pt25_Q2lt30, font_dphi_neg_pt25_Q2lt30, font_deta_neg_pt25_Q2lt30, font_dphi_e_gamma_neg_pt25_Q2lt30, font_deta_neg_e_gamma_pt25_Q2lt30};
 		//pT_cut in center-of-mass frame = 0.5 GeV/c
 		Double_t * all_theory_cs_font_pt05_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pt05_Q2lt30, font_xp_pt05_Q2lt30, 0, font_deta_pt05_Q2lt30, font_dphi_e_gamma_pt05_Q2lt30, 0};
 		Double_t * all_theory_cs_font_pt05_pos_Q2lt30[12] = {0, 0, 0, 0, 0, 0, font_xgamma_pos_pt05_Q2lt30, font_xp_pos_pt05_Q2lt30, 0, font_deta_pos_pt05_Q2lt30, font_dphi_e_gamma_pos_pt05_Q2lt30, 0};
@@ -752,30 +768,83 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 
 // Hadronisation correction
 	// full Q2
-		Double_t hadcor_et[number_etbins] = {0.80089, 0.8436, 0.8889, 0.920169};//{ 1 , 1 , 1 , 1 };
-		Double_t hadcor_eta[number_etabins] = {	0.897217, 0.856589, 0.831106, 0.786123};//{ 1 , 1 , 1 , 1  };
-		Double_t hadcor_Q2[number_Q2bins] = { 0.864872, 0.84278, 0.82571, 0.80850, 0.836009};//{ 1 , 1 , 1 , 1 ,1};
-		Double_t hadcor_x[number_xbins] = {	0.896322, 0.83105, 0.782931, 0.853225};//{ 1 , 1 , 1 , 1  };
-		Double_t hadcor_et_jet[number_et_jetbins] = { 0.743404, 0.770444, 0.847409, 0.934409, 1.08148, 1.10222 };//{ 1 , 1 , 1 , 1 ,1 ,1};
-		Double_t hadcor_eta_jet[number_eta_jetbins] = {	0.713228, 0.739034, 0.881313, 1.08716 };//{ 1 , 1 , 1 , 1  };
-		Double_t hadcor_xgamma[number_xgamma_bins] = { 0.626939, 0.89639, 1.26588, 1.9319, 2.05619, 0.643178 };
-		Double_t hadcor_xp[number_xp_bins] = { 0.691671, 0.805629, 0.913111, 0.990287, 1.06323, 0.996296 };//last bin manually set to 1
-		Double_t hadcor_dphi[number_dphi_bins] = { 0.677041, 0.81817, 0.875374, 0.915694, 0.953324, 0.954095, 0.943792 };
-		Double_t hadcor_deta[number_deta_bins] = { 0.755721, 0.65941, 0.740169, 0.870975, 1.04352, 1.10866 };
-		Double_t hadcor_dphi_e_gamma[number_dphi_e_ph_bins] = {	0.948884, 0.944103, 0.91829, 0.852325, 0.792186, 0.730761 };
-		Double_t hadcor_deta_e_gamma[number_deta_e_ph_bins] = {	0.804829, 0.817935, 0.83285, 0.85489, 0.887841 };
-			Double_t hadcor_et_err[number_etbins] = { 0.00183595, 0.002383, 0.00308931, 0.00180418 };
-			Double_t hadcor_eta_err[number_etabins] = {0.0057262, 0.00532276, 0.00531591, 0.00536681 };
-			Double_t hadcor_Q2_err[number_Q2bins] = {0.00106809, 0.000787114, 0.000576308, 0.000491361, 0.000385195};
-			Double_t hadcor_x_err[number_xbins] = {0.107403, 0.0632892, 0.0392608, 0.0896211};
-			Double_t hadcor_et_jet_err[number_et_jetbins] = {0.0044137, 0.00343492, 0.00456749, 0.00630348, 0.00374265, 0.00401438};
-			Double_t hadcor_eta_jet_err[number_eta_jetbins] = {0.00588159, 0.00432966, 0.00543222, 0.00774054 };
-			Double_t hadcor_xgamma_err[number_xgamma_bins]  = {0.0326688, 0.0502385, 0.126718, 0.13838, 0.0770724, 0.00676406 };
-			Double_t hadcor_xp_err[number_xp_bins] = {0.0642579, 0.0525744, 0.0892017, 0.0766185, 0.134542, 0.200497 };
-			Double_t hadcor_dphi_err[number_dphi_bins] = {0.000474113, 0.000678834, 0.00333124, 0.00325289, 0.00323925, 0.00315134, 0.0027131 };
-			Double_t hadcor_deta_err[number_deta_bins] = {0.0168032, 0.00665623, 0.00507899, 0.00591916, 0.00948652, 0.0210241 };
-			Double_t hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = {0.000641616, 0.000731633, 0.000692594, 0.000705054, 0.000828641, 0.000865265 };
-			Double_t hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = {0.00731033, 0.00456975, 0.00388988, 0.00460632, 0.0074846 };
+		/* No xgamma correction
+			Double_t hadcor_et[number_etbins] = {0.80089, 0.8436, 0.8889, 0.920169};//{ 1 , 1 , 1 , 1 };
+			Double_t hadcor_eta[number_etabins] = {	0.897217, 0.856589, 0.831106, 0.786123};//{ 1 , 1 , 1 , 1  };
+			Double_t hadcor_Q2[number_Q2bins] = { 0.864872, 0.84278, 0.82571, 0.80850, 0.836009};//{ 1 , 1 , 1 , 1 ,1};
+			Double_t hadcor_x[number_xbins] = {	0.896322, 0.83105, 0.782931, 0.853225};//{ 1 , 1 , 1 , 1  };
+			Double_t hadcor_et_jet[number_et_jetbins] = { 0.743404, 0.770444, 0.847409, 0.934409, 1.08148, 1.10222 };//{ 1 , 1 , 1 , 1 ,1 ,1};
+			Double_t hadcor_eta_jet[number_eta_jetbins] = {	0.713228, 0.739034, 0.881313, 1.08716 };//{ 1 , 1 , 1 , 1  };
+			Double_t hadcor_xgamma[number_xgamma_bins] = { 0.626939, 0.89639, 1.26588, 1.9319, 2.05619, 0.643178 };
+			Double_t hadcor_xp[number_xp_bins] = { 0.691671, 0.805629, 0.913111, 0.990287, 1.06323, 0.996296 };//last bin manually set to 1
+			Double_t hadcor_dphi[number_dphi_bins] = { 0.677041, 0.81817, 0.875374, 0.915694, 0.953324, 0.954095, 0.943792 };
+			Double_t hadcor_deta[number_deta_bins] = { 0.755721, 0.65941, 0.740169, 0.870975, 1.04352, 1.10866 };
+			Double_t hadcor_dphi_e_gamma[number_dphi_e_ph_bins] = {	0.948884, 0.944103, 0.91829, 0.852325, 0.792186, 0.730761 };
+			Double_t hadcor_deta_e_gamma[number_deta_e_ph_bins] = {	0.804829, 0.817935, 0.83285, 0.85489, 0.887841 };
+				Double_t hadcor_et_err[number_etbins] = { 0.00183595, 0.002383, 0.00308931, 0.00180418 };
+				Double_t hadcor_eta_err[number_etabins] = {0.0057262, 0.00532276, 0.00531591, 0.00536681 };
+				Double_t hadcor_Q2_err[number_Q2bins] = {0.00106809, 0.000787114, 0.000576308, 0.000491361, 0.000385195};
+				Double_t hadcor_x_err[number_xbins] = {0.107403, 0.0632892, 0.0392608, 0.0896211};
+				Double_t hadcor_et_jet_err[number_et_jetbins] = {0.0044137, 0.00343492, 0.00456749, 0.00630348, 0.00374265, 0.00401438};
+				Double_t hadcor_eta_jet_err[number_eta_jetbins] = {0.00588159, 0.00432966, 0.00543222, 0.00774054 };
+				Double_t hadcor_xgamma_err[number_xgamma_bins]  = {0.0326688, 0.0502385, 0.126718, 0.13838, 0.0770724, 0.00676406 };
+				Double_t hadcor_xp_err[number_xp_bins] = {0.0642579, 0.0525744, 0.0892017, 0.0766185, 0.134542, 0.200497 };
+				Double_t hadcor_dphi_err[number_dphi_bins] = {0.000474113, 0.000678834, 0.00333124, 0.00325289, 0.00323925, 0.00315134, 0.0027131 };
+				Double_t hadcor_deta_err[number_deta_bins] = {0.0168032, 0.00665623, 0.00507899, 0.00591916, 0.00948652, 0.0210241 };
+				Double_t hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = {0.000641616, 0.000731633, 0.000692594, 0.000705054, 0.000828641, 0.000865265 };
+				Double_t hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = {0.00731033, 0.00456975, 0.00388988, 0.00460632, 0.0074846 };
+		*/
+
+		//xgamma reweighted to AFG predictions
+			Double_t  hadcor_et[number_etbins] = {0.782285, 0.830105, 0.876333, 0.913968 }; 
+			Double_t  hadcor_et_err[number_etbins] = {0.00182122, 0.00235935, 0.00310353, 0.00188195 }; 
+			Double_t  hadcor_eta[number_etabins] = {0.896763, 0.838314, 0.814762, 0.766552 }; 
+			Double_t  hadcor_eta_err[number_etabins] = {0.00593943, 0.00534207, 0.00527444, 0.00524079 }; 
+			Double_t  hadcor_Q2[number_Q2bins] = {0.85212, 0.818244, 0.804978, 0.796162, 0.834903 }; 
+			Double_t  hadcor_Q2_err[number_Q2bins] = {0.00103527, 0.000759896, 0.000564962, 0.000505501, 0.000433222 }; 
+			Double_t  hadcor_x[number_xbins] = {0.865702, 0.80817, 0.774931, 0.881496 }; 
+			Double_t  hadcor_x_err[number_xbins] = {0.0949938, 0.0619448, 0.0439372, 0.116027 }; 
+			Double_t  hadcor_et_jet[number_et_jetbins] = {0.685204, 0.768953, 0.85739, 0.985656, 1.15869, 1.23249 }; 
+			Double_t  hadcor_et_jet_err[number_et_jetbins] = {0.00377697, 0.00336545, 0.00484118, 0.00732696, 0.00468168, 0.00557255 }; 
+			Double_t  hadcor_eta_jet[number_eta_jetbins] = {0.794268, 0.740215, 0.847225, 0.944778 }; 
+			Double_t  hadcor_eta_jet_err[number_eta_jetbins] = {0.00591706, 0.00447077, 0.00557416, 0.00695629 }; 
+			Double_t  hadcor_xgamma[number_xgamma_bins] = {0.490983, 0.717931, 0.731104, 0.990843, 1.20053, 0.729601 }; 
+			Double_t  hadcor_xgamma_err[number_xgamma_bins] = {0.0109449, 0.0192922, 0.0349982, 0.037574, 0.0370611, 0.00976538 }; 
+			Double_t  hadcor_xp[number_xp_bins] = {0.719313, 0.791258, 0.868899, 0.955265, 1.04786, 0.968409 }; 
+			Double_t  hadcor_xp_err[number_xp_bins] = {0.0646815, 0.0516918, 0.087205, 0.0791642, 0.152979, 0.241388 }; 
+			Double_t  hadcor_dphi[number_dphi_bins] = {0.655171, 0.799951, 0.851947, 0.900588, 0.932538, 0.953798, 0.928882 }; 
+			Double_t  hadcor_dphi_err[number_dphi_bins] = {0.000486266, 0.000668267, 0.00326667, 0.00321581, 0.00321947, 0.00314716, 0.00265549 }; 
+			Double_t  hadcor_deta[number_deta_bins] = {0.851765, 0.712391, 0.752777, 0.850402, 0.932922, 0.875954 }; 
+			Double_t  hadcor_deta_err[number_deta_bins] = {0.015275, 0.00659912, 0.00526877, 0.00628249, 0.00918253, 0.0157729 }; 
+			Double_t  hadcor_dphi_e_gamma[number_dphi_e_ph_bins] = {0.930843, 0.920093, 0.901301, 0.836295, 0.781368, 0.719477 }; 
+			Double_t  hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = {0.000638215, 0.000736594, 0.000691982, 0.000710571, 0.000857671, 0.000823337 }; 
+			Double_t  hadcor_deta_e_gamma[number_deta_e_ph_bins] = {0.783578, 0.79837, 0.817683, 0.843716, 0.879996 }; 
+			Double_t  hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = {0.00711316, 0.00449311, 0.00388066, 0.00464087, 0.00782341 };
+		// BLZ rew.
+				Double_t hadcor_et_BLZ_rew[number_etbins] = {0.811705, 0.853263, 0.894891, 0.921827 }; 
+				Double_t hadcor_et_err_BLZ_rew[number_etbins] = {0.00184393, 0.00239845, 0.00307917, 0.00176398 }; 
+				Double_t hadcor_eta_BLZ_rew[number_etabins] = {0.89919, 0.866039, 0.840612, 0.797391 }; 
+				Double_t hadcor_eta_err_BLZ_rew[number_etabins] = {0.0055982, 0.0052957, 0.00533548, 0.00546816 }; 
+				Double_t hadcor_Q2_BLZ_rew[number_Q2bins] = {0.873922, 0.856346, 0.837811, 0.815785, 0.836612 }; 
+				Double_t hadcor_Q2_err_BLZ_rew[number_Q2bins] = {0.00108796, 0.000801649, 0.00058185, 0.000484061, 0.000364633 }; 
+				Double_t hadcor_x_BLZ_rew[number_xbins] = {0.917323, 0.843035, 0.78755, 0.844528 }; 
+				Double_t hadcor_x_err_BLZ_rew[number_xbins] = {0.114639, 0.0640007, 0.0373938, 0.0801969 }; 
+				Double_t hadcor_et_jet_BLZ_rew[number_et_jetbins] = {0.782897, 0.774246, 0.842899, 0.915295, 1.05146, 1.05532 }; 
+				Double_t hadcor_et_jet_err_BLZ_rew[number_et_jetbins] = {0.00479696, 0.0034833, 0.00446966, 0.00592, 0.00339901, 0.0034833 }; 
+				Double_t hadcor_eta_jet_BLZ_rew[number_eta_jetbins] = {0.696294, 0.743043, 0.890622, 1.12674 }; 
+				Double_t hadcor_eta_jet_err_BLZ_rew[number_eta_jetbins] = {0.00604562, 0.00432852, 0.00532267, 0.00774744 }; 
+				Double_t hadcor_xgamma_BLZ_rew[number_xgamma_bins] = {0.957092, 1.34979, 2.46903, 6.99034, 29.5416, 0.609606 }; 
+				Double_t hadcor_xgamma_err_BLZ_rew[number_xgamma_bins] = {0.199868, 0.179351, 0.574937, 1.4192, 6.07255, 0.0057993 }; 
+				Double_t hadcor_xp_BLZ_rew[number_xp_bins] = {0.692625, 0.814319, 0.928516, 0.993314, 1.05401, 0.995093 }; 
+				Double_t hadcor_xp_err_BLZ_rew[number_xp_bins] = {0.0651929, 0.0532752, 0.0894929, 0.0738086, 0.123277, 0.178762 }; 
+				Double_t hadcor_dphi_BLZ_rew[number_dphi_bins] = {0.687925, 0.829559, 0.887033, 0.926647, 0.965415, 0.955596, 0.954501 }; 
+				Double_t hadcor_dphi_err_BLZ_rew[number_dphi_bins] = {0.000465718, 0.000686034, 0.00336899, 0.00329499, 0.00324582, 0.00314873, 0.0027552 }; 
+				Double_t hadcor_deta_BLZ_rew[number_deta_bins] = {0.733339, 0.649603, 0.74041, 0.874131, 1.06781, 1.20872 }; 
+				Double_t hadcor_deta_err_BLZ_rew[number_deta_bins] = {0.0182944, 0.00687653, 0.00508487, 0.00573111, 0.0092204, 0.0227038 }; 
+				Double_t hadcor_dphi_e_gamma_BLZ_rew[number_dphi_e_ph_bins] = {0.960889, 0.959727, 0.93128, 0.862776, 0.799992, 0.73493 }; 
+				Double_t hadcor_dphi_e_gamma_err_BLZ_rew[number_dphi_e_ph_bins] = {0.000649543, 0.000737584, 0.000698219, 0.000706291, 0.00081395, 0.00087395 }; 
+				Double_t hadcor_deta_e_gamma_BLZ_rew[number_deta_e_ph_bins] = {0.818371, 0.828194, 0.842706, 0.86111, 0.890993 }; 
+				Double_t hadcor_deta_e_gamma_err_BLZ_rew[number_deta_e_ph_bins] = {0.00750308, 0.00462464, 0.00389284, 0.00457508, 0.00725434 };  
 	//To disable hadcor correction
 		// Double_t hadcor_et[number_etbins] = { 1 , 1 , 1 , 1 };
 		// Double_t hadcor_eta[number_etabins] = { 1 , 1 , 1 , 1  };
@@ -803,57 +872,88 @@ Double_t * all_theory_neg[12] = {0, 0, 0, 0, 0, 0, theor_xgamma_neg_error, theor
 		// Double_t hadcor_dphi_e_gamma_err[number_dphi_e_ph_bins] = { 0 , 0 , 0 , 0 ,0 ,0};
 		// Double_t hadcor_deta_e_gamma_err[number_deta_e_ph_bins] = { 0 , 0 , 0 , 0 ,0 };
 	// Q2<30
-		Double_t hadcor_et_q2_lt_30[number_etbins] = {0.814789, 0.881715, 0.942218, 0.981211};
-		Double_t hadcor_eta_q2_lt_30[number_etabins] = {0.906642, 0.87793, 0.857126, 0.80847};
-		Double_t hadcor_Q2_q2_lt_30[number_Q2bins] = {0.864872, 0.849457, 0, 0, 0};
-		Double_t hadcor_x_q2_lt_30[number_xbins] = {0.895876, 0.792864, 0.606061, 0};
-		Double_t hadcor_et_jet_q2_lt_30[number_et_jetbins] = {0.776819, 0.82294, 0.916796, 0.966992, 1.04494, 1.10435};
-		Double_t hadcor_eta_jet_q2_lt_30[number_eta_jetbins] = {0.680929, 0.786099, 0.913864, 1.10639};
-		Double_t hadcor_xgamma_q2_lt_30[number_xgamma_bins] = {0.675347, 1.00113, 1.29781, 2.02066, 2.11408, 0.628354};
-		Double_t hadcor_xp_q2_lt_30[number_xp_bins] = {0.710108, 0.840846, 0.980352, 1.02746, 1.07797, 0.953271};
-		Double_t hadcor_dphi_q2_lt_30[number_dphi_bins] = {0.675952, 0.781953, 0.787725, 0.854512, 0.914414, 0.92687, 0.930594};
-		Double_t hadcor_deta_q2_lt_30[number_deta_bins] = {0.626016, 0.675044, 0.771932, 0.896552, 1.07915, 1.06815};
-		Double_t hadcor_dphi_e_gamma_q2_lt_30[number_dphi_e_ph_bins] = {0.948911, 0.936677, 0.907617, 0.847112, 0.780708, 0.798657};
-		Double_t hadcor_deta_e_gamma_q2_lt_30[number_deta_e_ph_bins] = {0.80882, 0.851826, 0.892594, 0.921073, 1};
-			Double_t hadcor_et_err_q2_lt_30[number_etbins] = {0.00279824, 0.0036523, 0.00443284, 0.00256727};
-			Double_t hadcor_eta_err_q2_lt_30[number_etabins] = {0.00881101, 0.00838129, 0.00829214, 0.0087034};
-			Double_t hadcor_Q2_err_q2_lt_30[number_Q2bins] = {0.00106809, 0.00102338, 0, 0, 0};
-			Double_t hadcor_x_err_q2_lt_30[number_xbins] = {0.114363, 0.111417, 0.320606, 0};
-			Double_t hadcor_et_jet_err_q2_lt_30[number_et_jetbins] = {0.00662771, 0.00555732, 0.00778652, 0.0111592, 0.00673736, 0.0114272};
-			Double_t hadcor_eta_jet_err_q2_lt_30[number_eta_jetbins] = {0.00873094, 0.00720485, 0.00914245, 0.0130542};
-			Double_t hadcor_xgamma_err_q2_lt_30[number_xgamma_bins]  = {0.0536555, 0.0844329, 0.194479, 0.217758, 0.123102, 0.0110927};
-			Double_t hadcor_xp_err_q2_lt_30[number_xp_bins] = {0.0937616, 0.0856511, 0.159483, 0.140487, 0.251182, 0.514285};
-			Double_t hadcor_dphi_err_q2_lt_30[number_dphi_bins] = {0.00249219, 0.0013657, 0.00467537, 0.00435872, 0.004156, 0.00382881, 0.00330441};
-			Double_t hadcor_deta_err_q2_lt_30[number_deta_bins] = {0.0227603, 0.0109434, 0.00835811, 0.00981999, 0.0161107, 0.0325483};
-			Double_t hadcor_dphi_e_gamma_err_q2_lt_30[number_dphi_e_ph_bins] = {0.000889983, 0.00103713, 0.00105236, 0.00118019, 0.00157391, 0.00145562};
-			Double_t hadcor_deta_e_gamma_err_q2_lt_30[number_deta_e_ph_bins] = {0.00745095, 0.0058458, 0.00612644, 0.0114812, 0.26082};
+		/* No xgamma correction
+			Double_t hadcor_et_q2_lt_30[number_etbins] = {0.814789, 0.881715, 0.942218, 0.981211};
+			Double_t hadcor_eta_q2_lt_30[number_etabins] = {0.906642, 0.87793, 0.857126, 0.80847};
+			Double_t hadcor_Q2_q2_lt_30[number_Q2bins] = {0.864872, 0.849457, 0, 0, 0};
+			Double_t hadcor_x_q2_lt_30[number_xbins] = {0.895876, 0.792864, 0.606061, 0};
+			Double_t hadcor_et_jet_q2_lt_30[number_et_jetbins] = {0.776819, 0.82294, 0.916796, 0.966992, 1.04494, 1.10435};
+			Double_t hadcor_eta_jet_q2_lt_30[number_eta_jetbins] = {0.680929, 0.786099, 0.913864, 1.10639};
+			Double_t hadcor_xgamma_q2_lt_30[number_xgamma_bins] = {0.675347, 1.00113, 1.29781, 2.02066, 2.11408, 0.628354};
+			Double_t hadcor_xp_q2_lt_30[number_xp_bins] = {0.710108, 0.840846, 0.980352, 1.02746, 1.07797, 0.953271};
+			Double_t hadcor_dphi_q2_lt_30[number_dphi_bins] = {0.675952, 0.781953, 0.787725, 0.854512, 0.914414, 0.92687, 0.930594};
+			Double_t hadcor_deta_q2_lt_30[number_deta_bins] = {0.626016, 0.675044, 0.771932, 0.896552, 1.07915, 1.06815};
+			Double_t hadcor_dphi_e_gamma_q2_lt_30[number_dphi_e_ph_bins] = {0.948911, 0.936677, 0.907617, 0.847112, 0.780708, 0.798657};
+			Double_t hadcor_deta_e_gamma_q2_lt_30[number_deta_e_ph_bins] = {0.80882, 0.851826, 0.892594, 0.921073, 1};
+				Double_t hadcor_et_err_q2_lt_30[number_etbins] = {0.00279824, 0.0036523, 0.00443284, 0.00256727};
+				Double_t hadcor_eta_err_q2_lt_30[number_etabins] = {0.00881101, 0.00838129, 0.00829214, 0.0087034};
+				Double_t hadcor_Q2_err_q2_lt_30[number_Q2bins] = {0.00106809, 0.00102338, 0, 0, 0};
+				Double_t hadcor_x_err_q2_lt_30[number_xbins] = {0.114363, 0.111417, 0.320606, 0};
+				Double_t hadcor_et_jet_err_q2_lt_30[number_et_jetbins] = {0.00662771, 0.00555732, 0.00778652, 0.0111592, 0.00673736, 0.0114272};
+				Double_t hadcor_eta_jet_err_q2_lt_30[number_eta_jetbins] = {0.00873094, 0.00720485, 0.00914245, 0.0130542};
+				Double_t hadcor_xgamma_err_q2_lt_30[number_xgamma_bins]  = {0.0536555, 0.0844329, 0.194479, 0.217758, 0.123102, 0.0110927};
+				Double_t hadcor_xp_err_q2_lt_30[number_xp_bins] = {0.0937616, 0.0856511, 0.159483, 0.140487, 0.251182, 0.514285};
+				Double_t hadcor_dphi_err_q2_lt_30[number_dphi_bins] = {0.00249219, 0.0013657, 0.00467537, 0.00435872, 0.004156, 0.00382881, 0.00330441};
+				Double_t hadcor_deta_err_q2_lt_30[number_deta_bins] = {0.0227603, 0.0109434, 0.00835811, 0.00981999, 0.0161107, 0.0325483};
+				Double_t hadcor_dphi_e_gamma_err_q2_lt_30[number_dphi_e_ph_bins] = {0.000889983, 0.00103713, 0.00105236, 0.00118019, 0.00157391, 0.00145562};
+				Double_t hadcor_deta_e_gamma_err_q2_lt_30[number_deta_e_ph_bins] = {0.00745095, 0.0058458, 0.00612644, 0.0114812, 0.26082};
+		*/
+
+		//xgamma reweighted to AFG predictions
+			Double_t hadcor_et_q2_lt_30[number_etbins] = {0.802755, 0.872851, 0.929315, 0.978185 }; 
+			Double_t hadcor_et_err_q2_lt_30[number_etbins] = {0.00274163, 0.00363974, 0.0045831, 0.00288248 }; 
+			Double_t hadcor_eta_q2_lt_30[number_etabins] = {0.914631, 0.867824, 0.840576, 0.785591 }; 
+			Double_t hadcor_eta_err_q2_lt_30[number_etabins] = {0.00910769, 0.00844727, 0.00820116, 0.00849584 }; 
+			Double_t hadcor_Q2_q2_lt_30[number_Q2bins] = {0.856694, 0.829501, 0, 0, 0 }; 
+			Double_t hadcor_Q2_err_q2_lt_30[number_Q2bins] = {0.0010728, 0.00101227, 0, 0, 0 }; 
+			Double_t hadcor_x_q2_lt_30[number_xbins] = {0.874952, 0.779784, 0.608634, 0 }; 
+			Double_t hadcor_x_err_q2_lt_30[number_xbins] = {0.106456, 0.128524, 0.424415, 0 }; 
+			Double_t hadcor_et_jet_q2_lt_30[number_et_jetbins] = {0.72708, 0.825856, 0.938911, 1.03758, 1.1318, 1.36585 }; 
+			Double_t hadcor_et_jet_err_q2_lt_30[number_et_jetbins] = {0.00573678, 0.00547058, 0.00856711, 0.0138388, 0.00892367, 0.0170041 }; 
+			Double_t hadcor_eta_jet_q2_lt_30[number_eta_jetbins] = {0.805908, 0.802336, 0.864832, 0.927297 }; 
+			Double_t hadcor_eta_jet_err_q2_lt_30[number_eta_jetbins] = {0.00915216, 0.00760603, 0.00931507, 0.0110523 }; 
+			Double_t hadcor_xgamma_q2_lt_30[number_xgamma_bins] = {0.520029, 0.691453, 0.750917, 1.14335, 1.41811, 0.707298 }; 
+			Double_t hadcor_xgamma_err_q2_lt_30[number_xgamma_bins] = {0.0166666, 0.0239318, 0.0538246, 0.0683773, 0.0751145, 0.0164357 }; 
+			Double_t hadcor_xp_q2_lt_30[number_xp_bins] = {0.76253, 0.827672, 0.905357, 0.971829, 1.05393, 0.872634 }; 
+			Double_t hadcor_xp_err_q2_lt_30[number_xp_bins] = {0.0974023, 0.0840167, 0.152661, 0.143232, 0.290103, 0.615625 }; 
+			Double_t hadcor_dphi_q2_lt_30[number_dphi_bins] = {0.555373, 0.770886, 0.760789, 0.860684, 0.929228, 0.950307, 0.932088 }; 
+			Double_t hadcor_dphi_err_q2_lt_30[number_dphi_bins] = {0.00157335, 0.00129612, 0.00466612, 0.00454765, 0.00439832, 0.00413512, 0.00346247 }; 
+			Double_t hadcor_deta_q2_lt_30[number_deta_bins] = {0.77688, 0.766032, 0.798985, 0.876415, 0.911329, 0.853298 }; 
+			Double_t hadcor_deta_err_q2_lt_30[number_deta_bins] = {0.0219363, 0.0110189, 0.00891847, 0.0105556, 0.0146107, 0.0232277 }; 
+			Double_t hadcor_dphi_e_gamma_q2_lt_30[number_dphi_e_ph_bins] = {0.938281, 0.921114, 0.897424, 0.84324, 0.775962, 0.778518 }; 
+			Double_t hadcor_dphi_e_gamma_err_q2_lt_30[number_dphi_e_ph_bins] = {0.000914965, 0.00107661, 0.00108028, 0.00120549, 0.00156955, 0.00133944 }; 
+			Double_t hadcor_deta_e_gamma_q2_lt_30[number_deta_e_ph_bins] = {0.789178, 0.836014, 0.885959, 0.91457, 0.956035 }; 
+			Double_t hadcor_deta_e_gamma_err_q2_lt_30[number_deta_e_ph_bins] = {0.00756671, 0.0058364, 0.00615942, 0.010661, 0.168206 }; 
 	// Q2>30
-		Double_t hadcor_et_q2_gt_30[number_etbins] = {0.790838, 0.821576, 0.864596, 0.898098};
-		Double_t hadcor_eta_q2_gt_30[number_etabins] = {0.890761, 0.843332, 0.816097, 0.773798};
-		Double_t hadcor_Q2_q2_gt_30[number_Q2bins] = {0, 0.833206, 0.825711, 0.808501, 0.836009};
-		Double_t hadcor_x_q2_gt_30[number_xbins] = {0.899147, 0.84927, 0.786113, 0.853225};
-		Double_t hadcor_et_jet_q2_gt_30[number_et_jetbins] = {0.716353, 0.73625, 0.808116, 0.918723, 1.09438, 1.10186};
-		Double_t hadcor_eta_jet_q2_gt_30[number_eta_jetbins] = {0.732645, 0.711344, 0.8614, 1.07563};
-		Double_t hadcor_xgamma_q2_gt_30[number_xgamma_bins] = {0.593824, 0.821973, 1.24074, 1.86448, 2.01645, 0.651718};
-		Double_t hadcor_xp_q2_gt_30[number_xp_bins] = {0.676777, 0.783838, 0.877647, 0.973499, 1.05753, 1.00693};
-		Double_t hadcor_dphi_q2_gt_30[number_dphi_bins] = {0.677103, 0.832922, 0.957346, 0.986964, 1.01017, 1.00644, 0.969791};
-		Double_t hadcor_deta_q2_gt_30[number_deta_bins] = {0.830445, 0.651061, 0.7209, 0.854853, 1.02221, 1.13561};
-		Double_t hadcor_dphi_e_gamma_q2_gt_30[number_dphi_e_ph_bins] = {0.948855, 0.951713, 0.926784, 0.855456, 0.796683, 0.698665};
-		Double_t hadcor_deta_e_gamma_q2_gt_30[number_deta_e_ph_bins] = {0.696113, 0.772908, 0.802204, 0.844568, 0.887742};
-			Double_t hadcor_et_err_q2_gt_30[number_etbins] = {0.00243075, 0.0031023, 0.0039925, 0.00225902};
-			Double_t hadcor_eta_err_q2_gt_30[number_etabins] = {0.00752571, 0.00687548, 0.00687107, 0.00679662};
-			Double_t hadcor_Q2_err_q2_gt_30[number_Q2bins] = {0, 0.00123138, 0.000576308, 0.000491361, 0.000385195};
-			Double_t hadcor_x_err_q2_gt_30[number_xbins] = {0.309456, 0.0768399, 0.0395053, 0.0896211};
-			Double_t hadcor_et_jet_err_q2_gt_30[number_et_jetbins] = {0.00590941, 0.00436172, 0.00562756, 0.00763645, 0.00447447, 0.00427575};
-			Double_t hadcor_eta_jet_err_q2_gt_30[number_eta_jetbins] = {0.00783973, 0.00540937, 0.00674093, 0.00959787};
-			Double_t hadcor_xgamma_err_q2_gt_30[number_xgamma_bins]  = {0.0410168, 0.0617797, 0.166921, 0.178813, 0.098777, 0.00853262};
-			Double_t hadcor_xp_err_q2_gt_30[number_xp_bins] = {0.0879561, 0.0665483, 0.107279, 0.0913584, 0.15927, 0.214884};
-			Double_t hadcor_dphi_err_q2_gt_30[number_dphi_bins] = {0.000480619, 0.00077433, 0.00471372, 0.00486569, 0.00515896, 0.00553536, 0.00474948};
-			Double_t hadcor_deta_err_q2_gt_30[number_deta_bins] = {0.0232955, 0.00836668, 0.006391, 0.00740744, 0.011713, 0.0275151};
-			Double_t hadcor_dphi_e_gamma_err_q2_gt_30[number_dphi_e_ph_bins] = {0.000925752, 0.00103179, 0.000919341, 0.000877948, 0.000974467, 0.00106696};
-			Double_t hadcor_deta_e_gamma_err_q2_gt_30[number_deta_e_ph_bins] = {0.0375464, 0.00723053, 0.00494815, 0.00500703, 0.00748764};
+		
+		Double_t hadcor_et_q2_gt_30[number_etbins] = {0.767027, 0.80723, 0.852627, 0.891731 }; 
+		Double_t hadcor_et_err_q2_gt_30[number_etbins] = {0.00243393, 0.00306098, 0.00395695, 0.00229697 }; 
+		Double_t hadcor_eta_q2_gt_30[number_etabins] = {0.889251, 0.82069, 0.800784, 0.752896 }; 
+		Double_t hadcor_eta_err_q2_gt_30[number_etabins] = {0.00782917, 0.00689749, 0.0068379, 0.00661664 }; 
+		Double_t hadcor_Q2_q2_gt_30[number_Q2bins] = {0, 0.806914, 0.804469, 0.793676, 0.831452 }; 
+		Double_t hadcor_Q2_err_q2_gt_30[number_Q2bins] = {0, 0.00118084, 0.000554522, 0.000495297, 0.000421101 }; 
+		Double_t hadcor_x_q2_gt_30[number_xbins] = {0.843608, 0.819389, 0.775454, 0.874698 }; 
+		Double_t hadcor_x_err_q2_gt_30[number_xbins] = {0.243476, 0.070294, 0.0427846, 0.111591 }; 
+		Double_t hadcor_et_jet_q2_gt_30[number_et_jetbins] = {0.655882, 0.729236, 0.812007, 0.953277, 1.16681, 1.20188 }; 
+		Double_t hadcor_et_jet_err_q2_gt_30[number_et_jetbins] = {0.00507677, 0.00426358, 0.0058354, 0.0084962, 0.00539041, 0.00569182 }; 
+		Double_t hadcor_eta_jet_q2_gt_30[number_eta_jetbins] = {0.781628, 0.704699, 0.837684, 0.965418 }; 
+		Double_t hadcor_eta_jet_err_q2_gt_30[number_eta_jetbins] = {0.00765494, 0.00549146, 0.0069617, 0.00906785 }; 
+		Double_t hadcor_xgamma_q2_gt_30[number_xgamma_bins] = {0.467137, 0.806144, 0.722442, 0.892445, 1.07443, 0.741364 }; 
+		Double_t hadcor_xgamma_err_q2_gt_30[number_xgamma_bins] = {0.0148872, 0.0351027, 0.0477097, 0.0442089, 0.040553, 0.0120299 }; 
+		Double_t hadcor_xp_q2_gt_30[number_xp_bins] = {0.689128, 0.767255, 0.844421, 0.949706, 1.06672, 1.00444 }; 
+		Double_t hadcor_xp_err_q2_gt_30[number_xp_bins] = {0.0870556, 0.0653476, 0.10551, 0.0948987, 0.183246, 0.26036 }; 
+		Double_t hadcor_dphi_q2_gt_30[number_dphi_bins] = {0.662398, 0.812959, 0.942889, 0.954072, 0.948604, 0.968903, 0.950563 }; 
+		Double_t hadcor_dphi_err_q2_gt_30[number_dphi_bins] = {0.000499121, 0.000766573, 0.00460862, 0.00466491, 0.00490652, 0.00510732, 0.00442899 }; 
+		Double_t hadcor_deta_q2_gt_30[number_deta_bins] = {0.884292, 0.678453, 0.723844, 0.837352, 0.950802, 0.922782 }; 
+		Double_t hadcor_deta_err_q2_gt_30[number_deta_bins] = {0.0204463, 0.00814855, 0.00649404, 0.00783328, 0.0118575, 0.022046 }; 
+		Double_t hadcor_dphi_e_gamma_q2_gt_30[number_dphi_e_ph_bins] = {0.924132, 0.918593, 0.906903, 0.835071, 0.783674, 0.688462 }; 
+		Double_t hadcor_dphi_e_gamma_err_q2_gt_30[number_dphi_e_ph_bins] = {0.000905738, 0.00102307, 0.000902713, 0.00087619, 0.00101472, 0.00103167 }; 
+		Double_t hadcor_deta_e_gamma_q2_gt_30[number_deta_e_ph_bins] = {0.699632, 0.748921, 0.782672, 0.830701, 0.879227 }; 
+		Double_t hadcor_deta_e_gamma_err_q2_gt_30[number_deta_e_ph_bins] = {0.0380661, 0.00708311, 0.00487972, 0.00503345, 0.00771938 }; 
 	Double_t * all_hadcort[12] = {hadcor_et, hadcor_eta, hadcor_Q2, hadcor_x, hadcor_et_jet, hadcor_eta_jet, hadcor_xgamma, hadcor_xp, hadcor_dphi, hadcor_deta, hadcor_dphi_e_gamma, hadcor_deta_e_gamma};
 	Double_t * all_hadcort_err[12] = {hadcor_et_err, hadcor_eta_err, hadcor_Q2_err, hadcor_x_err, hadcor_et_jet_err, hadcor_eta_jet_err, hadcor_xgamma_err, hadcor_xp_err, hadcor_dphi_err, hadcor_deta_err, hadcor_dphi_e_gamma_err, hadcor_deta_e_gamma_err};
+	Double_t * all_hadcort_BLZ_rew[12] = {hadcor_et_BLZ_rew, hadcor_eta_BLZ_rew, hadcor_Q2_BLZ_rew, hadcor_x_BLZ_rew, hadcor_et_jet_BLZ_rew, hadcor_eta_jet_BLZ_rew, hadcor_xgamma_BLZ_rew, hadcor_xp_BLZ_rew, hadcor_dphi_BLZ_rew, hadcor_deta_BLZ_rew, hadcor_dphi_e_gamma_BLZ_rew, hadcor_deta_e_gamma_BLZ_rew};
+	Double_t * all_hadcort_err_BLZ_rew[12] = {hadcor_et_err_BLZ_rew, hadcor_eta_err_BLZ_rew, hadcor_Q2_err_BLZ_rew, hadcor_x_err_BLZ_rew, hadcor_et_jet_err_BLZ_rew, hadcor_eta_jet_err_BLZ_rew, hadcor_xgamma_err_BLZ_rew, hadcor_xp_err_BLZ_rew, hadcor_dphi_err_BLZ_rew, hadcor_deta_err_BLZ_rew, hadcor_dphi_e_gamma_err_BLZ_rew, hadcor_deta_e_gamma_err_BLZ_rew};
 	Double_t * all_hadcort_q2_lt_30[12] = {hadcor_et_q2_lt_30, hadcor_eta_q2_lt_30, hadcor_Q2_q2_lt_30, hadcor_x_q2_lt_30, hadcor_et_jet_q2_lt_30, hadcor_eta_jet_q2_lt_30, hadcor_xgamma_q2_lt_30, hadcor_xp_q2_lt_30, hadcor_dphi_q2_lt_30, hadcor_deta_q2_lt_30, hadcor_dphi_e_gamma_q2_lt_30, hadcor_deta_e_gamma_q2_lt_30};
 	Double_t * all_hadcort_err_q2_lt_30[12] = {hadcor_et_err_q2_lt_30, hadcor_eta_err_q2_lt_30, hadcor_Q2_err_q2_lt_30, hadcor_x_err_q2_lt_30, hadcor_et_jet_err_q2_lt_30, hadcor_eta_jet_err_q2_lt_30, hadcor_xgamma_err_q2_lt_30, hadcor_xp_err_q2_lt_30, hadcor_dphi_err_q2_lt_30, hadcor_deta_err_q2_lt_30, hadcor_dphi_e_gamma_err_q2_lt_30, hadcor_deta_e_gamma_err_q2_lt_30};
 	Double_t * all_hadcort_q2_gt_30[12] = {hadcor_et_q2_gt_30, hadcor_eta_q2_gt_30, hadcor_Q2_q2_gt_30, hadcor_x_q2_gt_30, hadcor_et_jet_q2_gt_30, hadcor_eta_jet_q2_gt_30, hadcor_xgamma_q2_gt_30, hadcor_xp_q2_gt_30, hadcor_dphi_q2_gt_30, hadcor_deta_q2_gt_30, hadcor_dphi_e_gamma_q2_gt_30, hadcor_deta_e_gamma_q2_gt_30};

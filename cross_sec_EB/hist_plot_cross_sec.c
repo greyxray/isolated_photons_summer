@@ -639,21 +639,17 @@ void Hist::PlotCrossSec()
                     
                     cout << "\tQ2<30:";
                     for(int j = 0; j < numberAllBins[i]; j++)
-                    {
                         cout << all_theory_cs_font_pt25_Q2lt30[i][j] <<" ";
-                    }
                     dout();
 
                     cout << "\tQ2 full :";
                     for(int j = 0; j < numberAllBins[i]; j++)
-                    {
                         cout << all_theory_cs_font_pt25[i][j] <<" ";
-                    }
                     dout();
                 }
             }
         }
-
+        
         // Apply hadcor for AFG
         dout("Apply hadcor for AFG");
         for(int i = 0; i < n_cross; ++i)
@@ -667,22 +663,28 @@ void Hist::PlotCrossSec()
                     if (all_theory_cs_font_pt25_Q2lt30[i] == 0) continue;
                     dout("\t\tbin", j, ") cs: ", all_theory_cs_font_pt25_Q2lt30[i][j], "*", all_hadcort_q2_lt_30[i][j], "=", all_theory_cs_font_pt25_Q2lt30[i][j] * all_hadcort_q2_lt_30[i][j]); //(afg+ll)* had
 
-                    // pt>2.5
+                    dout("pt>2.5");
                     all_theory_cs_font_pt25_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2lt30[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt25_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
                     all_theory_cs_font_pt25_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2lt30[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt25_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
                     all_theory_cs_font_pt25_Q2lt30[i][j]  = all_theory_cs_font_pt25_Q2lt30[i][j] * all_hadcort_q2_lt_30[i][j];
-
-                    // combined
-                    all_theory_cs_font_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
-                    all_theory_cs_font_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
-                    all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_lt_30[i][j];
-
-                    // pt>0.5
-                    all_theory_cs_font_pt05_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
-                    all_theory_cs_font_pt05_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
-                    all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_lt_30[i][j];
-
                     dout("\t\t\t", "Had:", all_hadcort_q2_lt_30[i][j], "dHad:", all_hadcort_err_q2_lt_30[i][j], "neg:", all_theory_cs_font_pt25_neg_Q2lt30[i][j], "pos:", all_theory_cs_font_pt25_pos_Q2lt30[i][j]);
+
+                    if (all_theory_cs_font[i] != 0)
+                    {
+                        dout("combined");
+                        all_theory_cs_font_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                        all_theory_cs_font_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                        all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_lt_30[i][j];
+                    }
+
+                    if (all_theory_cs_font_pt05[i] != 0)
+                    {
+                        dout("pt>0.5");
+                        all_theory_cs_font_pt05_neg_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                        all_theory_cs_font_pt05_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
+                        all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_lt_30[i][j];
+                    }
+
                 
                 }
                 else if (q2_cut_global.Contains("gt"))
@@ -691,19 +693,28 @@ void Hist::PlotCrossSec()
                     dout("\t\tbin", j, ") cs: ", all_theory_cs_font_pt25_Q2gt30[i][j], "*", all_hadcort_q2_gt_30[i][j], "=", all_theory_cs_font_pt25_Q2gt30[i][j] * all_hadcort_q2_gt_30[i][j]); //(afg+ll)* had
 
                     // pt>2.5
+                    dout("pt>2.5");
                     all_theory_cs_font_pt25_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2gt30[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt25_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
                     all_theory_cs_font_pt25_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt25_Q2gt30[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt25_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
                     all_theory_cs_font_pt25_Q2gt30[i][j]  = all_theory_cs_font_pt25_Q2gt30[i][j] * all_hadcort_q2_gt_30[i][j];
 
                     // combined
-                    all_theory_cs_font_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
-                    all_theory_cs_font_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
-                    all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_gt_30[i][j];
+                    dout("combined");
+                    if (all_theory_cs_font[i] != 0)
+                    {
+                        all_theory_cs_font_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                        all_theory_cs_font_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                        all_theory_cs_font[i][j]  = all_theory_cs_font[i][j] * all_hadcort_q2_gt_30[i][j];
+                    }
 
                     // pt>0.5
-                    all_theory_cs_font_pt05_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
-                    all_theory_cs_font_pt05_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
-                    all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_gt_30[i][j];
+                    dout("pt>0.5");
+                    if (all_theory_cs_font_pt05[i] != 0)
+                    {
+                        all_theory_cs_font_pt05_neg_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_neg_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                        all_theory_cs_font_pt05_pos_Q2gt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_gt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2gt30[i][j], 2) * pow(all_hadcort_q2_gt_30[i][j], 2) );
+                        all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_gt_30[i][j];
+                    }
 
                     dout("\t\t\t", "Had:", all_hadcort_q2_gt_30[i][j], "dHad:", all_hadcort_err_q2_gt_30[i][j], "neg:", all_theory_cs_font_pt25_neg_Q2gt30[i][j], "pos:", all_theory_cs_font_pt25_pos_Q2gt30[i][j]);
                 }
@@ -743,15 +754,17 @@ void Hist::PlotCrossSec()
         for(int i = 0; i < n_cross; i++)
         {
             Double_t q2_lt_30_sumll = 0, q2_lt_30_sum_cs = 0, sumll = 0, sum_cs = 0;
-            dout("\tHist", i, simple_names[i]);
+            dout("Hist", i, simple_names[i]);
 
             for (int j = 0; j < ll_for_CrossectionDrawer[i]->GetNbinsX(); j++)
             {
+                dout(1);
                 sum_cs += data_for_CrossectionDrawer[i]->GetBinContent(j+1) * data_for_CrossectionDrawer[i]->GetBinWidth(j+1);
                 sumll += ll_for_CrossectionDrawer[i]->GetBinContent(j+1) * data_for_CrossectionDrawer[i]->GetBinWidth(j+1);
                 // For AFG comparison we compare to qq + ll:
                 
                     // Full Q2
+                    dout("Full Q2");
                     if (all_theory_cs_font_pt25[i] != 0)
                     {
                         if (!q2_cut_global.Contains("t")) // use fresh calculated values + check of old values
@@ -780,24 +793,28 @@ void Hist::PlotCrossSec()
                     }
 
                     // Q2<30 - pt>2.5 and combined
+                    dout("Q2<30 - pt>2.5 and combined");
                     if (all_theory_cs_font_pt25_Q2lt30[i] != 0)
                     {
                         if (q2_cut_global.Contains("lt")) // use fresh calculated values + check of old values
                         {
                             q2_lt_30_sumll+=ll_for_CrossectionDrawer[i]->GetBinContent(j+1) * ll_for_CrossectionDrawer[i]->GetBinWidth(j+1);
-                            q2_lt_30_sum_cs+=all_theory_cs_font_Q2lt30[i][j] * ll_for_CrossectionDrawer[i]->GetBinWidth(j+1);
                             
-                            //dout("AFG combined, Q2<30");
-                            //dout("\tLL bin",j+1, ":", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1), "bin width:", ll_for_CrossectionDrawer[i]->GetBinWidth(j+1));
-                            all_theory_cs_font_Q2lt30[i][j]     = all_theory_cs_font_Q2lt30[i][j] + ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
-                            all_theory_cs_font_pos_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_pos_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
-                            all_theory_cs_font_neg_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_neg_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
-                            
-                            // dout("was ", j, ":", all_theory_cs_font_pt25_Q2lt30[i][j], "+", all_theory_cs_font_pt25_pos_Q2lt30[i][j], "-", all_theory_cs_font_pt25_neg_Q2lt30[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
+                            if (all_theory_cs_font_Q2lt30[i] != 0)
+                            {
+                                dout("AFG combined, Q2<30");
+                                q2_lt_30_sum_cs+=all_theory_cs_font_Q2lt30[i][j] * ll_for_CrossectionDrawer[i]->GetBinWidth(j+1);
+                                //dout("\tLL bin",j+1, ":", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1), "bin width:", ll_for_CrossectionDrawer[i]->GetBinWidth(j+1));
+                                all_theory_cs_font_Q2lt30[i][j]     = all_theory_cs_font_Q2lt30[i][j] + ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
+                                all_theory_cs_font_pos_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_pos_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
+                                all_theory_cs_font_neg_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_neg_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
+                            }
+
+                             dout("was ", j, ":", all_theory_cs_font_pt25_Q2lt30[i][j], "+", all_theory_cs_font_pt25_pos_Q2lt30[i][j], "-", all_theory_cs_font_pt25_neg_Q2lt30[i][j], "   ;   ", ll_for_CrossectionDrawer[i]->GetBinContent(j+1), "+-", ll_for_CrossectionDrawer[i]->GetBinError(j+1));
                             all_theory_cs_font_pt25_Q2lt30[i][j]     = all_theory_cs_font_pt25_Q2lt30[i][j] + ll_for_CrossectionDrawer[i]->GetBinContent(j+1);
                             all_theory_cs_font_pt25_pos_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_pt25_pos_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
                             all_theory_cs_font_pt25_neg_Q2lt30[i][j] = sqrt( pow(all_theory_cs_font_pt25_neg_Q2lt30[i][j],2) + pow(ll_for_CrossectionDrawer[i]->GetBinError(j+1), 2));
-                            // dout("now ", j, ":", all_theory_cs_font_pt25_Q2lt30[i][j], "+", all_theory_cs_font_pt25_pos_Q2lt30[i][j], "-", all_theory_cs_font_pt25_neg_Q2lt30[i][j]);
+                             dout("now ", j, ":", all_theory_cs_font_pt25_Q2lt30[i][j], "+", all_theory_cs_font_pt25_pos_Q2lt30[i][j], "-", all_theory_cs_font_pt25_neg_Q2lt30[i][j]);
 
 
                             if (!(i==3 && j == 3 ) && ll_for_CrossectionDrawer[i]->GetBinContent(j+1) - all_ll_for_CrossectionDrawer_Q2lt30[i][j] > 0.001)
@@ -815,6 +832,7 @@ void Hist::PlotCrossSec()
                     }
 
                     // Q2>30 - only pt>2.5
+                    dout("Q2>30 - only pt>2.5");
                     if (all_theory_cs_font_pt25_Q2gt30[i] != 0)
                     {
                         if (q2_cut_global.Contains("gt")) // use fresh calculated values + check of old values
@@ -840,8 +858,8 @@ void Hist::PlotCrossSec()
                     }
             }
 
-            dout("q2_lt_30_sumll:", q2_lt_30_sumll, "q2_lt_30_sum_cs:", q2_lt_30_sum_cs);
-            dout("sumll:",sumll, "sum_cs:", sum_cs);
+            dout("\tq2_lt_30_sumll:", q2_lt_30_sumll, "q2_lt_30_sum_cs:", q2_lt_30_sum_cs);
+            dout("\tsumll:",sumll, "sum_cs:", sum_cs);
         }
 
         // Hadcor for different Q2 regions

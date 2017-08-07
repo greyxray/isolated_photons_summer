@@ -693,8 +693,8 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                                  Double_t * all_theory_cs_font_25[12] = 0, Double_t * all_theory_cs_font_pos_25[12] = 0, Double_t * all_theory_cs_font_neg_25[12] = 0, TString theory_name_Font2 = "Fontannaz")//TString s_var[n_cross];
 {
     dout("CrossectionDrawer::DrawAll: m,n ============>", m, n);
-dout("BLZ:", with_BLZ);
-// exit(1);
+    dout("BLZ:", with_BLZ);
+    // exit(1);
     // Check the positioning of plots on the canvas
         if ( (m == 1 || m == 2 || m== 3) && !(n == m || n == 1)) n = m;
         else if ((m == 6 && !(n == 3 || n == 2)) || (m == 4)) n = 2;
@@ -794,11 +794,12 @@ dout("BLZ:", with_BLZ);
                     return;
                 }
             }
+
         dout("Draws theory - Fig. 6-8");
         TCanvas * test_theor;// = new TCanvas('c1', 'c', 899, 900);
         for(int i = 0; i < nplots; ++i)
         {
-            dout("\nCrossectionDrawer::DrawAll:", "processing", i,  drawers[i]->fVariableName);
+            dout("\nCrossectionDrawer::DrawAll::processing", i,  drawers[i]->fVariableName);
             if ( (i ) % m == 0 ) 
             {   
                 test_theor  = new TCanvas(Form("theor_c%d", i * 10), "bins of ",  n*800, (m / n + m % n) * 600 + 100 * (for_paper == false));
@@ -989,7 +990,6 @@ dout("BLZ:", with_BLZ);
             drawers[i]->SaveCanvas( (i + 1) % m == 0 , false);
         }    
     }
-
 }
 
 // So far used only on BLZ
@@ -1023,12 +1023,12 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     for(int j = 0; j < fCSdata->GetNbinsX(); ++j)
     {
         x[j] = fCSdata->GetBinCenter(j + 1);
-        y[j] = cs[j] * all_hadcort[num][j] ;//+
+        y[j] = cs[j] * all_hadcort_BLZ_rew[num][j] ;//+
                // + fMCll->GetBinContent(j+1);// THIS IS ONLY FOR FONTANNAZ of 2.5 where we need to add the ll; // The handonisation correction is always applied
         exl[j] = 0.5 * fCSdata->GetBinWidth(j+1); 
         exh[j] = 0.5 * fCSdata->GetBinWidth(j+1);
-        eyl[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err[num][j],2) + pow(cs_neg[j], 2) * pow(all_hadcort[num][j], 2) );//cs_neg[j] * all_hadcort[num][j];//statistical - not statistical and acceptance // TODO: propagate the error
-        eyh[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err[num][j],2) + pow(cs_pos[j], 2) * pow(all_hadcort[num][j], 2) );//cs_pos[j] * all_hadcort[num][j];
+        eyl[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_neg[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_neg[j] * all_hadcort[num][j];//statistical - not statistical and acceptance // TODO: propagate the error
+        eyh[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_pos[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_pos[j] * all_hadcort[num][j];
         // dout("was",j,":", cs[j] * all_hadcort[num][j], "+-", eyl[j], " : +", fMCll->GetBinContent(j+1), "+-", fMCll->GetBinError(j+1));
 
         //  eyl[j] = sqrt(pow(eyl[j], 2) + pow(fMCll->GetBinError(j+1), 2));
