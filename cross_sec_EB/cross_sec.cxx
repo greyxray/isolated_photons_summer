@@ -10,11 +10,14 @@ unsigned int ProduceDZoverollPlot = 1;
 bool dZdetailed = false;
 Bool_t nodebugmode = kTRUE;
 Bool_t once = kTRUE;
+
 TString prel("");//" (prel.)"
 bool logY_for_xgamma_xp = false;
 int CrossectionDrawer_m = 1; // def 1 or 6
 int CrossectionDrawer_n = 1; // def 1 or 3
 int CrossectionDrawer_for_paper = true; //def true
+bool IanAFG = false;
+bool IanBLZ = true;
 
 bool llCorrectiontoo = true;
 bool backnormaliseLL = true;
