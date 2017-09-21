@@ -481,16 +481,16 @@ void Hist::CalculateCrossSec(TH1D* data,
 
       //      cross_sec          = (           prph           / C_acc + ll_events/C_ll_acc)  / (bin_width * Lumi);
 
-      Double_t cross_sec         = ( (n_qq ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events/C_ll_acc ) / (bin_width * Lumi),
+      Double_t cross_sec         = ( (n_qq ) / C_acc + (C_ll_acc!=0) * fitWithLL * ll_events/C_ll_acc ) / (bin_width * Lumi),
                prph_cross_sec    =   (n_qq )                                / (C_acc * bin_width * Lumi),
                ll_cross_sec      =                                      ll_events            / (C_ll_acc * bin_width * Lumi),
                prph_mc_cross_sec =    prph_had                                               / (bin_width * 3552.40),
                ll_mc_cross_sec   =                                      ll_had_events        / (bin_width * (lumi_mc_bg[0] + lumi_mc_bg[1] + lumi_mc_bg[2]));
       
-
       Double_t cross_sec_copy         = ( (n_qq_copy ) / C_acc + (C_ll_acc!=0)*fitWithLL*ll_events_copy/C_ll_acc ) / (bin_width * Lumi),
                prph_cross_sec_copy    =   (n_qq_copy )                                / (C_acc * bin_width * Lumi);
-      //dout(ll_events_copy, "=", ll_events);
+      dout("IAN CS for LL part in", name, "bin", i, ":", ll_cross_sec, ";events: ", ll_events, "; C_ll_acc:", C_ll_acc, "check:", C_ll_acc,"?=", ll_events/ll_had_events,  "; bin_width:", bin_width, "; Lumi:", Lumi,"?=", (lumi_mc_bg[0] + lumi_mc_bg[1] + lumi_mc_bg[2]), "; had:", ll_mc_cross_sec, " +- " , ll_had->GetBinError(i+1)/(bin_width * (lumi_mc_bg[0] + lumi_mc_bg[1] + lumi_mc_bg[2])));
+      // exit(1);
       test_forest->SetBinContent( i+1, prph / (C_acc*bin_width * Lumi));
       test_forest->SetBinError( i+1, TMath::Sqrt(pow(det->GetBinError(i+1) / (bin_width * Lumi * C_acc), 2) +
                                       pow(prph * C_err / (bin_width * Lumi * C_acc * C_acc), 2)) );
@@ -658,7 +658,8 @@ void Hist::CalculateCrossSec(TH1D* data,
         selectedoutput << "errors (stat. and fit, acc., lumi., total), %: " << err1 / cross_sec << ", " 
              << err2/cross_sec << ", " << err3 / cross_sec << ", " << err / cross_sec << endl;
         selectedoutput << "prph data: " << prph_cross_sec << ", prph mc: " << prph_mc_cross_sec << ", prph_had = " << prph_had <<  endl;
-        selectedoutput << "ll data: " << ll_cross_sec  << " +- " << err_ll << ", acc_LL = " << C_ll_acc << ", ll mc: " << ll_mc_cross_sec << endl;
+        selectedoutput << "ll data: " << ll_cross_sec  << " +- " << err_ll << ", acc_LL = " << C_ll_acc << endl;
+        selectedoutput << "ll mc: " << ll_mc_cross_sec  << " +- " << ll_had->GetBinError(i+1)/(bin_width * (lumi_mc_bg[0] + lumi_mc_bg[1] + lumi_mc_bg[2])) << endl;
         selectedoutput << "errors for ll (stat. and fit, acc., lumi., total), %: " << err1_ll / ll_cross_sec << ", " 
              << err2_ll/ll_cross_sec << ", " << err3_ll / ll_cross_sec << ", " << err_ll / ll_cross_sec << endl;
         
