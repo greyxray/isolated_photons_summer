@@ -684,8 +684,6 @@ void Hist::PlotCrossSec()
                         all_theory_cs_font_pt05_pos_Q2lt30[i][j] = sqrt(pow(all_theory_cs_font_pt05[i][j], 2) * pow(all_hadcort_err_q2_lt_30[i][j],2) + pow(all_theory_cs_font_pt05_pos_Q2lt30[i][j], 2) * pow(all_hadcort_q2_lt_30[i][j], 2) );
                         all_theory_cs_font_pt05[i][j]  = all_theory_cs_font_pt05[i][j] * all_hadcort_q2_lt_30[i][j];
                     }
-
-                
                 }
                 else if (q2_cut_global.Contains("gt"))
                 {
@@ -862,7 +860,7 @@ void Hist::PlotCrossSec()
             dout("\tsumll:",sumll, "sum_cs:", sum_cs);
         }
 
-        // Hadcor for different Q2 regions
+        // Hadcor for different Q2 regions - used for BLZ
         if (q2_cut_global.Contains("lt"))
         {
             std::copy(std::begin(all_hadcort_q2_lt_30), std::end(all_hadcort_q2_lt_30), std::begin(all_hadcort));
