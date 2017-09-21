@@ -836,6 +836,8 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                             continue;
                         };
                     drawers[i]->theory_name = theory_name_BLZ;
+                    if (IanBLZ && (all_ian_blz_cs[i] != 0))
+                        drawers[i]->theory_name += ", unforld.";
                     drawers[i]->AssighnTheory(all_theory_cs_BLZ[i], all_theory_cs_BLZ_pos[i], all_theory_cs_BLZ_neg[i], i);
                     drawers[i]->DrawHist(false, true);
                 }
@@ -923,10 +925,8 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                 if (!(with_BLZ || withFontannaz))
                 {
                     dout("(!(with_BLZ || withFontannaz))");
-                   if (!for_paper || (for_paper 
-                                                && (( (i == 0 || i == 6) && !q2_cut_global.Contains("_q2_gt_30") ) 
-                                                                                                || ( q2_cut_global.Contains("_q2_")  && i == 9) )
-                                            ) ) //PLOTS
+                    if (!for_paper ||
+                    (for_paper && (( (i == 0 || i == 6) && !q2_cut_global.Contains("_q2_gt_30") )|| ( q2_cut_global.Contains("_q2_")  && i == 9) )) ) //PLOTS
                         drawers[i]->DrawLegend( (i ) % m == 0, i );
                 }
                 else if (with_BLZ)
@@ -934,35 +934,43 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     if (!withFontannaz)
                     {
                         dout("here for pap:");
-                        if (!for_paper || (for_paper 
-                                                && ( ( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) 
-                                                                                                || ( q2_cut_global.Contains("_q2_")  && i == 9) )
-                                            ) ) //PLOTS
-                        drawers[i]->DrawLegend( (i ) % m == 0 , i, true);
+                        if (!for_paper ||
+                            (for_paper && ( ( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) || ( q2_cut_global.Contains("_q2_")  && i == 9) )) ) //PLOTS
+                            drawers[i]->DrawLegend( (i ) % m == 0 , i, true);
                     }
                     else if (withFontannaz && ! two_fontannaz)
                     {
 
                         
                         dout("with_BLZ && (withFontannaz && ! two_fontannaz)");
-                        if (!for_paper || (for_paper 
-                                                && (( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) 
-                                                                                                || ( q2_cut_global.Contains("_q2_")  && i == 9) )
-                                            ) ) //PLOTS
-                        drawers[i]->DrawLegend( (i ) % m == 0 , i, true, 
-                                                                true, fTGraphTheoryFont, theory_name_Font1,
-                                                                false );//"#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}"
+                        if (!for_paper || 
+                            (for_paper && (( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) || ( q2_cut_global.Contains("_q2_")  && i == 9) )) ) //PLOTS
+                        {
+                            TString theoryname = theory_name_Font1;
+                            if (IanAFG && all_ian_afg_cs[i] != 0) theoryname += ", unforld.";
+                            drawers[i]->DrawLegend( (i ) % m == 0 , i, true,
+                                true, fTGraphTheoryFont, theoryname,
+                                false );//"#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}"
+                    
+                        }
                     }
                     else if (withFontannaz && withFontannaz)
                     {
                         dout("with_BLZ && (withFontannaz && withFontannaz)");
-                        if (!for_paper || (for_paper 
-                                                && (( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) 
-                                                                                                || ( q2_cut_global.Contains("_q2_")  && i == 9) )
-                                            ) ) //PLOTS
-                        drawers[i]->DrawLegend( (i ) % m == 0 , i, true, 
-                                                                true, fTGraphTheoryFont,  theory_name_Font1, 
-                                                                true, fTGraphTheoryFont2, theory_name_Font2);
+                        if (!for_paper || 
+                            (for_paper && (( (i == 0 || i == 6) /*&& !q2_cut_global.Contains("_q2_gt_30")*/ ) || ( q2_cut_global.Contains("_q2_")  && i == 9) )) ) //PLOTS
+                        {
+                            TString theoryname1 = theory_name_Font1;
+                            TString theoryname2 = theory_name_Font2;
+                            if (IanAFG && all_ian_afg_cs[i] != 0)
+                            {
+                                theoryname1 += ", unforld.";
+                                theoryname2 += ", unforld.";
+                            }
+                            drawers[i]->DrawLegend( (i ) % m == 0 , i, true, 
+                                true, fTGraphTheoryFont,  theoryname1, 
+                                true, fTGraphTheoryFont2, theoryname2);
+                        }
                     }
                     else cerr << "Something strange"<< endl;
 
@@ -973,17 +981,30 @@ void CrossectionDrawer::DrawAll( TH1 ** data, TH1 ** data_tot_err, TH1 ** fit, T
                     {
                         dout("!with_BLZ && withFontannaz && !two_fontannaz");
                         if (!for_paper || (for_paper && (i == 0 || i == 6))) //PLOTS
-                        drawers[i]->DrawLegend( (i ) % m == 0 , i, false, 
-                                                                true, fTGraphTheoryFont, theory_name_Font1,
+                        {
+                            TString theoryname = theory_name_Font1;
+                            if (IanAFG && all_ian_afg_cs[i] != 0) theoryname += ", unforld.";
+                            drawers[i]->DrawLegend( (i ) % m == 0 , i, false, 
+                                                                true, fTGraphTheoryFont, theoryname,
                                                                 false );//"#splitline{Fontannaz }{(0.5 < p_{T} cut < 2.5)}"
+                        }
                     }
                     else if ( two_fontannaz)
                     {
                         dout("!with_BLZ && withFontannaz && two_fontannaz");
                         if (!for_paper || (for_paper && (i == 0 || i == 6))) //PLOTS
-                        drawers[i]->DrawLegend( (i ) % m == 0 , i, false, 
-                                                                true, fTGraphTheoryFont,  theory_name_Font1, 
-                                                                true, fTGraphTheoryFont2, theory_name_Font2);
+                        {
+                            TString theoryname1 = theory_name_Font1;
+                            TString theoryname2 = theory_name_Font2;
+                            if (IanAFG && all_ian_afg_cs[i] != 0)
+                            {
+                                theoryname1 += ", unforld.";
+                                theoryname2 += ", unforld.";
+                            }
+                            drawers[i]->DrawLegend( (i ) % m == 0 , i, false,
+                                true, fTGraphTheoryFont,  theoryname1, 
+                                true, fTGraphTheoryFont2, theoryname2);
+                        }
                     }
                     else cerr << "Something strange"<< endl;
                 }
@@ -1019,23 +1040,38 @@ void CrossectionDrawer::AssighnTheory(Double_t * cs = 0, Double_t * cs_pos = 0, 
     Double_t eyl[nn];
     Double_t eyh[nn];
     dout("theory CrossectionDrawer::AssighnTheory sum for", fVariableName);
-    Double_t temp =0;
+    Double_t temp = 0;
     for(int j = 0; j < fCSdata->GetNbinsX(); ++j)
     {
-        x[j] = fCSdata->GetBinCenter(j + 1);
-        y[j] = cs[j] * all_hadcort_BLZ_rew[num][j] ;//+
-               // + fMCll->GetBinContent(j+1);// THIS IS ONLY FOR FONTANNAZ of 2.5 where we need to add the ll; // The handonisation correction is always applied
-        exl[j] = 0.5 * fCSdata->GetBinWidth(j+1); 
-        exh[j] = 0.5 * fCSdata->GetBinWidth(j+1);
-        eyl[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_neg[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_neg[j] * all_hadcort[num][j];//statistical - not statistical and acceptance // TODO: propagate the error
-        eyh[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_pos[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_pos[j] * all_hadcort[num][j];
-        // dout("was",j,":", cs[j] * all_hadcort[num][j], "+-", eyl[j], " : +", fMCll->GetBinContent(j+1), "+-", fMCll->GetBinError(j+1));
+        if (!IanBLZ || all_ian_blz_cs[num] == 0)
+        {
+            x[j] = fCSdata->GetBinCenter(j + 1);
+            y[j] = cs[j] * all_hadcort_BLZ_rew[num][j] ;//+
+                   // + fMCll->GetBinContent(j+1);// THIS IS ONLY FOR FONTANNAZ of 2.5 where we need to add the ll; // The handonisation correction is always applied
+            exl[j] = 0.5 * fCSdata->GetBinWidth(j+1); 
+            exh[j] = 0.5 * fCSdata->GetBinWidth(j+1);
+            eyl[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_neg[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_neg[j] * all_hadcort[num][j];//statistical - not statistical and acceptance // TODO: propagate the error
+            eyh[j] = sqrt(pow(cs[j], 2) * pow(all_hadcort_err_BLZ_rew[num][j],2) + pow(cs_pos[j], 2) * pow(all_hadcort_BLZ_rew[num][j], 2) );//cs_pos[j] * all_hadcort[num][j];
+            // dout("was",j,":", cs[j] * all_hadcort[num][j], "+-", eyl[j], " : +", fMCll->GetBinContent(j+1), "+-", fMCll->GetBinError(j+1));
 
-        //  eyl[j] = sqrt(pow(eyl[j], 2) + pow(fMCll->GetBinError(j+1), 2));
-        //  eyh[j] =  sqrt(pow(eyh[j], 2) + pow(fMCll->GetBinError(j+1), 2));
-        //  dout("became",j,":",y[j], "+-", eyl[j]);
-        temp += cs[j] * fCSdata->GetBinWidth(j+1);
+            //  eyl[j] = sqrt(pow(eyl[j], 2) + pow(fMCll->GetBinError(j+1), 2));
+            //  eyh[j] =  sqrt(pow(eyh[j], 2) + pow(fMCll->GetBinError(j+1), 2));
+            //  dout("became",j,":",y[j], "+-", eyl[j]);
+            temp += cs[j] * fCSdata->GetBinWidth(j+1);
+        }
+        else 
+        {
+            x[j] = fCSdata->GetBinCenter(j + 1);
+            y[j] = all_ian_blz_cs[num][j];
+            exl[j] = 0.5 * fCSdata->GetBinWidth(j+1); 
+            exh[j] = 0.5 * fCSdata->GetBinWidth(j+1);
+            eyl[j] = all_ian_blz_neg[num][j];
+            eyh[j] = all_ian_blz_pos[num][j];
+            dout("IAN CS: bin:", j, "cs:", y[j], "+-",  eyl[j], eyh[j]);
+            temp += cs[j] * fCSdata->GetBinWidth(j+1);
+        }
     }
+
     dout("theory CrossectionDrawer::AssighnTheory sum_sigma = ", temp);
     fTGraphTheory = new TGraphAsymmErrors(nn, x, y, exl, exh, eyl, eyh);
     fTGraphTheory->SetMarkerColor(31);
