@@ -31,7 +31,8 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
   hist.mccorel_q2_x->Fill(Mc_q2, Mc_x, wtx);
   hist.mccorel_q2_y_noweight->Fill(Mc_q2, Mc_y);
   hist.mccorel_q2_x_noweight->Fill(Mc_q2, Mc_x);
-  if(Mc_q2 < 10.) 
+
+  if (Mc_q2 < 10. || Mc_q2 > 350 || (Mc_q2 < q2_cut_low || Mc_q2 > q2_cut_high) )
   {
     take_hevent = kFALSE;
     if(check_cuts)
@@ -284,16 +285,16 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
                             empz_particles_inside_jet_plus += input_hadrons[zloop].e() + input_hadrons[zloop].pz();
         }
       }
-       x_gamma /= (2. * E_e * Mc_y);
-                    x_pomeron /= (2. * E_p);
-
-          Double_t hardest_jet_et = true_jets[index_of_accomp_jet].et();
-          Double_t hardest_jet_eta = true_jets[index_of_accomp_jet].eta();
-          Double_t hardest_jet_phi = true_jets[index_of_accomp_jet].phi();
-          Double_t temp_dphi = delta_phi(hardest_jet_phi, input_hadrons[index_photon_vector].phi()) * 180.0/TMath::Pi(); //? v_true_prompt_photon->Phi())
-          Double_t temp_deta = hardest_jet_eta - input_hadrons[index_photon_vector].eta();
-          Double_t temp_dphi_e_ph = delta_phi(v_true_electron.Phi(), input_hadrons[index_photon_vector].phi()) * 180.0/TMath::Pi();
-          Double_t temp_deta_e_ph = -TMath::Log(TMath::Tan(v_true_electron.Theta()/2.)) - input_hadrons[index_photon_vector].eta();
+      x_gamma /= (2. * E_e * Mc_y);
+      x_pomeron /= (2. * E_p);
+      if (x_gamma > = 1) x_gamma = 0.999;
+        Double_t hardest_jet_et = true_jets[index_of_accomp_jet].et();
+        Double_t hardest_jet_eta = true_jets[index_of_accomp_jet].eta();
+        Double_t hardest_jet_phi = true_jets[index_of_accomp_jet].phi();
+        Double_t temp_dphi = delta_phi(hardest_jet_phi, input_hadrons[index_photon_vector].phi()) * 180.0/TMath::Pi(); //? v_true_prompt_photon->Phi())
+        Double_t temp_deta = hardest_jet_eta - input_hadrons[index_photon_vector].eta();
+        Double_t temp_dphi_e_ph = delta_phi(v_true_electron.Phi(), input_hadrons[index_photon_vector].phi()) * 180.0/TMath::Pi();
+        Double_t temp_deta_e_ph = -TMath::Log(TMath::Tan(v_true_electron.Theta()/2.)) - input_hadrons[index_photon_vector].eta();
 
     	hist.had_prph_e->Fill(input_hadrons[index_photon_vector].et(), wtx);
     	hist.had_jet_e->Fill(accomp_jet_et, wtx);
