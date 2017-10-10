@@ -610,7 +610,7 @@ Bool_t selector::Process()
 					//syst uncert count
 						if (systJetE_lt10 != 1. || systJetE_gt10 != 1. || systJetE_lt6 != 1.)
 						{
-							cout<<"Starting upplying jet correction for systematic" <<endl;
+							if (!nodebugmode) cout << "Starting upplying jet correction for systematic" <<endl;
 							for(Int_t jloop=0; jloop < jets.size(); jloop++) 
 							{ 
 								Double_t px = jets[jloop].px(); 
