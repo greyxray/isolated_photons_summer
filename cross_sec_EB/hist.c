@@ -205,7 +205,8 @@ void Hist::Init()
     set_hist_atributes(6,  "h_deltaz", "Photon_with_jet", "<#delta z>", 0, 1.5, 0.1, kFALSE, 10);//g_index_deltaz
     
     TString s_process;// = "zero"; 
-    TString s_path = "../root_2017_first_half/my_";// - NICE
+    // TString s_path = "../root_2017_first_half/my_";// - NICE, paper v11
+    TString s_path = "../Sep23/my_";// separate cut on Q2 on had lev
     if (q2_cut_global.Contains("_q2_lt_30") || q2_cut_global.Contains("_q2_gt_30")) s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     //TString s_path = "../root_files/my_"; // - Q2 "/nfs/dust/zeus/group/glushenko/rootfiles_new/my_"
     s_process.Form(correctiontype );
