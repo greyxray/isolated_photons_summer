@@ -287,7 +287,7 @@ Bool_t selector::SelectHadronLevel(Bool_t take_det_event)
       }
       x_gamma /= (2. * E_e * Mc_y);
       x_pomeron /= (2. * E_p);
-      if (x_gamma > = 1) x_gamma = 0.999;
+      if (x_gamma >= 1) x_gamma = 0.999;
         Double_t hardest_jet_et = true_jets[index_of_accomp_jet].et();
         Double_t hardest_jet_eta = true_jets[index_of_accomp_jet].eta();
         Double_t hardest_jet_phi = true_jets[index_of_accomp_jet].phi();

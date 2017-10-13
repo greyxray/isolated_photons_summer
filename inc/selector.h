@@ -31,7 +31,7 @@ using namespace std;
 class selector 
 {
   public :
-
+    float nEvToProcess;
     bool nodebugmode;
     Double_t delta_phi(Double_t phi1, Double_t phi2);
     Double_t jet_en_corr(Double_t eta, Double_t et, TString period, TString mc_type);
@@ -1115,7 +1115,7 @@ class selector
 //#define selector_init
 void selector::Init(TTree *tree, TString run_period, Bool_t b_Data, TString s_mc_type, TString s_mc_corr_type, Bool_t b_usecorr, Bool_t b_use2ndcorr, Bool_t b_use_clustered)
 {
-
+    nEvToProcess = std::numeric_limits<float>::infinity();
   nodebugmode = kFALSE;
   systematics_sufix = "zero";
   q2_sufix = "";
