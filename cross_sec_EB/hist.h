@@ -30,6 +30,9 @@ void ScaleZaxis(TH1 *h, Double_t (*Scale)(Double_t, Double_t));
   void CalculateCrossSec(TH1D* data, TH1D* ll_det, TH1D* ll_had, TH1D* ll_hd, TH1D *det, TH1D* had, TH1D* hd, TH1D *ll_acc, TH1D *acc, Double_t Lumi, TH1D **res, TString name, Double_t* param,
 			 Double_t* param_err, TH1D **res_copy ,TH1D* ll_det_copy , TH1D* det_copy
        /*, Double_t integral_data, Double_t integral_ll, Double_t integral_data_err, Double_t integral_ll_err*/);
+  void CalculateCrossSecQQfit0(TH1D* data, TH1D* ll_det, TH1D* ll_had, TH1D* ll_hd, TH1D *det, TH1D* had, TH1D* hd, TH1D *ll_acc, TH1D *acc, Double_t Lumi, TH1D **res, TString name, Double_t* param,
+       Double_t* param_err, TH1D **res_copy ,TH1D* ll_det_copy , TH1D* det_copy
+       /*, Double_t integral_data, Double_t integral_ll, Double_t integral_data_err, Double_t integral_ll_err*/);
   void CalculateCrossSec(TH1D *h_Data, TH1D *h_Lepto_det,
 			       TH1D *h_Lepto_had, TH1D *h_Lepto_hd,
 			       Double_t Lumi, Int_t Linecolor, TH1D **h_Cross_Sec);

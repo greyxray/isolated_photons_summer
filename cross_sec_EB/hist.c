@@ -5,6 +5,7 @@
 #include "hist_calculate_cross_sec.c"
 #include "hist_compare1st2nd.c"
 #include "hist_set_syst_errors.c"
+#include "CalculateCrossSecQQfit0.c"
 //#include "TDirectory.h"
 #include "TMath.h"
 #include <algorithm>

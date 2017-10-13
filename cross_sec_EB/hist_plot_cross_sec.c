@@ -220,23 +220,42 @@ void Hist::PlotCrossSec()
         h_det_rad_sum_copy[i] = (TH1D*)h_det_rad_sum[i]->Clone();
         h_det_prph_sum_copy[i] = (TH1D*)h_det_prph_sum[i]->Clone();
 
-        CalculateCrossSec(h_det_data_sum[i],
-                        h_det_rad_sum[i],
-                        h_had_rad_sum[i],
-                        h_hd_rad_sum[i],
-                        h_det_prph_sum[i],
-                        h_had_prph_sum[i],
-                        h_hd_prph_sum[i],
-                        h_acceptance_rad[i],
-                        h_acceptance_prph[i],
-                        total_luminosity_data,
-                        h_cross[i],
-                        s,
-                        param,
-                        param_err,
-                        h_cross_copy[i],
-                        h_det_rad_sum_copy[i],
-                        h_det_prph_sum_copy[i]);
+        if (QQfit != 0) // not for fitWithLLinBg !
+            CalculateCrossSec(h_det_data_sum[i],
+                            h_det_rad_sum[i],
+                            h_had_rad_sum[i],
+                            h_hd_rad_sum[i],
+                            h_det_prph_sum[i],
+                            h_had_prph_sum[i],
+                            h_hd_prph_sum[i],
+                            h_acceptance_rad[i],
+                            h_acceptance_prph[i],
+                            total_luminosity_data,
+                            h_cross[i],
+                            s,
+                            param,
+                            param_err,
+                            h_cross_copy[i],
+                            h_det_rad_sum_copy[i],
+                            h_det_prph_sum_copy[i]);
+        else
+            CalculateCrossSecQQfit0(h_det_data_sum[i],
+                            h_det_rad_sum[i],
+                            h_had_rad_sum[i],
+                            h_hd_rad_sum[i],
+                            h_det_prph_sum[i],
+                            h_had_prph_sum[i],
+                            h_hd_prph_sum[i],
+                            h_acceptance_rad[i],
+                            h_acceptance_prph[i],
+                            total_luminosity_data,
+                            h_cross[i],
+                            s,
+                            param,
+                            param_err,
+                            h_cross_copy[i],
+                            h_det_rad_sum_copy[i],
+                            h_det_prph_sum_copy[i]);
         if (i==4) dout("here");
          if(s_var[i] == "Q2")
         {
